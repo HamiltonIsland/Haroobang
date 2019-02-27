@@ -13,7 +13,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 					<ul class="nav navbar-nav menu_nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="home.action">Home</a></li>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Shop</a>
@@ -29,15 +29,15 @@
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Blog</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-								<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+								<li class="nav-item"><a class="nav-link" href="blog.action">Blog</a></li>
+								<li class="nav-item"><a class="nav-link" href="single-blog.action">Blog Details</a></li>
 							</ul>
 						</li>
 						<li class="nav-item submenu dropdown active">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Pages</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+								<li class="nav-item"><a class="nav-link" href="login.action">Login</a></li>
 								<li class="nav-item active"><a class="nav-link" href="tracking.html">Tracking</a></li>
 								<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 							</ul>
