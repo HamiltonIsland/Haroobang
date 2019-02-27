@@ -9,3 +9,6 @@
 <link rel="stylesheet" href="/haroobang/resources/css/ion.rangeSlider.skinFlat.css" />
 <link rel="stylesheet" href="/haroobang/resources/css/magnific-popup.css">
 <link rel="stylesheet" href="/haroobang/resources/css/main.css">
+<link rel="stylesheet" href="/haroobang/resources/css/availability-calendar.css">
+<link rel="stylesheet" href="/haroobang/resources/css/jquerysctipttop.css">
+
