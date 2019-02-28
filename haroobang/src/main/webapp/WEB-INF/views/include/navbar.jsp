@@ -53,10 +53,10 @@
 				</div>
 			</div>
 		</nav>
-	</div>
+	</div> 
 	
-	<!-- 검색하는 창 -->
-<!-- 	<div class="search_input" id="search_input_box">
+	
+	<div class="search_input" id="search_input_box">
 		<div class="container">
 			<form class="d-flex justify-content-between">
 				<input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -64,5 +64,5 @@
 				<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
 			</form>
 		</div>
-	</div> -->
+	</div>
 </header>
