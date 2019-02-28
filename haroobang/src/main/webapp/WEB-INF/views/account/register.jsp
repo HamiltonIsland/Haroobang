@@ -20,13 +20,13 @@
 	<!--
 		CSS
 		============================================= -->
-	<jsp:include page="include/css.jsp"/>
+	<jsp:include page="../include/css.jsp"/>
 </head>
 
 <body>
 
 	<!-- Start Header Area -->
-	<jsp:include page="include/navbar.jsp"/>
+	<jsp:include page="../include/navbar.jsp"/>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -51,11 +51,11 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="login_box_img">
-						<img class="img-fluid" src="/haroobang/resources/img/login.jpg" alt="">
+						<img class="img-fluid" src="/haroobang/resources/img/login.jpg" alt=""> 
 						<div class="hover">
 							<h4>New to our website?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="primary-btn" href="registration.action">Create an Account</a>
+							<a class="primary-btn" href="register.action">Create an Account</a>
 						</div>
 					</div>
 				</div>
@@ -168,7 +168,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- End footer Area -->
 
 
-	<jsp:include page="include/js.jsp"/>
+	<jsp:include page="../include/js.jsp"/>
 	
 </body>
 

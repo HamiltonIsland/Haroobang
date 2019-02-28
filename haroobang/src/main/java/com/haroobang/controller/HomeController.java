@@ -1,4 +1,4 @@
-package com.project.controller;
+package com.haroobang.controller;
 
 import java.util.Locale;
 
@@ -24,15 +24,8 @@ public class HomeController {
 	@RequestMapping(value = "cart.action", method = RequestMethod.GET)
 	public String cart(Locale locale, Model model) {	
 		return "cart";
-	}
-	@RequestMapping(value = "login.action", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {	
-		return "login";
-	}
-	@RequestMapping(value = "registration.action", method = RequestMethod.GET)
-	public String registration(Locale locale, Model model) {	
-		return "registration";
-	}
+	}	
+	
 	
 	
 }

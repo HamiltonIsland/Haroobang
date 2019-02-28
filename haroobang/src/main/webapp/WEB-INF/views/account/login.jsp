@@ -20,13 +20,13 @@
 	<!--
 		CSS
 		============================================= -->
-	<jsp:include page="include/css.jsp"/>
+	<jsp:include page="../include/css.jsp"/>
 </head>
 
 <body>
 
 	<!-- Start Header Area -->
-	<jsp:include page="include/navbar.jsp"/>
+	<jsp:include page="../include/navbar.jsp"/>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -168,7 +168,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- End footer Area -->
 
 
-	<jsp:include page="include/js.jsp"/>
+	<jsp:include page="../include/js.jsp"/>
 	
 </body>
 
