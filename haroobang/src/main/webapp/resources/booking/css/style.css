@@ -178,7 +178,6 @@ figure {
 body {
   font-size: 14px;
   line-height: 1.8;
-  color: black;
   background-image: url("../images/form-img.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -190,6 +189,7 @@ body {
   font-weight: 600;
   font-family: Poppins;
   margin: 0px; }
+
 
 .main {
   position: relative; }
