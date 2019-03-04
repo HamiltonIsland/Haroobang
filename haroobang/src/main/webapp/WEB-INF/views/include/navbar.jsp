@@ -18,7 +18,7 @@
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Shop</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="/haroobang/category.action">Shop Category</a></li>
+								<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomList.action">Room Category</a></li>
 								<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomDetail.action">roomDetail Page</a></li>
 								<li class="nav-item"><a class="nav-link" href="/haroobang/checkout.action">Product Checkout</a></li>
 								<li class="nav-item"><a class="nav-link" href="/haroobang/cart.action">Shopping Cart</a></li>

@@ -22,7 +22,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/haroobang/mapper/AccountMapper.xml" />
-		<mapper resource="com/haroobang/mapper/roomListMapper.xml" />		
+		<mapper resource="com/haroobang/mapper/RoomListMapper.xml" />		
 	</mappers>
 </configuration>
 
