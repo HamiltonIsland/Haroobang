@@ -1,5 +1,7 @@
 package com.haroobang.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,12 @@ public class AccountDaoImpl implements AccountDao{
 	public void insertAccountDao(AccountVO vo) {
 		accountMapper.insertAccount(vo);
 		
+	}
+
+	@Override
+	public List<AccountVO> loginDao(AccountVO vo) {
+		List<AccountVO> login = accountMapper.login(vo);
+		return login;
 	}
 
 }

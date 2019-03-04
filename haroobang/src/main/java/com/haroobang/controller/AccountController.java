@@ -1,5 +1,9 @@
 package com.haroobang.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -31,9 +35,9 @@ public class AccountController {
 	
 	//login insert
 	@RequestMapping (value = "/login.action", method = RequestMethod.POST)
-	public String loginInsert(AccountVO vo) {
-		
-		
+	public String loginInsert(AccountVO vo,HttpSession session) {
+		List<AccountVO> login = accountService.loginService(vo);		
+		session.setAttribute("login", login);
 		return "home";
 	}
 	
