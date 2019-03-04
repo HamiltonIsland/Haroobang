@@ -44,7 +44,15 @@
 <!-- account  end
 ============================================================== -->	
 
-
+<!-- roomlist -->
+	<!-- <bean id="roomListService" class="com.haroobang.service.RoomListServiceImpl">
+		<property name="roomListDao" ref="roomListDao"></property>
+	</bean>
+	
+	<bean id="roomListDao" class="com.haroobang.dao.RoomListDaoImpl">
+		<property name="roomListMapper" ref="roomListMapper"/>		
+	</bean> -->
+<!-- roomlist end -->
 
 <!-- myBatis --> 
 	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -58,6 +66,11 @@
 	
 	<bean id="AccountMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.haroobang.mapper.AccountMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean> 
+	
+	<bean id="roomListMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.haroobang.mapper.RoomListMapper"/>
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean> 
 
