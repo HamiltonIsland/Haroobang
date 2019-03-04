@@ -28,7 +28,6 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean> -->
 	
-	
 
 
 <!-- account
@@ -48,8 +47,8 @@
 
 
 
-<!-- myBatis -->
-	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!-- myBatis --><!-- 
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
@@ -58,12 +57,12 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<bean id="accountMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="AccountMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.haroobang.mapper.AccountMapper"/>
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
-	</bean> -->
-	
-	
+	</bean> 
+
+	 -->
 	
 
 </beans>

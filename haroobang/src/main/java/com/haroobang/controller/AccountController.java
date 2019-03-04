@@ -37,13 +37,13 @@ public class AccountController {
 		return "home";
 	}
 	
-	//register insert
-	@RequestMapping (value = "/login.action", method = RequestMethod.POST)
-	public String registerInsert(AccountVO vo) {	
-		
-		return "account/login";
-	}
-	
+//	//register insert
+//	@RequestMapping (value = "/login.action", method = RequestMethod.POST)
+//	public String registerInsert(AccountVO vo) {	
+//		
+//		return "account/login";
+//	}
+//	
 	
 	
 	
