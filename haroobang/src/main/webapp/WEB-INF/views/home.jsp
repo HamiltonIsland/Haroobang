@@ -45,7 +45,7 @@
 	</section>
 
 	<!-- footer section -->
-	<jsp:include page="include/footer.jsp" />
+	<%-- <jsp:include page="include/footer.jsp" /> --%>
 	<jsp:include page="include/js.jsp" />
 </body>
 </html>
