@@ -21,10 +21,7 @@ public class HomeController {
 	public String blog(Locale locale, Model model) {	
 		return "blog";
 	}
-	@RequestMapping(value = "roomRegister.action", method = RequestMethod.GET)
-	public String cart(Locale locale, Model model) {	
-		return "room/roomRegister";
-	}	
+	
 	
 	
 	

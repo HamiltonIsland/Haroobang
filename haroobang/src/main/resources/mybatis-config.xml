@@ -5,7 +5,8 @@
 <configuration>
 
 	<typeAliases>		
-		<typeAlias type="com.haroobang.vo.AccountVO" alias="AccountVO" />		
+		<typeAlias type="com.haroobang.vo.AccountVO" alias="AccountVO" />
+		<typeAlias type="com.haroobang.vo.RoomVO" alias="RoomVO" />		
 	</typeAliases>
 
 	<environments default="development">
@@ -21,7 +22,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/haroobang/mapper/AccountMapper.xml" />		
+		<mapper resource="com/haroobang/mapper/AccountMapper.xml" />
+		<mapper resource="com/haroobang/mapper/RoomMapper.xml" />		
 	</mappers>
 </configuration>
 
