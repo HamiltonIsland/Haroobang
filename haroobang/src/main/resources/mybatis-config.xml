@@ -12,11 +12,11 @@
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@211.197.18.246:3306:xe" />
+					value="jdbc:mysql://211.197.18.246:3306/haroobang" />
 				<property name="username" value="haroobang" />
-				<property name="password" value="9922" />
+				<property name="password" value="9922" />								
 			</dataSource>
 		</environment>
 	</environments>

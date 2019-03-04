@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.AccountDao;
+import com.haroobang.vo.AccountVO;
 
 @Service("AccountService")
 public class AccountServiceImpl implements AccountService{
@@ -12,6 +13,12 @@ public class AccountServiceImpl implements AccountService{
 	@Autowired
 	@Qualifier("AccountDao")
 	private AccountDao accountDao;
+
+	@Override
+	public void insertAccountService(AccountVO vo) {
+		accountDao.insertAccountDao(vo);
+		
+	}
 	
 
 }

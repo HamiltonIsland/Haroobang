@@ -4,6 +4,9 @@
 
 <mapper namespace="com.haroobang.mapper.AccountMapper">
 
-	
+	<insert id="insertAccount" parameterType="AccountVO">
+	insert into member(password, name, phone, gender, profile, birthDate, email) 
+	values(#{password},#{name},#{phone},#{gender},#{profile},#{birthDate},#{email});
+	</insert>
 	
 </mapper>
