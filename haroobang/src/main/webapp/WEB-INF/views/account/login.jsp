@@ -17,7 +17,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Karma Shop</title>
+	<title>Log-in</title>
 
 	<!--
 		CSS
@@ -38,8 +38,8 @@
 				<div class="col-first">
 					<h1>Login/Register</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Login/Register</a>
+						<a href="/haroobang/home.action">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="#">Login/Register</a>
 					</nav>
 				</div>
 			</div>
@@ -66,10 +66,10 @@
 						<h3>Log in to enter</h3>
 						<form class="row login_form" action="login.action" method="post">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">

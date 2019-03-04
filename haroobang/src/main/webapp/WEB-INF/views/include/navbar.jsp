@@ -33,6 +33,8 @@
 								<li class="nav-item"><a class="nav-link" href="/haroobang/single-blog.action">Blog Details</a></li>
 							</ul>
 						</li>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Log-In</a></li>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
 						<li class="nav-item submenu dropdown active">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Pages</a>
