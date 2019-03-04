@@ -44,7 +44,7 @@
 								<li class="nav-item"><a class="nav-link" href="elements.action">Elements</a></li>
 							</ul>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="/haroobang/roomRegister.action">roomRegister</a></li>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomRegister.action">roomRegister</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

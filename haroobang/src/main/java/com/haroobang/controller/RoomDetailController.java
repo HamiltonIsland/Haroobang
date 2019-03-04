@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/room/")
-public class RoomController {
+public class RoomDetailController {
 
 	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
 	public String roomDetail() {

@@ -12,20 +12,20 @@ import com.haroobang.vo.AccountVO;
 @Repository("AccountDao")
 public class AccountDaoImpl implements AccountDao{
 	
-//	@Autowired
-//	@Qualifier("AccountMapper")
-//	private AccountMapper accountMapper;
+	@Autowired
+	@Qualifier("AccountMapper")
+	private AccountMapper accountMapper;
 
 	@Override
 	public void insertAccountDao(AccountVO vo) {
-		/*accountMapper.insertAccount(vo);*/
+		accountMapper.insertAccount(vo);
 		
 	}
 
 	@Override
 	public List<AccountVO> loginDao(AccountVO vo) {
-//		List<AccountVO> login = accountMapper.login(vo);
-		return null;
+		List<AccountVO> login = accountMapper.login(vo);
+		return login;
 	}
 
 }

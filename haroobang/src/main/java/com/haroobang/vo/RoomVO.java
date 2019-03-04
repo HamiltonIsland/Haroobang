@@ -1,68 +1,35 @@
 package com.haroobang.vo;
 
+import java.util.List;
+
 public class RoomVO {
+	
+	int roomNo;
 	int memberNo;
-	String password;
-	String name;
-	String email;
-	String phone;
-	String userType;
-	String gender;
-	int point;
 	String regDate;
-	String savedFileName;
-	String profile;
+	String roomName;
+	boolean approval;
+	String address;
+	String longitude;
+	String latitude;
+	String roomProfile;
+	int price;
+	int readCount;
+	int maximum;
 	boolean deleted;
-	String birthDate;
+	List<RoomAttachVO> roomAttachList;
 	
-	
+	public int getRoomNo() {
+		return roomNo;
+	}
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
 	}
 	public String getRegDate() {
 		return regDate;
@@ -70,17 +37,59 @@ public class RoomVO {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public String getSavedFileName() {
-		return savedFileName;
+	public String getRoomName() {
+		return roomName;
 	}
-	public void setSavedFileName(String savedFileName) {
-		this.savedFileName = savedFileName;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
-	public String getProfile() {
-		return profile;
+	public boolean isApproval() {
+		return approval;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setApproval(boolean approval) {
+		this.approval = approval;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getRoomProfile() {
+		return roomProfile;
+	}
+	public void setRoomProfile(String roomProfile) {
+		this.roomProfile = roomProfile;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getReadCount() {
+		return readCount;
+	}
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
+	}
+	public int getMaximum() {
+		return maximum;
+	}
+	public void setMaximum(int maximum) {
+		this.maximum = maximum;
 	}
 	public boolean isDeleted() {
 		return deleted;
@@ -88,11 +97,12 @@ public class RoomVO {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	public String getBirthDate() {
-		return birthDate;
+	public List<RoomAttachVO> getRoomAttachList() {
+		return roomAttachList;
 	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
+	public void setRoomAttachList(List<RoomAttachVO> roomAttachList) {
+		this.roomAttachList = roomAttachList;
 	}
+	
 
 }

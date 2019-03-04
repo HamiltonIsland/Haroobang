@@ -23,7 +23,8 @@ public class AccountController {
 	
 	//login창 보여주기
 	@RequestMapping (value = "/login.action", method = RequestMethod.GET)
-	public String loginView() {	
+	public String loginView(AccountVO vo, HttpSession session) {	
+		
 		return "account/login";
 	}
 	
@@ -33,11 +34,11 @@ public class AccountController {
 		return "account/register";
 	}
 	
-	//login insert
+	//login
 	@RequestMapping (value = "/login.action", method = RequestMethod.POST)
-	public String loginInsert(AccountVO vo,HttpSession session) {
+	public String login(AccountVO vo, HttpSession session) {
 		List<AccountVO> login = accountService.loginService(vo);		
-		session.setAttribute("login", login);
+		session.setAttribute("login", login);		
 		return "home";
 	}
 	
