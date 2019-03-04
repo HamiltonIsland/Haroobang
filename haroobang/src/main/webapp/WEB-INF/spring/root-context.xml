@@ -34,14 +34,14 @@
 <!-- account
 ============================================================== -->
 	
-<!-- 	<bean id="accountService" class="com.haroobang.service.AccountServiceImpl">
+ 	<!-- <bean id="accountService" class="com.haroobang.service.AccountServiceImpl">
 		<property name="accountDao" ref="AccountDaos" />
 		
 	</bean>
 
 	<bean id="AccountDaos" class="com.haroobang.dao.AccountDaoImpl">
 		<property name="accountMapper" ref="accountMapper"/>		
-	</bean> -->
+	</bean>  -->
 	
 <!-- account  end
 ============================================================== -->	
