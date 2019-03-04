@@ -1,5 +1,8 @@
 package com.haroobang.dao;
 
-public class RoomDetailDaoImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository("roomDetailDao")
+public class RoomDetailDaoImpl implements RoomDetailDao {
 
 }

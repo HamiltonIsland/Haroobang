@@ -1,5 +1,5 @@
 package com.haroobang.dao;
 
-public class RoomDetailDao {
+public interface RoomDetailDao {
 
 }
