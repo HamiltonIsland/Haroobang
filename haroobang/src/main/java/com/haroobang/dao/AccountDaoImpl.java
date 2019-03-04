@@ -18,7 +18,7 @@ public class AccountDaoImpl implements AccountDao{
 
 	@Override
 	public void insertAccountDao(AccountVO vo) {
-		accountMapper.insertAccount(vo);
+		/*accountMapper.insertAccount(vo);*/
 		
 	}
 
