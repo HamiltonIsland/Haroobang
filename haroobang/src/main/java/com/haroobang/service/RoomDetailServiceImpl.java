@@ -2,7 +2,7 @@ package com.haroobang.service;
 
 import org.springframework.stereotype.Service;
 
-@Service("roomDetailService")
+@Service
 public class RoomDetailServiceImpl implements RoomDetailService {
 
 }
