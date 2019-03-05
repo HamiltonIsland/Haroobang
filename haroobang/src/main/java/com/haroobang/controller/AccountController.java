@@ -39,10 +39,10 @@ public class AccountController {
 	@RequestMapping (value = "/login.action", method = RequestMethod.POST)
 	public String login(AccountVO vo, HttpSession session) {
 		List<AccountVO> login = accountService.loginService(vo);	
-		if(login == null) {
+		if(login == null || login.size()==0) {
 			return "account/login"; 
 		}
-		session.setAttribute("login", login);		
+		session.setAttribute("login", login.get(0));		
 		return "redirect:/home.action";
 	}
 	
