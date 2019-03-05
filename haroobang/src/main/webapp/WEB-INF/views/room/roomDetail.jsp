@@ -27,10 +27,7 @@
 
 <body>
 
-	<!-- Start Header Area -->
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp" />
-	<!-- End Header Area -->
-
+	<jsp:include page="/WEB-INF/views/include/navbar.jsp" />s
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -38,11 +35,6 @@
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
 					<h1>Product Details Page</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a> <a
-							href="single-product.html">product-details</a>
-					</nav>
 				</div>
 			</div>
 		</div>
@@ -117,13 +109,13 @@
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item"><a class="nav-link" id="home-tab"
 					data-toggle="tab" href="#home" role="tab" aria-controls="home"
-					aria-selected="true">Description</a></li>
+					aria-selected="true">숙소 설명</a></li>
 				<li class="nav-item"><a class="nav-link" id="profile-tab"
 					data-toggle="tab" href="#profile" role="tab"
 					aria-controls="profile" aria-selected="false">판매자 정보</a></li>
 				<li class="nav-item"><a class="nav-link active" id="review-tab"
 					data-toggle="tab" href="#review" role="tab" aria-controls="review"
-					aria-selected="false">Reviews</a></li>
+					aria-selected="false">숙소 후기</a></li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
