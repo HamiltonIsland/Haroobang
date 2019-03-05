@@ -11,6 +11,7 @@ public class AccountVO {
 	int point;
 	String regDate;
 	String savedFileName;
+	String userFileName;
 	String profile;
 	boolean deleted;
 	String birthDate;
@@ -75,6 +76,12 @@ public class AccountVO {
 	}
 	public void setSavedFileName(String savedFileName) {
 		this.savedFileName = savedFileName;
+	}	
+	public String getUserFileName() {
+		return userFileName;
+	}
+	public void setUserFileName(String userFileName) {
+		this.userFileName = userFileName;
 	}
 	public String getProfile() {
 		return profile;

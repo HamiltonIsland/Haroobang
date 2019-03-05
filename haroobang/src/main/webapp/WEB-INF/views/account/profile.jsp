@@ -2,6 +2,21 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">	
+		
+		function LoadImg(value){
+			if(value.files && value.files[0]){
+				var reader = new FileReader();
+				reader.onload = function (e){
+					$("#LoadImg").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(value.files[0]);
+			}
+		}	
+	
+	
+</script>
 
 <head>
 	<!-- Mobile Specific Meta -->
@@ -17,7 +32,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Log-in</title>
+	<title>Profile</title>
 
 	<!--
 		CSS
@@ -36,10 +51,10 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Login/Register</h1>
+					<h1>개인 정보 수정</h1>
 					<nav class="d-flex align-items-center">
 						<a href="/haroobang/home.action">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">Login/Register</a>
+						<a href="#">Profile</a>
 					</nav>
 				</div>
 			</div>
@@ -52,34 +67,33 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="login_box_img">
-						<img class="img-fluid" src="/haroobang/resources/img/login.jpg" alt="">
-						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="primary-btn" href="/haroobang/account/register.action">Create an Account</a>
-						</div>
+					<div class="login_box_img"style="height:100%">
+						<img id ="LoadImg" class="img-fluid" style="height:100%" src="/haroobang/resources/upload/${login.savedFileName }" alt="">						
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6"> 
 					<div class="login_form_inner">
-						<h3>Log in to enter</h3>
-						<form class="row login_form" action="/haroobang/account/login.action" method="post">
+						<form class="row login_form" action="/haroobang/account/profile.action" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="memberNo" value="${login.memberNo }">
+							<input type="hidden" name="password" value="${login.password }">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" name="email" readonly value="${login.email }">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="text" class="form-control" name="name" value="${login.name }" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
 							</div>
 							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
+								<input type="text" class="form-control" name="phone" value="${login.phone }" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Log In</button>
-								<a href="#">Forgot Password?</a>
+								<input type="file" id="imgAttach" onchange="LoadImg(this);" class="form-control" name="file" value="${login.userFileName}">
+							</div>
+						
+							<div class="col-md-12 form-group">
+								<textarea class="form-control" name="profile" rows="1" placeholder="Profile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'">${login.profile }</textarea>
+							</div>							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">수정하기</button>								
 							</div>
 						</form>
 					</div>

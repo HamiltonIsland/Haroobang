@@ -13,4 +13,8 @@
 	select * from member where email=#{email} and password = #{password}
 	</select>
 	
+	<update id="updateProfile" parameterType="AccountVO">
+	update member set name=#{name}, savedfilename=#{savedFileName},phone=#{phone},profile=#{profile} where memberno=#{memberNo}
+	</update>
+	
 </mapper>

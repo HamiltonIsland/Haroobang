@@ -56,8 +56,13 @@
 						<li class="nav-item"><a class="nav-link" href="#">MyPage</a></li>
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
 						</c:otherwise>
-						</c:choose>
+						</c:choose> 
 					</ul>
+					<c:if test="${not empty login }">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav-item"><a href="/haroobang/account/profile.action"><span class="lnr lnr-user"></span></a></li>
+					</ul>
+					</c:if>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
 						<li class="nav-item">

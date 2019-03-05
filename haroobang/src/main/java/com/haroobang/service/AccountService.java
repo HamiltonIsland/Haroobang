@@ -10,4 +10,8 @@ public interface AccountService {
 
 	List<AccountVO> loginService(AccountVO vo);
 
+	void updateProfileService(AccountVO vo);
+
+	List<AccountVO> loginServices(AccountVO vo);
+
 }

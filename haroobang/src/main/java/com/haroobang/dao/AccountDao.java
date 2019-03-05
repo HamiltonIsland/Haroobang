@@ -10,4 +10,6 @@ public interface AccountDao {
 
 	List<AccountVO> loginDao(AccountVO vo);
 
+	void updateProfileDao(AccountVO vo);
+
 }
