@@ -45,6 +45,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<!-- End Banner Area -->
 
 	<!--================Contact Area =================-->

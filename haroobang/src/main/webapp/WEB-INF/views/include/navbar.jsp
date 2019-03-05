@@ -34,15 +34,7 @@
 								<li class="nav-item"><a class="nav-link" href="/haroobang/single-blog.action">Blog Details</a></li>
 							</ul>
 						</li>
-						<c:choose>
-						<c:when test="${empty login}">
-						<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Log-In</a></li>
-						<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
-						</c:when>
-						<c:otherwise>
-						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
-						</c:otherwise>
-						</c:choose>
+						
 						
 						<li class="nav-item submenu dropdown active">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -54,6 +46,16 @@
 							</ul>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomRegister.action">roomRegister</a></li>
+						<c:choose>
+						<c:when test="${empty login}">
+						<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Log-In</a></li>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
+						</c:when>
+						<c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="#">MyPage</a></li>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
+						</c:otherwise>
+						</c:choose>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
