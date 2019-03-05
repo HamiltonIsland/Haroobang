@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header class="header_area sticky-header">
 	<div class="main_menu">
 		<nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -33,8 +34,16 @@
 								<li class="nav-item"><a class="nav-link" href="/haroobang/single-blog.action">Blog Details</a></li>
 							</ul>
 						</li>
+						<c:choose>
+						<c:when test="${empty login}">
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Log-In</a></li>
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
+						</c:when>
+						<c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
+						</c:otherwise>
+						</c:choose>
+						
 						<li class="nav-item submenu dropdown active">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Pages</a>

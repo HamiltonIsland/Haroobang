@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.AccountService;
 import com.haroobang.vo.AccountVO;
@@ -39,7 +40,7 @@ public class AccountController {
 	public String login(AccountVO vo, HttpSession session) {
 		List<AccountVO> login = accountService.loginService(vo);		
 		session.setAttribute("login", login);		
-		return "home";
+		return "redirect:/home.action";
 	}
 	
 	//register insert
@@ -49,6 +50,13 @@ public class AccountController {
 		accountService.insertAccountService(vo);
 		
 		return "account/login";
+	}
+	
+	//logout
+	@RequestMapping (value = "/logout.action", method = RequestMethod.GET)
+	public String logout(HttpSession session) {	
+		session.removeAttribute("login");
+		return "redirect:/home.action";
 	}
 	
 	

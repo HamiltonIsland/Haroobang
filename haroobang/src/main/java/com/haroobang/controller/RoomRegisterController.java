@@ -1,5 +1,7 @@
 package com.haroobang.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,15 +21,21 @@ public class RoomRegisterController {
 	
 	//숙소등록 페이지 보여주기
 	@RequestMapping(value = "/roomRegister.action", method = RequestMethod.GET)
-	public String roomRegisterView() {	
+	public String roomRegisterView(HttpSession session) {
+		if(session.getAttribute("login")==null) {
+			return "redirect:/account/login.action";
+		}
 		return "room/roomRegister";
 	}	
 	
 	//숙소 등록하기
 	@RequestMapping(value = "/roomRegister.action", method = RequestMethod.POST)
-	public String roomRegisterInsert(RoomVO vo) {
+	public String roomRegisterInsert(RoomVO vo,HttpSession session) {
+		if(session.getAttribute("login")==null) {
+			return "redirect:/account/login.action";
+		}
 		roomRegisterService.roomRegisterService(vo);
-		return "home";
+		return "redirect:/home.action";
 	}
 	
 	
