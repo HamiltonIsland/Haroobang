@@ -1,5 +1,15 @@
 package com.haroobang.dao;
 
-public class RoomDetailDaoImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository("RoomDetailDao")
+public class RoomDetailDaoImpl implements RoomDetailDao{
+
+	@Override
+	public void addLike(int roomNo, int memberNo) {
+		
+		
+		
+	}
 
 }

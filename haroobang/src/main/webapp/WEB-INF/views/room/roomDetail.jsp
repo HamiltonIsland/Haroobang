@@ -4,30 +4,47 @@
 <html lang="zxx" class="no-js">
 
 <head>
-<!-- Mobile Specific Meta -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
 <link rel="shortcut icon" href="/haroobang/resources/img/fav.png">
-<!-- Author Meta -->
 <meta name="author" content="CodePixar">
-<!-- Meta Description -->
 <meta name="description" content="">
-<!-- Meta Keyword -->
 <meta name="keywords" content="">
-<!-- meta character set -->
 <meta charset="UTF-8">
-<!-- Site Title -->
 <title>roomDetail</title>
-<!--
-			CSS
-			============================================= -->
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#like").click(function(e){
+		alert("snfla")
+		var roomNo = 1
+		var memberNo = ${login.memberNo}
+		
+		$.ajax({
+			url :"addLike.action" ,
+			data: {"roomNo":roomNo, "memberNo":memberNo},
+			method:"POST",
+			success:function(data,status,xhr){
+				alert("성공")
+			},
+			
+		})
+		
+	})
+	
+})
+			
+
+</script>
+
+
 </head>
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp" />s
+	<jsp:include page="/WEB-INF/views/include/navbar.jsp" />
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -94,7 +111,7 @@
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" href="#">Add to Cart</a> <a
 								class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
 				</div>

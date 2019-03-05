@@ -1,5 +1,7 @@
 package com.haroobang.dao;
 
-public class RoomDetailDao {
+public interface RoomDetailDao {
+
+	void addLike(int roomNo, int memberNo);
 
 }
