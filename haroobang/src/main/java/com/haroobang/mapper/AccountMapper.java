@@ -10,4 +10,6 @@ public interface AccountMapper {
 
 	List<AccountVO> login(AccountVO vo);
 
+	void updateProfile(AccountVO vo);
+
 }

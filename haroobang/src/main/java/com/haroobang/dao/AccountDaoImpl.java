@@ -28,4 +28,9 @@ public class AccountDaoImpl implements AccountDao{
 		return login;
 	}
 
+	@Override
+	public void updateProfileDao(AccountVO vo) {
+		accountMapper.updateProfile(vo);		
+	}
+
 }

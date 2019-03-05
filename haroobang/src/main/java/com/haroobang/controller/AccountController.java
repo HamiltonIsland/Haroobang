@@ -1,5 +1,6 @@
 package com.haroobang.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.haroobang.common.Util;
 import com.haroobang.service.AccountService;
 import com.haroobang.vo.AccountVO;
 
@@ -61,6 +65,46 @@ public class AccountController {
 		session.removeAttribute("login");
 		return "redirect:/home.action";
 	}
+	
+	//프로필 화면
+	@RequestMapping(value="/profile.action",method=RequestMethod.GET)
+	public String profileView(HttpSession session) {
+		if(session.getAttribute("login")==null)
+		{
+			return "redirect:/home.action";
+		}
+		return "account/profile";
+	}
+	
+	//프로필 화면
+	@RequestMapping(value="/profile.action",method=RequestMethod.POST)
+	public String profileUpdate(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) {
+		MultipartFile attach = req.getFile("file");	
+		
+			
+		
+			vo.setUserFileName(attach.getOriginalFilename());
+			
+		if (attach != null && !attach.isEmpty()) {
+			String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
+			String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
+
+			try {
+				attach.transferTo(new File(path));
+				vo.setSavedFileName(savedFileName);
+				vo.setUserFileName(attach.getOriginalFilename());
+
+			} catch (Exception ex) {
+			}
+		}
+
+		accountService.updateProfileService(vo);
+		List<AccountVO> login = accountService.loginServices(vo);
+		session.setAttribute("login", login.get(0));
+
+		return "redirect:/home.action";
+	}
+	
 	
 	
 	

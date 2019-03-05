@@ -32,6 +32,17 @@ public class AccountServiceImpl implements AccountService{
 		List<AccountVO> login = accountDao.loginDao(vo);
 		return login;
 	}
+
+	@Override
+	public void updateProfileService(AccountVO vo) {
+		accountDao.updateProfileDao(vo);		
+	}
+
+	@Override
+	public List<AccountVO> loginServices(AccountVO vo) {
+		List<AccountVO> login = accountDao.loginDao(vo);
+		return login;
+	}
 	
 
 }
