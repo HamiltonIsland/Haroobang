@@ -14,9 +14,10 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	private RoomDetailDao roomDetailDao;
 
 	@Override
-	public void addLike(int roomNo, int memberNo) {
+	public String addLike(int roomNo, int memberNo) {
 		
-		roomDetailDao.addLike(roomNo, memberNo);
+		String result =roomDetailDao.addLike(roomNo, memberNo);
+		return result;
 		
 	}
 

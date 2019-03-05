@@ -18,19 +18,28 @@
 <script type="text/javascript">
 $(function(){
 	$("#like").click(function(e){
-		alert("snfla")
 		var roomNo = 1
 		var memberNo = ${login.memberNo}
 		
-		$.ajax({
-			url :"addLike.action" ,
-			data: {"roomNo":roomNo, "memberNo":memberNo},
-			method:"POST",
-			success:function(data,status,xhr){
-				alert("성공")
-			},
+		if(session.getAttribute("firstName") == null){/* jsp파일안엑서 session확인하는법*/
+			alert("sdsd")
+		}else{
+			$.ajax({
+				url :"addLike.action" ,
+				data: {"roomNo":roomNo, "memberNo":memberNo},
+				method:"GET",
+				success:function(data,status,xhr){
+					if(data == "success"){
+						alert("즐겨찾기에 등록되었습니다")	
+					}else{
+						alert("이미 등록되었습니다.")
+					}
+				}
+			})
 			
-		})
+		}
+		
+		
 		
 	})
 	

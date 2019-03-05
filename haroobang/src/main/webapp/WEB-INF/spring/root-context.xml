@@ -63,7 +63,7 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean> 
-	
+	<!-- ===================================== -->
  	<bean id="AccountMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.haroobang.mapper.AccountMapper"/>
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
@@ -79,6 +79,11 @@
 		<property name="mapperInterface" value="com.haroobang.mapper.RoomRegisterMapper"/>
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>  
+	
+		<bean id="RoomDetailMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.haroobang.mapper.RoomDetailMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean> 
  
 
 	

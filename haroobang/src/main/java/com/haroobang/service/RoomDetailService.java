@@ -2,6 +2,6 @@ package com.haroobang.service;
 
 public interface RoomDetailService {
 
-	void addLike(int roomNo, int memberNo);
+	String addLike(int roomNo, int memberNo);
 
 }
