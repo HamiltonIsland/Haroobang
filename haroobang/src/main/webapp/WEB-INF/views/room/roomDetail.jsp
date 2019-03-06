@@ -20,7 +20,6 @@
 $(function(){
 	$("#like").click(function(e){
 		var roomNo = 6
-		
 			$.ajax({
 				url :"addLike.action" ,
 				data: {"roomNo":roomNo},
@@ -36,7 +35,17 @@ $(function(){
 					}
 				}
 			})
-		
+	})
+	
+	$("#roomReservation").click(function(e){
+		var checkinDate = $("#checkinDate").val();
+		var nights = $("#sst").val();
+		if(checkinDate.length == 0 || nights.length == 0){
+			alert("날짜를 선택해 주세요")
+		}else {
+			location.href = "/haroobang/reservation/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights	
+		}
+	
 	})
 	
 })
@@ -89,7 +98,7 @@ $(function(){
 						<br><br><br><br><br>
 						<div class="product_count">
 						<label for="qty">Checkin</label> 
-						<input type="date" style="width:300px"/>
+						<input type="date" style="width:300px" id="checkinDate"/>
 						</div>
 						<br>
 						<div class="product_count">
@@ -110,8 +119,10 @@ $(function(){
 							</button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">Add to Cart</a> <a
-								class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
+							<c:if test="${login.userType == 'admin'}">
+								<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
+							</c:if>
 							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
