@@ -33,6 +33,7 @@
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="/haroobang/blog.action">Blog</a></li>
 								<li class="nav-item"><a class="nav-link" href="/haroobang/single-blog.action">Blog Details</a></li>
+								<li class="nav-item"><a class="nav-link" href="/haroobang/member/memberlist.action">memberList</a></li>
 							</ul>
 						</li>
 						

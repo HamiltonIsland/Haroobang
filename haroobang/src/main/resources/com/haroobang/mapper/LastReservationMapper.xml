@@ -9,6 +9,7 @@
       <result column="proname" property="productName" />
       <result column="proprice" property="productPrice" />
       <result column="proexplain" property="productExplain" />
+      
    </resultMap>
    <select id="selectAllMyLastReservation" resultMap="lastReservationMap">
       SELECT productno, proname, proprice, proexplain

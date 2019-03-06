@@ -26,6 +26,7 @@
 		<mapper resource="com/haroobang/mapper/RoomListMapper.xml" />	
 		<mapper resource="com/haroobang/mapper/RoomRegisterMapper.xml" />	
 		<mapper resource="com/haroobang/mapper/RoomDetailMapper.xml"/>
+		<mapper resource="com/haroobang/mapper/MemberMapper.xml"/>
 	
 
 	</mappers>

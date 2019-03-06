@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haroobang.mapper.MemberMapper">
+
+	<resultMap type="AccountVo" id="memberMap">
+		<id column="memberno" property="memberNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑 -->
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="phone" property="phone" />
+		<result column="gender" property="gender" />
+		<result column="regdate" property="regDate" />
+		<result column="profile" property="profile" />
+		<result column="birthdate" property="birthDate" />
+
+	</resultMap>
+
+	<select id="selectAllMembers" parameterType="int"
+		resultMap="memberMap">
+		 SELECT memberNo, name, email, phone, gender, regdate, profile, birthdate
+		FROM member
+		ORDER BY memberNo desc; 
+	
+	</select>
+	
+	<select id="selectAllMemberCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member
+	</select>
+
+</mapper>
