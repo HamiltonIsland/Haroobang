@@ -8,4 +8,6 @@ public interface RoomDetailService {
 
 	RoomVO findRoomDetail(int roomNo);
 
+	String findMemberId(int memberNo);
+
 }

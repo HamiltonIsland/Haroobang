@@ -28,4 +28,10 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		return room;
 	}
 
+	@Override
+	public String findMemberId(int memberNo) {
+		String memberId = roomDetailDao.findMemberId(memberNo);
+		return memberId;
+	}
+
 }

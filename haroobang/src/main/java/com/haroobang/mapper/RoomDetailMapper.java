@@ -10,6 +10,8 @@ public interface RoomDetailMapper {
 
 	RoomVO findRoomDetail(int roomNo);
 
+	String findMemberId(int memberNo);
+
 	
 
 }

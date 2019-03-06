@@ -25,10 +25,14 @@ public class RoomDetailController {
 
 	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
 	public String roomDetail(Model model) {
-		int roomNo = 28;
+		int roomNo = 31;
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
 		
+		int memberNo = room.getMemberNo();
+		String nickname = roomDetailService.findMemberId(memberNo);
+		
 		model.addAttribute("room",room);
+		model.addAttribute("nickname", nickname);
 		
 		
 		return "room/roomDetail";
