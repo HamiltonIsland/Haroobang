@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -15,34 +15,6 @@
 <title>roomDetail</title>
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#like").click(function(e){
-		var roomNo = 6
-		
-			$.ajax({
-				url :"addLike.action" ,
-				data: {"roomNo":roomNo},
-				method:"GET",
-				success:function(data,status,xhr){
-					if(data == "success"){
-						alert("즐겨찾기에 등록되었습니다")	
-					}else if(data =="fail"){
-						alert("이미 등록되었습니다.")
-					}else{
-						alert("로그인 페이지로 이동합니다.")
-						location.href = "/haroobang/account/login.action"
-					}
-				}
-			})
-		
-	})
-	
-})
-			
-
-</script>
 
 
 </head>
@@ -56,7 +28,7 @@ $(function(){
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>숙소 상세 설명</h1>
+					<h1>숙소 등록 확인</h1>
 				</div>
 			</div>
 		</div>
@@ -69,27 +41,25 @@ $(function(){
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
-					<c:forEach var="roomattach" items="${room.roomAttachList }">
+						<c:forEach var="picture" items="${room.roomAttachList }">
 						<div class="single-prd-item">
-							<img class="img-fluid" 
-							src="/haroobang/resources/upload/${roomattach.savedFileName}" alt="">
+							<img class="img-fluid"
+								src="/haroobang/resources/upload/${picture.savedFileName }" alt="">
 						</div>
-					</c:forEach>
-						
-						
+						</c:forEach>						
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>${room.roomName}</h3>
-						<h2>${room.price}&nbsp;원</h2>
+						<h3>${room.roomName }</h3>
+						<h2>1박당 ${room.price}원</h2>
 						<br>
 						<br>
 						<br>
 						<br><br><br><br><br>
 						<div class="product_count">
 						<label for="qty">Checkin</label> 
-						<input type="date" style="width:300px"/>
+						<input type="date" style="width:300px"/> 
 						</div>
 						<br>
 						<div class="product_count">
@@ -129,7 +99,7 @@ $(function(){
 					data-toggle="tab" href="#home" role="tab" aria-controls="home"
 					aria-selected="true">숙소 설명</a></li>
 				<li class="nav-item"><a class="nav-link" id="profile-tab"
-					data-toggle="tab" href="#profile" role="tab"
+					data-toggle="tab" href="#profile" role="tab" 
 					aria-controls="profile" aria-selected="false">판매자 정보</a></li>
 				<li class="nav-item"><a class="nav-link active" id="review-tab"
 					data-toggle="tab" href="#review" role="tab" aria-controls="review"
@@ -146,12 +116,12 @@ $(function(){
 						<div class="review_item">
 							<div class="media">
 								<div class="d-flex">
-									<a href="/haroobang/message/messageRoom.action?roomNo=${room.roomNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
+									<img class="rounded-circle" style = "width:50px; height:50px" src="/haroobang/resources/upload/${login.savedFileName}" alt="">
 								</div>
 
 								<div class="media-body">
-									<h4>${member.nickname}님에게 메세지 보내기</h4>
-									<p>${member.profile}</p>
+									<h4>${login.name }님에게 메세지 보내기</h4>
+									<p>${login.profile }</p>
 								</div>
 							</div>
 
@@ -260,8 +230,14 @@ $(function(){
 					</div>
 				</div>
 			</div>
+			<br>
+			<div class="card_area d-flex align-items-center" style="float:right">
+				<a class="primary-btn" href="/haroobang/home.action">숙소 등록 확인</a> 		
+			</div>
 		</div>
+		
 	</section>
+	
 	<!--================End Product Description Area =================-->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />

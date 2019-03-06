@@ -5,12 +5,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.RoomDetailService;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.RoomVO;
 
 @Controller
 @RequestMapping("/room/")
@@ -22,7 +24,17 @@ public class RoomDetailController {
 	
 
 	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
-	public String roomDetail() {
+	public String roomDetail(Model model) {
+		int roomNo = 29;
+		RoomVO room = roomDetailService.findRoomDetail(roomNo);
+		
+		int memberNo = room.getMemberNo();
+		AccountVO member = roomDetailService.findMember(memberNo);
+		
+		model.addAttribute("room",room);
+		model.addAttribute("member", member);
+		
+		
 		return "room/roomDetail";
 	}
 	

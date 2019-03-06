@@ -1,20 +1,21 @@
 package com.haroobang.vo;
 
 public class AccountVO {
-	int memberNo;
-	String password;
-	String name;
-	String email;
-	String phone;
-	String userType;
-	String gender;
-	int point;
-	String regDate;
-	String savedFileName;
-	String userFileName;
-	String profile;
-	boolean deleted;
-	String birthDate;
+	 private int memberNo;
+	 private String password;
+	 private String name;
+	 private String email;
+	 private String phone;
+	 private String userType;
+	 private String gender;
+	 private int point;
+	 private String regDate;
+	 private String savedFileName;
+	 private String userFileName;
+	 private String profile;
+	 private boolean deleted;
+	 private String birthDate;
+	 private String nickname;
 	
 	
 	public int getMemberNo() {
@@ -100,6 +101,12 @@ public class AccountVO {
 	}
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 }

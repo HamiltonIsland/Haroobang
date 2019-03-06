@@ -8,4 +8,6 @@ public interface RoomRegisterDao {
 	void roomRegisterDao(RoomVO vo);
 
 	void insertRoomAttachDao(RoomAttachVO attach);
+
+	RoomVO roomListDao(int roomNo);
 }
