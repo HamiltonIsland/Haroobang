@@ -8,6 +8,10 @@
 		insert into liked(memberNo,roomNo) 
 		values (#{memberNo},#{roomNo})
 	</insert>
+	
+	<select id="findRoomDetail" parameterType="int" resultType="RoomVO">
+		select * from room where roomno=#{roomNo}
+	</select>
 
 	
 </mapper>
