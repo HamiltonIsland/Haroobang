@@ -71,7 +71,7 @@ public class AccountController {
 	public String profileView(HttpSession session) {
 		if(session.getAttribute("login")==null)
 		{
-			return "redirect:/home.action";
+			return "redirect:/account/login.action";
 		}
 		return "account/profile";
 	}
