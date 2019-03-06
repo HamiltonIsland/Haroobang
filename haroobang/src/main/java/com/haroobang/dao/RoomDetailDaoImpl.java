@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.RoomDetailMapper;
+import com.haroobang.vo.RoomVO;
 
 @Repository("RoomDetailDao")
 public class RoomDetailDaoImpl implements RoomDetailDao{
@@ -31,6 +32,12 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		return result;
 		
 		
+	}
+
+	@Override
+	public RoomVO findRoomDetail(int roomNo) {
+		RoomVO room = roomDetailMapper.findRoomDetail(roomNo);
+		return room;
 	}
 
 }
