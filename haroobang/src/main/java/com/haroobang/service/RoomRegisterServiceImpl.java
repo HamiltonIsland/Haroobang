@@ -1,15 +1,11 @@
 package com.haroobang.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.haroobang.common.Util;
-import com.haroobang.dao.AccountDao;
 import com.haroobang.dao.RoomRegisterDao;
-import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
 @Service("RoomRegisterService")
@@ -21,9 +17,15 @@ public class RoomRegisterServiceImpl implements RoomRegisterService{
 
 	@Override
 	public void roomRegisterService(RoomVO vo) {
-		roomRegisterDao.roomRegisterDao(vo);
+		roomRegisterDao.roomRegisterDao(vo);	
+	}	
+
+	@Override
+	public void insertRoomAttachService(RoomAttachVO attach) {
+		roomRegisterDao.insertRoomAttachDao(attach);
 		
 	}
+
 
 	
 	

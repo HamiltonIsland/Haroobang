@@ -75,7 +75,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9">
-					<form class="row contact_form" action="roomRegister.action" method="post" >
+					<form class="row contact_form" action="roomRegister.action" method="post" enctype="multipart/form-data">
 						<div class="col-md-6">
 							<input type="hidden" name="memberNo" value="${login.memberNo}">
 							<div class="form-group">
@@ -85,7 +85,7 @@
 								<input type="text" class="form-control" name="address" placeholder="주소" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
 							</div>
 							<div class="form-group">
-								<input type="file" class="form-control" name="subject" placeholder="숙소사진" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">
+								<input type="file" multiple="multiple" class="form-control" name="file" placeholder="숙소사진" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="maximum" placeholder="최대인원" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">

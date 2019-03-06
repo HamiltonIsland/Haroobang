@@ -53,7 +53,7 @@
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
 						</c:when>
 						<c:otherwise>
-						<li class="nav-item"><a class="nav-link" href="#">MyPage</a></li>
+						<li class="nav-item"><a class="nav-link" href="/haroobang/last-reservation/lastReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
 						</c:otherwise>
 						</c:choose> 

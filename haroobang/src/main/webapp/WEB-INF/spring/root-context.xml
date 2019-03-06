@@ -84,6 +84,21 @@
 		<property name="mapperInterface" value="com.haroobang.mapper.RoomDetailMapper"/>
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean> 
+	
+	<bean id="lastReservationService" class="com.haroobang.service.LastReservationServiceImpl">
+		<property name="lastReservationDao" ref="lastReservationDao" />
+	</bean>
+	
+	<bean id="lastReservationDao" class="com.haroobang.dao.OracleLastReservationDao">
+		<property name="lastReservationMapper" ref="lastReservationMapper"/>
+	</bean>
+	
+	<bean id="lastReservationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.haroobang.mapper.LastReservationMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+ 
+	
  
 
 	
