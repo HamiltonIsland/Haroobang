@@ -25,7 +25,7 @@ public class RoomDetailController {
 
 	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
 	public String roomDetail(Model model) {
-		int roomNo = 31;
+		int roomNo = 33;
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
 		
 		int memberNo = room.getMemberNo();

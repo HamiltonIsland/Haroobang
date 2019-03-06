@@ -8,7 +8,8 @@
 		<typeAlias type="com.haroobang.vo.AccountVO" alias="AccountVO" />
 		<typeAlias type="com.haroobang.vo.RoomVO" alias="RoomVO" />
 		<typeAlias type="com.haroobang.vo.MessagesVO" alias="MessagesVO" />	
-		<typeAlias type="com.haroobang.vo.MessageRoomVO" alias="MessageRoomVO" />		
+		<typeAlias type="com.haroobang.vo.MessageRoomVO" alias="MessageRoomVO" />	
+		<typeAlias type="com.haroobang.vo.RoomAttachVO" alias="RoomAttachVO" />		
 	</typeAliases>
 
 	<environments default="development">

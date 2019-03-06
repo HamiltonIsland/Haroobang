@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -18,7 +19,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#like").click(function(e){
-		var roomNo = 1
+		var roomNo = 6
 		
 			$.ajax({
 				url :"addLike.action" ,
@@ -68,24 +69,20 @@ $(function(){
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
+					<c:forEach var="roomattach" items="${room.roomAttachList }">
 						<div class="single-prd-item">
-							<img class="img-fluid"
-								src="/haroobang/resources/img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" 
+							src="/haroobang/resources/upload/${roomattach.savedFileName}" alt="">
 						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid"
-								src="/haroobang/resources/img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid"
-								src="/haroobang/resources/img/category/s-p1.jpg" alt="">
-						</div>
+					</c:forEach>
+						
+						
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
 						<h3>${room.roomName}</h3>
-						<h2>${room.price}&nbsp;원/박</h2>
+						<h2>${room.price}&nbsp;원</h2>
 						<br>
 						<br>
 						<br>
@@ -149,7 +146,7 @@ $(function(){
 						<div class="review_item">
 							<div class="media">
 								<div class="d-flex">
-									<img src="/haroobang/resources/img/product/review-1.png" alt="">
+									<a href="/haroobang/message/messageRoom.action"><img src="/haroobang/resources/img/product/review-1.png" alt=""></a>
 								</div>
 
 								<div class="media-body">

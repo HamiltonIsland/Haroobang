@@ -17,4 +17,8 @@
 	 	select nickname from member where memberNo=#{memberNo}
 	</select>
 	
+	<select id="findRoomAttach" parameterType="int" resultType="RoomAttachVO">
+	select * from roomattach where roomNo = #{roomNo}
+	</select>
+	
 </mapper>
