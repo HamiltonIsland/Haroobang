@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.RoomDetailService;
+import com.haroobang.vo.AccountVO;
 
 @Controller
 @RequestMapping("/room/")
@@ -27,14 +28,17 @@ public class RoomDetailController {
 	
 	@RequestMapping(value="addLike.action",method=RequestMethod.GET)
 	@ResponseBody
-	public String addLike(int roomNo, int memberNo,HttpSession session) {
+	public String addLike(int roomNo,HttpSession session) {
 		
+		System.out.println(session.getAttribute("login"));
 		if(session.getAttribute("login")==null) {
-			return "redirect:/account/login.action";
-		}
-//		int memberNo = session.getAttribute("login");
+			return "/account/login.action";
+		}else {
+		AccountVO member = (AccountVO) session.getAttribute("login");
+		int memberNo = member.getMemberNo();
 		String result = roomDetailService.addLike(roomNo, memberNo);
 		
 		return result;
+		}
 	}
 }

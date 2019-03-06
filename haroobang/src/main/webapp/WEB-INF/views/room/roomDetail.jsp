@@ -19,27 +19,22 @@
 $(function(){
 	$("#like").click(function(e){
 		var roomNo = 1
-		var memberNo = ${login.memberNo}
 		
-		if(session.getAttribute("firstName") == null){/* jsp파일안엑서 session확인하는법*/
-			alert("sdsd")
-		}else{
 			$.ajax({
 				url :"addLike.action" ,
-				data: {"roomNo":roomNo, "memberNo":memberNo},
+				data: {"roomNo":roomNo},
 				method:"GET",
 				success:function(data,status,xhr){
 					if(data == "success"){
 						alert("즐겨찾기에 등록되었습니다")	
-					}else{
+					}else if(data =="fail"){
 						alert("이미 등록되었습니다.")
+					}else{
+						alert("로그인 페이지로 이동합니다.")
+						location.href = "/haroobang/account/login.action"
 					}
 				}
 			})
-			
-		}
-		
-		
 		
 	})
 	
