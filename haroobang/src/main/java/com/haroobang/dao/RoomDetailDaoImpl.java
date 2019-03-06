@@ -40,4 +40,10 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		return room;
 	}
 
+	@Override
+	public String findMemberId(int memberNo) {
+		String memberId = roomDetailMapper.findMemberId(memberNo);
+		return memberId;
+	}
+
 }

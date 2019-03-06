@@ -153,7 +153,7 @@ $(function(){
 								</div>
 
 								<div class="media-body">
-									<h4>####님에게 메세지 보내기</h4>
+									<h4>${nickname}님에게 메세지 보내기</h4>
 									<p>안녕하세요요요용 문의사항있으시면 언제든지메세지 주세요</p>
 								</div>
 							</div>

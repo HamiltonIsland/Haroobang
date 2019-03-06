@@ -65,8 +65,11 @@
                                 <input type="text" class="form-control" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
                             </div>   
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" name="Phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
-                            </div>                          
+                                <input type="text" class="form-control" name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
+                            </div>  
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" name="nickname" placeholder="닉네임" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
+                            </div>                         
                             <div class="col-md-12 form-group p_star"> 
                                 <select class="country_select" name = "gender">
                                     <option value="Female">Female</option>

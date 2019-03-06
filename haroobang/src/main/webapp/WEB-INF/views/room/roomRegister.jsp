@@ -97,7 +97,7 @@
 							</div>
 							
 							<div class="form-group">
-								<pre><textarea class="form-control" name="roomProfile" rows="1" placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"></textarea></pre>
+								<pre><textarea class="form-control" name="roomProfile"  placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"></textarea></pre>
 							</div>
 						</div>
 						<div class="col-md-12 text-right">
