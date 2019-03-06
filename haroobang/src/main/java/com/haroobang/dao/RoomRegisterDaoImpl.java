@@ -1,5 +1,7 @@
 package com.haroobang.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,14 @@ public class RoomRegisterDaoImpl implements RoomRegisterDao{
 	@Override
 	public void insertRoomAttachDao(RoomAttachVO attach) {
 		roomRegisterMapper.roomAttach(attach);		
+	}
+
+	@Override
+	public RoomVO roomListDao(int roomNo) {
+		RoomVO list = roomRegisterMapper.roomList(roomNo);
+		List<RoomAttachVO> roomAttachList = roomRegisterMapper.roomAttachList(roomNo); 
+		list.setRoomAttachList(roomAttachList);
+		return list;
 	}
 
 	

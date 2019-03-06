@@ -57,10 +57,11 @@
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
 						</c:otherwise>
 						</c:choose> 
-					</ul>
+					</ul>					
 					<c:if test="${not empty login }">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="/haroobang/account/profile.action"><span class="lnr lnr-user"></span></a></li>
+						<li class="nav-item"><a href="/haroobang/account/message.action"><span class="lnr lnr-bubble"></span></a></li>
 					</ul>
 					</c:if>
 					<ul class="nav navbar-nav navbar-right">

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +35,20 @@ public class RoomRegisterController {
 		}
 		return "room/roomRegister";
 	}
+	
+	// 숙소등록확인 페이지 보여주기
+	@RequestMapping(value = "/roomRegisterConfig.action", method = RequestMethod.GET)
+	public String roomRegisterConfigView(HttpSession session, Model model,int roomNo) {
+		if (session.getAttribute("login") == null) {
+			return "account/login";
+		}
+		RoomVO list = roomRegisterService.roomListService(roomNo);
+		
+		model.addAttribute("room",list);
+		
+		return "room/roomRegisterConfig";
+	}
+
 
 	// 숙소 등록하기
 	@RequestMapping(value = "/roomRegister.action", method = RequestMethod.POST)
@@ -45,7 +60,7 @@ public class RoomRegisterController {
 
 		roomRegisterService.roomRegisterService(vo);
 		
-		
+		int roomNo = 0;
 		List<MultipartFile> attach = req.getFiles("file");
 		ArrayList<RoomAttachVO> attachs = new ArrayList<RoomAttachVO>();
 		if (attach != null && !attach.isEmpty()) {
@@ -60,6 +75,7 @@ public class RoomRegisterController {
 				attachs.add(vos);
 				vo.setRoomAttachList(attachs);
 				
+				roomNo = vo.getRoomNo();
 				vos.setRoomNo(vo.getRoomNo());// 위에서 등록한 글번호 저장
 				roomRegisterService.insertRoomAttachService(vos);		
 				
@@ -69,7 +85,7 @@ public class RoomRegisterController {
 		}
 
 		
-		return "redirect:/home.action";
+		return "redirect:/room/roomRegisterConfig.action?roomNo="+roomNo;
 	}
 
 }

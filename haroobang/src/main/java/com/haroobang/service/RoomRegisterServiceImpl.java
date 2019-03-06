@@ -26,6 +26,12 @@ public class RoomRegisterServiceImpl implements RoomRegisterService{
 		
 	}
 
+	@Override
+	public RoomVO roomListService(int roomNo) {
+		RoomVO list = roomRegisterDao.roomListDao(roomNo);
+		return list;
+	}
+
 
 	
 	

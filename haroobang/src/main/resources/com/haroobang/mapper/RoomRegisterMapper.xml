@@ -12,5 +12,12 @@
 	<insert id="roomAttach" parameterType="com.haroobang.vo.RoomAttachVO">
 		insert into roomattach(savedFileName, userFileName, roomNo) 
 		values(#{savedFileName},#{userFileName},#{roomNo})		
-	</insert>	
+	</insert>
+	
+	<select id = "roomList" parameterType="int" resultType="RoomVO">
+		select * from room where roomNo = #{roomNo}
+	</select>
+	<select id="roomAttachList" parameterType="int" resultType="com.haroobang.vo.RoomAttachVO">
+		select * from roomattach where roomNo = #{roomNo}
+	</select>	
 </mapper>
