@@ -34,7 +34,7 @@
 				<div class="billing_details">
 					<div class="row">
 						<div class="col-lg-8">
-							<h3>숙소 예약 상세</h3>
+							<h3>숙소 예약 상세${nights}${checkinDate}</h3>
 							<!-- <a href="#">예약가능 날짜 확인a tag 사용 가능</a> -->
 							<form class="row contact_form" action="#" method="post"
 								novalidate="novalidate">
