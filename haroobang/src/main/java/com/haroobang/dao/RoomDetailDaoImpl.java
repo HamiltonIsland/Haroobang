@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.RoomDetailMapper;
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -47,9 +48,9 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public String findMemberId(int memberNo) {
-		String memberId = roomDetailMapper.findMemberId(memberNo);
-		return memberId;
+	public AccountVO findMember(int memberNo) {
+		AccountVO member = roomDetailMapper.findMemberId(memberNo);
+		return member;
 	}
 
 }

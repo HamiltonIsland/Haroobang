@@ -13,8 +13,8 @@
 		select * from room where roomno=#{roomNo}
 	</select>
 
-	<select id="findMemberId" parameterType="int" resultType="String">
-	 	select nickname from member where memberNo=#{memberNo}
+	<select id="findMemberId" parameterType="int" resultType="AccountVO">
+	 	select * from member where memberNo=#{memberNo}
 	</select>
 	
 	<select id="findRoomAttach" parameterType="int" resultType="RoomAttachVO">

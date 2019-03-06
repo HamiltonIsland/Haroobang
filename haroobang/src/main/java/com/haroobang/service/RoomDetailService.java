@@ -1,5 +1,6 @@
 package com.haroobang.service;
 
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.RoomVO;
 
 public interface RoomDetailService {
@@ -8,6 +9,6 @@ public interface RoomDetailService {
 
 	RoomVO findRoomDetail(int roomNo);
 
-	String findMemberId(int memberNo);
+	AccountVO findMember(int memberNo);
 
 }

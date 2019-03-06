@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.RoomDetailDao;
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.RoomVO;
 
 @Service("roomDetailService")
@@ -29,9 +30,9 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	}
 
 	@Override
-	public String findMemberId(int memberNo) {
-		String memberId = roomDetailDao.findMemberId(memberNo);
-		return memberId;
+	public AccountVO findMember(int memberNo) {
+		AccountVO member = roomDetailDao.findMember(memberNo);
+		return member;
 	}
 
 }

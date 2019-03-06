@@ -29,10 +29,10 @@ public class RoomDetailController {
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
 		
 		int memberNo = room.getMemberNo();
-		String nickname = roomDetailService.findMemberId(memberNo);
+		AccountVO member = roomDetailService.findMember(memberNo);
 		
 		model.addAttribute("room",room);
-		model.addAttribute("nickname", nickname);
+		model.addAttribute("member", member);
 		
 		
 		return "room/roomDetail";

@@ -146,12 +146,12 @@ $(function(){
 						<div class="review_item">
 							<div class="media">
 								<div class="d-flex">
-									<a href="/haroobang/message/messageRoom.action"><img src="/haroobang/resources/img/product/review-1.png" alt=""></a>
+									<a href="/haroobang/message/messageRoom.action?roomNo=${room.roomNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
 								</div>
 
 								<div class="media-body">
-									<h4>${nickname}님에게 메세지 보내기</h4>
-									<p>안녕하세요요요용 문의사항있으시면 언제든지메세지 주세요</p>
+									<h4>${member.nickname}님에게 메세지 보내기</h4>
+									<p>${member.profile}</p>
 								</div>
 							</div>
 
