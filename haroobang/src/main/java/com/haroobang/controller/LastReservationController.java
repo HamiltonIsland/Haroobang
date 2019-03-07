@@ -29,11 +29,11 @@ public class LastReservationController {
 	@RequestMapping(value = "/lastReservationList.action", method = RequestMethod.GET)
 	public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model) {
 		
-		/*List<RoomVO> myrooms = lastReservationService.findMyLastReservation(memberNo);
+		List<RoomVO> myrooms = lastReservationService.findMyLastReservation(memberNo);
 		
-		model.addAttribute("myrooms", myrooms);*/
+		model.addAttribute("myrooms", myrooms);
 		
-		return "last-reservation/last-reservation-list";
+		return "mypage/last-reservation-list";
 	}
 	
 	/*//숙소 등록하기

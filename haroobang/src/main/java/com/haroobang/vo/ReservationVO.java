@@ -11,6 +11,8 @@ public class ReservationVO {
 	 private String request;
 	 private boolean checkin;
 	 
+	 private RoomVO roomVO;
+	 
 	 public int getReservationNo() {
 		return reservationNo;
 	}
@@ -64,6 +66,12 @@ public class ReservationVO {
 	}
 	public void setCheckin(boolean checkin) {
 		this.checkin = checkin;
+	}
+	public RoomVO getRoomVO() {
+		return roomVO;
+	}
+	public void setRoomVO(RoomVO roomVO) {
+		this.roomVO = roomVO;
 	}
 	
 }

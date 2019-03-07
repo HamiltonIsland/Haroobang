@@ -32,6 +32,7 @@
 		<mapper resource="com/haroobang/mapper/RoomDetailMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/MemberMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/MessageMapper.xml"/>
+		<mapper resource="com/haroobang/mapper/LastReservationMapper.xml"/>
 
 	</mappers>
 </configuration>
