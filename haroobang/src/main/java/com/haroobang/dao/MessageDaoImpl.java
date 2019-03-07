@@ -11,6 +11,7 @@ import com.haroobang.mapper.MessageMapper;
 import com.haroobang.mapper.RoomRegisterMapper;
 import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.MessageRoomVO;
+import com.haroobang.vo.MessagesVO;
 
 @Repository("MessageDao")
 public class MessageDaoImpl implements MessageDao{
@@ -35,6 +36,18 @@ public class MessageDaoImpl implements MessageDao{
 			vo.setMemberList(member);
 		}
 		return list;
+	}
+
+	@Override
+	public List<MessagesVO> getMessageListDao(int roomNo) {
+		List<MessagesVO> list = messageMapper.getMessageList(roomNo);
+		return list;
+	}
+
+	@Override
+	public void insertMessagesDao(MessagesVO vo) {
+		messageMapper.insertMessages(vo);
+		
 	}
 
 	

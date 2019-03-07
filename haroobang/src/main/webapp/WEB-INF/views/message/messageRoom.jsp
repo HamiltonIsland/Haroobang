@@ -104,7 +104,7 @@
 								<ul>
 									<c:forEach var="messageRoomList" items="${messageRoomList}">
 									<c:forEach var="list" items="${messageRoomList.memberList}">
-									<li class="contact"> 
+									<li class="contact" data-messageRoomNo="${messageRoomList.messageRoomNo }"data-name="${list.name}" data-picture="${list.savedFileName}"> 
 									<!-- <li class="contact active"> -->
 										<div class="wrap">
 											<span class="contact-status online"></span> <img
@@ -134,6 +134,12 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			$("#contacts").on("click",".contact",function(e){
+				var roomNo = $(this).attr("data-messageRoomNo");
+				var name = $(this).attr("data-name");
+				var picture = $(this).attr("data-picture");
+				$(".content").load("messageRoomBox.action?",{"roomNo":roomNo,"name":name,"picture":picture});
+			});
 			
 		});
 	</script>

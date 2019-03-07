@@ -9,4 +9,11 @@
 	<select id="getMessageMember" parameterType="int" resultType="AccountVO">
 		select * from member where memberNo = #{memberNo2}
 	</select>
+	<select id="getMessageList" parameterType="int" resultType="messagesVO">
+		select * from messages where messageRoomNo = #{roomNo}
+	</select>
+	<insert id="insertMessages" parameterType="messagesVO">
+		insert into messages(messageRoomNo,memberNo,content) values(#{messageRoomNo},#{memberNo},#{content})
+	</insert>
+	
 </mapper>

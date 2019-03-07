@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.haroobang.service.MessageService;
 import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.MessageRoomVO;
+import com.haroobang.vo.MessagesVO;
 
 @Controller
 @RequestMapping("/message")
@@ -34,20 +35,25 @@ public class MessageController {
 		List<MessageRoomVO> list =  messageService.getMessageRoomListService(memberNo);
 		model.addAttribute("messageRoomList",list);
 		return "message/messageRoom";
-	}
-	
-	//messageRoom창 보여주기
+	}	
+	//message insert
 	@RequestMapping (value = "/writeMessage.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String writeMessage(HttpSession session) {			
+	public String writeMessage(MessagesVO vo, Model model,String name, String picture) {
 		
-		return "messageLoad.action";
+		
+		messageService.insertMessagesService(vo);
+		return "success";
 	}	
-	
-	//messageload하기
-	@RequestMapping (value = "/messageLoad.action", method = RequestMethod.GET)
-	public String messageLoad(HttpSession session) {
 		
+	//messageload하기
+	@RequestMapping (value = "/messageRoomBox.action")
+	public String messageLoad(int roomNo,Model model,String name, String picture) {
+		List<MessagesVO> list = messageService.getMessageListService(roomNo);
+		model.addAttribute("messageList",list);
+		model.addAttribute("name",name);
+		model.addAttribute("picture",picture);
+		model.addAttribute("messageRoomNo",roomNo);
 		
 		return "message/messageRoomBox";
 	}
