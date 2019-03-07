@@ -55,10 +55,19 @@ public class RoomDetailController {
 	}
 	
 	@RequestMapping(value = "reservationCheckout.action", method = RequestMethod.GET)
-	public String roomReservationCheckout(String checkinDate, int nights,Model model) {
+	public String roomReservationCheckout(String checkinDate, int nights,Model model,HttpSession session) {
 	
+		if(session.getAttribute("login") == null) {
+			return "redirect:/account/login.action";
+		}
+		
+		String yearMonth = checkinDate.substring(0,8);
+		int calEndDate = Integer.parseInt(checkinDate.substring(9))+nights;
+		String endDate = yearMonth+ Integer.toString(calEndDate);
+		
 		model.addAttribute("checkinDate",checkinDate);
 		model.addAttribute("nights",nights);
+		
 
 		return "room/roomReservationCheckout";
 	}
@@ -67,5 +76,10 @@ public class RoomDetailController {
 	public String calender() {
 		
 		return "room/calender";
+	}
+	
+	@RequestMapping(value="payment.action" , method=RequestMethod.GET)
+	public String payment() {
+		return "room/paymentConfirmation";
 	}
 }

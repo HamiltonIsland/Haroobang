@@ -1152,7 +1152,7 @@ h1, h2, h3, h4, h5, h6 {
       cursor: pointer;
       padding: 0; }
 
-#search_input_box {
+/* #search_input_box {
   position: fixed;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -1201,7 +1201,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 575px) {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
-    padding: 0px 15px; } }
+    padding: 0px 15px; } } */
 
 /* banner area css
 ============================================================================================ */
