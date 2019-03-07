@@ -65,23 +65,21 @@ $(function(){
 								<div class="col-md-12 form-group p_star">
 									<select class="country_select" name="nights">
 										<option value=${nights }>${nights} 박</option>
-										<option value="2">1 박</option>
-										<option value="3">2 박</option>
-										<option value="3">3 박</option>
-										<option value="3">4 박</option>
-										<option value="3">5 박</option>
-										<option value="3">6 박</option>
-										<option value="3">7 박</option>
-										<option value="3">8 박</option>
-										<option value="3">9 박</option>
-										<option value="3">10 박</option>
-										<option value="3">11 박</option>
-										<option value="3">12 박</option>
-										<option value="3">13 박</option>
-										<option value="3">14 박</option>
-										<option value="3">15 박</option>
-											
-									
+										<option value=1>1 박</option>
+										<option value=2>2 박</option>
+										<option value=3>3 박</option>
+										<option value=4>4 박</option>
+										<option value=5>5 박</option>
+										<option value=6>6 박</option>
+										<option value=7>7 박</option>
+										<option value=8>8 박</option>
+										<option value=8>9 박</option>
+										<option value=10>10 박</option>
+										<option value=11>11 박</option>
+										<option value=12>12 박</option>
+										<option value=13>13 박</option>
+										<option value=14>14 박</option>
+										<option value=15>15 박</option>
 									</select>
 								</div>
 								<div class="col-md-12 form-group">

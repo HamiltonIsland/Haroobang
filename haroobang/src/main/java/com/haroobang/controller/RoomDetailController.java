@@ -27,8 +27,8 @@ public class RoomDetailController {
 	
 
 	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
-	public String roomDetail(Model model) {
-		int roomNo = 36;
+	public String roomDetail(Model model,int roomNo) {
+		
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
 		
 		int memberNo = room.getMemberNo();
@@ -88,7 +88,13 @@ public class RoomDetailController {
 		String startDate = reservationVo.getStartDate();
 		String yearMonth = startDate.substring(0,8);
 		int calEndDate = Integer.parseInt(startDate.substring(9))+reservationVo.getNights();
-		String endDate = yearMonth+ Integer.toString(calEndDate);
+		String endDate ="";
+		if(calEndDate>0 && calEndDate<10) {
+			endDate = yearMonth+"0"+Integer.toString(calEndDate);
+		}else {
+			endDate = yearMonth+ Integer.toString(calEndDate);
+		}
+		
 		reservationVo.setEndDate(endDate);
 		reservationVo.setMemberNo(memberNo);
 		

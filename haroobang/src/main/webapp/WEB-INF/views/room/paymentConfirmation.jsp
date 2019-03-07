@@ -60,21 +60,21 @@ $(function(){
                                 <td >
                                     <div class="media">
                                         <div class="d-flex">
-                                          <a href="roomDetail.action"><img style="height:100px;width:100px" src="/haroobang/resources/img/cashPayment.jpg" alt=""></a>  
+                                          <a href="roomDetail.action?roomNo=${roomDetail.roomNo}"><img style="height:100px;width:100px" src="/haroobang/resources/img/cashPayment.jpg" alt=""></a>  
                                         </div>
                                         <div class="media-body" style="text-align: left">
-                                           <a href="roomDetail.action"> <p>${roomDetail.roomName }</p></a> 
+                                           <a href="roomDetail.action?roomNo=${roomDetail.roomNo}"> <p>${roomDetail.roomName }</p></a> 
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>${roomDetail.price }</h5>
+                                    <h5>&#8361; ${roomDetail.price }</h5>
                                 </td>
                                 <td>
                                     <h5>${reservaion.nights }박</h5>
                                 </td>
                                 <td>
-                                    <h5>${reservation.totalPrice }</h5>
+                                    <h5>&#8361; ${reservation.totalPrice }</h5>
                                 </td>
                             </tr>
                 

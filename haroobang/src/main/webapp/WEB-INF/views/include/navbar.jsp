@@ -17,13 +17,13 @@
 						<li class="nav-item"><a class="nav-link" href="/haroobang/home.action">Home</a></li>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-							 aria-expanded="false">Shop</a>
+							 aria-expanded="false">Room</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomList.action">Room Category</a></li>
-								<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomDetail.action">roomDetail Page</a></li>
-								<li class="nav-item"><a class="nav-link" href="/haroobang/checkout.action">Product Checkout</a></li>
-								<li class="nav-item"><a class="nav-link" href="/haroobang/cart.action">Shopping Cart</a></li>
-								<li class="nav-item"><a class="nav-link" href="/haroobang/confirmation.action">Confirmation</a></li>
+								<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomList.action">Room List</a></li>
+					
+								<!-- <li class="nav-item"><a class="nav-link" href="/haroobang/checkout.action">Product Checkout</a></li> -->
+								<!-- <li class="nav-item"><a class="nav-link" href="/haroobang/cart.action">Shopping Cart</a></li> -->
+								<!-- <li class="nav-item"><a class="nav-link" href="/haroobang/confirmation.action">Confirmation</a></li> -->
 							</ul>
 						</li>
 						<li class="nav-item submenu dropdown">
@@ -35,7 +35,7 @@
 								<li class="nav-item"><a class="nav-link" href="/haroobang/member/memberlist.action">memberList</a></li>
 							</ul>
 						</li>
-						
+						<!-- 
 						
 						<li class="nav-item submenu dropdown active">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -45,7 +45,7 @@
 								<li class="nav-item active"><a class="nav-link" href="tracking.action">Tracking</a></li>
 								<li class="nav-item"><a class="nav-link" href="elements.action">Elements</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomRegister.action">roomRegister</a></li>
 						<c:choose>
 						<c:when test="${empty login}">
@@ -64,12 +64,12 @@
 						<li class="nav-item"><a href="/haroobang/message/messageRoom.action?memberNo=${login.memberNo}"><span class="lnr lnr-bubble"></span></a></li>
 					</ul>
 					</c:if>
-					<ul class="nav navbar-nav navbar-right">
+					<!-- <ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
 						<li class="nav-item">
 							<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</nav>

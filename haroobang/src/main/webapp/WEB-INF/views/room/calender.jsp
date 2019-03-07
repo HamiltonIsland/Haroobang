@@ -23,7 +23,7 @@
       editable: false,
       events: [
         {
-          start: '2019-03-10',
+          start: '2019-03-07',
           end: '2019-03-15',
           overlap: false,
           rendering: 'background',
