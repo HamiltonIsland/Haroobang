@@ -25,7 +25,7 @@ public class RoomDetailController {
 
 	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
 	public String roomDetail(Model model) {
-		int roomNo = 29;
+		int roomNo = 36;
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
 		
 		int memberNo = room.getMemberNo();
@@ -60,7 +60,7 @@ public class RoomDetailController {
 		model.addAttribute("checkinDate",checkinDate);
 		model.addAttribute("nights",nights);
 
-		return "reservation/reservationCheckout";
+		return "room/roomReservationCheckout";
 	}
 	
 	@RequestMapping(value="calender.action", method=RequestMethod.GET)

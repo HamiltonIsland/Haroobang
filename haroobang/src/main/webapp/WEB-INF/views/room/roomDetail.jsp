@@ -95,7 +95,7 @@ $(function(){
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
 						<h3>${room.roomName}</h3>
-						<h2>${room.price}&nbsp;원</h2>
+						<h2>&#8361; ${room.price}&nbsp;</h2>
 						<div id="calendarBox" style="height:250px;width:350px;">
 						<div id='calendar'></div>
 						</div>
