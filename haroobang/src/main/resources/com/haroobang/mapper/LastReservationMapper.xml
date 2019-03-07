@@ -5,16 +5,16 @@
 <mapper namespace="com.haroobang.mapper.LastReservationMapper">
 
 	<resultMap type="RoomVO" id="lastReservationMap">
-      <id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
-      <result column="proname" property="productName" />
-      <result column="proprice" property="productPrice" />
-      <result column="proexplain" property="productExplain" />
-      
+      <id column="reservationNo" property="reservationNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+      <result column="roomNo" property="roomNo" />
+      <result column="roomName" property="roomName" />
+      <result column="totalPrice" property="totalPrice" />
+      <result column="redDate" property="redDate" />
    </resultMap>
    <select id="selectAllMyLastReservation" resultMap="lastReservationMap">
-      SELECT productno, proname, proprice, proexplain
-      FROM product
-      WHERE centerno = #{ centerNo } ORDER BY productno desc
+      select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.redDate
+	  from reservation as rs join room as r
+      where rs.checkin = 1 AND rs.memberNo = #{ rs.memberNo } order by redDate desc;
    </select>
 	
 </mapper>
