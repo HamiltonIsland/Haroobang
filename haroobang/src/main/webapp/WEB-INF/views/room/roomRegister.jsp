@@ -79,21 +79,21 @@
 						<div class="col-md-6">
 							<input type="hidden" name="memberNo" value="${login.memberNo}">
 							<div class="form-group">
-								<input type="text" class="form-control"  name="roomName" placeholder="숙소 이름" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'">
+								<input type="text" class="form-control"  name="roomName" placeholder="숙소 이름" onfocus="this.placeholder = ''" onblur="this.placeholder = '숙소 이름'">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="address" placeholder="주소" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+								<input type="text" class="form-control" name="address" placeholder="주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '주소'">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="price" placeholder="가격" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">
+								<input type="text" class="form-control" name="price" placeholder="가격" onfocus="this.placeholder = ''" onblur="this.placeholder = '가격'">
 							</div>							
 							<div class="form-group">
-								<input type="text" class="form-control" name="maximum" placeholder="최대인원" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">
+								<input type="text" class="form-control" name="maximum" placeholder="최대인원" onfocus="this.placeholder = ''" onblur="this.placeholder = '최대인원'">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="file" multiple="multiple" class="form-control-file border" name="file" placeholder="숙소사진" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">
+								<input type="file" multiple="multiple" class="form-control-file border" name="file" placeholder="숙소사진" onfocus="this.placeholder = ''" onblur="this.placeholder = '숙소사진'">
 							</div>
 							
 							<div class="form-group">

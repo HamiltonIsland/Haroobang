@@ -3,5 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.haroobang.mapper.MessageMapper">
-	
+	<select id="getMessageRoomList" parameterType="int" resultType="messageRoomVO">
+		select * from messageRoom where memberNo = #{memberNo} or memberNo2 = #{memberNo}
+	</select>
+	<select id="getMessageMember" parameterType="int" resultType="AccountVO">
+		select * from member where memberNo = #{memberNo2}
+	</select>
 </mapper>
