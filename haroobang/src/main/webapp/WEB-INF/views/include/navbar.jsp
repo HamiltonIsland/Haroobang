@@ -24,7 +24,6 @@
 								<li class="nav-item"><a class="nav-link" href="/haroobang/checkout.action">Product Checkout</a></li>
 								<li class="nav-item"><a class="nav-link" href="/haroobang/cart.action">Shopping Cart</a></li>
 								<li class="nav-item"><a class="nav-link" href="/haroobang/confirmation.action">Confirmation</a></li>
-								<li class="nav-item"><a class="nav-link" href="/haroobang/reservation/reservationCheckout.action">Checkout</a></li>
 							</ul>
 						</li>
 						<li class="nav-item submenu dropdown">
