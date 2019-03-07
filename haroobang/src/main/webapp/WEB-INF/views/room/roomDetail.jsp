@@ -43,7 +43,7 @@ $(function(){
 		if(checkinDate.length == 0 || nights.length == 0){
 			alert("날짜를 선택해 주세요")
 		}else {
-			location.href = "/haroobang/reservation/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights	
+			location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights	
 		}
 	
 	})

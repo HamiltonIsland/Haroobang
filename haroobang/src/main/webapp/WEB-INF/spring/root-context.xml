@@ -116,17 +116,7 @@
       <property name="mapperInterface" value="com.haroobang.mapper.MemberMapper" />
       <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
    	</bean>
-   	
-   	<bean id="RoomReservationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-      <property name="mapperInterface" value="com.haroobang.mapper.RoomReservationMapper" />
-      <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
-   	</bean>
- 
-	
- 
 
-	
-	
 
 </beans>
 

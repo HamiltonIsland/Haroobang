@@ -53,4 +53,13 @@ public class RoomDetailController {
 		return result;
 		}
 	}
+	
+	@RequestMapping(value = "reservationCheckout.action", method = RequestMethod.GET)
+	public String roomReservationCheckout(String checkinDate, int nights,Model model) {
+	
+		model.addAttribute("checkinDate",checkinDate);
+		model.addAttribute("nights",nights);
+
+		return "reservation/reservationCheckout";
+	}
 }
