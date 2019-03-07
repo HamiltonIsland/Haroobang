@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -23,35 +24,23 @@
 			CSS
 			============================================= -->
 <jsp:include page="../include/css.jsp" />
+<style type="text/css">
+#messageSection {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+	font-size: 1em;
+	letter-spacing: 0.1px;
+	color: #32465a;
+	text-rendering: optimizeLegibility;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+	-webkit-font-smoothing: antialiased;
+}
+</style>
+
 </head>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript">
-	
-	$(function(){
-		
-		$("#messageSection").on("click","#submit",function(e){
-			
-			e.preventDefault();
-			e.stopPropagation();
-			
-			var data = $("#messageform").serialize()
-			
-			$.ajax({
-				data:data,
-				method:"post",
-				url:"writeMessage.action",
-				success:function(data,status,xhr){
-					$("#messageSection").load(data)
-				}
-				
-			}) 			
-			
-		})
-		
-	});
-
-</script>
-
 
 <body>
 
@@ -78,93 +67,80 @@
 
 
 	<!--================Product Description Area =================-->
-<div id="messageSection">
-	<div class="container">
-		<div class="tab-content" id="myTabContent">
+	<br>
+	
+	<div class="messageSection">
+		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="comment_list" style="padding: 10px">
-						<div class="review_item"
-							style="padding: 10px; background-color: yellow">
-							<div class="media" style="padding: 10px">
-								<div class="d-flex">
-									<img src="/haroobang/resources/img/product/review-1.png" alt="">
-								</div>
-								<div class="media-body">
-									<h4>Blake Ruiz</h4>
-									<h5>12th Feb, 2018 at 05:56 pm</h5>
+				<div class="col-lg-12">
+					<div id="frame">
+						<div id="sidepanel">
+							<div id="profile">
+								<div class="wrap">
+									<img id="profile-img"
+										src="/haroobang/resources/upload/${login.savedFileName}"
+										class="online" alt="" />
+									<p>${login.name }</p>
+									
+									<div id="status-options">
+										<ul>
+											<li id="status-online" class="active"><span
+												class="status-circle"></span>
+												<p>Online</p></li>
+											<li id="status-away"><span class="status-circle"></span>
+												<p>Away</p></li>
+											<li id="status-busy"><span class="status-circle"></span>
+												<p>Busy</p></li>
+											<li id="status-offline"><span class="status-circle"></span>
+												<p>Offline</p></li>
+										</ul>
+									</div>
+									
 								</div>
 							</div>
-							<p style="padding: 10px">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit, sed do eiusmod tempor incididunt
-								ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-								nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-								commodo</p>
+							
+							<div id="contacts">
+							
+								<ul>
+									<c:forEach var="messageRoomList" items="${messageRoomList}">
+									<c:forEach var="list" items="${messageRoomList.memberList}">
+									<li class="contact"> 
+									<!-- <li class="contact active"> -->
+										<div class="wrap">
+											<span class="contact-status online"></span> <img
+												src="/haroobang/resources/upload/${list.savedFileName}" alt="" />
+											<div class="meta">
+												<p class="name">${list.name}</p>
+												<p class="preview">Wrong. You take the gun, or you pull
+													out a bigger one. Or, you call their bluff. Or, you do any
+													one of a hundred and forty six other things.</p>
+											</div> 
+										</div>
+									</li>
+									</c:forEach>
+									</c:forEach>
+								</ul>
+							</div>
+
+						</div> 
+						<div class="content">
+							 
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+		});
+	</script>
 
-	<div class="container"> 
-		<div class="tab-content" id="myTabContent">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="comment_list" style="padding: 10px">
-						<div class="review_item"
-							style="padding: 10px; background-color: black">
-							<div class="media" style="padding: 10px">
-								<div class="d-flex">
-									<img src="/haroobang/resources/img/product/review-1.png" alt="">
-								</div>
-								<div class="media-body">
-									<h4>Blake Ruiz</h4>
-									<h5>12th Feb, 2018 at 05:56 pm</h5>
-								</div>
-							</div>
-							<p style="padding: 10px">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit, sed do eiusmod tempor incididunt
-								ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-								nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-								commodo</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="container" style="padding: 10px; background-color: black">
-		<div class="row">
-			<div class="col-lg-4  col-md-6 col-sm-6" style="margin: 0 auto">
-				<div class="single-footer-widget">
-					<div class="" id="mc_embed_signup">
-						<form id="messageform" class="form-inline">
-						<input type="hidden" id="memberNo" name="memberNo" value=${login.memberNo }>
-						<input type="hidden" id="messageRoomNo" name="messageRoomNo" value="${messageRoomNo}">
-
-							<div class="d-flex flex-row">
-								<input type="text" class="form-control" id="content"name="content"
-									placeholder="message......" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'message...... '" >
-								
-								<button class="click-btn btn-default" id="submit">
-									<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-								</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 	<!--================End Product Description Area =================-->
-
-
+	<br>
+	<jsp:include page="../include/footer.jsp" />
 	<jsp:include page="../include/js.jsp" />
 
 </body>
