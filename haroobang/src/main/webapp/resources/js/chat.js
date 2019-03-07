@@ -1,4 +1,4 @@
-$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+$(".messages").animate({ scrollTop: $(document).height()+10000 }, "fast");
 
 $("#profile-img").click(function() {
 	$("#status-options").toggleClass("active");
@@ -30,21 +30,35 @@ $("#status-options ul li").click(function() {
 	};
 	
 	$("#status-options").removeClass("active");
-});
+}); 
 
 function newMessage() {
-	message = $(".message-input input").val();
+	message = $(".message-input #text").val();
 	if($.trim(message) == '') {
 		return false;
 	}
-	$('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-	$('.message-input input').val(null);
+	$('<li class="replies"><p>' + message + '</p></li>').appendTo($('.messages ul'));
 	$('.contact.active .preview').html('<span>You: </span>' + message);
-	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	$(".messages").animate({ scrollTop: $(document).height()+10000 }, "fast");
+	
+	
 };
 
 $('.submit').click(function() {
+	
   newMessage();
+  var message = $(".message-input #text").val();
+  var messageRoomNo = $(".message-input #messageRoomNo").val();
+  var memberNo = $(".message-input #memberNo").val();
+  $.ajax({
+		url:"writeMessage.action",
+		method:"post",
+		data:{"memberNo":memberNo,"content":message,"messageRoomNo":messageRoomNo},
+		success:function(data,status,xhr){	
+
+			$('.message-input #text').val(null);
+		}
+	});
 });
 
 $(window).on('keydown', function(e) {
