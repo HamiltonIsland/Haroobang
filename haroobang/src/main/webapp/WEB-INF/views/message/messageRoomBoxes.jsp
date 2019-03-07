@@ -82,7 +82,7 @@
 									<p>${login.name }</p>
 									<div id="status-options">
 										<ul>
-											<li id="status" class="active"><span
+											<li id="status-online" class="active"><span
 												class="status-circle"></span>
 												<p>Online</p></li>
 											<li id="status-away"><span class="status-circle"></span>
@@ -117,7 +117,7 @@
 											</c:choose>
 											<!-- <li class="contact active"> -->
 											<div class="wrap">
-												<span class="contact-status online"></span> <img
+												<span class="contact-status"></span> <img
 													src="/haroobang/resources/upload/${list.savedFileName}"
 													alt="" />
 												<div class="meta">
@@ -126,7 +126,7 @@
 														varStatus="index">
 														<c:if test="${index.last}">
 															<p class="preview">
-																<c:if test="${memberNo==login.memberNo }">my:</c:if>
+																<c:if test="${memberNo==login.memberNo }"><span>You: </span></c:if>
 																${list.content}															
 															</p>
 														</c:if>

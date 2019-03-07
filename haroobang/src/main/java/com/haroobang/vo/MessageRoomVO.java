@@ -8,6 +8,7 @@ public class MessageRoomVO {
 	private int memberNo2;
 	private String regDate;
 	private List<AccountVO> memberList;
+	private List<MessagesVO> messagesList;
 	
 	public int getMessageRoomNo() {
 		return messageRoomNo;
@@ -38,6 +39,12 @@ public class MessageRoomVO {
 	}
 	public void setMemberList(List<AccountVO> memberList) {
 		this.memberList = memberList;
+	}
+	public List<MessagesVO> getMessagesList() {
+		return messagesList;
+	}
+	public void setMessagesList(List<MessagesVO> messagesList) {
+		this.messagesList = messagesList;
 	}
 
 }

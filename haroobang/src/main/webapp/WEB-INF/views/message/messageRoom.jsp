@@ -103,17 +103,18 @@
 									<li class="contact" data-messageRoomNo="${messageRoomList.messageRoomNo }"data-name="${list.name}" data-picture="${list.savedFileName}"> 
 									<!-- <li class="contact active"> -->
 										<div class="wrap">
-											<span class="contact-status online"></span> <img
+											<span class="contact-status"></span> <img
 												src="/haroobang/resources/upload/${list.savedFileName}" alt="" />
 											<div class="meta">
 												<p class="name">${list.name}</p>
-												<c:forEach var="list" items="${messageList}"  varStatus="index">
-													<c:if test="${index.last}">
-													<p class="preview">
-													<c:if test="${memberNo==login.memberNo }">my:</c:if>
-													${list.content}
-													</p>
-													</c:if>
+												<c:forEach var="list" items="${messageList}"
+														varStatus="index">
+														<c:if test="${index.last}">
+															<p class="preview">
+																<c:if test="${memberNo==login.memberNo }"><span>You: </span></c:if>
+																${list.content}															
+															</p>
+														</c:if>
 												</c:forEach>
 											</div> 
 										</div>

@@ -33,6 +33,13 @@ public class MessageController {
 			return "redirect:/account/login.action";
 		}
 		List<MessageRoomVO> list =  messageService.getMessageRoomListService(memberNo);
+		List<MessagesVO> lists = null;
+		for (MessageRoomVO vo : list) {
+			int messageRoomNo = vo.getMessageRoomNo();
+			lists = messageService.getMessageListService(messageRoomNo);
+			vo.setMessagesList(lists);
+		}
+		model.addAttribute("messageList",lists);
 		model.addAttribute("messageRoomList",list);
 		model.addAttribute("memberNo",memberNo);
 		return "message/messageRoom";
@@ -40,7 +47,12 @@ public class MessageController {
 	
 	//messageRoomBoxs창 보여주기
 	@RequestMapping (value = "/messageRoomBoxes.action", method = RequestMethod.GET)
-	public String messageRoomBoxsView(int messageRoomNo,int memberNo,Model model,String name, String picture) {
+	public String messageRoomBoxsView(HttpSession session,int messageRoomNo,int memberNo,Model model,String name, String picture) {
+		
+		if(session.getAttribute("login")==null)
+		{
+			return "redirect:/account/login.action";
+		}
 		List<MessagesVO> list = messageService.getMessageListService(messageRoomNo);
 		List<MessageRoomVO> lists =  messageService.getMessageRoomListService(memberNo);
 		model.addAttribute("messageRoomList",lists);
