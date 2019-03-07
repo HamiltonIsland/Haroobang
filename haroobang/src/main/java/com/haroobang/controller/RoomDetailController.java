@@ -62,4 +62,10 @@ public class RoomDetailController {
 
 		return "reservation/reservationCheckout";
 	}
+	
+	@RequestMapping(value="calender.action", method=RequestMethod.GET)
+	public String calender() {
+		
+		return "room/calender";
+	}
 }

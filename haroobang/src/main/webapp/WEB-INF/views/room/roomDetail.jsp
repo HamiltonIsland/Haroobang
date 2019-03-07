@@ -18,6 +18,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
+	
+	 $('#calendarBox').load("/haroobang/room/calender.action")
+	
 	$("#like").click(function(e){
 		var roomNo = 6
 			$.ajax({
@@ -52,6 +55,7 @@ $(function(){
 			
 
 </script>
+
 
 
 </head>
@@ -92,17 +96,19 @@ $(function(){
 					<div class="s_product_text">
 						<h3>${room.roomName}</h3>
 						<h2>${room.price}&nbsp;원</h2>
-						<br>
-						<br>
-						<br>
-						<br><br><br><br><br>
-						<div class="product_count">
-						<label for="qty">Checkin</label> 
-						<input type="date" style="width:300px" id="checkinDate"/>
+						<div id="calendarBox" style="height:250px;width:350px;">
+						<div id='calendar'></div>
 						</div>
 						<br>
+						<!-- <div class="product_count">
+						<label for="qty">Checkin</label> 
+						<input type="date" style="width:300px" id="checkinDate"/>
+						</div> -->
+						<br>
 						<div class="product_count">
-							<label for="qty">Days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
+						<label for="qty">Checkin</label> 
+						<input type="date" style="width:150px" id="checkinDate"/>
+							<label for="qty">Days&nbsp;&nbsp;</label> 
 							<input type="text" name="qty"
 								id="sst" maxlength="12" value="1" title="Quantity:"
 								class="input-text qty">
@@ -118,6 +124,7 @@ $(function(){
 								<i class="lnr lnr-chevron-down"></i>
 							</button>
 						</div>
+						<!-- <a href="/haroobang/room/calender.action">날짜확인</a> -->
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
 							<c:if test="${login.userType == 'admin'}">
