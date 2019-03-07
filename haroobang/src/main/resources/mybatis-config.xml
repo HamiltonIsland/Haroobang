@@ -9,7 +9,8 @@
 		<typeAlias type="com.haroobang.vo.RoomVO" alias="RoomVO" />
 		<typeAlias type="com.haroobang.vo.MessagesVO" alias="MessagesVO" />	
 		<typeAlias type="com.haroobang.vo.MessageRoomVO" alias="MessageRoomVO" />	
-		<typeAlias type="com.haroobang.vo.RoomAttachVO" alias="RoomAttachVO" />		
+		<typeAlias type="com.haroobang.vo.RoomAttachVO" alias="RoomAttachVO" />	
+		<typeAlias type="com.haroobang.vo.ReservationVO" alias="ReservationVO" />		
 	</typeAliases>
 
 	<environments default="development">
