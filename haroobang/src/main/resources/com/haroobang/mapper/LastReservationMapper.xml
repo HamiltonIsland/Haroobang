@@ -12,12 +12,16 @@
       <result column="roomNo" property="roomNo" />
       <result column="totalPrice" property="totalPrice" />
       <result column="regDate" property="regDate" />
+      <result column="startDate" property="startDate" />
+      <result column="memberNo" property="memberNo" />
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
    <select id="selectAllMyLastReservation" resultMap="lastReservationMap">
-      select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate
+      select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.memberNo
 	  from reservation as rs join room as r
-      where rs.checkin = 1 AND rs.memberNo = #{ rs.memberNo } order by regDate desc;
+      where r.roomNo = rs.roomNo AND rs.checkin = 1 AND rs.memberNo = #{ rs.memberNo } order by regDate desc;
    </select>
-	
+   
+   
+   
 </mapper>

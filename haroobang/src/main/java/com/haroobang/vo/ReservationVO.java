@@ -10,6 +10,7 @@ public class ReservationVO {
 	 private int nights;
 	 private String request;
 	 private boolean checkin;
+	 private String startDate;
 	 
 	 private RoomVO roomVO;
 	 
@@ -66,6 +67,12 @@ public class ReservationVO {
 	}
 	public void setCheckin(boolean checkin) {
 		this.checkin = checkin;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 	public RoomVO getRoomVO() {
 		return roomVO;

@@ -3,6 +3,7 @@ package com.haroobang.dao;
 import java.util.List;
 
 import com.haroobang.mapper.LastReservationMapper;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
 
 public class OracleLastReservationDao implements LastReservationDao {
@@ -13,9 +14,15 @@ public class OracleLastReservationDao implements LastReservationDao {
 		this.lastReservationMapper = lastReservationMapper;
 	}
 
-	public List<RoomVO> selectAllMyLastReservation(int memberNo) {
-		List<RoomVO> myrooms = lastReservationMapper.selectAllMyLastReservation(memberNo);
+	public List<ReservationVO> selectAllMyLastReservation(int memberNo) {
+		List<ReservationVO> myrooms = lastReservationMapper.selectAllMyLastReservation(memberNo);
 		return myrooms;
 	}
+
+//	@Override
+//	public ReservationVO selectRoomByRoomNo(int roomNo) {
+//		ReservationVO myroom = lastReservationMapper.selectRoomByRoomNo(roomNo);
+//		return myroom;
+//	}
 
 }

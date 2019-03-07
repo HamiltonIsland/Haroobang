@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -17,7 +20,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Karma Shp</title>    
+	<title>LastReservation</title>    
 
 	<!--
             CSS
@@ -43,6 +46,7 @@
 		</div>
 	</section>
 	<!-- End Banner Area -->
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4 col-md-5">
@@ -113,22 +117,25 @@
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
 						<!-- single product -->
+						<c:forEach var="myroom" items="${ myrooms }">
+						
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
 								<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 								<div class="product-details">
 								<a href="">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
+									<h6> ${ myroom.roomVO.roomName }</h6>
 								</a>
 									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>${ myroom.totalPrice } 원</h6>
+										<h6>${ myroom.regDate }</h6>
 									</div>
 									
 								</div>
 							</div>
 						</div>
+						
+						</c:forEach>
 						<!-- single product -->
 						
 					</div>

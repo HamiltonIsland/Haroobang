@@ -3,6 +3,7 @@ package com.haroobang.service;
 import java.util.List;
 
 import com.haroobang.dao.LastReservationDao;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
 
 public class LastReservationServiceImpl implements LastReservationService {
@@ -13,9 +14,15 @@ public class LastReservationServiceImpl implements LastReservationService {
 	}
 	
 	@Override
-	public List<RoomVO> findMyLastReservation(int memberNo) {
-		List<RoomVO> myrooms = lastReservationDao.selectAllMyLastReservation(memberNo);
+	public List<ReservationVO> findMyLastReservation(int memberNo) {
+		List<ReservationVO> myrooms = lastReservationDao.selectAllMyLastReservation(memberNo);
 		return myrooms;
 	}
+
+//	@Override
+//	public ReservationVO findRoomByRoomNo(int roomNo) {
+//		ReservationVO myroom = lastReservationDao.selectRoomByRoomNo(roomNo);
+//		return myroom;
+//	}
 
 }

@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.haroobang.service.LastReservationService;
 import com.haroobang.service.RoomRegisterService;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
 
 
 @Controller
-@RequestMapping("/last-reservation")
+@RequestMapping("/mypage")
 public class LastReservationController {
 	@Autowired
 	@Qualifier("lastReservationService")
@@ -29,21 +30,25 @@ public class LastReservationController {
 	@RequestMapping(value = "/lastReservationList.action", method = RequestMethod.GET)
 	public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model) {
 		
-		List<RoomVO> myrooms = lastReservationService.findMyLastReservation(memberNo);
+		List<ReservationVO> myrooms = lastReservationService.findMyLastReservation(memberNo);
 		
 		model.addAttribute("myrooms", myrooms);
 		
 		return "mypage/last-reservation-list";
 	}
 	
-	/*//숙소 등록하기
-	@RequestMapping(value = "/roomRegister.action", method = RequestMethod.POST)
-	public String roomRegisterInsert(RoomVO vo,HttpSession session) {
-		if(session.getAttribute("login")==null) {
-			return "redirect:/account/login.action";
+	/*//예약 디테일로 가기
+	@RequestMapping(value = "/lastReservationDetail.action", method = RequestMethod.GET)
+	public String lastReservationdetail(@RequestParam("roomno")int roomNo, Model model) {
+		ReservationVO myroom = lastReservationService.findRoomByRoomNo(roomNo);
+		if (myroom == null) {
+			return "redirect:last-reservation-list.action";
 		}
-		roomRegisterService.roomRegisterService(vo);
-		return "redirect:/home.action";
+
+		model.addAttribute("myroom", myroom);
+		model.addAttribute("roomno", roomNo);
+
+		return "product/productDetail";
 	}*/
 	
 	
