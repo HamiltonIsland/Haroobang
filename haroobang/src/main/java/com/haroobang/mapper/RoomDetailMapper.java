@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -16,6 +17,8 @@ public interface RoomDetailMapper {
 	AccountVO findMemberId(int memberNo);
 
 	List<RoomAttachVO> findRoomAttach(int roomNo);
+
+	void addRoomReservaion(ReservationVO reservationVo);
 
 	
 

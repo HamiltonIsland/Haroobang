@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.RoomDetailMapper;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -51,6 +52,12 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	public AccountVO findMember(int memberNo) {
 		AccountVO member = roomDetailMapper.findMemberId(memberNo);
 		return member;
+	}
+
+	@Override
+	public void addRoomReservation(ReservationVO reservationVo) {
+		roomDetailMapper.addRoomReservaion(reservationVo);
+		
 	}
 
 }

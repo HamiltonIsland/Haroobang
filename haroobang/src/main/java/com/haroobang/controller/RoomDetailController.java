@@ -1,5 +1,7 @@
 package com.haroobang.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.RoomDetailService;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
 
 @Controller
@@ -55,16 +58,13 @@ public class RoomDetailController {
 	}
 	
 	@RequestMapping(value = "reservationCheckout.action", method = RequestMethod.GET)
-	public String roomReservationCheckout(String checkinDate, int nights,Model model,HttpSession session) {
+	public String roomReservationCheckout(String checkinDate, int nights,Model model,HttpSession session,int roomNo) {
 	
 		if(session.getAttribute("login") == null) {
 			return "redirect:/account/login.action";
 		}
 		
-		String yearMonth = checkinDate.substring(0,8);
-		int calEndDate = Integer.parseInt(checkinDate.substring(9))+nights;
-		String endDate = yearMonth+ Integer.toString(calEndDate);
-		
+		model.addAttribute("roomNo",roomNo);
 		model.addAttribute("checkinDate",checkinDate);
 		model.addAttribute("nights",nights);
 		
@@ -78,8 +78,27 @@ public class RoomDetailController {
 		return "room/calender";
 	}
 	
-	@RequestMapping(value="payment.action" , method=RequestMethod.GET)
-	public String payment() {
+	@RequestMapping(value="payment.action" , method=RequestMethod.POST)
+	public String payment(ReservationVO reservationVo,HttpSession session, Model model) {
+		
+		
+		AccountVO member = (AccountVO) session.getAttribute("login");
+		int memberNo = member.getMemberNo();
+		
+		String startDate = reservationVo.getStartDate();
+		String yearMonth = startDate.substring(0,8);
+		int calEndDate = Integer.parseInt(startDate.substring(9))+reservationVo.getNights();
+		String endDate = yearMonth+ Integer.toString(calEndDate);
+		reservationVo.setEndDate(endDate);
+		reservationVo.setMemberNo(memberNo);
+		
+		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
+		roomDetailService.addRoomReservation(reservationVo);
+		
+		model.addAttribute("reservation",reservationVo);
+		model.addAttribute("roomDetail",room);
+		
+		
 		return "room/paymentConfirmation";
 	}
 }

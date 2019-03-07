@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.RoomDetailDao;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
 
 @Service("roomDetailService")
@@ -33,6 +34,12 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	public AccountVO findMember(int memberNo) {
 		AccountVO member = roomDetailDao.findMember(memberNo);
 		return member;
+	}
+
+	@Override
+	public void addRoomReservation(ReservationVO reservationVo) {
+		roomDetailDao.addRoomReservation(reservationVo);
+		
 	}
 
 }

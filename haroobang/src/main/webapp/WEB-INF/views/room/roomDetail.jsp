@@ -18,11 +18,11 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+	var roomNo = 6
 	 $('#calendarBox').load("/haroobang/room/calender.action")
 	
 	$("#like").click(function(e){
-		var roomNo = 6
+		
 			$.ajax({
 				url :"addLike.action" ,
 				data: {"roomNo":roomNo},
@@ -46,7 +46,7 @@ $(function(){
 		if(checkinDate.length == 0 || nights.length == 0){
 			alert("날짜를 선택해 주세요")
 		}else {
-			location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights	
+			location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+roomNo	
 		}
 	
 	})

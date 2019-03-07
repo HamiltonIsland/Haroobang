@@ -11,6 +11,8 @@ public class ReservationVO {
 	 private String request;
 	 private boolean checkin;
 	 private String startDate;
+	 private String endDate;
+	 private String Coupon;
 	 
 	 private RoomVO roomVO;
 	 
@@ -79,6 +81,18 @@ public class ReservationVO {
 	}
 	public void setRoomVO(RoomVO roomVO) {
 		this.roomVO = roomVO;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getCoupon() {
+		return Coupon;
+	}
+	public void setCoupon(String coupon) {
+		Coupon = coupon;
 	}
 	
 }

@@ -21,4 +21,9 @@
 	select * from roomattach where roomNo = #{roomNo}
 	</select>
 	
+	<insert id="addRoomReservaion" parameterType="ReservationVO">
+	 insert into reservation(memberNo, roomNo, payment, totalPrice,nights,request,startDate,endDate,coupon)
+	 values (#{memberNo},#{roomNo},#{payment},#{totalPrice},#{nights},#{request},#{startDate},#{endDate},#{coupon})
+	</insert>
+	
 </mapper>
