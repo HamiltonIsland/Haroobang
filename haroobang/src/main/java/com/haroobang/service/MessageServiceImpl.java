@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.haroobang.dao.MessageDao;
 import com.haroobang.dao.RoomRegisterDao;
 import com.haroobang.vo.MessageRoomVO;
+import com.haroobang.vo.MessagesVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -23,6 +24,17 @@ public class MessageServiceImpl implements MessageService{
 	public List<MessageRoomVO> getMessageRoomListService(int memberNo) {
 		List<MessageRoomVO> list = messageDao.getMessageRoomListDao(memberNo);
 		return list;
+	}
+
+	@Override
+	public List<MessagesVO> getMessageListService(int roomNo) {
+		List<MessagesVO> list = messageDao.getMessageListDao(roomNo);
+		return list;
+	}
+
+	@Override
+	public void insertMessagesService(MessagesVO vo) {
+		messageDao.insertMessagesDao(vo);
 	}
 
 	

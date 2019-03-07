@@ -3894,8 +3894,7 @@ label {
       width: 30px; }
 
 .s_product_text {
-  margin-left: -15px;
-  margin-top: 65px; }
+  margin-left: -15px; }
   @media (max-width: 575px) {
     .s_product_text {
       margin-left: 0px; } }
