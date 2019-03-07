@@ -82,7 +82,7 @@
 									<p>${login.name }</p>
 									<div id="status-options">
 										<ul>
-											<li id="status-online" class="active"><span
+											<li id="status" class="active"><span
 												class="status-circle"></span>
 												<p>Online</p></li>
 											<li id="status-away"><span class="status-circle"></span>
@@ -95,35 +95,97 @@
 									</div>
 
 								</div>
-							</div>							
+							</div>
 							<div id="contacts">
 								<ul>
 									<c:forEach var="messageRoomList" items="${messageRoomList}">
-									<c:forEach var="list" items="${messageRoomList.memberList}">
-									<li class="contact" data-messageRoomNo="${messageRoomList.messageRoomNo }"data-name="${list.name}" data-picture="${list.savedFileName}"> 
-									<!-- <li class="contact active"> -->
-										<div class="wrap">
-											<span class="contact-status online"></span> <img
-												src="/haroobang/resources/upload/${list.savedFileName}" alt="" />
-											<div class="meta">
-												<p class="name">${list.name}</p>
-												<c:forEach var="list" items="${messageList}"  varStatus="index">
-													<c:if test="${index.last}">
-													<p class="preview">
-													<c:if test="${memberNo==login.memberNo }">my:</c:if>
-													${list.content}
-													</p>
-													</c:if>
-												</c:forEach>
-											</div> 
-										</div>
-									</li>
+										<c:forEach var="list" items="${messageRoomList.memberList}">
+											<c:choose>
+												<c:when
+													test="${messageRoomList.messageRoomNo==messageRoomNo}">
+													<li class="contact active"
+														data-messageRoomNo="${messageRoomList.messageRoomNo }"
+														data-name="${list.name}"
+														data-picture="${list.savedFileName}">
+												</c:when>
+												<c:otherwise>
+													<li class="contact"
+														data-messageRoomNo="${messageRoomList.messageRoomNo }"
+														data-name="${list.name}"
+														data-picture="${list.savedFileName}">
+												</c:otherwise>
+											</c:choose>
+											<!-- <li class="contact active"> -->
+											<div class="wrap">
+												<span class="contact-status online"></span> <img
+													src="/haroobang/resources/upload/${list.savedFileName}"
+													alt="" />
+												<div class="meta">
+													<p class="name">${list.name}</p>
+													<c:forEach var="list" items="${messageList}"
+														varStatus="index">
+														<c:if test="${index.last}">
+															<p class="preview">
+																<c:if test="${memberNo==login.memberNo }">my:</c:if>
+																${list.content}															
+															</p>
+														</c:if>
+													</c:forEach>
+												</div>
+											</div>
+											</li>
+
+										</c:forEach>
 									</c:forEach>
-									</c:forEach>
-									
+
 								</ul>
-							</div>							
-						</div>						
+							</div>
+						</div>
+						<div class="content">
+							<div class="contact-profile">
+								<img src="/haroobang/resources/upload/${login.savedFileName }" />
+								<p>${login.name }</p>
+								<div class="social-media">
+									<i class="fa fa-facebook" aria-hidden="true"></i> <i
+										class="fa fa-twitter" aria-hidden="true"></i> <i
+										class="fa fa-instagram" aria-hidden="true"></i>
+								</div>
+							</div>
+							<div class="messages" style="width: 100%">
+								<ul>
+									<c:forEach var="list" items="${messageList}">
+										<c:choose>
+											<c:when test="${list.memberNo == login.memberNo}">
+												<li class="replies">
+													<p>${list.content }</p>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li class="sent"><img
+													src="/haroobang/resources/upload/${login.savedFileName}"
+													alt="" />
+													<p>${list.content}</p></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</ul>
+							</div>
+							<div class="message-input">
+								<div class="wrap">
+									<input type="hidden" id="messageRoomNo" name="messageRoomNo"
+										value="${messageRoomNo }"> <input type="hidden"
+										id="memberNo" name="memberNo" value="${login.memberNo }">
+									<input type="text" id="text" name="content"
+										placeholder="Write your message..." /> <i
+										class="fa fa-paperclip attachment" aria-hidden="true"></i>
+
+									<button class="submit">
+										<i class="fa fa-paper-plane" aria-hidden="true"></i>
+									</button>
+
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -139,14 +201,10 @@
 			var picture;
 			$("#contacts").on("click",".contact",function(e){
 				roomNo = $(this).attr("data-messageRoomNo");
-				name = $(this).attr("data-name");
-				picture = $(this).attr("data-picture");
 				location.replace("messageRoomBoxes.action?memberNo="+${login.memberNo}+"&messageRoomNo="+roomNo);
 			});		
 		});
 	</script>
-	
-	
 	<jsp:include page="../include/footer.jsp" />
 	<jsp:include page="../include/js.jsp" />
 

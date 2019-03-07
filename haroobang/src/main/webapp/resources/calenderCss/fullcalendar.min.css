@@ -679,7 +679,9 @@ a.fc-more:hover {
 }
 
 .fc-toolbar .fc-right {
-	float: right
+	float: right;
+	font-size: 12px; 
+	
 }
 
 .fc-toolbar .fc-center {
