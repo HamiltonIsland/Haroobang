@@ -20,6 +20,8 @@ public interface RoomDetailMapper {
 
 	void addRoomReservaion(ReservationVO reservationVo);
 
+	void addReservationDate(HashMap<String, Object> params);
+
 	
 
 }

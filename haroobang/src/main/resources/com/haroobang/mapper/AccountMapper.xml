@@ -5,9 +5,13 @@
 <mapper namespace="com.haroobang.mapper.AccountMapper">
 
 	<insert id="insertAccount" parameterType="AccountVO">
-	insert into member(password, name, phone, gender, profile, birthDate, email,nickname) 
-	values(#{password},#{name},#{phone},#{gender},#{profile},#{birthDate},#{email},#{nickname});
+	insert into member(password, name, phone, gender, profile, birthDate, email,nickname,address) 
+	values(#{password},#{name},#{phone},#{gender},#{profile},#{birthDate},#{email},#{nickname},#{address});
 	</insert>
+	
+	<select id="getAccount" parameterType="AccountVO" resultType="AccountVO">
+	select * from member where email=#{email} and name = #{name} and birthDate=#{birthDate}
+	</select>
 	
 	<select id="login" parameterType="AccountVO" resultType="AccountVO">
 	select * from member where email=#{email} and password = #{password}
@@ -16,5 +20,7 @@
 	<update id="updateProfile" parameterType="AccountVO">
 	update member set name=#{name}, savedfilename=#{savedFileName},phone=#{phone},profile=#{profile} where memberno=#{memberNo}
 	</update>
+	
+	
 	
 </mapper>

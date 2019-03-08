@@ -37,6 +37,12 @@ public class MessageServiceImpl implements MessageService{
 		messageDao.insertMessagesDao(vo);
 	}
 
+	@Override
+	public int getMessageRoomNoService(int memberNo, int loginMemberNo) {
+		int messageRoomNo = messageDao.getMessageRoomNoDao(memberNo,loginMemberNo);
+		return messageRoomNo;
+	}
+
 	
 
 	

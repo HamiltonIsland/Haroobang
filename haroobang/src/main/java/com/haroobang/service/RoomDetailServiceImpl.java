@@ -1,5 +1,8 @@
 package com.haroobang.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,8 +40,8 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	}
 
 	@Override
-	public void addRoomReservation(ReservationVO reservationVo) {
-		roomDetailDao.addRoomReservation(reservationVo);
+	public void addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList) {
+		roomDetailDao.addRoomReservation(reservationVo,dateList);
 		
 	}
 

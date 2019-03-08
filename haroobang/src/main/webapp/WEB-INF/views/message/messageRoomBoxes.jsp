@@ -104,15 +104,11 @@
 												<c:when
 													test="${messageRoomList.messageRoomNo==messageRoomNo}">
 													<li class="contact active"
-														data-messageRoomNo="${messageRoomList.messageRoomNo }"
-														data-name="${list.name}"
-														data-picture="${list.savedFileName}">
+														data-memberNo="${list.memberNo }" data-loginMemberNo="${login.memberNo }">
 												</c:when>
 												<c:otherwise>
 													<li class="contact"
-														data-messageRoomNo="${messageRoomList.messageRoomNo }"
-														data-name="${list.name}"
-														data-picture="${list.savedFileName}">
+														data-memberNo="${list.memberNo }" data-loginMemberNo="${login.memberNo }">
 												</c:otherwise>
 											</c:choose>
 											<!-- <li class="contact active"> -->
@@ -213,13 +209,11 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 	
-		$(function(){			
-			var roomNo;
-			var name;
-			var picture;
+		$(function(){	
 			$("#contacts").on("click",".contact",function(e){
-				roomNo = $(this).attr("data-messageRoomNo");
-				location.replace("messageRoomBoxes.action?memberNo="+${login.memberNo}+"&messageRoomNo="+roomNo);
+				loginMemberNo = $(this).attr("data-loginMemberNo");
+				memberNo = $(this).attr("data-memberNo");
+				location.replace("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo);
 			});		
 		});
 	</script>

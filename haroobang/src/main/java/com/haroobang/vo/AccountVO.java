@@ -5,6 +5,7 @@ public class AccountVO {
 	 private String password;
 	 private String name;
 	 private String email;
+	 private String address;
 	 private String phone;
 	 private String userType;
 	 private String gender;
@@ -41,6 +42,12 @@ public class AccountVO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getPhone() {
 		return phone;

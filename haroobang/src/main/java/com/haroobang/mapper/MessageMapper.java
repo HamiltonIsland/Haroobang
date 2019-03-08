@@ -1,5 +1,6 @@
 package com.haroobang.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.haroobang.vo.AccountVO;
@@ -15,6 +16,12 @@ public interface MessageMapper {
 	List<MessagesVO> getMessageList(int roomNo);
 
 	void insertMessages(MessagesVO vo);
+
+	int getMessageRoomNo(int memberNo, int loginMemberNo);
+
+	int getMessageRoomNo(HashMap<String, Object> params);
+
+	void insertMessageRoom(HashMap<String, Object> params);
 
 
 }

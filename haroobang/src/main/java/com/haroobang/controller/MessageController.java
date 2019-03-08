@@ -47,19 +47,25 @@ public class MessageController {
 	
 	//messageRoomBoxs창 보여주기
 	@RequestMapping (value = "/messageRoomBoxes.action", method = RequestMethod.GET)
-	public String messageRoomBoxsView(HttpSession session,int messageRoomNo,int memberNo,Model model) {
+	public String messageRoomBoxsView(HttpSession session,int loginMemberNo,int memberNo,Model model) {
 		
 		if(session.getAttribute("login")==null)
 		{
 			return "redirect:/account/login.action";
 		}
+		//messageRoomNo 찾기.  없으면 dao에서 방만들고 돌아오기
+		int messageRoomNo = messageService.getMessageRoomNoService(memberNo, loginMemberNo);
+		
+			
+		
 		List<MessagesVO> list = messageService.getMessageListService(messageRoomNo);
-		List<MessageRoomVO> lists =  messageService.getMessageRoomListService(memberNo);
+		List<MessageRoomVO> lists =  messageService.getMessageRoomListService(loginMemberNo);
 		for (MessageRoomVO vo : lists) {
 			int messageRoomNos = vo.getMessageRoomNo();
 			List<MessagesVO> listss = messageService.getMessageListService(messageRoomNos);
 			vo.setMessagesList(listss);
 		}
+		
 		model.addAttribute("messageRoomList",lists);
 		model.addAttribute("messageList",list);
 		model.addAttribute("messageRoomNo",messageRoomNo);

@@ -94,8 +94,9 @@ $(function(){
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>${room.roomName}</h3>
-						<h2>&#8361; ${room.price}&nbsp;</h2>
+						<h2>${room.roomName}</h2>
+						<h4>&#8361; ${room.price}&nbsp;</h4>
+						<hr>
 						<div id="calendarBox" style="height:250px;width:350px;">
 						<div id='calendar'></div>
 						</div>
@@ -125,11 +126,15 @@ $(function(){
 							</button>
 						</div>
 						<!-- <a href="/haroobang/room/calender.action">날짜확인</a> -->
-						<div class="card_area d-flex align-items-center">
+						<div class="card_area d-flex align-items-center" style="margin-right: 100px;float:right;">
+						<c:choose>
+							<c:when test="${login.userType == 'admin'}">
+							<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
+							</c:when>
+							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
-							<c:if test="${login.userType == 'admin'}">
-								<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
-							</c:if>
+							</c:otherwise>
+						</c:choose>
 							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
@@ -164,7 +169,7 @@ $(function(){
 						<div class="review_item">
 							<div class="media">
 								<div class="d-flex">
-									<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${login.memberNo }&messageRoomNo=${room.roomNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
+									<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${member.memberNo}&loginMemberNo=${login.memberNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
 								</div>
 
 								<div class="media-body">
