@@ -11,4 +11,8 @@ public interface RoomListDao {
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
+	List<RoomVO> selectAllDisapprovalRooms();
+
+	void approvalRoom(String formdate);
+
 }

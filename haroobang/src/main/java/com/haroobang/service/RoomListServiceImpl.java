@@ -29,4 +29,21 @@ public class RoomListServiceImpl implements RoomListService{
 		return rooms;
 	}
 
+	@Override
+	public List<RoomVO> findAllDisapprovalRooms() {
+		List<RoomVO> rooms = roomlistDao.selectAllDisapprovalRooms();
+
+		for (RoomVO room : rooms) {
+			List<RoomAttachVO> attachments = roomlistDao.selectRoomAttachByRoomNo(room.getRoomNo());
+			room.setRoomAttachList(attachments);
+		}
+
+		return rooms;
+	}
+
+	@Override
+	public void approvalRoom(String formdate) {
+		roomlistDao.approvalRoom(formdate);
+	}
+
 }
