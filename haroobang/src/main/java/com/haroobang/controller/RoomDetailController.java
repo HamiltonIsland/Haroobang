@@ -65,6 +65,8 @@ public class RoomDetailController {
 		if (session.getAttribute("login") == null) {
 			return "redirect:/account/login.action";
 		}
+		
+		roomDetailService.findDateList(roomNo);
 
 		model.addAttribute("roomNo", roomNo);
 		model.addAttribute("checkinDate", checkinDate);
@@ -74,8 +76,13 @@ public class RoomDetailController {
 	}
 
 	@RequestMapping(value = "calender.action", method = RequestMethod.GET)
-	public String calender() {
-
+	public String calender(int roomNo,Model model) {
+		
+		List<String> dateList = roomDetailService.findDateList(roomNo);
+		System.out.println(dateList.get(0));
+	
+		model.addAttribute("dateList",dateList);
+		
 		return "room/calender";
 	}
 
@@ -100,7 +107,11 @@ public class RoomDetailController {
 		reservationVo.setMemberNo(memberNo);
 
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
-		roomDetailService.addRoomReservation(reservationVo,dateList);
+		String message =roomDetailService.addRoomReservation(reservationVo,dateList);
+		
+		if(message =="fail") {
+			return "redirect:/account/login.action";
+		}
 		
 		model.addAttribute("reservation", reservationVo);
 		model.addAttribute("roomDetail", room);

@@ -31,4 +31,8 @@
 		values (#{roomNo},#{reservationNo},#{date})
 	</insert>
 	
+	<select id="findDateList" parameterType="int" resultType="String">
+		select date from reservationDate where roomNo=#{roomNo}
+	</select>
+	
 </mapper>

@@ -2,6 +2,7 @@ package com.haroobang.dao;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public void addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
+	public String addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
 		roomDetailMapper.addRoomReservaion(reservationVo);
 		int reservationNo = reservationVo.getReservationNo();
 		int roomNo = reservationVo.getRoomNo();
@@ -67,12 +68,31 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		params.put("roomNo", roomNo);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
-		
-		for(int i=0;i<dateList.size();i++) {
-			params.put("date",formatter.format(dateList.get(i)));
-			roomDetailMapper.addReservationDate(params);
+		try{
+			for(int i=0;i<dateList.size();i++) {
+				params.put("date",formatter.format(dateList.get(i)));
+				roomDetailMapper.addReservationDate(params);
+			}
+			return "success";
+		}catch(Exception e) {
+			return "fail";
 		}
 		
+		
+	}
+
+	@Override
+	public List<String> findDateList(int roomNo) {
+		
+		List<String> dateList = new ArrayList<String>();
+
+		dateList = roomDetailMapper.findDateList(roomNo);
+		
+		if(dateList.size() == 0) {
+			dateList.add("none");
+		}
+		
+		return dateList;
 	}
 
 }

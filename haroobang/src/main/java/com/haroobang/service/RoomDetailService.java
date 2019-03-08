@@ -15,6 +15,8 @@ public interface RoomDetailService {
 
 	AccountVO findMember(int memberNo);
 
-	void addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList);
+	String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList);
+
+	List<String> findDateList(int roomNo);
 
 }

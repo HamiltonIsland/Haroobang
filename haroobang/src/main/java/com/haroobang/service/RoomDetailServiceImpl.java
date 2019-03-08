@@ -40,9 +40,17 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	}
 
 	@Override
-	public void addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList) {
-		roomDetailDao.addRoomReservation(reservationVo,dateList);
+	public String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList) {
+		String message = roomDetailDao.addRoomReservation(reservationVo,dateList);
+		return message;
 		
+	}
+
+	@Override
+	public List<String> findDateList(int roomNo) {
+		
+		List<String> dateList = roomDetailDao.findDateList(roomNo);
+		return dateList;
 	}
 
 }
