@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -103,6 +104,23 @@ public class AccountController {
 		session.setAttribute("login", login.get(0));
 
 		return "redirect:/home.action";
+	}
+	
+	//비밀번호 찾기 view
+	@RequestMapping (value = "/findPassword.action")
+	public String findPasswordView() {
+		
+		return "account/password";
+	}
+	
+	@RequestMapping (value = "/password.action", method = RequestMethod.POST)
+	public String findPassword(AccountVO vo, Model model) {	
+		AccountVO member = accountService.getAccountService(vo);
+		if(member==null) {
+			return "redirect:/account/findPassword.action";
+		}		
+		model.addAttribute("member",member);
+		return "account/updatePassword";
 	}
 	
 	

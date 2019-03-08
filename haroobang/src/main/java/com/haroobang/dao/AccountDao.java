@@ -12,4 +12,6 @@ public interface AccountDao {
 
 	void updateProfileDao(AccountVO vo);
 
+	AccountVO getAccountDao(AccountVO vo);
+
 }
