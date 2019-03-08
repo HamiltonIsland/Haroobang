@@ -16,4 +16,6 @@ public interface AccountService {
 
 	AccountVO getAccountService(AccountVO vo);
 
+	void updatePasswordService(AccountVO vo);
+
 }

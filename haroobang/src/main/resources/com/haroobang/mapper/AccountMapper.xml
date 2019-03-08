@@ -21,6 +21,10 @@
 	update member set name=#{name}, savedfilename=#{savedFileName},phone=#{phone},profile=#{profile} where memberno=#{memberNo}
 	</update>
 	
+	<update id="updatePassword" parameterType="AccountVO">
+	update member set password=#{password} where memberno=#{memberNo}
+	</update>
+	
 	
 	
 </mapper>

@@ -123,6 +123,14 @@ public class AccountController {
 		return "account/updatePassword";
 	}
 	
+	//비밀번호 변경
+	@RequestMapping (value = "/updatePassword.action", method = RequestMethod.POST)
+	public String updatePassword(AccountVO vo) {
+		accountService.updatePasswordService(vo);
+		
+		return "redirect:/account/login.action";
+	}
+	
 	
 	
 	

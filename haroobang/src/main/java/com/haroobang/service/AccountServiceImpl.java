@@ -49,6 +49,14 @@ public class AccountServiceImpl implements AccountService{
 		AccountVO member = accountDao.getAccountDao(vo);
 		return member;
 	}
+
+	@Override
+	public void updatePasswordService(AccountVO vo) {
+		String password = Util.getHashedString(vo.getPassword(),"SHA-256");
+		vo.setPassword(password);
+		accountDao.updatePasswordDao(vo);
+		
+	}
 	
 
 }

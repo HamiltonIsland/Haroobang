@@ -39,4 +39,10 @@ public class AccountDaoImpl implements AccountDao{
 		return member;
 	}
 
+	@Override
+	public void updatePasswordDao(AccountVO vo) {
+		accountMapper.updatePassword(vo);
+		
+	}
+
 }

@@ -14,4 +14,6 @@ public interface AccountDao {
 
 	AccountVO getAccountDao(AccountVO vo);
 
+	void updatePasswordDao(AccountVO vo);
+
 }

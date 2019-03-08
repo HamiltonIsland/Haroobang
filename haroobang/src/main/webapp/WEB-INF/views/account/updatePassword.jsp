@@ -53,19 +53,17 @@
 			<div class="row" >				
 				<div class="col-lg-6" style="margin:0 auto">
 					<div class="login_form_inner">
-						<h3>비밀번호 찾기</h3>
-						<form class="row login_form" action="password.action" method="post" novalidate="novalidate"style="margin : 0 auto">
+						<h3>비밀번호 변경</h3>
+						<form class="row login_form" action="updatePassword.action" method="post" novalidate="novalidate"style="margin : 0 auto">
+                            <input type="hidden" name="memberNo" value="${member.memberNo }">
                             <div class="col-md-12 form-group p_star">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'">
+                                <input type="password" class="form-control" name="password" placeholder="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'">
                             </div>                           
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
-                            </div>                                                   
-                            <div class="col-md-12 form-group p_star">
-                                <input type="date" class="form-control" name="birthDate" placeholder="Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Birth'">
-                            </div> 
+                                <input type="password" class="form-control" name="password확인" placeholder="password확인" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password확인'">
+                            </div>
                             <div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">확인하기</button>								
+								<button type="submit" value="submit" class="primary-btn">수정</button>								
 							</div>
                         </form>
 							

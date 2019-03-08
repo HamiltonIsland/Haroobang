@@ -14,4 +14,6 @@ public interface AccountMapper {
 
 	AccountVO getAccount(AccountVO vo);
 
+	void updatePassword(AccountVO vo);
+
 }
