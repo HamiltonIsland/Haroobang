@@ -10,6 +10,6 @@ public interface LastReservationService {
 
 	List<ReservationVO> findMyLastReservation(int memberNo);
 
-	//ReservationVO findRoomByRoomNo(int roomNo);
+	ReservationVO findRoomByRoomNo(int roomNo);
 
 }

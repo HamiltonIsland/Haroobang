@@ -19,10 +19,10 @@ public class OracleLastReservationDao implements LastReservationDao {
 		return myrooms;
 	}
 
-//	@Override
-//	public ReservationVO selectRoomByRoomNo(int roomNo) {
-//		ReservationVO myroom = lastReservationMapper.selectRoomByRoomNo(roomNo);
-//		return myroom;
-//	}
+	@Override
+	public ReservationVO selectRoomByRoomNo(int roomNo) {
+		ReservationVO myroom = lastReservationMapper.selectRoomByRoomNo(roomNo);
+		return myroom;
+	}
 
 }
