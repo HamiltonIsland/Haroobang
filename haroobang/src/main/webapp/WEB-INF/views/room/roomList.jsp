@@ -82,15 +82,15 @@
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
+				<section class="lattest-product-area pb-40 category-list" id="disapprovalRoom">
 					<div class="row">
-						<c:forEach var="room" items="${rooms}">
-						<a href="/haroobang/room/roomDetail.action?roomNo=${room.roomNo}">
-						<div class="col-lg-3 col-md-5">
+						<c:forEach var="disapproval" items="${disapproval}">
+						<a href="/haroobang/room/roomDetail.action?roomNo=${disapproval.roomNo}">
+						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${disapproval.roomNo}" >
 							<div class="single-product">
 								<%-- <c:choose>
-									<c:when test="${not empty room.roomAttachList}">
-										<c:forEach var="attach" items="${room.roomAttachList}">
+									<c:when test="${not empty disapproval.roomAttachList}">
+										<c:forEach var="attach" items="${disapproval.roomAttachList}">
 											<img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
 											onerror="this.src = '/haroobang/resources/upload/default.jpg'">
 										</c:forEach>
@@ -101,9 +101,9 @@
 								</c:choose> --%>
 								<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 								<div class="product-details">
-									<h6>${room.roomName}</h6>
+									<h6>${disapproval.roomName}</h6>
 									<div class="price">
-										<h6>${room.price}</h6>
+										<h6>${disapproval.price}</h6>
 										<h6 class="l-through">$210.00</h6>
 									</div>
 									<div class="prd-bottom">
@@ -119,6 +119,11 @@
 											class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
 										</a>
+										
+										<div class="button-group-area mt-40">
+											<a href="javascript:;" class="genric-btn success circle" id='roomapproval${disapproval.roomNo}'>승인</a>
+											<a href="javascript:;" class="genric-btn danger circle" id='roomdelete${disapproval.roomNo}'>삭제</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -204,7 +209,7 @@
 								<div class="product-details">
 									<h6>${room.roomName}</h6>
 									<div class="price">
-										<h6>${room.price}</h6>
+										<h6>$${room.price}</h6>
 										<h6 class="l-through">$210.00</h6>
 									</div>
 									<div class="prd-bottom">
@@ -220,6 +225,11 @@
 											class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
 										</a>
+										<c:if test='${ not empty login and login.userType eq "admin" }'>
+										<div class="button-group-area mt-40">
+											<a href="#" class="genric-btn danger circle">삭제</a>
+										</div>
+										</c:if>
 									</div>
 								</div>
 							</div>
@@ -350,6 +360,33 @@
 
 
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
+	<script type="text/javascript">
+		$(function(){
+			$("a[id ^=roomapproval]").on('click',function(event){
+				
+				var formData = $(this).parents('.disapprovalNo').attr('data-roomno');
+				
+				$.ajax({
+					"url": "roomApproval.action",
+					"method": "POST",
+					"data": { 'formdate' : formData },
+					"success": function(formData, status, xhr) {
+						alert('숙소가 승인 되었습니다.');
+					},
+					"error": function(xhr, status, err) {
+						alert('숙소 승인');
+						location.reload(true);
+					}
+				});
+			});
+			
+			 //$("#roomdelete"+roomNo).on('click',function(event){
+			$("a[id ^=roomdelete]").on('click',function(event){
+				var roomNo = $(this).parents('.disapprovalNo').attr('data-roomno');
+				alert(roomNo+'준비중~');
+			});
+		});
+	</script>
 
 </body>
 

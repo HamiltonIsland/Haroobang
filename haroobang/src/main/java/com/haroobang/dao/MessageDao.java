@@ -13,4 +13,6 @@ public interface MessageDao {
 
 	void insertMessagesDao(MessagesVO vo);
 
+	int getMessageRoomNoDao(int memberNo, int loginMemberNo);
+
 }

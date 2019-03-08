@@ -93,7 +93,8 @@
 								<textarea class="form-control" name="profile" rows="1" placeholder="Profile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'">${login.profile }</textarea>
 							</div>							
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">수정하기</button>								
+								<button type="submit" value="submit" class="primary-btn">수정하기</button>	
+								<a href="findPassword.action">비밀번호 수정</a>							
 							</div>
 						</form>
 					</div>

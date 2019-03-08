@@ -28,4 +28,15 @@ public class RoomListDaoImpl implements RoomListDao{
 		List<RoomAttachVO> attachs = roomListMapper.selectRoomAttachByRoomNo(roomNo);
 		return attachs;
 	}
+
+	@Override
+	public List<RoomVO> selectAllDisapprovalRooms() {
+		List<RoomVO> rooms = roomListMapper.selectAllDisapprovalRooms();
+		return rooms;
+	}
+
+	@Override
+	public void approvalRoom(String formdate) {
+		roomListMapper.approvalRoom(Integer.parseInt(formdate));
+	}
 }

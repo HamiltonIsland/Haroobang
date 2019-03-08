@@ -14,4 +14,8 @@ public interface AccountService {
 
 	List<AccountVO> loginServices(AccountVO vo);
 
+	AccountVO getAccountService(AccountVO vo);
+
+	void updatePasswordService(AccountVO vo);
+
 }

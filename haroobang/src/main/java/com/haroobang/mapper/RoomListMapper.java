@@ -10,4 +10,8 @@ public interface RoomListMapper {
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
 	List<RoomVO> selectAllRooms();
+
+	List<RoomVO> selectAllDisapprovalRooms();
+
+	void approvalRoom(int formdate);
 }

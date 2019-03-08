@@ -12,4 +12,8 @@ public interface AccountMapper {
 
 	void updateProfile(AccountVO vo);
 
+	AccountVO getAccount(AccountVO vo);
+
+	void updatePassword(AccountVO vo);
+
 }

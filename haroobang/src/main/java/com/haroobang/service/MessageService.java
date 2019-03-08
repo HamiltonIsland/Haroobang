@@ -15,4 +15,6 @@ public interface MessageService {
 
 	void insertMessagesService(MessagesVO vo);
 
+	int getMessageRoomNoService(int memberNo, int loginMemberNo);
+
 }

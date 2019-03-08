@@ -15,5 +15,10 @@
 	<insert id="insertMessages" parameterType="messagesVO">
 		insert into messages(messageRoomNo,memberNo,content) values(#{messageRoomNo},#{memberNo},#{content})
 	</insert>
-	
+	<select id="getMessageRoomNo" parameterType="hashmap" resultType="int">
+		select messageRoomNo from messageRoom where (memberNo=#{memberNo} and memberNo2=#{loginMemberNo}) or (memberNo=#{loginMemberNo} and memberNo2=#{memberNo});
+	</select>
+	<insert id="insertMessageRoom" parameterType="hashmap">
+		insert into messageRoom(memberNo,memberNo2) values(#{memberNo},#{loginMemberNo})
+	</insert>
 </mapper>

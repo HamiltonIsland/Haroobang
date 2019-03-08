@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<AccountVO> findAllMembers() {
 		List<AccountVO> members = memberDao.selectAllMembers();
-	
+
 		return members;
 	}
 
@@ -26,6 +26,14 @@ public class MemberServiceImpl implements MemberService {
 	public int findAllMemberCount() {
 		int count = memberDao.selectAllMemberCount();
 		return count;
+	}
+
+	@Override
+	public AccountVO findMember(int memberNo) {
+		AccountVO member = memberDao.selectMember(memberNo);
+
+
+		return member;
 	}
 
 }

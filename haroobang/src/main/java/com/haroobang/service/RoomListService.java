@@ -8,4 +8,8 @@ public interface RoomListService {
 
 	List<RoomVO> findAllRooms();
 
+	List<RoomVO> findAllDisapprovalRooms();
+
+	void approvalRoom(String formdate);
+
 }
