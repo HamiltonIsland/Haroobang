@@ -164,7 +164,7 @@ $(function(){
 						<div class="review_item">
 							<div class="media">
 								<div class="d-flex">
-									<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${login.memberNo }&messageRoomNo=${room.roomNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
+									<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${member.memberNo}&loginMemberNo=${login.memberNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
 								</div>
 
 								<div class="media-body">
