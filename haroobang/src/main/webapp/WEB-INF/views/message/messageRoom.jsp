@@ -100,19 +100,21 @@
 								<ul>
 									<c:forEach var="messageRoomList" items="${messageRoomList}">
 									<c:forEach var="list" items="${messageRoomList.memberList}">
-									<li class="contact" data-messageRoomNo="${messageRoomList.messageRoomNo }"data-name="${list.name}" data-picture="${list.savedFileName}"> 
+									<li class="contact" data-messageRoomNo="${messageRoomList.messageRoomNo }"> 
 									<!-- <li class="contact active"> -->
 										<div class="wrap">
 											<span class="contact-status"></span> <img
 												src="/haroobang/resources/upload/${list.savedFileName}" alt="" />
 											<div class="meta">
 												<p class="name">${list.name}</p>
-												<c:forEach var="list" items="${messageList}"
+												<c:forEach var="lists" items="${messageRoomList.messagesList}"
 														varStatus="index">
 														<c:if test="${index.last}">
 															<p class="preview">
-																<c:if test="${memberNo==login.memberNo }"><span>You: </span></c:if>
-																${list.content}															
+															<c:if test="${lists.messageRoomNo==messageRoomList.messageRoomNo }">
+																<c:if test="${lists.memberNo==login.memberNo}"><span>You: </span></c:if>
+																${lists.content}
+															</c:if>															
 															</p>
 														</c:if>
 												</c:forEach>
@@ -140,8 +142,6 @@
 			var picture;
 			$("#contacts").on("click",".contact",function(e){
 				roomNo = $(this).attr("data-messageRoomNo");
-				name = $(this).attr("data-name");
-				picture = $(this).attr("data-picture");
 				location.replace("messageRoomBoxes.action?memberNo="+${login.memberNo}+"&messageRoomNo="+roomNo);
 			});		
 		});
