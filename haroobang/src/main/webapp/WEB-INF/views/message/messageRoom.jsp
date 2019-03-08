@@ -100,7 +100,7 @@
 								<ul>
 									<c:forEach var="messageRoomList" items="${messageRoomList}">
 									<c:forEach var="list" items="${messageRoomList.memberList}">
-									<li class="contact" data-messageRoomNo="${messageRoomList.messageRoomNo }"> 
+									<li class="contact" data-memberNo="${list.memberNo }" data-loginMemberNo="${login.memberNo }"> 
 									<!-- <li class="contact active"> -->
 										<div class="wrap">
 											<span class="contact-status"></span> <img
@@ -136,13 +136,11 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 	
-		$(function(){			
-			var roomNo;
-			var name;
-			var picture;
+		$(function(){	
 			$("#contacts").on("click",".contact",function(e){
-				roomNo = $(this).attr("data-messageRoomNo");
-				location.replace("messageRoomBoxes.action?memberNo="+${login.memberNo}+"&messageRoomNo="+roomNo);
+				loginMemberNo = $(this).attr("data-loginMemberNo");
+				memberNo = $(this).attr("data-memberNo");
+				location.replace("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo);
 			});		
 		});
 	</script>

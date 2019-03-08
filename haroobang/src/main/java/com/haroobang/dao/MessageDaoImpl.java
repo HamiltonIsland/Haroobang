@@ -1,5 +1,6 @@
 package com.haroobang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,31 @@ public class MessageDaoImpl implements MessageDao{
 	public void insertMessagesDao(MessagesVO vo) {
 		messageMapper.insertMessages(vo);
 		
+	}
+
+	@Override
+	public int getMessageRoomNoDao(int memberNo, int loginMemberNo) {
+		int messageRoomNo=0;
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("memberNo",memberNo);
+		params.put("loginMemberNo",loginMemberNo);
+		try {
+			messageRoomNo = messageMapper.getMessageRoomNo(params);
+		}catch(Exception ex) {
+			messageMapper.insertMessageRoom(params);			
+			messageRoomNo = messageMapper.getMessageRoomNo(params);
+			
+			//방 만들자마자 첫 메시지
+			MessagesVO vo = new MessagesVO();
+			vo.setContent("안녕하세요~~~~~");
+			vo.setMemberNo(memberNo);
+			vo.setMessageRoomNo(messageRoomNo);
+			
+			messageMapper.insertMessages(vo);
+		}
+		
+		
+		return messageRoomNo;
 	}
 
 	
