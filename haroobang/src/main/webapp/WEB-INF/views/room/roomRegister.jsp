@@ -59,17 +59,17 @@
 					<div class="contact_info">
 						<div class="info_item">
 							<i class="lnr lnr-home"></i>
-							<h6>California, United States</h6>
+							<h6>${login.address }</h6>
 							<p>Santa monica bullevard</p>
 						</div>
 						<div class="info_item">
 							<i class="lnr lnr-phone-handset"></i>
-							<h6><a href="#">00 (440) 9865 562</a></h6>
+							<h6><a href="#">${login.phone }</a></h6>
 							<p>Mon to Fri 9am to 6 pm</p>
 						</div>
 						<div class="info_item">
 							<i class="lnr lnr-envelope"></i>
-							<h6><a href="#">support@colorlib.com</a></h6>
+							<h6><a href="#">${login.email }</a></h6>
 							<p>Send us your query anytime!</p>
 						</div>
 					</div>
@@ -80,15 +80,15 @@
 							<input type="hidden" name="memberNo" value="${login.memberNo}">
 							<div class="form-group">
 								<input type="text" class="form-control"  name="roomName" placeholder="숙소 이름" onfocus="this.placeholder = ''" onblur="this.placeholder = '숙소 이름'">
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" name="address" placeholder="주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '주소'">
-							</div>
+							</div>							
 							<div class="form-group">
 								<input type="text" class="form-control" name="price" placeholder="가격" onfocus="this.placeholder = ''" onblur="this.placeholder = '가격'">
 							</div>							
 							<div class="form-group">
 								<input type="text" class="form-control" name="maximum" placeholder="최대인원" onfocus="this.placeholder = ''" onblur="this.placeholder = '최대인원'">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="address" name="address" placeholder="주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '주소'">								
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -104,6 +104,7 @@
 							<button type="submit" value="submit" class="genric-btn primary radius">숙소 등록</button>
 						</div>
 					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -145,6 +146,32 @@
 	<!--================End Contact Success and Error message Area =================-->
 
 
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//주소
+	    function getAddressInfo(){
+	        var width=500;
+	        var height = 600;
+	        daum.postcode.load(function(){
+	        	new daum.Postcode({
+	        		oncomplete: function(data){
+	        			$("#address").val(data.address);
+	        			$("#addr").val(data.buildingName);
+	        		}
+	        	}).open({
+	        		left:(window.screen.width/2)-(width/2),
+	        		top:(window.screen.height/2)-(height/2)
+	        	})
+	        })
+	    }
+	    $("#address").on("click",function(e){
+	    	getAddressInfo(); 
+	    })
+	})
+</script>
 	<jsp:include page="../include/js.jsp"/>
 	
 </body>

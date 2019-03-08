@@ -63,12 +63,15 @@
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
-                            </div>   
+                            </div>  
+                             <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
+                            </div>  
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control" name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
                             </div>  
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" name="nickname" placeholder="닉네임" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
+                                <input type="text" class="form-control" name="nickname" placeholder="Nick-Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nick-Name'">
                             </div>                         
                             <div class="col-md-12 form-group p_star"> 
                                 <select class="country_select" name = "gender">
@@ -96,7 +99,31 @@
 		</div>
 	</section>
 	<!--================End Login Box Area =================-->
-
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//주소
+	    function getAddressInfo(){
+	        var width=500;
+	        var height = 600;
+	        daum.postcode.load(function(){
+	        	new daum.Postcode({
+	        		oncomplete: function(data){
+	        			$("#address").val(data.address);
+	        			$("#addr").val(data.buildingName);
+	        		}
+	        	}).open({
+	        		left:(window.screen.width/2)-(width/2),
+	        		top:(window.screen.height/2)-(height/2)
+	        	})
+	        })
+	    }
+	    $("#address").on("click",function(e){
+	    	getAddressInfo(); 
+	    })
+	})
+</script>
 	<jsp:include page="../include/footer.jsp"/>
 
 
