@@ -1,5 +1,8 @@
 package com.haroobang.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,91 +23,89 @@ import com.haroobang.vo.RoomVO;
 @Controller
 @RequestMapping("/room/")
 public class RoomDetailController {
-	
+
 	@Autowired
 	@Qualifier("roomDetailService")
 	private RoomDetailService roomDetailService;
-	
 
-	@RequestMapping(value="roomDetail.action", method=RequestMethod.GET)
-	public String roomDetail(Model model,int roomNo) {
-		
+	@RequestMapping(value = "roomDetail.action", method = RequestMethod.GET)
+	public String roomDetail(Model model, int roomNo) {
+
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
-		
+
 		int memberNo = room.getMemberNo();
 		AccountVO member = roomDetailService.findMember(memberNo);
-		
-		model.addAttribute("room",room);
+
+		model.addAttribute("room", room);
 		model.addAttribute("member", member);
-		
-		
+
 		return "room/roomDetail";
 	}
-	
-	@RequestMapping(value="addLike.action",method=RequestMethod.GET)
+
+	@RequestMapping(value = "addLike.action", method = RequestMethod.GET)
 	@ResponseBody
-	public String addLike(int roomNo,HttpSession session) {
-		
+	public String addLike(int roomNo, HttpSession session) {
+
 		System.out.println(session.getAttribute("login"));
-		if(session.getAttribute("login")==null) {
+		if (session.getAttribute("login") == null) {
 			return "/account/login.action";
-		}else {
-		AccountVO member = (AccountVO) session.getAttribute("login");
-		int memberNo = member.getMemberNo();
-		String result = roomDetailService.addLike(roomNo, memberNo);
-		
-		return result;
+		} else {
+			AccountVO member = (AccountVO) session.getAttribute("login");
+			int memberNo = member.getMemberNo();
+			String result = roomDetailService.addLike(roomNo, memberNo);
+
+			return result;
 		}
 	}
-	
+
 	@RequestMapping(value = "reservationCheckout.action", method = RequestMethod.GET)
-	public String roomReservationCheckout(String checkinDate, int nights,Model model,HttpSession session,int roomNo) {
-	
-		if(session.getAttribute("login") == null) {
+	public String roomReservationCheckout(String checkinDate, int nights, Model model, HttpSession session,
+			int roomNo) {
+
+		if (session.getAttribute("login") == null) {
 			return "redirect:/account/login.action";
 		}
-		
-		model.addAttribute("roomNo",roomNo);
-		model.addAttribute("checkinDate",checkinDate);
-		model.addAttribute("nights",nights);
-		
+
+		model.addAttribute("roomNo", roomNo);
+		model.addAttribute("checkinDate", checkinDate);
+		model.addAttribute("nights", nights);
 
 		return "room/roomReservationCheckout";
 	}
-	
-	@RequestMapping(value="calender.action", method=RequestMethod.GET)
+
+	@RequestMapping(value = "calender.action", method = RequestMethod.GET)
 	public String calender() {
-		
+
 		return "room/calender";
 	}
-	
-	@RequestMapping(value="payment.action" , method=RequestMethod.POST)
-	public String payment(ReservationVO reservationVo,HttpSession session, Model model) {
-		
-		
+
+	@RequestMapping(value = "payment.action", method = RequestMethod.POST)
+	public String payment(ReservationVO reservationVo, HttpSession session, Model model) {
+
 		AccountVO member = (AccountVO) session.getAttribute("login");
 		int memberNo = member.getMemberNo();
+
+		String StartDate = reservationVo.getStartDate();
+		LocalDate startDate = LocalDate.parse(StartDate);
+		List<LocalDate> dateList = new ArrayList();
 		
-		String startDate = reservationVo.getStartDate();
-		String yearMonth = startDate.substring(0,8);
-		int calEndDate = Integer.parseInt(startDate.substring(9))+reservationVo.getNights();
-		String endDate ="";
-		if(calEndDate>0 && calEndDate<10) {
-			endDate = yearMonth+"0"+Integer.toString(calEndDate);
-		}else {
-			endDate = yearMonth+ Integer.toString(calEndDate);
+		for(int i = 0;i<reservationVo.getNights()+1;i++) {
+			dateList.add(startDate.plusDays(i));
 		}
-		
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		String endDate = formatter.format(dateList.get(reservationVo.getNights()));
+	
 		reservationVo.setEndDate(endDate);
 		reservationVo.setMemberNo(memberNo);
-		
+
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
-		roomDetailService.addRoomReservation(reservationVo);
+		roomDetailService.addRoomReservation(reservationVo,dateList);
 		
-		model.addAttribute("reservation",reservationVo);
-		model.addAttribute("roomDetail",room);
-		
-		
+		model.addAttribute("reservation", reservationVo);
+		model.addAttribute("roomDetail", room);
+
+
 		return "room/paymentConfirmation";
 	}
 }

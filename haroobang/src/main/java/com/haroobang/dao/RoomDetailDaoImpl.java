@@ -1,5 +1,7 @@
 package com.haroobang.dao;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,8 +57,21 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public void addRoomReservation(ReservationVO reservationVo) {
+	public void addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
 		roomDetailMapper.addRoomReservaion(reservationVo);
+		int reservationNo = reservationVo.getReservationNo();
+		int roomNo = reservationVo.getRoomNo();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("reservationNo",reservationNo);
+		params.put("roomNo", roomNo);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		
+		for(int i=0;i<dateList.size();i++) {
+			params.put("date",formatter.format(dateList.get(i)));
+			roomDetailMapper.addReservationDate(params);
+		}
 		
 	}
 

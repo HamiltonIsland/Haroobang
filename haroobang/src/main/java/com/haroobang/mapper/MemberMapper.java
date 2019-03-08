@@ -10,4 +10,6 @@ public interface MemberMapper {
 
 	int selectAllMemberCount();
 
+	AccountVO selectMember(int memberNo);
+
 }

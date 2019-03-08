@@ -10,4 +10,6 @@ public interface MemberService {
 
 	int findAllMemberCount();
 
+	AccountVO findMember(int memberNo);
+
 }

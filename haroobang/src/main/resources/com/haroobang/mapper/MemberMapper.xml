@@ -4,15 +4,27 @@
 
 <mapper namespace="com.haroobang.mapper.MemberMapper">
 
-	<resultMap type="AccountVo" id="memberMap">
-		<id column="memberno" property="memberNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑 -->
+	<resultMap type="AccountVO" id="memberMap">
+		<id column="memberNo" property="memberNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑 -->
 		<result column="name" property="name" />
 		<result column="email" property="email" />
 		<result column="phone" property="phone" />
 		<result column="gender" property="gender" />
-		<result column="regdate" property="regDate" />
+		<result column="regDate" property="regDate" />
 		<result column="profile" property="profile" />
-		<result column="birthdate" property="birthDate" />
+		<result column="birthDate" property="birthDate" />
+
+	</resultMap>
+	
+	<resultMap type="AccountVO" id="memberMap2">
+		<id column="memberNo" property="memberNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑 -->
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="phone" property="phone" />
+		<result column="gender" property="gender" />
+		<result column="regDate" property="regDate" />
+		<result column="profile" property="profile" />
+		<result column="birthDate" property="birthDate" />
 
 	</resultMap>
 
@@ -27,5 +39,12 @@
 	<select id="selectAllMemberCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) FROM member
 	</select>
+	
+ 	<select id="selectMember" parameterType="int" resultMap="memberMap2">   
+		SELECT memberNo, name, email, phone, gender, regdate, birthdate
+		FROM member
+		WHERE memberNo = #{ memberNo }
+		
+	</select>  
 
 </mapper>
