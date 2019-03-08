@@ -33,4 +33,10 @@ public class AccountDaoImpl implements AccountDao{
 		accountMapper.updateProfile(vo);		
 	}
 
+	@Override
+	public AccountVO getAccountDao(AccountVO vo) {
+		AccountVO member = accountMapper.getAccount(vo);
+		return member;
+	}
+
 }

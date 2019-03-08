@@ -43,6 +43,12 @@ public class AccountServiceImpl implements AccountService{
 		List<AccountVO> login = accountDao.loginDao(vo);
 		return login;
 	}
+
+	@Override
+	public AccountVO getAccountService(AccountVO vo) {
+		AccountVO member = accountDao.getAccountDao(vo);
+		return member;
+	}
 	
 
 }
