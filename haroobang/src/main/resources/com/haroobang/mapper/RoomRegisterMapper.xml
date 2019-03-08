@@ -5,8 +5,8 @@
 <mapper namespace="com.haroobang.mapper.RoomRegisterMapper">
 	<insert id="roomRegister" parameterType="RoomVO"
 	useGeneratedKeys="true" keyColumn="roomno" keyProperty="roomNo">
-		insert into room(memberNo, roomName, address, roomProfile, price, maximum) 
-		values(#{memberNo},#{roomName},#{address},#{roomProfile},#{price},#{maximum});
+		insert into room(memberNo, roomName, address, roomProfile, price, maximum,longitude,latitude) 
+		values(#{memberNo},#{roomName},#{address},#{roomProfile},#{price},#{maximum},#{longitude},#{latitude});
 	</insert>
 	
 	<insert id="roomAttach" parameterType="com.haroobang.vo.RoomAttachVO">
