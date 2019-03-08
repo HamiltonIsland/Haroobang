@@ -10,4 +10,6 @@ public interface MemberDao {
 
 	int selectAllMemberCount();
 
+	AccountVO selectMember(int memberNo);
+
 }

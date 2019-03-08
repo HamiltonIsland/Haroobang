@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.haroobang.service.MemberService;
 import com.haroobang.vo.AccountVO;
@@ -30,5 +31,17 @@ public class MemberController {
 		model.addAttribute("countno", memberCount);
 		
 		return "member/memberlist";
+	}
+	
+	@RequestMapping(value = "/memberdetail.action", method = RequestMethod.GET)
+	public String memberDetailForm(Model model, int memberNo) {
+		
+		AccountVO members = memberService.findMember(memberNo);
+	//	List<PurchaseVo> purchases = memberService.findAllMemberProduct(memberNo);
+		System.out.println(members.getMemberNo());
+		model.addAttribute("members", members);
+	//	model.addAttribute("purchases", purchases);
+		
+		return "member/memberdetail";
 	}
 }

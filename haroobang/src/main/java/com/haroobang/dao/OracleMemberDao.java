@@ -24,4 +24,11 @@ public class OracleMemberDao implements MemberDao {
 		int count = memberMapper.selectAllMemberCount();
 		return count;
 	}
+
+	@Override
+	public AccountVO selectMember(int memberNo) {
+		AccountVO member = memberMapper.selectMember(memberNo);
+
+		return member;
+	}
 }
