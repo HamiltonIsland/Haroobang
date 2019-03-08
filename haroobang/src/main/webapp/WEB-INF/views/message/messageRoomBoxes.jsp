@@ -122,15 +122,17 @@
 													alt="" />
 												<div class="meta">
 													<p class="name">${list.name}</p>
-													<c:forEach var="list" items="${messageList}"
+													<c:forEach var="lists" items="${messageRoomList.messagesList}"
 														varStatus="index">
 														<c:if test="${index.last}">
 															<p class="preview">
-																<c:if test="${memberNo==login.memberNo }"><span>You: </span></c:if>
-																${list.content}															
+															<c:if test="${lists.messageRoomNo==messageRoomList.messageRoomNo }">
+																<c:if test="${lists.memberNo==login.memberNo}"><span>You: </span></c:if>
+																${lists.content}
+															</c:if>															
 															</p>
 														</c:if>
-													</c:forEach>
+												</c:forEach>
 												</div>
 											</div>
 											</li>
@@ -143,8 +145,14 @@
 						</div>
 						<div class="content">
 							<div class="contact-profile">
-								<img src="/haroobang/resources/upload/${login.savedFileName }" />
-								<p>${login.name }</p>
+								<c:forEach var="messageRoomList" items="${messageRoomList}">
+									<c:forEach var="list" items="${messageRoomList.memberList}">
+										<c:if test="${messageRoomList.messageRoomNo==messageRoomNo}">
+											<img src="/haroobang/resources/upload/${list.savedFileName }" />
+											<p>${list.name }</p>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
 								<div class="social-media">
 									<i class="fa fa-facebook" aria-hidden="true"></i> <i
 										class="fa fa-twitter" aria-hidden="true"></i> <i
@@ -161,9 +169,19 @@
 												</li>
 											</c:when>
 											<c:otherwise>
-												<li class="sent"><img
-													src="/haroobang/resources/upload/${login.savedFileName}"
-													alt="" />
+												<li class="sent">
+												<c:forEach var="messageRoomList"
+														items="${messageRoomList}">
+														<c:forEach var="lists"
+															items="${messageRoomList.memberList}">
+															<c:if
+																test="${messageRoomList.messageRoomNo==messageRoomNo}">
+																<img
+																	src="/haroobang/resources/upload/${lists.savedFileName}"
+																	alt="" />
+															</c:if>
+														</c:forEach>
+													</c:forEach>
 													<p>${list.content}</p></li>
 											</c:otherwise>
 										</c:choose>

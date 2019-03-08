@@ -47,7 +47,7 @@ public class MessageController {
 	
 	//messageRoomBoxs창 보여주기
 	@RequestMapping (value = "/messageRoomBoxes.action", method = RequestMethod.GET)
-	public String messageRoomBoxsView(HttpSession session,int messageRoomNo,int memberNo,Model model,String name, String picture) {
+	public String messageRoomBoxsView(HttpSession session,int messageRoomNo,int memberNo,Model model) {
 		
 		if(session.getAttribute("login")==null)
 		{
@@ -55,10 +55,13 @@ public class MessageController {
 		}
 		List<MessagesVO> list = messageService.getMessageListService(messageRoomNo);
 		List<MessageRoomVO> lists =  messageService.getMessageRoomListService(memberNo);
+		for (MessageRoomVO vo : lists) {
+			int messageRoomNos = vo.getMessageRoomNo();
+			List<MessagesVO> listss = messageService.getMessageListService(messageRoomNos);
+			vo.setMessagesList(listss);
+		}
 		model.addAttribute("messageRoomList",lists);
 		model.addAttribute("messageList",list);
-		model.addAttribute("name",name);
-		model.addAttribute("picture",picture);
 		model.addAttribute("messageRoomNo",messageRoomNo);
 	
 		return "message/messageRoomBoxes";
