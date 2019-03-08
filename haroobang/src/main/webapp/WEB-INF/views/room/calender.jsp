@@ -27,7 +27,7 @@
           end: '2019-03-15',
           overlap: false,
           rendering: 'background',
-          color: 'gray',
+          color: '#cedfe0',
        
         }
       ]
