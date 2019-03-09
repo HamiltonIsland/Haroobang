@@ -19,4 +19,6 @@ public interface RoomDetailService {
 
 	List<String> findDateList(int roomNo);
 
+	String findReservedDate(int roomNo, List<LocalDate> dateList);
+
 }

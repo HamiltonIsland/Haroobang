@@ -66,8 +66,15 @@ public class RoomDetailController {
 			return "redirect:/account/login.action";
 		}
 		
-		roomDetailService.findDateList(roomNo);
-
+		List<LocalDate> dateList = new ArrayList();
+		LocalDate startDate = LocalDate.parse(checkinDate);
+		for(int i = 0;i<nights;i++) {
+			dateList.add(startDate.plusDays(i));
+		}
+		
+		String result = roomDetailService.findReservedDate(roomNo,dateList);
+		
+		model.addAttribute("result",result);
 		model.addAttribute("roomNo", roomNo);
 		model.addAttribute("checkinDate", checkinDate);
 		model.addAttribute("nights", nights);
@@ -79,7 +86,6 @@ public class RoomDetailController {
 	public String calender(int roomNo,Model model) {
 		
 		List<String> dateList = roomDetailService.findDateList(roomNo);
-		System.out.println(dateList.get(0));
 	
 		model.addAttribute("dateList",dateList);
 		

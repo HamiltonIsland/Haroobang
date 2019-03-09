@@ -53,4 +53,12 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		return dateList;
 	}
 
+	@Override
+	public String findReservedDate(int roomNo, List<LocalDate> dateList) {
+		
+		String result = roomDetailDao.findReservedDate(roomNo, dateList);
+		return result;
+		
+	}
+
 }

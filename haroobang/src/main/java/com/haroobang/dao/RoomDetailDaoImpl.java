@@ -69,7 +69,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		try{
-			for(int i=0;i<dateList.size();i++) {
+			for(int i=0;i<dateList.size()-1;i++) {
 				params.put("date",formatter.format(dateList.get(i)));
 				roomDetailMapper.addReservationDate(params);
 			}
@@ -95,4 +95,30 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		return dateList;
 	}
 
+	@Override
+	public String findReservedDate(int roomNo, List<LocalDate> dateList) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("roomNo", roomNo);
+
+		int reservedDate = 0 ;
+		String result = "success";
+		
+			for(int i =0;i<dateList.size();i++) {
+				params.put("date",formatter.format(dateList.get(i)));
+				try {
+					reservedDate = roomDetailMapper.findReservedDate(params);
+				} catch (Exception e) {
+					
+				}
+				
+				if(reservedDate > 0) {
+					result = "fail";
+					break;
+				}
+			}
+		return result;
+		
+	}
 }

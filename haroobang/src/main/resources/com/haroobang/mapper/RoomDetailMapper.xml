@@ -35,4 +35,8 @@
 		select date from reservationDate where roomNo=#{roomNo}
 	</select>
 	
+	<select id="findReservedDate" parameterType="hashmap" resultType="int">
+		select reservationNo from reservationDate where date=#{date} and roomNo=#{roomNo}
+	</select>
+	
 </mapper>
