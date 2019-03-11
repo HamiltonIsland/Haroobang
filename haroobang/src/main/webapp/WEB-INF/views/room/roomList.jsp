@@ -171,9 +171,25 @@ img {vertical-align: middle;}
 						<a href="/haroobang/room/roomDetail.action?roomNo=${disapproval.roomNo}">
 						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${disapproval.roomNo}" >
 							<div class="single-product" id="imglist${room.roomNo}">
-								<c:choose>
+							
+							<c:choose>
 									<c:when test="${not empty disapproval.roomAttachList}">
-									<div class="slideshow-container">
+										 <div class="slider">
+										<c:forEach var="attach" items="${disapproval.roomAttachList}">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
+									</c:when>
+									<c:otherwise>
+										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+								
+								
+								<%-- <c:choose>
+									<c:when test="${not empty disapproval.roomAttachList}">
+									<div class="slideshow-container" id="imglist${disapproval.roomNo}">
 										<c:forEach var="attach" items="${disapproval.roomAttachList}">
 												<div class="mySlides fade">
 												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
@@ -193,7 +209,7 @@ img {vertical-align: middle;}
 									<c:otherwise>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</c:otherwise>
-								</c:choose>
+								</c:choose> --%>
 								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
 								<div class="product-details">
 									<h6>${disapproval.roomName}</h6>
@@ -301,7 +317,23 @@ img {vertical-align: middle;}
 						<a href="/haroobang/room/roomDetail.action?roomNo=${room.roomNo}">
 						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${room.roomNo}">
 							<div class="single-product" id="imglist${room.roomNo}">
-								<c:choose>
+							
+							<c:choose>
+									<c:when test="${not empty room.roomAttachList}">
+										 <div class="slider">
+										<c:forEach var="attach" items="${room.roomAttachList}">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
+									</c:when>
+									<c:otherwise>
+										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+								
+								
+								<%-- <c:choose>
 									<c:when test="${not empty room.roomAttachList}">
 										<div class="slideshow-container">
 										<c:forEach var="attach" items="${room.roomAttachList}">
@@ -322,7 +354,7 @@ img {vertical-align: middle;}
 									<c:otherwise>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</c:otherwise>
-								</c:choose>
+								</c:choose> --%>
 								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
 								<div class="product-details">
 									<h6>${room.roomName}</h6>
@@ -478,6 +510,9 @@ img {vertical-align: middle;}
 
 
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$("a[id ^=roomapproval]").on('click',function(event){
@@ -506,8 +541,8 @@ img {vertical-align: middle;}
 			
 			/* $("div[id ^=imglist]").hover(function(event){
 			}); */
-			
-			var slideIndex = 0;
+			//.slideshow-container
+			/* var slideIndex = 0;
 			showSlides();
 
 			function showSlides() {
@@ -525,7 +560,9 @@ img {vertical-align: middle;}
 			    slides[slideIndex-1].style.display = "block";  
 			    dots[slideIndex-1].className += " active";
 			    setTimeout(showSlides, 2000); // Change image every 2 seconds
-			}
+			} */
+			
+			$('.slider').bxSlider();
 		});
 	</script>
 
