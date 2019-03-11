@@ -107,8 +107,8 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
-					aria-labelledby="home-tab">
-					<p>${room.roomProfile}</p>
+					aria-labelledby="home-tab" >
+					<p style="white-space:pre;">${room.roomProfile}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel"
 					aria-labelledby="profile-tab">

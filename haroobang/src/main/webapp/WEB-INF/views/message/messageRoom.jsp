@@ -149,6 +149,7 @@
 	
 	<jsp:include page="../include/footer.jsp" />
 	<jsp:include page="../include/js.jsp" />
+	<script src="/haroobang/resources/js/chat.js"></script>
 
 </body>
 

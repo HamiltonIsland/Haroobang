@@ -90,7 +90,7 @@
 							</div>
 						
 							<div class="col-md-12 form-group">
-								<textarea class="form-control" name="profile" rows="1" placeholder="Profile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'">${login.profile }</textarea>
+								<textarea class="form-control" style="resize: none;width:100%" name="profile" rows="3" placeholder="Profile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'">${login.profile }</textarea>
 							</div>							
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">수정하기</button>	
