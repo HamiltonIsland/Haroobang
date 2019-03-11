@@ -4,20 +4,21 @@ import java.util.List;
 
 public class RoomVO {
 	
-	int roomNo;
-	int memberNo;
-	String regDate;
-	String roomName;
-	boolean approval;
-	String address;
-	String longitude;
-	String latitude;
-	String roomProfile;
-	int price;
-	int readCount;
-	int maximum;
-	boolean deleted;
-	List<RoomAttachVO> roomAttachList;
+	private int roomNo;
+	private int memberNo;
+	private String regDate;
+	private String roomName;
+	private boolean approval;
+	private String address;
+	private String longitude;
+	private String latitude;
+	private String roomProfile;
+	private int price;
+	private int readCount;
+	private int maximum;
+	private boolean deleted;
+	private List<RoomAttachVO> roomAttachList;
+	private List<CommentVO> roomCommentList;
 	
 	public int getRoomNo() {
 		return roomNo;
@@ -102,6 +103,12 @@ public class RoomVO {
 	}
 	public void setRoomAttachList(List<RoomAttachVO> roomAttachList) {
 		this.roomAttachList = roomAttachList;
+	}
+	public List<CommentVO> getRoomCommentList() {
+		return roomCommentList;
+	}
+	public void setRoomCommentList(List<CommentVO> roomCommentList) {
+		this.roomCommentList = roomCommentList;
 	}
 	
 

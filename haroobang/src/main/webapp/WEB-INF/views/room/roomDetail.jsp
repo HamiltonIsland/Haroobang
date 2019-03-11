@@ -25,7 +25,7 @@ $(function(){
 		
 			$.ajax({
 				url :"addLike.action" ,
-				data: {"roomNo":roomNo},
+				data: {"roomNo":${room.roomNo}},
 				method:"GET",
 				success:function(data,status,xhr){
 					if(data == "success"){
@@ -153,7 +153,7 @@ $(function(){
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
-							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
+							<!-- <a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a> -->
 							</c:otherwise>
 						</c:choose>
 							
@@ -182,7 +182,7 @@ $(function(){
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
-					<p>${room.roomProfile}</p>
+					<p style="white-space: pre">${room.roomProfile}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel"
 					aria-labelledby="profile-tab">
@@ -219,26 +219,19 @@ $(function(){
 									<div class="rating_list">
 										<h3>Based on 3 Reviews</h3>
 										<ul class="list">
-											<li><a href="#">5 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">4 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">3 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">2 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">1 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
+										<c:forEach var="i" begin="1" end="5" >
+										<li>	
+											${i}Star &nbsp;&nbsp;
+											<c:forEach var="y" begin="1" end="${i}">
+											<a href="#"><i class="fa fa-star"></i></a>
+										
+											</c:forEach>
+												<c:forEach var="z" begin="1" end="${5-i}">
+											<i class="fa fa-star"></i>	
+											</c:forEach>
+										&nbsp;&nbsp;${i}
+										</li>
+										</c:forEach>
 										</ul>
 									</div>
 								</div>
@@ -256,42 +249,6 @@ $(function(){
 											<!-- 별점표시부분 -->
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="/haroobang/resources/img/product/review-2.png"
-												alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="/haroobang/resources/img/product/review-3.png"
-												alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i>
 										</div>
 									</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
