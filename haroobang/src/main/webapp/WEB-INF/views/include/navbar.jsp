@@ -48,13 +48,20 @@
 						</li> -->
 						<li class="nav-item"><a class="nav-link" href="/haroobang/room/roomRegister.action">roomRegister</a></li>
 						<c:choose>
-						<c:when test="${empty login}">
-						<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Log-In</a></li>
-						<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
-						</c:when>
-						<c:otherwise>
-						<li class="nav-item"><a class="nav-link" href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
+						<c:when test="${not empty login}">
+						<c:if test='${ not empty login and login.userType eq "admin" }'>
+							<li class="nav-item"><a class="nav-link" href="/haroobang/reservation/reservationList.action">RESERVATION</a></li>
+							<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
+						</c:if>
+						<c:if test='${ not empty login and login.userType eq "user" }'>
+							<li class="nav-item"><a class="nav-link" href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
 						<li class="nav-item"><a class="nav-link" href="/haroobang/account/logout.action">Log-Out</a></li>
+						</c:if>
+						</c:when>
+						
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Log-In</a></li>
+							<li class="nav-item"><a class="nav-link" href="/haroobang/account/register.action">Register</a></li>
 						</c:otherwise>
 						</c:choose> 
 					</ul>					

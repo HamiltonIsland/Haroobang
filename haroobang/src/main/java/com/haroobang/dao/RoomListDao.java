@@ -15,4 +15,8 @@ public interface RoomListDao {
 
 	void approvalRoom(String formdate);
 
+	List<RoomVO> selectAllRoomByPage(int from, int to);
+
+	int selectRoomCount();
+
 }

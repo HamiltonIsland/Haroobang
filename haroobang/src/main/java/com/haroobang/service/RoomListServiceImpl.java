@@ -46,4 +46,20 @@ public class RoomListServiceImpl implements RoomListService{
 		roomlistDao.approvalRoom(formdate);
 	}
 
+	@Override
+	public List<RoomVO> findAllRoomsByPage(int from, int to) {
+		List<RoomVO> rooms = roomlistDao.selectAllRoomByPage(from, to);
+		for(int i=0; i<rooms.size(); i++) {
+			List<RoomAttachVO> attachVos = roomlistDao.selectRoomAttachByRoomNo(rooms.get(i).getRoomNo());
+			rooms.get(i).setRoomAttachList(attachVos);
+		}
+		return rooms;
+	}
+
+	@Override
+	public int findRoomCount() {
+		int count = roomlistDao.selectRoomCount();
+		return count;
+	}
+
 }
