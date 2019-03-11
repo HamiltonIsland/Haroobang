@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.RoomDetailMapper;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.CommentVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
@@ -46,6 +47,8 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		
 		RoomVO room = roomDetailMapper.findRoomDetail(roomNo);
 		List<RoomAttachVO> roomAttachList = roomDetailMapper.findRoomAttach(roomNo);
+		List<CommentVO> commentList = roomDetailMapper.findCommentList(roomNo);
+		room.setRoomCommentList(commentList);
 		room.setRoomAttachList(roomAttachList);
 		
 		return room;

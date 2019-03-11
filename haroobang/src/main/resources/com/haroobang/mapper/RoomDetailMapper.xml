@@ -43,4 +43,8 @@
 		UPDATE room SET deleted = 1 WHERE roomNo=#{roomNo};
 	</update>
 	
+	<select id="findCommentList" parameterType="int" resultType="CommentVO">
+		select * from comment where roomNo=#{roomNo}
+	</select>
+	
 </mapper>
