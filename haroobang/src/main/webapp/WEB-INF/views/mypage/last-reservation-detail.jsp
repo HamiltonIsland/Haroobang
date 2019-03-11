@@ -129,7 +129,7 @@ $(function(){
                                 	
                             </tr>
                           </tbody> --%>
-					<a class="gray_btn" href="#">후기등록</a>
+					<a class="gray_btn" href="/haroobang/mypage/commentRegister.action">후기등록</a>
 				</div>
 
 			</div>

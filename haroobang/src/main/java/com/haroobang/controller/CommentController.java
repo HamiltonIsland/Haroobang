@@ -2,6 +2,7 @@ package com.haroobang.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ public class CommentController {
 	@Autowired
 	@Qualifier("commentService")
 	private CommentService commentService;
+	
+	//이전 예약 리스트 페이지 보여주기
+	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.GET)
+	public String commentRegisterForm(HttpSession session, HttpServletRequest req) {
+		
+		
+		return "mypage/commentRegister";
+	}
 	
 	
 	
