@@ -61,4 +61,11 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		
 	}
 
+	@Override
+	public void roomDelete(int roomNo) {
+		
+		roomDetailDao.roomDelete(roomNo);
+		
+	}
+
 }

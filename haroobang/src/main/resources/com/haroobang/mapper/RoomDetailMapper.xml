@@ -39,4 +39,8 @@
 		select reservationNo from reservationDate where date=#{date} and roomNo=#{roomNo}
 	</select>
 	
+	<update id="roomDelete" parameterType="int">
+		UPDATE room SET deleted = 1 WHERE roomNo=#{roomNo};
+	</update>
+	
 </mapper>

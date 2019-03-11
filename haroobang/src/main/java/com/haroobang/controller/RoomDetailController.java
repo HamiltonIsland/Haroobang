@@ -57,6 +57,13 @@ public class RoomDetailController {
 			return result;
 		}
 	}
+	
+	@RequestMapping(value="roomDelete.action", method=RequestMethod.GET)
+	public String roomDelete(int roomNo) {
+		
+		roomDetailService.roomDelete(roomNo);
+		return "redirect:roomList.action";
+	}
 
 	@RequestMapping(value = "checkDate.action", method = RequestMethod.GET)
 	@ResponseBody

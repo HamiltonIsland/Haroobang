@@ -26,6 +26,8 @@ public interface RoomDetailMapper {
 
 	int findReservedDate(HashMap<String, Object> params);
 
+	void roomDelete(int roomNo);
+
 	
 
 }

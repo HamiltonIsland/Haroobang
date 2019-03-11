@@ -121,4 +121,11 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		return result;
 		
 	}
+
+	@Override
+	public void roomDelete(int roomNo) {
+		
+		roomDetailMapper.roomDelete(roomNo);
+		
+	}
 }

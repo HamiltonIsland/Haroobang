@@ -21,4 +21,6 @@ public interface RoomDetailService {
 
 	String findReservedDate(int roomNo, List<LocalDate> dateList);
 
+	void roomDelete(int roomNo);
+
 }

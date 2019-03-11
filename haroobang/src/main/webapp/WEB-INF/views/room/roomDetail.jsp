@@ -19,7 +19,7 @@
 <script type="text/javascript">
 $(function(){
 	
-	 $('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
+	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
 	
 	$("#like").click(function(e){
 		
@@ -58,12 +58,20 @@ $(function(){
 					}
 				}
 			})
-			
 		}
+	});
 	
-	})
+	$("#roomDelete").click(function(e){
+		
+		var c = confirm("삭제하시겠습니까?");
+		
+		if(c == true){
+			location.href = "/haroobang/room/roomDelete.action?roomNo="+${room.roomNo}
+		}else{	}
+		
+	});
 	
-})
+});
 			
 
 </script>
@@ -138,16 +146,17 @@ $(function(){
 							</button>
 						</div>
 						<!-- <a href="/haroobang/room/calender.action">날짜확인</a> -->
-						<div class="card_area d-flex align-items-center" style="margin-right: 100px;float:right;">
+						<div class="card_area d-flex align-items-center">
 						<c:choose>
 							<c:when test="${login.userType == 'admin'}">
 							<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 							</c:otherwise>
 						</c:choose>
-							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
+							
 						</div>
 					</div>
 				</div>
