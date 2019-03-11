@@ -15,6 +15,7 @@ public class ReservationVO {
 	 private String Coupon;
 	 
 	 private RoomVO roomVO;
+	 private AccountVO accountVO;
 	 
 	 public int getReservationNo() {
 		return reservationNo;
@@ -93,6 +94,12 @@ public class ReservationVO {
 	}
 	public void setCoupon(String coupon) {
 		Coupon = coupon;
+	}
+	public AccountVO getAccountVO() {
+		return accountVO;
+	}
+	public void setAccountVO(AccountVO accountVO) {
+		this.accountVO = accountVO;
 	}
 	
 }

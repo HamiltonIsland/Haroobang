@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta charset="UTF-8">
-<title>결제완료 내역</title>
+<title>이전예약정보</title>
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -35,7 +35,7 @@ $(function(){
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                 <div class="col-first">
-                    <h1>결제완료 내용</h1>
+                    <h1>이전예약보기</h1>
                 </div>
             </div>
         </div>
@@ -54,6 +54,9 @@ $(function(){
                                 <th scope="col">1박 금액</th>
                                 <th scope="col">몇박</th>
                                 <th scope="col">총금액</th>
+                                <th scope="col">결제일시</th>
+                                
+                                <th scope="col">결제고객</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,9 +80,21 @@ $(function(){
                                 <td>
                                     <h5>&#8361; ${reservationdetail.totalPrice }</h5>
                                 </td>
+                                <td >
+                                    <h5>${reservationdetail.regDate }</h5>
+                                </td>
+                                
+                                
+                                
+                                	<td>
+                                    	<h5>${reservationdetail.accountVO.name }</h5>
+                                	</td>
                             </tr>
                           </tbody>
-                          <thead>
+                          
+                    </table>
+                   <%--  
+                    <thead>
                             <tr>
                                 <th scope="col">결제일시</th>
                                 <th scope="col">입실날짜</th>
@@ -103,13 +118,12 @@ $(function(){
                                 </td>
                                 
                                 	<td>
-                                    	<h5>${reservationdetail.memberNo }</h5>
+                                    	<h5>${reservationdetail.name }</h5>
                                 	</td>
                                 	
                             </tr>
-                          </tbody>
-                    </table>
-                      <a class="gray_btn" href="#">마이페이지로 가기</a>
+                          </tbody> --%>
+                      <a class="gray_btn" href="#">후기등록</a>
                 </div>
                
             </div>
