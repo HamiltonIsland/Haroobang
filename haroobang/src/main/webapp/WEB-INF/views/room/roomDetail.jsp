@@ -158,11 +158,11 @@ $(function(){
 						<div class="card_area d-flex align-items-center">
 						<c:choose>
 							<c:when test="${login.userType == 'admin'}">
-							<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
+							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">숙소 삭제</a>
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
-							<!-- <a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a> -->
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 							</c:otherwise>
 						</c:choose>
 							
@@ -254,12 +254,21 @@ $(function(){
 								</div>
 							</div>
 							<div class="review_list">
-								<div class="review_item">
+								<div class="review_item" style="width: 1050px">
 								<c:forEach var="comment" items="${room.roomCommentList }">
 								<div class="media">
 										<div class="d-flex">
-											<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }"
+										<c:choose>
+										<c:when test="${empty comment.member.savedFileName }">
+											<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"
 												alt=""></a>
+										</c:when>
+										<c:otherwise>
+										<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }"
+												alt=""></a>
+										</c:otherwise>
+										</c:choose>
+											
 										</div>
 										<div class="media-body">
 											<h4>${comment.nickName }</h4>
@@ -271,8 +280,15 @@ $(function(){
 											<i class="fa fa-star"></i>	
 											</c:forEach> --%>
 										</div>
+										
 									</div>
+								
+									<div style="display: inline;width: 500px">
 									<p>${comment.content }</p>
+										<a class="reply_btn" href="#" style="color:gray;font-size: 10px;">신고하기</a>
+										<hr>
+									</div>
+									
 									<br>
 								</c:forEach>
 									
