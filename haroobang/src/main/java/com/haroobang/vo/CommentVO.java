@@ -11,6 +11,7 @@ public class CommentVO {
 	private String regDate;
 	private boolean restricted;
 	private String nickName;
+	private AccountVO member;
 	
 	public int getCommentNo() {
 		return commentNo;
@@ -65,6 +66,12 @@ public class CommentVO {
 	}
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+	public AccountVO getMember() {
+		return member;
+	}
+	public void setMember(AccountVO member) {
+		this.member = member;
 	}
 	
 
