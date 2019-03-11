@@ -28,6 +28,10 @@
       <result column="roomName" property="roomName" />
       <result column="roomPrice" property="roomPrice" />
    </resultMap>
+   <resultMap type="AccountVO" id="Account">
+      <result column="memberNo" property="memberNo" />
+      <result column="name" property="name" />
+   </resultMap>
    <resultMap type="ReservationVO" id="roomnoMap">
       <id column="reservationNo" property="reservationNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
       <result column="totalPrice" property="totalPrice" />
@@ -38,11 +42,12 @@
       <result column="nights" property="nights" />
       <result column="payment" property="payment" />
       <collection property="roomVO" resultMap="Room"></collection>
+      <collection property="accountVO" resultMap="Account"></collection>
    </resultMap>
    <select id="selectRoomByRoomNo" parameterType="int" resultMap="roomnoMap">
-      SELECT rs.reservationNo, r.roomNo, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo, rs.nights, rs.payment, r.roomName, r.price
-	  FROM reservation as rs join room as r
-	  WHERE r.roomNo=#{ roomNo } And r.roomNo = rs.roomNo;
+      SELECT rs.reservationNo, r.roomNo, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.nights, rs.payment, r.roomName, r.price, m.name, m.memberNo
+	  FROM reservation as rs join room as r join member as m
+	  WHERE r.roomNo=#{ roomNo } And r.roomNo = rs.roomNo And m.memberNo = rs.memberNo;
    </select>
    
    
