@@ -23,6 +23,9 @@
 
 <!-- CSS ============================================= -->
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
 <style type="text/css">
 * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
@@ -314,11 +317,24 @@ img {vertical-align: middle;}
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
 						<c:forEach var="room" items="${rooms}">
-						<a href="/haroobang/room/roomDetail.action?roomNo=${room.roomNo}">
 						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${room.roomNo}">
 							<div class="single-product" id="imglist${room.roomNo}">
 							
 							<c:choose>
+									<c:when test="${not empty room.roomAttachList}">
+										 <div class="main-carousel" data-flickity='{ "autoPlay": true }'>
+										<c:forEach var="attach" items="${room.roomAttachList}">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
+									</c:when>
+									<c:otherwise>
+										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+							
+							<%-- <c:choose>
 									<c:when test="${not empty room.roomAttachList}">
 										 <div class="slider">
 										<c:forEach var="attach" items="${room.roomAttachList}">
@@ -330,7 +346,7 @@ img {vertical-align: middle;}
 									<c:otherwise>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</c:otherwise>
-								</c:choose>
+								</c:choose> --%>
 								
 								
 								<%-- <c:choose>
@@ -356,6 +372,7 @@ img {vertical-align: middle;}
 									</c:otherwise>
 								</c:choose> --%>
 								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
+								<a href="/haroobang/room/roomDetail.action?roomNo=${room.roomNo}">
 								<div class="product-details">
 									<h6>${room.roomName}</h6>
 									<div class="price">
@@ -510,9 +527,9 @@ img {vertical-align: middle;}
 
 
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  	
 	<script type="text/javascript">
 		$(function(){
 			$("a[id ^=roomapproval]").on('click',function(event){
@@ -562,7 +579,13 @@ img {vertical-align: middle;}
 			    setTimeout(showSlides, 2000); // Change image every 2 seconds
 			} */
 			
-			$('.slider').bxSlider();
+			/* $('.slider').bxSlider(); */
+			$('.main-carousel').flickity({
+				  // options
+				  cellAlign: 'left',
+				  contain: true,
+				  pageDots: false,
+				});
 		});
 	</script>
 
