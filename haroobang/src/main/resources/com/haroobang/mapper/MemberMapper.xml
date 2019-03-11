@@ -13,6 +13,7 @@
 		<result column="regDate" property="regDate" />
 		<result column="profile" property="profile" />
 		<result column="birthDate" property="birthDate" />
+		<result column="savedFileName" property="savedFileName" />
 
 	</resultMap>
 	
@@ -25,12 +26,14 @@
 		<result column="regDate" property="regDate" />
 		<result column="profile" property="profile" />
 		<result column="birthDate" property="birthDate" />
+		<result column="savedFileName" property="savedFileName" />
+	
 
 	</resultMap>
 
 	<select id="selectAllMembers" parameterType="int"
 		resultMap="memberMap">
-		 SELECT memberNo, name, email, phone, gender, regdate, profile, birthdate
+		 SELECT memberNo, name, email, phone, gender, regdate, profile, birthdate, savedFileName
 		FROM member
 		ORDER BY memberNo desc; 
 	
@@ -41,7 +44,7 @@
 	</select>
 	
  	<select id="selectMember" parameterType="int" resultMap="memberMap2">   
-		SELECT memberNo, name, email, phone, gender, regdate, birthdate
+		SELECT memberNo, name, email, phone, gender, regdate, birthdate, savedFileName
 		FROM member
 		WHERE memberNo = #{ memberNo }
 		
