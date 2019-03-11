@@ -37,19 +37,19 @@ public class LastReservationController {
 		return "mypage/last-reservation-list";
 	}
 	
-	/*//예약 디테일로 가기
+	//예약 디테일로 가기
 	@RequestMapping(value = "/lastReservationDetail.action", method = RequestMethod.GET)
 	public String lastReservationdetail(@RequestParam("roomno")int roomNo, Model model) {
-		ReservationVO myroom = lastReservationService.findRoomByRoomNo(roomNo);
-		if (myroom == null) {
+		ReservationVO reservationdetail = lastReservationService.findRoomByRoomNo(roomNo);
+		if (reservationdetail == null) {
 			return "redirect:last-reservation-list.action";
 		}
 
-		model.addAttribute("myroom", myroom);
+		model.addAttribute("reservationdetail", reservationdetail);
 		model.addAttribute("roomno", roomNo);
 
-		return "product/productDetail";
-	}*/
+		return "mypage/last-reservation-detail";
+	}
 	
 	
 	

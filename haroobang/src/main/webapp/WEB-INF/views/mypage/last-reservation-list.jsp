@@ -123,7 +123,7 @@
 							<div class="single-product">
 								<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 								<div class="product-details">
-								<a href="">
+								<a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }">
 									<h6> ${ myroom.roomVO.roomName }</h6>
 								</a>
 									<div class="price">

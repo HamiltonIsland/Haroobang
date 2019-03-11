@@ -10,7 +10,7 @@ import com.haroobang.mapper.RoomListMapper;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
-@Repository("RoomListDao")
+@Repository("RoomListDao")//커밋...
 public class RoomListDaoImpl implements RoomListDao{
 	
 	@Autowired
@@ -27,5 +27,16 @@ public class RoomListDaoImpl implements RoomListDao{
 	public List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo) {
 		List<RoomAttachVO> attachs = roomListMapper.selectRoomAttachByRoomNo(roomNo);
 		return attachs;
+	}
+
+	@Override
+	public List<RoomVO> selectAllDisapprovalRooms() {
+		List<RoomVO> rooms = roomListMapper.selectAllDisapprovalRooms();
+		return rooms;
+	}
+
+	@Override
+	public void approvalRoom(String formdate) {
+		roomListMapper.approvalRoom(Integer.parseInt(formdate));
 	}
 }

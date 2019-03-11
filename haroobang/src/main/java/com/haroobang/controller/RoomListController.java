@@ -17,7 +17,7 @@ import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.RoomVO;
 
 @Controller
-@RequestMapping("/room")
+@RequestMapping("/room")//커밋...
 public class RoomListController {
 	
 	@Autowired
@@ -29,9 +29,19 @@ public class RoomListController {
 		
 		//account = (AccountVO)session.getAttribute("login");
 		List<RoomVO> rooms = roomListService.findAllRooms();
+		List<RoomVO> disapproval = roomListService.findAllDisapprovalRooms();
 		
 		model.addAttribute("rooms", rooms);
+		model.addAttribute("disapproval", disapproval);
 		
 		return "room/roomList";
+	}
+	
+	@RequestMapping(value="/roomApproval.action", method=RequestMethod.POST)
+	public String roomApproval(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		roomListService.approvalRoom(formdate);
+		
+		return "success";
 	}
 }

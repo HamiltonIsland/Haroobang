@@ -19,10 +19,10 @@ public class LastReservationServiceImpl implements LastReservationService {
 		return myrooms;
 	}
 
-//	@Override
-//	public ReservationVO findRoomByRoomNo(int roomNo) {
-//		ReservationVO myroom = lastReservationDao.selectRoomByRoomNo(roomNo);
-//		return myroom;
-//	}
+	@Override
+	public ReservationVO findRoomByRoomNo(int roomNo) {
+		ReservationVO myroom = lastReservationDao.selectRoomByRoomNo(roomNo);
+		return myroom;
+	}
 
 }
