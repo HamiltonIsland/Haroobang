@@ -46,7 +46,19 @@ $(function(){
 		if(checkinDate.length == 0 || nights.length == 0){
 			alert("날짜를 선택해 주세요")
 		}else {
-			location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}	
+			$.ajax({
+				url:"/haroobang/room/checkDate.action",
+				data:{"checkinDate":checkinDate,"nights":nights,"roomNo":${room.roomNo}},
+				method:"get",
+				success:function(data,status,xhr){
+					if(data == "fail"){
+						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
+					}else {
+						location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}
+					}
+				}
+			})
+			
 		}
 	
 	})
@@ -84,7 +96,7 @@ $(function(){
 					<div class="s_Product_carousel">
 					<c:forEach var="roomattach" items="${room.roomAttachList }">
 						<div class="single-prd-item">
-							<img class="img-fluid" 
+							<img class="img-fluid" style="height:450px;width:500px" 
 							src="/haroobang/resources/upload/${roomattach.savedFileName}" alt="">
 						</div>
 					</c:forEach>

@@ -14,8 +14,6 @@
 
   $(document).ready(function() {
 	  
-	  alert('${dateList.get(0)}')
-	  
     $('#calendar').fullCalendar({
     	defaultView: 'month',
         events: 'https://fullcalendar.io/demo-events.json',
@@ -49,7 +47,8 @@
     	          </c:forEach>
     	         </c:otherwise>
     	      </c:choose>
-      ]
+      ],
+      selectable:true,
     });
 
   });

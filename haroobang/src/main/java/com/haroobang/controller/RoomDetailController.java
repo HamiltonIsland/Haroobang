@@ -58,8 +58,9 @@ public class RoomDetailController {
 		}
 	}
 
-	@RequestMapping(value = "reservationCheckout.action", method = RequestMethod.GET)
-	public String roomReservationCheckout(String checkinDate, int nights, Model model, HttpSession session,
+	@RequestMapping(value = "checkDate.action", method = RequestMethod.GET)
+	@ResponseBody
+	public String checkDate(String checkinDate, int nights, Model model, HttpSession session,
 			int roomNo) {
 
 		if (session.getAttribute("login") == null) {
@@ -74,11 +75,22 @@ public class RoomDetailController {
 		
 		String result = roomDetailService.findReservedDate(roomNo,dateList);
 		
-		model.addAttribute("result",result);
+//		model.addAttribute("result",result);
+//		model.addAttribute("roomNo", roomNo);
+//		model.addAttribute("checkinDate", checkinDate);
+//		model.addAttribute("nights", nights);
+
+		return result;
+	}
+	
+	@RequestMapping(value="reservationCheckout.action")
+	public String reservationCheckout(String checkinDate, int nights, Model model, HttpSession session,
+			int roomNo) {
+		
 		model.addAttribute("roomNo", roomNo);
 		model.addAttribute("checkinDate", checkinDate);
 		model.addAttribute("nights", nights);
-
+		
 		return "room/roomReservationCheckout";
 	}
 
