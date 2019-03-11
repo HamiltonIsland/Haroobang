@@ -23,6 +23,77 @@
 
 <!-- CSS ============================================= -->
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
+<style type="text/css">
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #000000;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style>
 </head>
 
 <body id="category">
@@ -55,6 +126,18 @@
 			<c:if test='${ not empty login and login.userType eq "admin" }'>
 			<!-- Start Filter Bar -->
 			<h3 class="text-heading">미승인 목록</h3>
+			<div class="text-right col-lg-4">
+				<aside class="single_sidebar_widget search_widget">
+		        	<div class="input-group">
+		            	<input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+		            	<span class="input-group-btn">
+		            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+		               	</span>
+		            </div><!-- /input-group -->
+		        	<div class="br"></div>
+		       </aside>
+	       </div>
+	       <br>
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
 						<select>
@@ -87,19 +170,47 @@
 						<c:forEach var="disapproval" items="${disapproval}">
 						<a href="/haroobang/room/roomDetail.action?roomNo=${disapproval.roomNo}">
 						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${disapproval.roomNo}" >
-							<div class="single-product">
+							<div class="single-product" id="imglist${room.roomNo}">
+							
+							<c:choose>
+									<c:when test="${not empty disapproval.roomAttachList}">
+										 <div class="slider">
+										<c:forEach var="attach" items="${disapproval.roomAttachList}">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
+									</c:when>
+									<c:otherwise>
+										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+								
+								
 								<%-- <c:choose>
 									<c:when test="${not empty disapproval.roomAttachList}">
+									<div class="slideshow-container" id="imglist${disapproval.roomNo}">
 										<c:forEach var="attach" items="${disapproval.roomAttachList}">
-											<img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
-											onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+												<div class="mySlides fade">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+																		onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+												</div>	
 										</c:forEach>
+									</div>
+									<br>
+											
+									<div style="text-align:center">
+										<c:forEach var="attach" items="${disapproval.roomAttachList}">
+											<span class="dot"></span>
+										</c:forEach>  
+									</div>
+	
 									</c:when>
 									<c:otherwise>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</c:otherwise>
 								</c:choose> --%>
-								<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
 								<div class="product-details">
 									<h6>${disapproval.roomName}</h6>
 									<div class="price">
@@ -161,6 +272,18 @@
 				<c:if test='${ not empty login and login.userType eq "admin" }'>
 				<h3 class="text-heading">승인 목록</h3>
 				</c:if>
+				<div class="text-right">
+					<aside class="single_sidebar_widget search_widget">
+			        	<div class="input-group col-lg-4">
+			            	<input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+			            	<span class="input-group-btn">
+			            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+			               	</span>
+			            </div><!-- /input-group -->
+			        	<div class="br"></div>
+			       </aside>
+		       </div>
+		       <br>
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
 						<select>
@@ -192,20 +315,47 @@
 					<div class="row">
 						<c:forEach var="room" items="${rooms}">
 						<a href="/haroobang/room/roomDetail.action?roomNo=${room.roomNo}">
-						<div class="col-lg-3 col-md-5">
-							<div class="single-product">
+						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${room.roomNo}">
+							<div class="single-product" id="imglist${room.roomNo}">
+							
+							<c:choose>
+									<c:when test="${not empty room.roomAttachList}">
+										 <div class="slider">
+										<c:forEach var="attach" items="${room.roomAttachList}">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
+									</c:when>
+									<c:otherwise>
+										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+								
+								
 								<%-- <c:choose>
 									<c:when test="${not empty room.roomAttachList}">
+										<div class="slideshow-container">
 										<c:forEach var="attach" items="${room.roomAttachList}">
-											<img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
-											onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+												<div class="mySlides fade">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+												</div>	
 										</c:forEach>
+									</div>
+									<br>
+											
+									<div style="text-align:center">
+										<c:forEach var="attach" items="${room.roomAttachList}">
+											<span class="dot"></span>
+										</c:forEach>  
+									</div>
 									</c:when>
 									<c:otherwise>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</c:otherwise>
 								</c:choose> --%>
-								<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
 								<div class="product-details">
 									<h6>${room.roomName}</h6>
 									<div class="price">
@@ -227,7 +377,7 @@
 										</a>
 										<c:if test='${ not empty login and login.userType eq "admin" }'>
 										<div class="button-group-area mt-40">
-											<a href="#" class="genric-btn danger circle">삭제</a>
+											<a href="javascript:;" class="genric-btn danger circle" id='roomdelete${room.roomNo}'>삭제</a>
 										</div>
 										</c:if>
 									</div>
@@ -360,6 +510,9 @@
 
 
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$("a[id ^=roomapproval]").on('click',function(event){
@@ -385,6 +538,31 @@
 				var roomNo = $(this).parents('.disapprovalNo').attr('data-roomno');
 				alert(roomNo+'준비중~');
 			});
+			
+			/* $("div[id ^=imglist]").hover(function(event){
+			}); */
+			//.slideshow-container
+			/* var slideIndex = 0;
+			showSlides();
+
+			function showSlides() {
+			    var i;
+			    var slides = document.getElementsByClassName("mySlides");
+			    var dots = document.getElementsByClassName("dot");
+			    for (i = 0; i < slides.length; i++) {
+			       slides[i].style.display = "none";  
+			    }
+			    slideIndex++;
+			    if (slideIndex > slides.length) {slideIndex = 1}    
+			    for (i = 0; i < dots.length; i++) {
+			        dots[i].className = dots[i].className.replace(" active", "");
+			    }
+			    slides[slideIndex-1].style.display = "block";  
+			    dots[slideIndex-1].className += " active";
+			    setTimeout(showSlides, 2000); // Change image every 2 seconds
+			} */
+			
+			$('.slider').bxSlider();
 		});
 	</script>
 

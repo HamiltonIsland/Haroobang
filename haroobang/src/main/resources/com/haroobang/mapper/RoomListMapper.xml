@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!-- 커밋... -->
 <mapper namespace="com.haroobang.mapper.RoomListMapper">
 
 	<select id="selectAllRooms" resultType="RoomVO">
 		select * from room where approval=1
 	</select>
 	
-	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomVO">
+	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
 		FROM roomattach WHERE roomNo = #{ roomNo }
 	</select>

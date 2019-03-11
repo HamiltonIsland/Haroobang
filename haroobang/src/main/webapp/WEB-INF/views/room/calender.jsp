@@ -13,7 +13,7 @@
 <script>
 
   $(document).ready(function() {
-
+	  
     $('#calendar').fullCalendar({
     	defaultView: 'month',
         events: 'https://fullcalendar.io/demo-events.json',
@@ -22,15 +22,33 @@
       businessHours: false, // display business hours
       editable: false,
       events: [
-        {
-          start: '2019-03-07',
-          end: '2019-03-15',
-          overlap: false,
-          rendering: 'background',
-          color: '#cedfe0',
-       
-        }
-      ]
+    	        <c:choose>
+    	         <c:when test = "${dateList.get(0)=='none'}">
+    	         {
+       	          start: Date(),
+       	          /* end: '2019-03-15', */
+       	          overlap: false,
+       	          rendering: 'background',
+       	          color: '#cedfe0',
+       	       
+       	        },
+    	         </c:when>
+    
+    	         <c:otherwise>
+    	          <c:forEach var="dateList" items="${dateList}">
+    	          {
+           	          start: '${dateList}',
+           	          /* end: '2019-03-15', */
+           	          overlap: false,
+           	          rendering: 'background',
+           	          color: '#cedfe0',
+           	       
+           	        },
+    	          </c:forEach>
+    	         </c:otherwise>
+    	      </c:choose>
+      ],
+      selectable:true,
     });
 
   });

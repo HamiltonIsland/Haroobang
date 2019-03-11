@@ -22,6 +22,12 @@
 <script type="text/javascript">
 
 $(function(){
+	
+	if("${result}"=="fail"){
+		alert("선택하신 날짜에는 예약이 불가합니다. 이전페이지로 이동합니다.")
+		 window.history.back();
+	}
+	
 	$('#pay').click(function(e){
 		$("#form").submit()
 	})

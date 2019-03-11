@@ -18,8 +18,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
-	var roomNo = 6
-	 $('#calendarBox').load("/haroobang/room/calender.action")
+	
+	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
 	
 	$("#like").click(function(e){
 		
@@ -46,12 +46,32 @@ $(function(){
 		if(checkinDate.length == 0 || nights.length == 0){
 			alert("날짜를 선택해 주세요")
 		}else {
-			location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+roomNo	
+			$.ajax({
+				url:"/haroobang/room/checkDate.action",
+				data:{"checkinDate":checkinDate,"nights":nights,"roomNo":${room.roomNo}},
+				method:"get",
+				success:function(data,status,xhr){
+					if(data == "fail"){
+						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
+					}else {
+						location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}
+					}
+				}
+			})
 		}
+	});
 	
-	})
+	$("#roomDelete").click(function(e){
+		
+		var c = confirm("삭제하시겠습니까?");
+		
+		if(c == true){
+			location.href = "/haroobang/room/roomDelete.action?roomNo="+${room.roomNo}
+		}else{	}
+		
+	});
 	
-})
+});
 			
 
 </script>
@@ -81,10 +101,10 @@ $(function(){
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="s_Product_carousel">
+					<div class="s_Product_carousel"  style="height:450px;width:500px" >
 					<c:forEach var="roomattach" items="${room.roomAttachList }">
 						<div class="single-prd-item">
-							<img class="img-fluid" 
+							<img class="img-fluid"
 							src="/haroobang/resources/upload/${roomattach.savedFileName}" alt="">
 						</div>
 					</c:forEach>
@@ -126,16 +146,17 @@ $(function(){
 							</button>
 						</div>
 						<!-- <a href="/haroobang/room/calender.action">날짜확인</a> -->
-						<div class="card_area d-flex align-items-center" style="margin-right: 100px;float:right;">
+						<div class="card_area d-flex align-items-center">
 						<c:choose>
 							<c:when test="${login.userType == 'admin'}">
 							<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 							</c:otherwise>
 						</c:choose>
-							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
+							
 						</div>
 					</div>
 				</div>

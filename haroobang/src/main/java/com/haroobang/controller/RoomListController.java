@@ -17,7 +17,7 @@ import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.RoomVO;
 
 @Controller
-@RequestMapping("/room")
+@RequestMapping("/room")//커밋...
 public class RoomListController {
 	
 	@Autowired

@@ -31,4 +31,16 @@
 		values (#{roomNo},#{reservationNo},#{date})
 	</insert>
 	
+	<select id="findDateList" parameterType="int" resultType="String">
+		select date from reservationDate where roomNo=#{roomNo}
+	</select>
+	
+	<select id="findReservedDate" parameterType="hashmap" resultType="int">
+		select reservationNo from reservationDate where date=#{date} and roomNo=#{roomNo}
+	</select>
+	
+	<update id="roomDelete" parameterType="int">
+		UPDATE room SET deleted = 1 WHERE roomNo=#{roomNo};
+	</update>
+	
 </mapper>
