@@ -101,10 +101,10 @@ $(function(){
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="s_Product_carousel">
+					<div class="s_Product_carousel"  style="height:450px;width:500px" >
 					<c:forEach var="roomattach" items="${room.roomAttachList }">
 						<div class="single-prd-item">
-							<img class="img-fluid" style="height:450px;width:500px" 
+							<img class="img-fluid"
 							src="/haroobang/resources/upload/${roomattach.savedFileName}" alt="">
 						</div>
 					</c:forEach>
