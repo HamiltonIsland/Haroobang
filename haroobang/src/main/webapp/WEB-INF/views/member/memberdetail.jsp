@@ -18,6 +18,7 @@
 </script>
 
 <head>
+<link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <!-- Mobile Specific Meta -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -64,38 +65,43 @@
 	<!-- End Banner Area -->
 
 	<!--================Login Box Area =================-->
-
-	<section class="login_box_area section_gap">
+		
+	 <section class="login_box_area section_gap">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-6">
-					<div class="stats-box-all-info" style="margin: 10px 0px;">
+					<div class="login_box_img"style="height:100%">
+						<img id ="LoadImg" class="img-fluid" style="height:100%" src="/haroobang/resources/upload/${members.savedFileName }" alt="">						
+					</div>
+				</div>
+				<div class="col-lg-6"> 
+					<div class="login_form_inner" style="margin-bottom : 100px">
+						<form class="row login_form">
+							<input type="hidden" name="memberNo" value="${members.memberNo }">
 
-						<img id="img" src="/team-project3/resources/assets/img/user.png"
-							style="width: 64px; height: 64px; border-radius: 70px;" />
+							<div class="col-md-12 form-group" >
+								 <i class="icon-thumbs-up"> 
+								<strong>이름</strong>  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.name }</i>
+								</div>
+							<div class="col-md-12 form-group">
+							<i class="icon-envelope-alt"></i>
+								<strong>이메일</strong> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.email }
+							</div>
+							<div class="col-md-12 form-group">
+							<i class="icon-map-marker"></i>
+								<strong>가입일</strong>&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.regDate }
+							</div>
+							<div class="col-md-12 form-group">
+							<i class="icon-phone"></i>
+								<strong>번호 </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.phone }
+							</div>
 
-
-
-						<div class="col-md-12 form-group">
-							 <h3 class="form-control">이름 : ${ members.name }</h3>
-						</div>
-						<div class="col-md-12 form-group">
-							<h3 class="form-control">이메일 : ${ members.email }</h3>
-						</div>
-						<div class="col-md-12 form-group">
-							<h3 class="form-control">가입일 : ${ members.regDate }</h3>
-						</div>
-						<div class="col-md-12 form-group">
-							<h3 class="form-control">폰번호 : ${ members.phone }</h3>
-						</div>
-
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
-	</section>
+	</section> 
 	<!--================End Login Box Area =================-->
 
 	<jsp:include page="../include/footer.jsp" />

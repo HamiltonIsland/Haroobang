@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -11,6 +11,45 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
 <link rel="shortcut icon" href="/haroobang/resources/img/fav.png">
+<style type="text/css">
+.overlay {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 1;
+}
+
+.span3 .overlay2 {
+	transition: .5s ease;
+	position: absolute;
+	opacity: 0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.span3:hover .overlay {
+	opacity: 1;
+}
+
+.span3:hover .widget-content {
+	background-color: #BDBDBD;
+	opacity: 0.7;
+}
+
+.span3 .text {
+	color: black;
+	font-size: 40px;
+	padding: 16px 32px;
+}
+</style>
 <!-- Author Meta -->
 <meta name="author" content="CodePixar">
 <!-- Meta Description -->
@@ -38,7 +77,7 @@
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Shop Category page</h1>
+					<h1>회원 리스트</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a> <a
@@ -62,56 +101,64 @@
 						</select>
 					</div>
 					<div class="sorting mr-auto">
-						<select>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-						</select>
+							<input type="text" width="5px" placeholder="검색" id="keyword">
+					<button type="submit" class="btn btn-small btn-success">검색</button>
+						<div class="widget-header">
+							<i class="icon-th-large"></i>
+						</div> 
 					</div>
+					
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i
-							class="fa fa-long-arrow-left" aria-hidden="true"></i></a> <a href="#"
-							class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a
-							href="#" class="dot-dot"><i class="fa fa-ellipsis-h"
-							aria-hidden="true"></i></a> <a href="#">6</a> <a href="#"
-							class="next-arrow"><i class="fa fa-long-arrow-right"
-							aria-hidden="true"></i></a>
+						<a href="#" class="prev-arrow"></a>
+							<input type="text" width="5px" placeholder="검색" id="keyword">
+					<button type="submit" class="btn btn-small btn-success">검색</button>
+						<div class="widget-header">
+							<i class="icon-th-large"></i>
+						</div> 
 					</div>
+					
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
-						<div class="row">
-						<!-- single product -->
-						<c:forEach var="members" items="${ members }">
-					
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid"
-									src="/haroobang/resources/img/product/p1.jpg" alt="">
-								<div class="product-details">
-									<a href="">
-									<h6> ${ members.name }</h6>
-								</a>
-									<div class="price">
-										<h6>${ members.email } </h6>
-										<h6>${ members.regDate }</h6>
-									</div>
-									<div class="prd-bottom">
 
-									
-										
-										<a href="/haroobang/member/memberdetail.action?memberNo=${ members.memberNo} " class="social-info"> 
-										<span class="lnr lnr-move"></span>
-											<p class="hover-text">view more</p>
+				<section class="lattest-product-area pb-40 category-list">
+
+					<div class="row">
+						<!-- single product -->
+
+						<c:forEach var="members" items="${ members }">
+
+							<div class="col-lg-4 col-md-6">
+								<div class="single-product">
+									<img class="img-fluid"
+										src="/haroobang/resources/upload/${members.savedFileName }"
+										alt="">
+									<div class="product-details">
+										<a href="">
+											<h6>${ members.name }</h6>
 										</a>
+										<div class="price">
+											<h6>${ members.email }</h6>
+											<h6>${ members.regDate }</h6>
+										</div>
+										<div class="prd-bottom">
+
+
+
+											<a
+												href="/haroobang/member/memberdetail.action?memberNo=${ members.memberNo} "
+												class="social-info"> <span class="lnr lnr-move"></span>
+												<p class="hover-text">view more</p>
+											</a>
+										</div>
+
 									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
-						
-				</div>
+						</c:forEach>
+
+					</div>
+
 				</section>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
@@ -139,9 +186,7 @@
 	</div>
 
 	<!-- Start related-product Area -->
-	<section class="related-product-area section_gap">
-		
-	</section>
+	<section class="related-product-area section_gap"></section>
 	<!-- End related-product Area -->
 
 	<!-- start footer Area -->
@@ -181,7 +226,7 @@
 											tabindex="-1" value="" type="text">
 									</div>
 
-									
+
 								</div>
 								<div class="info"></div>
 							</form>

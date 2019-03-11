@@ -38,7 +38,7 @@ public class MemberController {
 		
 		AccountVO members = memberService.findMember(memberNo);
 	//	List<PurchaseVo> purchases = memberService.findAllMemberProduct(memberNo);
-		System.out.println(members.getMemberNo());
+		
 		model.addAttribute("members", members);
 	//	model.addAttribute("purchases", purchases);
 		

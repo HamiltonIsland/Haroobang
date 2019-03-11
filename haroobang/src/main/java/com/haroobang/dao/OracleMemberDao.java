@@ -27,8 +27,9 @@ public class OracleMemberDao implements MemberDao {
 
 	@Override
 	public AccountVO selectMember(int memberNo) {
+		
 		AccountVO member = memberMapper.selectMember(memberNo);
-
+		
 		return member;
 	}
 }
