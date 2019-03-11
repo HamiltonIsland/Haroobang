@@ -8,7 +8,7 @@
 		select * from room where approval=1
 	</select>
 	
-	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomVO">
+	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
 		FROM roomattach WHERE roomNo = #{ roomNo }
 	</select>
