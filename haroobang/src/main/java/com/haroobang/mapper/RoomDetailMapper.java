@@ -22,6 +22,10 @@ public interface RoomDetailMapper {
 
 	void addReservationDate(HashMap<String, Object> params);
 
+	List<String> findDateList(int roomNo);
+
+	int findReservedDate(HashMap<String, Object> params);
+
 	
 
 }

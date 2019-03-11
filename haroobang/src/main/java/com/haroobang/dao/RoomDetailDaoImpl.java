@@ -2,6 +2,7 @@ package com.haroobang.dao;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public void addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
+	public String addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
 		roomDetailMapper.addRoomReservaion(reservationVo);
 		int reservationNo = reservationVo.getReservationNo();
 		int roomNo = reservationVo.getRoomNo();
@@ -67,12 +68,57 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		params.put("roomNo", roomNo);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
-		
-		for(int i=0;i<dateList.size();i++) {
-			params.put("date",formatter.format(dateList.get(i)));
-			roomDetailMapper.addReservationDate(params);
+		try{
+			for(int i=0;i<dateList.size()-1;i++) {
+				params.put("date",formatter.format(dateList.get(i)));
+				roomDetailMapper.addReservationDate(params);
+			}
+			return "success";
+		}catch(Exception e) {
+			return "fail";
 		}
+		
 		
 	}
 
+	@Override
+	public List<String> findDateList(int roomNo) {
+		
+		List<String> dateList = new ArrayList<String>();
+
+		dateList = roomDetailMapper.findDateList(roomNo);
+		
+		if(dateList.size() == 0) {
+			dateList.add("none");
+		}
+		
+		return dateList;
+	}
+
+	@Override
+	public String findReservedDate(int roomNo, List<LocalDate> dateList) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("roomNo", roomNo);
+
+		int reservedDate = 0 ;
+		String result = "success";
+		
+			for(int i =0;i<dateList.size();i++) {
+				params.put("date",formatter.format(dateList.get(i)));
+				try {
+					reservedDate = roomDetailMapper.findReservedDate(params);
+				} catch (Exception e) {
+					
+				}
+				
+				if(reservedDate > 0) {
+					result = "fail";
+					break;
+				}
+			}
+		return result;
+		
+	}
 }
