@@ -47,4 +47,8 @@
 		select * from comment where roomNo=#{roomNo}
 	</select>
 	
+	<select id="averageRate" parameterType="int" resultType="int">
+		select round(avg(rates),2) from comment where roomNo=#{roomNo};
+	</select>
+	
 </mapper>
