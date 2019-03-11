@@ -10,7 +10,7 @@ import com.haroobang.mapper.RoomListMapper;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
-@Repository("RoomListDao")
+@Repository("RoomListDao")//커밋...
 public class RoomListDaoImpl implements RoomListDao{
 	
 	@Autowired

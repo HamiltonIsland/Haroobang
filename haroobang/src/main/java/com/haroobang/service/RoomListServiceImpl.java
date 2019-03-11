@@ -10,7 +10,7 @@ import com.haroobang.dao.RoomListDao;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
-@Service("RoomListService")
+@Service("RoomListService") //커밋...
 public class RoomListServiceImpl implements RoomListService{
 	
 	@Autowired
