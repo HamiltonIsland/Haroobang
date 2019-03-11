@@ -52,7 +52,12 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 			AccountVO member = roomDetailMapper.findMemberId(commentList.get(i).getMemberNo());
 			commentList.get(i).setMember(member);
 		}
-		room.setAverageRates(roomDetailMapper.averageRate(roomNo));
+		try {
+			room.setAverageRates(roomDetailMapper.averageRate(roomNo));
+		} catch (Exception e) {
+			
+		}
+		
 		room.setRoomCommentList(commentList);
 		room.setRoomAttachList(roomAttachList);
 		
@@ -134,6 +139,18 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	public void roomDelete(int roomNo) {
 		
 		roomDetailMapper.roomDelete(roomNo);
+		
+	}
+
+	@Override
+	public void commentReport(int commentNo, String content, int memberNo) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("commentNo", commentNo);
+		params.put("content",content);
+		params.put("memberNo",memberNo);
+		
+		roomDetailMapper.commentReport(params);
 		
 	}
 }

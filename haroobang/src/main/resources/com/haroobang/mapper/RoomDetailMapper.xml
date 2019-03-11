@@ -51,4 +51,9 @@
 		select round(avg(rates),2) from comment where roomNo=#{roomNo};
 	</select>
 	
+	<insert id="commentReport" parameterType="hashmap">
+		insert into report(commentNo, content, memberNo) 
+		value (#{commentNo}, #{content}, #{memberNo})
+	</insert>
+	
 </mapper>

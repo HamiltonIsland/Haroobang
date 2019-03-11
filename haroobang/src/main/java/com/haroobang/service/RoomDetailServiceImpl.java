@@ -68,4 +68,11 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		
 	}
 
+	@Override
+	public void commentReport(int commentNo, String content, int memberNo) {
+		
+		roomDetailDao.commentReport(commentNo, content, memberNo);
+		
+	}
+
 }
