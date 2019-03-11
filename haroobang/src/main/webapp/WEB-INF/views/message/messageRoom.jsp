@@ -137,10 +137,11 @@
 	<script type="text/javascript">
 	
 		$(function(){	
-			$("#contacts").on("click",".contact",function(e){
+			$(".messageSection").on("click",".contact",function(e){
 				loginMemberNo = $(this).attr("data-loginMemberNo");
 				memberNo = $(this).attr("data-memberNo");
-				location.replace("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo);
+				$(".messageSection").load("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo);
+				/* location.replace("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo); */
 			});		
 		});
 	</script>
