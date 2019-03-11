@@ -19,7 +19,7 @@ public class RoomVO {
 	private boolean deleted;
 	private List<RoomAttachVO> roomAttachList;
 	private List<CommentVO> roomCommentList;
-	private int averageRates;
+	private float averageRates;
 	
 	public int getRoomNo() {
 		return roomNo;
@@ -111,12 +111,12 @@ public class RoomVO {
 	public void setRoomCommentList(List<CommentVO> roomCommentList) {
 		this.roomCommentList = roomCommentList;
 	}
-	public int getAverageRates() {
+	public float getAverageRates() {
 		return averageRates;
 	}
-	public void setAverageRates(int averageRates) {
+	public void setAverageRates(float averageRates) {
 		this.averageRates = averageRates;
 	}
-	
+
 
 }

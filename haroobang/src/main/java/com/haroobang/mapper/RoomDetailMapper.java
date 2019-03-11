@@ -31,7 +31,7 @@ public interface RoomDetailMapper {
 
 	List<CommentVO> findCommentList(int roomNo);
 
-	int averageRate(int roomNo);
+	float averageRate(int roomNo);
 
 	
 

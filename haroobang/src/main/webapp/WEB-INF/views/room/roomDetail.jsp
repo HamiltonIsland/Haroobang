@@ -228,7 +228,7 @@ $(function(){
 								<div class="col-6">
 									<div class="box_total">
 										<h5>Overall</h5>
-										<h4>${room.averageRates }점/5점</h4>
+										<h4>${room.averageRates }점</h4>
 										<h6>(${room.roomCommentList.size() } Reviews)</h6>
 									</div>
 								</div>
