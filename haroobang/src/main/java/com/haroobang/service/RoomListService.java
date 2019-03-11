@@ -12,4 +12,8 @@ public interface RoomListService {
 
 	void approvalRoom(String formdate);
 
+	List<RoomVO> findAllRoomsByPage(int from, int to);
+
+	int findRoomCount();
+
 }

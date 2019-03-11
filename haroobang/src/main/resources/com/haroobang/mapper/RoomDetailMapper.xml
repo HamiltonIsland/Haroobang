@@ -43,4 +43,12 @@
 		UPDATE room SET deleted = 1 WHERE roomNo=#{roomNo};
 	</update>
 	
+	<select id="findCommentList" parameterType="int" resultType="CommentVO">
+		select * from comment where roomNo=#{roomNo}
+	</select>
+	
+	<select id="averageRate" parameterType="int" resultType="float">
+		select round(avg(rates),2) from comment where roomNo=#{roomNo};
+	</select>
+	
 </mapper>

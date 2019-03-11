@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.CommentVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
@@ -27,6 +28,10 @@ public interface RoomDetailMapper {
 	int findReservedDate(HashMap<String, Object> params);
 
 	void roomDelete(int roomNo);
+
+	List<CommentVO> findCommentList(int roomNo);
+
+	float averageRate(int roomNo);
 
 	
 

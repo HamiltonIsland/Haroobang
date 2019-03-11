@@ -13,8 +13,47 @@
 		FROM roomattach WHERE roomNo = #{ roomNo }
 	</select>
 	
+	<resultMap type="RoomVO" id="roomMap">
+		<id column="roomNo" property="roomNo" />
+		<result column="memberNo" property="memberNo" />
+		<result column="regDate" property="regDate" />
+		<result column="roomName" property="roomName" />
+		<result column="address" property="address" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="roomProfile" property="roomProfile" />
+		<result column="price" property="price" />
+		<result column="readCount" property="readCount" />
+		<result column="maximum" property="maximum" />
+	</resultMap>
+	
+	
 	<select id="selectAllDisapprovalRooms" resultType="RoomVO">
 		select * from room where approval=0
+	</select>
+	
+	<select id="selectRoomList" parameterType="hashmap" resultType="RoomVO">
+		SELECT *
+		FROM		
+		(
+			SELECT 
+				rownum idx, s.* 
+			FROM		
+			(
+				SELECT 
+					roomNo, roomName, address, memberNo,
+					regDate, roomProfile, longitude, latitude, 
+					price, readCount, maximum
+				FROM
+					room
+				ORDER BY roomNo DESC
+			) s		
+		)
+		WHERE idx >= #{ first } AND idx <![CDATA[<]]> #{ last } AND approval=1
+	</select>
+	
+	<select id="selectRoomCount" resultType="int">
+		SELECT COUNT(*) FROM room WHERE approval=1
 	</select>
 	
 	<update id="approvalRoom" parameterType="int">

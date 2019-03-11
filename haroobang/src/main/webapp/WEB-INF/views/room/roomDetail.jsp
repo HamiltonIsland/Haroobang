@@ -21,6 +21,10 @@ $(function(){
 	
 	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
 	
+	$('#idCheck').click(function(e){
+		alert("로그인페이지로 이동합니다.")
+	})
+	
 	$("#like").click(function(e){
 		
 			$.ajax({
@@ -46,6 +50,10 @@ $(function(){
 		if(checkinDate.length == 0 || nights.length == 0){
 			alert("날짜를 선택해 주세요")
 		}else {
+			if(${login == null}){
+				alert("로그인페이지로 이동합니다.")
+				location.href = "/haroobang/account/login.action"
+			}else{
 			$.ajax({
 				url:"/haroobang/room/checkDate.action",
 				data:{"checkinDate":checkinDate,"nights":nights,"roomNo":${room.roomNo}},
@@ -58,6 +66,7 @@ $(function(){
 					}
 				}
 			})
+		}
 		}
 	});
 	
@@ -149,11 +158,11 @@ $(function(){
 						<div class="card_area d-flex align-items-center">
 						<c:choose>
 							<c:when test="${login.userType == 'admin'}">
-							<a class="primary-btn" href="javascript:" id="roomDelete">숙소 삭제</a>
+							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">숙소 삭제</a>
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
-							<!-- <a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a> -->
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 							</c:otherwise>
 						</c:choose>
 							
@@ -190,7 +199,15 @@ $(function(){
 						<div class="review_item">
 							<div class="media">
 								<div class="d-flex">
-									<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${member.memberNo}&loginMemberNo=${login.memberNo}"><img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
+								<c:choose>
+								<c:when test="${login ==null }">
+								<a href="/haroobang/account/login.action" id="idCheck">
+								</c:when>
+								<c:otherwise>
+								<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${member.memberNo}&loginMemberNo=${login.memberNo}">
+								</c:otherwise>
+								</c:choose>
+								<img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
 								</div>
 
 								<div class="media-body">
@@ -211,17 +228,17 @@ $(function(){
 								<div class="col-6">
 									<div class="box_total">
 										<h5>Overall</h5>
-										<h4>4.0</h4>
-										<h6>(03 Reviews)</h6>
+										<h4>${room.averageRates }점</h4>
+										<h6>(${room.roomCommentList.size() } Reviews)</h6>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="rating_list">
-										<h3>Based on 3 Reviews</h3>
+										<h3>Based on ${room.roomCommentList.size() } Reviews</h3>
 										<ul class="list">
 										<c:forEach var="i" begin="1" end="5" >
 										<li>	
-											${i}Star &nbsp;&nbsp;
+											${i}점
 											<c:forEach var="y" begin="1" end="${i}">
 											<a href="#"><i class="fa fa-star"></i></a>
 										
@@ -237,24 +254,44 @@ $(function(){
 								</div>
 							</div>
 							<div class="review_list">
-								<div class="review_item">
-									<div class="media">
+								<div class="review_item" style="width: 1050px">
+								<c:forEach var="comment" items="${room.roomCommentList }">
+								<div class="media">
 										<div class="d-flex">
-											<img src="/haroobang/resources/img/product/review-1.png"
-												alt="">
+										<c:choose>
+										<c:when test="${empty comment.member.savedFileName }">
+											<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"
+												alt=""></a>
+										</c:when>
+										<c:otherwise>
+										<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }"
+												alt=""></a>
+										</c:otherwise>
+										</c:choose>
+											
 										</div>
 										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i>
-											<!-- 별점표시부분 -->
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i>
+											<h4>${comment.nickName }</h4>
+											
+											<c:forEach var="y" begin="1" end="${comment.rates}">
+											<a href="#"><i class="fa fa-star"></i></a>
+											</c:forEach>
+											<%-- <c:forEach var="z" begin="1" end="${5 - comment.rates}">
+											<i class="fa fa-star"></i>	
+											</c:forEach> --%>
 										</div>
+										
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+								
+									<div style="display: inline;width: 500px">
+									<p>${comment.content }</p>
+										<a class="reply_btn" href="#" style="color:gray;font-size: 10px;">신고하기</a>
+										<hr>
+									</div>
+									
+									<br>
+								</c:forEach>
+									
 								</div>
 							</div>
 						</div>

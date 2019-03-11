@@ -1,5 +1,6 @@
 package com.haroobang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,21 @@ public class RoomListDaoImpl implements RoomListDao{
 	@Override
 	public void approvalRoom(String formdate) {
 		roomListMapper.approvalRoom(Integer.parseInt(formdate));
+	}
+
+	@Override
+	public List<RoomVO> selectAllRoomByPage(int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<RoomVO> rooms = roomListMapper.selectRoomList(params);
+		return rooms;
+	}
+
+	@Override
+	public int selectRoomCount() {
+		int count = roomListMapper.selectRoomCount();
+		return count;
 	}
 }
