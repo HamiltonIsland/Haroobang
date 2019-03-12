@@ -129,18 +129,36 @@ img {vertical-align: middle;}
 			<c:if test='${ not empty login and login.userType eq "admin" }'>
 			<!-- Start Filter Bar -->
 			<h3 class="text-heading">미승인 목록</h3>
-			<div class="text-right col-lg-4">
-				<aside class="single_sidebar_widget search_widget">
+			<!-- <div class="text-right col-lg-4"> -->
+				<!-- <aside class="single_sidebar_widget search_widget">
 		        	<div class="input-group">
 		            	<input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
 		            	<span class="input-group-btn">
 		            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
 		               	</span>
-		            </div><!-- /input-group -->
+		            </div>
 		        	<div class="br"></div>
-		       </aside>
-	       </div>
-	       <br>
+		       </aside> -->
+		       
+		       <table class="table">
+		       <thead>
+							<tr class="bottom_button">
+								<td></td><td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td>
+								<td>
+					<div class="input-group">
+		            	<input type="text" class="form-control" placeholder="Search by Keyword" id="keyword">
+		            	<span class="input-group-btn">
+		            	<button type="submit" class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+		               	</span>
+		            </div>
+								</td>
+							</tr>
+							</thead>
+						</table>
+	       <!-- </div> -->
+	       
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
 						<select>
@@ -168,11 +186,11 @@ img {vertical-align: middle;}
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list" id="disapprovalRoom">
+				<section class="lattest-product-area pb-40 category-list" id="disapprovalRoom"> <!-- id="search" -->
 					<div class="row">
 						<c:forEach var="disapproval" items="${disapproval}">
-						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${disapproval.roomNo}" >
-							<div class="single-product" id="imglist${room.roomNo}">
+						<div class="col-lg-3 col-md-5 disapprovalNo search" data-roomno="${disapproval.roomNo}" >
+							<div class="single-product" id="imglist${disapproval.roomNo}">
 							
 							<c:choose>
 									<c:when test="${not empty disapproval.roomAttachList}">
@@ -229,7 +247,7 @@ img {vertical-align: middle;}
 								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
 								<a href="/haroobang/room/roomDetail.action?roomNo=${disapproval.roomNo}">
 								<div class="product-details">
-									<h6>${disapproval.roomName}</h6>
+									<h6 class="searchh">${disapproval.roomName}</h6>
 									<div class="price">
 										<h6>${disapproval.price}</h6>
 										<h6 class="l-through">$210.00</h6>
@@ -289,18 +307,35 @@ img {vertical-align: middle;}
 				<c:if test='${ not empty login and login.userType eq "admin" }'>
 				<h3 class="text-heading">승인 목록</h3>
 				</c:if>
-				<div class="text-right">
+				<table class="table">
+		       <thead>
+							<tr class="bottom_button">
+								<td></td><td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td>
+								<td>
+									<div class="input-group">
+		            	<input type="text" class="form-control" placeholder="Search by Keyword" id="keyword2">
+		            	<span class="input-group-btn">
+		            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+		               	</span>
+		            </div>
+								</td>
+							</tr>
+							</thead>
+						</table>
+				<!-- <div class="text-right">
 					<aside class="single_sidebar_widget search_widget">
 			        	<div class="input-group col-lg-4">
 			            	<input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
 			            	<span class="input-group-btn">
 			            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
 			               	</span>
-			            </div><!-- /input-group -->
+			            </div>
 			        	<div class="br"></div>
 			       </aside>
-		       </div>
-		       <br>
+		       </div> -->
+		       
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
 						<select>
@@ -329,10 +364,10 @@ img {vertical-align: middle;}
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
+				<section class="lattest-product-area pb-40 category-list" id="search">
 					<div class="row">
 						<c:forEach var="room" items="${rooms}">
-						<div class="col-lg-3 col-md-5 disapprovalNo" data-roomno="${room.roomNo}">
+						<div class="col-lg-3 col-md-5 disapprovalNo search" data-roomno="${room.roomNo}">
 							<div class="single-product" id="imglist${room.roomNo}">
 							
 							<c:choose>
@@ -389,7 +424,7 @@ img {vertical-align: middle;}
 								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
 								<a href="/haroobang/room/roomDetail.action?roomNo=${room.roomNo}">
 								<div class="product-details">
-									<h6>${room.roomName}</h6>
+									<h6 class="searchh">${room.roomName}</h6>
 									<div class="price">
 										<h6>$${room.price}</h6>
 										<h6 class="l-through">$210.00</h6>
@@ -545,6 +580,23 @@ img {vertical-align: middle;}
   	
 	<script type="text/javascript">
 		$(function(){
+			
+			$("#keyword").on('keyup', function() {
+				var k = $(this).val();
+				//$("#search").find(".search").hide();
+				$("#disapprovalRoom div[data-roomno]").hide();
+
+				var temp = $("h6.searchh:contains('" + k + "')");
+				$(temp).parents(".search").show();
+			});
+			$("#keyword2").on('keyup', function() {
+				var k = $(this).val();
+				$("#search").find(".search").hide();
+
+				var temp = $("h6.searchh:contains('" + k + "')");
+				$(temp).parents(".search").show();
+			});
+			
 			$("a[id ^=roomapproval]").on('click',function(event){
 				
 				var formData = $(this).parents('.disapprovalNo').attr('data-roomno');
