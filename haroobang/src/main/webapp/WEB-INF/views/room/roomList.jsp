@@ -250,7 +250,6 @@ img {vertical-align: middle;}
 									<h6 class="searchh">${disapproval.roomName}</h6>
 									<div class="price">
 										<h6>${disapproval.price}</h6>
-										<h6 class="l-through">$210.00</h6>
 									</div>
 									<div class="prd-bottom">
 										<a href="" class="social-info"> <span class="ti-bag"></span>
@@ -427,7 +426,6 @@ img {vertical-align: middle;}
 									<h6 class="searchh">${room.roomName}</h6>
 									<div class="price">
 										<h6>$${room.price}</h6>
-										<h6 class="l-through">$210.00</h6>
 									</div>
 									<div class="prd-bottom">
 										<a href="" class="social-info"> <span class="ti-bag"></span>
