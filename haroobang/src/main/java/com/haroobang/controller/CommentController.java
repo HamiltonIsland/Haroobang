@@ -26,7 +26,7 @@ public class CommentController {
 	
 	//이전 예약 리스트 페이지 보여주기
 	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.GET)
-	public String commentRegisterForm(HttpSession session, HttpServletRequest req) {
+	public String commentRegisterForm(HttpSession session, HttpServletRequest req ) {
 		
 		
 		return "mypage/commentRegister";

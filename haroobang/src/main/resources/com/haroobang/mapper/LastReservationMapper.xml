@@ -17,7 +17,7 @@
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
    <select id="selectAllMyLastReservation" parameterType="int" resultMap="lastReservationMap">
-      select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.memberNo
+      select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo
 	  from reservation as rs join room as r
       where r.roomNo = rs.roomNo AND rs.checkin = 1 AND rs.memberNo = #{ memberNo } order by regDate desc;
    </select>

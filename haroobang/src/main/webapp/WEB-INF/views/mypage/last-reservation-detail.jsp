@@ -52,11 +52,12 @@ $(function(){
 						<thead>
 							<tr>
 								<th scope="col">숙소정보</th>
-								<th scope="col">1박 금액</th>
 								<th scope="col">몇박</th>
 								<th scope="col">총금액</th>
+								<th scope="col">결제수단</th>
 								<th scope="col">결제일시</th>
-
+								<th scope="col">입실날짜</th>
+                                <th scope="col">퇴실날짜</th>
 								<th scope="col">결제고객</th>
 							</tr>
 						</thead>
@@ -66,19 +67,16 @@ $(function(){
 									<div class="media">
 										<div class="d-flex">
 											<a
-												href="roomDetail.action?roomNo=${reservationdetail.roomNo}"><img
+												href="/haroobang/room/roomDetail.action?roomNo=${roomno}"><img
 												style="height: 100px; width: 100px"
 												src="/haroobang/resources/img/cashPayment.jpg" alt=""></a>
 										</div>
 										<div class="media-body" style="text-align: left">
-											<a href="">
+											<a href="/haroobang/room/roomDetail.action?roomNo=${roomno}">
 												<p>${reservationdetail.roomVO.roomName }</p>
 											</a>
 										</div>
 									</div>
-								</td>
-								<td>
-									<h5>&#8361; ${reservationdetail.roomVO.price }</h5>
 								</td>
 								<td>
 									<h5>${reservationdetail.nights }박</h5>
@@ -87,10 +85,26 @@ $(function(){
 									<h5>&#8361; ${reservationdetail.totalPrice }</h5>
 								</td>
 								<td>
+								<c:choose>
+                                	<c:when test="${reservationdetail.payment=='무통장입금' }">
+                                      	<h5>무통장 입금</h5>
+                                	</c:when>
+                                	<c:when test="${reservationdetail.payment=='카드' }">
+                                      	<h5>카드 결제</h5>
+                                	</c:when>
+                                </c:choose>
+                                </td>
+								<td>
 									<h5>${reservationdetail.regDate }</h5>
 								</td>
-
-
+								
+								<td>
+                                    <h5>${reservationdetail.startDate }</h5>
+                                </td>
+                                
+                                <td>
+                                    <h5>${reservationdetail.endDate }</h5>
+                                </td>
 
 								<td>
 									<h5>${reservationdetail.accountVO.name }</h5>
