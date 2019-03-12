@@ -79,10 +79,20 @@ $(function(){
 		}else{	}
 	});
 	
-	$("#report").click(function(e){
-		var content = prompt("신고하는 사유를 적어 주세요");
+	//$(".reply_btn").['#report'].click(function(e){
+	//$('a[id ^=report]').click(function(e){
+	$('.reply_btn').click(function(e){
+	
+		if(${login == null}){
+			alert("로그인페이지로 이동합니다.")
+			location.href = "/haroobang/account/login.action"
+		}else{
+			
+		
+		var content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
 		var commentNo = $(this).attr('commentNo');
-		if(${login != null}){
+		
+		if(content != null){
 			$.ajax({
 				url:"/haroobang/room/commentReport.action",
 				data:{"content":content,"commentNo":commentNo},
@@ -92,7 +102,12 @@ $(function(){
 				}	
 			});
 		}
-		 
+			
+			/* 	alert("이유를 적어주세요");
+				content=prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+			 */
+		
+		}
 	});
 });
 			
