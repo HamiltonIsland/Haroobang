@@ -4,5 +4,36 @@
 <!-- 커밋... -->
 <mapper namespace="com.haroobang.mapper.ReservationMapper">
 
+<resultMap type="RoomVO" id="RoomVO">
+      <result column="roomName" property="roomName" />
+   </resultMap>
+<resultMap type="ReservationVO" id="ReservationMap">
+      <id column="reservationNo" property="reservationNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+      <result column="roomNo" property="roomNo" />
+      <result column="totalPrice" property="totalPrice" />
+      <result column="regDate" property="regDate" />
+      <result column="startDate" property="startDate" />
+      <result column="endDate" property="endDate" />
+      <result column="memberNo" property="memberNo" />
+      <result column="payment" property="payment" />
+      <result column="nights" property="nights" />
+      <result column="request" property="request" />
+      <result column="checkin" property="checkin" />
+      <result column="coupon" property="Coupon" />
+      <collection property="roomVO" resultMap="RoomVO"></collection>
+   </resultMap>
+   
+   
+	<select id="selectAllReservations" resultMap="ReservationMap">
+		<!-- select * from reservation -->
+		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
+		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
+	  	from reservation as rs join room as r
+      	where r.roomNo = rs.roomNo
+	</select>
 	
+	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
+		SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
 </mapper>

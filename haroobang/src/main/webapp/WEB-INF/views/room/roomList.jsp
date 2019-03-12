@@ -252,7 +252,7 @@ img {vertical-align: middle;}
 										<h6>${disapproval.price}</h6>
 									</div>
 									<div class="prd-bottom">
-										<a href="" class="social-info"> <span class="ti-bag"></span>
+										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a> <a href="" class="social-info"> <span
 											class="lnr lnr-heart"></span>
@@ -263,7 +263,7 @@ img {vertical-align: middle;}
 										</a> <a href="" class="social-info"> <span
 											class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
-										</a>
+										</a> -->
 										
 										<div class="button-group-area mt-40">
 											<a href="javascript:;" class="genric-btn success circle" id='roomapproval${disapproval.roomNo}'>승인</a>
@@ -428,7 +428,7 @@ img {vertical-align: middle;}
 										<h6>$${room.price}</h6>
 									</div>
 									<div class="prd-bottom">
-										<a href="" class="social-info"> <span class="ti-bag"></span>
+										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a> <a href="" class="social-info"> <span
 											class="lnr lnr-heart"></span>
@@ -439,7 +439,7 @@ img {vertical-align: middle;}
 										</a> <a href="" class="social-info"> <span
 											class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
-										</a>
+										</a> -->
 										<c:if test='${ not empty login and login.userType eq "admin" }'>
 										<div class="button-group-area mt-40">
 											<a href="javascript:;" class="genric-btn danger circle" id='roomdelete${room.roomNo}'>삭제</a>

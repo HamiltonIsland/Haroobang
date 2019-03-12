@@ -1,5 +1,7 @@
 package com.haroobang.vo;
 
+import java.util.List;
+
 public class ReservationVO {
 	 private int reservationNo;
 	 private int memberNo;
@@ -17,7 +19,15 @@ public class ReservationVO {
 	 private RoomVO roomVO;
 	 private AccountVO accountVO;
 	 
-	 public int getReservationNo() {
+	 private List<RoomAttachVO> roomAttachList;
+	 
+	 public List<RoomAttachVO> getRoomAttachList() {
+		return roomAttachList;
+	}
+	public void setRoomAttachList(List<RoomAttachVO> roomAttachList) {
+		this.roomAttachList = roomAttachList;
+	}
+	public int getReservationNo() {
 		return reservationNo;
 	}
 	public void setReservationNo(int reservationNo) {
