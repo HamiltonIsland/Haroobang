@@ -1,7 +1,7 @@
 package com.haroobang.vo;
 
 import java.util.List;
-
+//ㅇㅇ
 public class ReservationVO {
 	 private int reservationNo;
 	 private int memberNo;

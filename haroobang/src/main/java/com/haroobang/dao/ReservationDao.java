@@ -12,3 +12,4 @@ public interface ReservationDao {
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
 }
+//썅

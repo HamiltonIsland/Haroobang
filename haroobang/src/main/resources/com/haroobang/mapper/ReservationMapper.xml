@@ -37,3 +37,4 @@
 		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
 	</select>
 </mapper>
+<!-- 썅 -->

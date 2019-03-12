@@ -12,3 +12,4 @@ public interface ReservationMapper {
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
 }
+//썅

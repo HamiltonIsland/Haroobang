@@ -20,7 +20,7 @@
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>Loom List</title>
-
+<!-- 썅 -->
 <!-- CSS ============================================= -->
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />

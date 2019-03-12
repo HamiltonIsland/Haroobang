@@ -29,3 +29,4 @@ public class ReservationListController {
 		return "reservation/reservationList";
 	}
 }
+//샹
