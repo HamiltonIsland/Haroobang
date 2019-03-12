@@ -82,15 +82,16 @@ $(function(){
 	$("#report").click(function(e){
 		var content = prompt("신고하는 사유를 적어 주세요");
 		var commentNo = $(this).attr('commentNo');
-		$.ajax({
-			url:"/haroobang/room/commentReport.action",
-			data:{"content":content,"commentNo":commentNo,"memberNo":${login.memberNo}},
-			method:"get",
-			success:function(data,status,xhr){
-				alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
-			}
-		})
-		
+		if(${login != null}){
+			$.ajax({
+				url:"/haroobang/room/commentReport.action",
+				data:{"content":content,"commentNo":commentNo,"memberNo":${login.memberNo}},
+				method:"get",
+				success:function(data,status,xhr){
+					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
+				}	
+			});
+		}
 		 
 	});
 });
@@ -275,12 +276,10 @@ $(function(){
 										<hr><hr><hr>
 										<c:choose>
 										<c:when test="${empty comment.member.savedFileName }">
-											<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"
-												alt=""></a>
+										<img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"/>
 										</c:when>
 										<c:otherwise>
-										<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }"
-												alt=""></a>
+										<img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }">
 										</c:otherwise>
 										</c:choose>
 											

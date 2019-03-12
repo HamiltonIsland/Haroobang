@@ -44,7 +44,7 @@
 
 	</section>
 
-	
+<jsp:include page="./include/footer.jsp"></jsp:include>	
 	<jsp:include page="include/js.jsp" />
 </body>
 </html>
