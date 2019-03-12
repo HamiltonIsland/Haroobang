@@ -61,4 +61,16 @@ public class RoomListController {
 		
 		return "success";
 	}
+	
+	
+	
+	
+	//home에서 검색목록
+	@RequestMapping(value="/searchRoomList.action", method=RequestMethod.GET)
+	public String searchRoomList(RoomVO vo,Model model) {
+		
+		List<RoomVO> roomList = roomListService.searchRoomListService(vo);
+		model.addAttribute("rooms",roomList);
+		return "room/roomList";
+	}
 }

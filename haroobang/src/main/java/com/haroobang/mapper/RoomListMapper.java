@@ -19,4 +19,6 @@ public interface RoomListMapper {
 	int selectRoomCount();
 
 	List<RoomVO> selectRoomList(HashMap<String, Object> params);
+
+	List<RoomVO> searchRoomList(RoomVO vo);
 }
