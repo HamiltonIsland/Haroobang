@@ -54,7 +54,7 @@
 				<div class="col-lg-6" style="margin:0 auto">
 					<div class="login_form_inner">
 						<h3>Register</h3>
-						<form class="row login_form" action="register.action" method="post" novalidate="novalidate"style="margin : 0 auto">
+						<form class="row login_form" action="register.action" enctype="multipart/form-data"method="post" novalidate="novalidate"style="margin : 0 auto">
                             <div class="col-md-12 form-group p_star">
                                 <input type="email" class="form-control" name="email" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'">
                             </div>
@@ -72,7 +72,10 @@
                             </div>  
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control" name="nickname" placeholder="Nick-Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nick-Name'">
-                            </div>                         
+                            </div>  
+                            <div class="col-md-12 form-group p_star">
+                                <input type="file" class="form-control" name="file" placeholder="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'file'">
+                            </div>                        
                             <div class="col-md-12 form-group p_star"> 
                                 <select class="country_select" name = "gender">
                                     <option value="Female">Female</option>

@@ -5,8 +5,8 @@
 <mapper namespace="com.haroobang.mapper.AccountMapper">
 
 	<insert id="insertAccount" parameterType="AccountVO">
-	insert into member(password, name, phone, gender, profile, birthDate, email,nickname,address) 
-	values(#{password},#{name},#{phone},#{gender},#{profile},#{birthDate},#{email},#{nickname},#{address});
+	insert into member(password, savedFileName, userFileName, name, phone, gender, profile, birthDate, email,nickname,address) 
+	values(#{password},#{savedFileName},#{userFileName},#{name},#{phone},#{gender},#{profile},#{birthDate},#{email},#{nickname},#{address});
 	</insert>
 	
 	<select id="getAccount" parameterType="AccountVO" resultType="AccountVO">
