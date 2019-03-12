@@ -16,7 +16,7 @@
 	transition: .5s ease;
 	opacity: 0;
 	position: absolute;
-	top: 50%;
+	top: 30%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
@@ -24,7 +24,7 @@
 	z-index: 1;
 }
 
-.span3 .overlay2 {
+.search .overlay2 {
 	transition: .5s ease;
 	position: absolute;
 	opacity: 0;
@@ -35,16 +35,16 @@
 	text-align: center;
 }
 
-.span3:hover .overlay {
+.search:hover .overlay {
 	opacity: 1;
 }
 
-.span3:hover .widget-content {
+.search:hover .widget-content {
 	background-color: #BDBDBD;
 	opacity: 0.7;
 }
 
-.span3 .text {
+.search .text {
 	color: black;
 	font-size: 40px;
 	padding: 16px 32px;
@@ -87,6 +87,8 @@
 			</div>
 		</div>
 	</section>
+
+
 	<!-- End Banner Area -->
 	<div class="container">
 		<div class="row">
@@ -101,41 +103,34 @@
 						</select>
 					</div>
 					<div class="sorting mr-auto">
-							<input type="text" width="5px" placeholder="검색" id="keyword">
-					<button type="submit" class="btn btn-small btn-success">검색</button>
-						<div class="widget-header">
+						<input type="text" width="5px" placeholder="검색" id="keyword">
+						<button type="submit" class="btn btn-small btn-success">검색</button>
+					<!-- 	<div class="widget-header">
 							<i class="icon-th-large"></i>
-						</div> 
+						</div> -->
 					</div>
-					
-					<div class="pagination">
-						<a href="#" class="prev-arrow"></a>
-							<input type="text" width="5px" placeholder="검색" id="keyword">
-					<button type="submit" class="btn btn-small btn-success">검색</button>
-						<div class="widget-header">
-							<i class="icon-th-large"></i>
-						</div> 
-					</div>
-					
+
+
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 
-				<section class="lattest-product-area pb-40 category-list">
+				<section class="lattest-product-area pb-40 category-list"
+					id="search">
 
 					<div class="row">
 						<!-- single product -->
 
 						<c:forEach var="members" items="${ members }">
 
-							<div class="col-lg-4 col-md-6">
+							<div class="col-lg-3 col-md-5 search">
 								<div class="single-product">
 									<img class="img-fluid"
 										src="/haroobang/resources/upload/${members.savedFileName }"
 										alt="">
 									<div class="product-details">
 										<a href="">
-											<h6>${ members.name }</h6>
+											<h6 class="searchh">${ members.name }</h6>
 										</a>
 										<div class="price">
 											<h6>${ members.email }</h6>
@@ -153,9 +148,28 @@
 										</div>
 
 									</div>
+									<!-- /widget-content -->
+								<div class="overlay">
+									<label class="checkbox inline"> <input type="checkbox"
+										class="membercheck" data-memberno="${ members.memberNo }">
+										회원선택
+									</label>
 								</div>
+
+								<div class="overlay2" id="member${ members.memberNo }search">
+									<div class=text>
+										<i class="icon-ok-circle" ></i>
+									</div>
+								</div>
+								</div>
+								
 							</div>
+
+
 						</c:forEach>
+
+
+
 
 					</div>
 
@@ -368,7 +382,28 @@
 
 
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
+	<script src="/haroobang/resources/js/base.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#keyword").on('keyup', function() {
+				var k = $(this).val();
+				$("#search").find(".search").hide();
 
+				var temp = $("h6.searchh:contains('" + k + "')");
+				$(temp).parents(".search").show();
+			})
+		})
+
+		$('#search').on('click', '.membercheck', function(event) {
+			var memberno = $(this).attr('data-memberno');
+			if ($(this).prop('checked')) {
+				$('#member' + memberno + "search").css('opacity', '1');
+			} else {
+				$('#member' + memberno + "search").css('opacity', '0');
+			}
+		});
+	</script>
 </body>
 
 </html>

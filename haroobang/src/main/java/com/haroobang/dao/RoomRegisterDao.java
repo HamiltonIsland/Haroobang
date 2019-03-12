@@ -10,4 +10,6 @@ public interface RoomRegisterDao {
 	void insertRoomAttachDao(RoomAttachVO attach);
 
 	RoomVO roomListDao(int roomNo);
+
+	void deleteRoomDao(int roomNo);
 }

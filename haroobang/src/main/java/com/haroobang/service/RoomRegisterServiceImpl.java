@@ -32,6 +32,12 @@ public class RoomRegisterServiceImpl implements RoomRegisterService{
 		return list;
 	}
 
+	@Override
+	public void deleteRoomService(int roomNo) {
+		roomRegisterDao.deleteRoomDao(roomNo);
+		
+	}
+
 
 	
 	

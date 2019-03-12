@@ -13,6 +13,7 @@
       <result column="totalPrice" property="totalPrice" />
       <result column="regDate" property="regDate" />
       <result column="startDate" property="startDate" />
+      <result column="endDate" property="endDate" />
       <result column="memberNo" property="memberNo" />
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
@@ -44,10 +45,10 @@
       <collection property="roomVO" resultMap="Room"></collection>
       <collection property="accountVO" resultMap="Account"></collection>
    </resultMap>
-   <select id="selectRoomByRoomNo" parameterType="int" resultMap="roomnoMap">
+   <select id="selectRoomByRoomNo" parameterType="hashmap" resultMap="roomnoMap">
       SELECT rs.reservationNo, r.roomNo, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.nights, rs.payment, r.roomName, r.price, m.name, m.memberNo
 	  FROM reservation as rs join room as r join member as m
-	  WHERE r.roomNo=#{ roomNo } And r.roomNo = rs.roomNo And m.memberNo = rs.memberNo;
+	  WHERE r.roomNo=#{ roomNo } And rs.memberNo=#{ memberNo } And rs.startDate=#{ startDate } And r.roomNo = rs.roomNo And m.memberNo = rs.memberNo;
    </select>
    
    

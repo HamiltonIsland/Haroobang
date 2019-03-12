@@ -85,14 +85,7 @@ $(function(){
 									<h5>&#8361; ${reservationdetail.totalPrice }</h5>
 								</td>
 								<td>
-								<c:choose>
-                                	<c:when test="${reservationdetail.payment=='무통장입금' }">
-                                      	<h5>무통장 입금</h5>
-                                	</c:when>
-                                	<c:when test="${reservationdetail.payment=='카드' }">
-                                      	<h5>카드 결제</h5>
-                                	</c:when>
-                                </c:choose>
+                                    <h5>${reservationdetail.payment}</h5>
                                 </td>
 								<td>
 									<h5>${reservationdetail.regDate }</h5>

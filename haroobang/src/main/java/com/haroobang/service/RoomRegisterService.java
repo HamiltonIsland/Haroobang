@@ -11,4 +11,6 @@ public interface RoomRegisterService {
 
 	RoomVO roomListService(int roomNo);
 
+	void deleteRoomService(int roomNo);
+
 }

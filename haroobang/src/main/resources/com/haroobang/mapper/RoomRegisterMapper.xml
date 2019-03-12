@@ -20,4 +20,10 @@
 	<select id="roomAttachList" parameterType="int" resultType="com.haroobang.vo.RoomAttachVO">
 		select * from roomattach where roomNo = #{roomNo}
 	</select>	
+	<delete id="deleteRoom" parameterType="int">
+		delete from room where roomNo=#{roomNo}
+	</delete>
+	<delete id="deleteRoomAttach" parameterType="int">
+		delete from roomattach where roomNo=#{roomNo}
+	</delete>
 </mapper>

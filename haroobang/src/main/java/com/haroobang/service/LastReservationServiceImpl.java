@@ -20,8 +20,8 @@ public class LastReservationServiceImpl implements LastReservationService {
 	}
 
 	@Override
-	public ReservationVO findRoomByRoomNo(int roomNo) {
-		ReservationVO myroom = lastReservationDao.selectRoomByRoomNo(roomNo);
+	public ReservationVO findRoomByRoomNo(int roomNo, int memberNo, String startdate) {
+		ReservationVO myroom = lastReservationDao.selectRoomByRoomNo(roomNo, memberNo, startdate);
 		return myroom;
 	}
 

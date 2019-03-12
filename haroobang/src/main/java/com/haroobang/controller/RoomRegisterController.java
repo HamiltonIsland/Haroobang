@@ -87,5 +87,18 @@ public class RoomRegisterController {
 		
 		return "redirect:/room/roomRegisterConfig.action?roomNo="+roomNo;
 	}
+	
+	// 숙소등록확인 페이지 보여주기
+		@RequestMapping(value = "/deleteRegister.action", method = RequestMethod.GET)
+		public String deleteRoom(HttpSession session,int roomNo) {
+			if (session.getAttribute("login") == null) {
+				return "account/login";
+			}
+			
+			roomRegisterService.deleteRoomService(roomNo);
+			
+			
+			return "redirect:/room/roomRegister.action";
+		}
 
 }
