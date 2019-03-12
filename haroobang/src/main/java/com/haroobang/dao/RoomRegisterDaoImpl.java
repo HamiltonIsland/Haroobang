@@ -36,6 +36,13 @@ public class RoomRegisterDaoImpl implements RoomRegisterDao{
 		return list;
 	}
 
+	@Override
+	public void deleteRoomDao(int roomNo) {
+		roomRegisterMapper.deleteRoomAttach(roomNo);
+		roomRegisterMapper.deleteRoom(roomNo);
+		
+	}
+
 	
 
 }

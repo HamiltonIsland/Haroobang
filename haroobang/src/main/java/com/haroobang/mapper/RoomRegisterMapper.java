@@ -15,5 +15,9 @@ public interface RoomRegisterMapper {
 
 	List<RoomAttachVO> roomAttachList(int roomNo);
 
+	void deleteRoom(int roomNo);
+
+	void deleteRoomAttach(int roomNo);
+
 
 }
