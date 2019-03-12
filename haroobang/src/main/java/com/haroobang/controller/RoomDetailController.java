@@ -144,4 +144,14 @@ public class RoomDetailController {
 
 		return "room/paymentConfirmation";
 	}
+	
+	@RequestMapping(value="commentReport", method=RequestMethod.GET)
+	@ResponseBody
+	public String commentReport(HttpSession session, int commentNo, String content) {
+		
+		AccountVO member = (AccountVO) session.getAttribute("login");
+		int memberNo = member.getMemberNo();
+		roomDetailService.commentReport(commentNo, content, memberNo);
+		return "success";
+	}
 }

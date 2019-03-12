@@ -33,6 +33,8 @@ public interface RoomDetailMapper {
 
 	float averageRate(int roomNo);
 
+	void commentReport(HashMap<String, Object> params);
+
 	
 
 }

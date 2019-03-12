@@ -77,9 +77,23 @@ $(function(){
 		if(c == true){
 			location.href = "/haroobang/room/roomDelete.action?roomNo="+${room.roomNo}
 		}else{	}
-		
 	});
 	
+	$("#report").click(function(e){
+		var content = prompt("신고하는 사유를 적어 주세요");
+		var commentNo = $(this).attr('commentNo');
+		if(${login != null}){
+			$.ajax({
+				url:"/haroobang/room/commentReport.action",
+				data:{"content":content,"commentNo":commentNo},
+				method:"get",
+				success:function(data,status,xhr){
+					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
+				}	
+			});
+		}
+		 
+	});
 });
 			
 
@@ -158,10 +172,10 @@ $(function(){
 						<div class="card_area d-flex align-items-center">
 						<c:choose>
 							<c:when test="${login.userType == 'admin'}">
-							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">숙소 삭제</a>
+							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">삭제하기</a>
 							</c:when>
 							<c:otherwise>
-							<a class="primary-btn" href="javascript:" id="roomReservation">숙소 예약하기</a>
+							<a class="primary-btn" href="javascript:" id="roomReservation">예약하기</a>
 							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
 							</c:otherwise>
 						</c:choose>
@@ -255,17 +269,19 @@ $(function(){
 							</div>
 							<div class="review_list">
 								<div class="review_item" style="width: 1050px">
-								<c:forEach var="comment" items="${room.roomCommentList }">
+								<c:choose>
+								<c:when test="${room.roomCommentList != null }">
+							<c:forEach var="comment" items="${room.roomCommentList }">
 								<div class="media">
 										<div class="d-flex">
+										<hr>
+										<hr><hr><hr>
 										<c:choose>
 										<c:when test="${empty comment.member.savedFileName }">
-											<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"
-												alt=""></a>
+										<img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"/>
 										</c:when>
 										<c:otherwise>
-										<a href="#"><img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }"
-												alt=""></a>
+										<img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${comment.member.savedFileName }">
 										</c:otherwise>
 										</c:choose>
 											
@@ -274,7 +290,7 @@ $(function(){
 											<h4>${comment.nickName }</h4>
 											
 											<c:forEach var="y" begin="1" end="${comment.rates}">
-											<a href="#"><i class="fa fa-star"></i></a>
+											<i class="fa fa-star"></i>
 											</c:forEach>
 											<%-- <c:forEach var="z" begin="1" end="${5 - comment.rates}">
 											<i class="fa fa-star"></i>	
@@ -285,12 +301,21 @@ $(function(){
 								
 									<div style="display: inline;width: 500px">
 									<p>${comment.content }</p>
-										<a class="reply_btn" href="#" style="color:gray;font-size: 10px;">신고하기</a>
+										<a class="reply_btn" href="javascript:" id="report" commentNo="${comment.commentNo }" style="color:gray;font-size: 10px;">신고하기</a>
 										<hr>
 									</div>
 									
 									<br>
 								</c:forEach>
+								</c:when>
+								
+								<c:otherwise>
+								<div style="border:solid 1px">
+								
+								</div>
+								</c:otherwise>
+								</c:choose>
+						
 									
 								</div>
 							</div>
