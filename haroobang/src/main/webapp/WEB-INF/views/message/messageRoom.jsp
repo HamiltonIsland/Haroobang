@@ -137,6 +137,9 @@
 	<script type="text/javascript">
 	
 		$(function(){	
+			var loginMemberNo=${login.memberNo};
+			var memberNo=${memberNo};
+			if
 			$(".messageSection").on("click",".contact",function(e){
 				loginMemberNo = $(this).attr("data-loginMemberNo");
 				memberNo = $(this).attr("data-memberNo");

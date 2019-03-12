@@ -68,7 +68,7 @@
 					<c:if test="${not empty login }">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="/haroobang/account/profile.action"><span class="lnr lnr-user"></span></a></li>
-						<li class="nav-item"><a href="/haroobang/message/messageRoom.action?memberNo=${login.memberNo}"><span class="lnr lnr-bubble"></span></a></li>
+						<li class="nav-item"><a href="/haroobang/message/messageRoom.action"><span class="lnr lnr-bubble"></span></a></li>
 					</ul>
 					</c:if>
 					<!-- <ul class="nav navbar-nav navbar-right">
