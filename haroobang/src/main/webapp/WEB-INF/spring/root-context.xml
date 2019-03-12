@@ -99,6 +99,11 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	
+	<bean id="ReservationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.haroobang.mapper.ReservationMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
 	<!-- Comment -->
 	<bean id="commentService" class="com.haroobang.service.CommentServiceImpl">
 		<property name="commentDao" ref="commentDao" />

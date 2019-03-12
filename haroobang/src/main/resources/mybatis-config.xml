@@ -35,7 +35,7 @@
 		<mapper resource="com/haroobang/mapper/MessageMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/LastReservationMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/CommentMapper.xml"/>
-
+		<mapper resource="com/haroobang/mapper/ReservationMapper.xml"/>
 	</mappers>
 </configuration>
 
