@@ -53,8 +53,23 @@ public class AccountController {
 	
 	//register insert
 	@RequestMapping (value = "/register.action", method = RequestMethod.POST)
-	public String registerInsert(AccountVO vo) {	
-		
+	public String registerInsert(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) {
+		MultipartFile attach = req.getFile("file");	
+	if (attach != null && !attach.isEmpty()) {
+		String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
+		String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
+
+		try {
+			attach.transferTo(new File(path));
+			
+			vo.setSavedFileName(savedFileName);
+			vo.setUserFileName(attach.getOriginalFilename());
+
+		} catch (Exception ex) {
+		}
+	}
+		vo.setSavedFileName("default.jpg");
+		vo.setUserFileName("default.jpg");
 		accountService.insertAccountService(vo);
 		
 		return "account/login";
@@ -80,12 +95,8 @@ public class AccountController {
 	//프로필 화면
 	@RequestMapping(value="/profile.action",method=RequestMethod.POST)
 	public String profileUpdate(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) {
-		MultipartFile attach = req.getFile("file");	
-		
-			
-		
+		MultipartFile attach = req.getFile("file");
 			vo.setUserFileName(attach.getOriginalFilename());
-			
 		if (attach != null && !attach.isEmpty()) {
 			String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
 			String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
@@ -98,7 +109,10 @@ public class AccountController {
 			} catch (Exception ex) {
 			}
 		}
-
+		AccountVO logins = (AccountVO)session.getAttribute("login");
+		vo.setSavedFileName(logins.getSavedFileName());
+		vo.setUserFileName(logins.getUserFileName());
+		
 		accountService.updateProfileService(vo);
 		List<AccountVO> login = accountService.loginServices(vo);
 		session.setAttribute("login", login.get(0));
