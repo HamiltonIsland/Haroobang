@@ -18,7 +18,7 @@
 </script>
 
 <head>
-<link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
+
 <!-- Mobile Specific Meta -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,9 @@
 <meta name="keywords" content="">
 <!-- meta character set -->
 <meta charset="UTF-8">
+<link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <!-- Site Title -->
+
 <title>Profile</title>
 
 <!--
@@ -79,21 +81,22 @@
 						<form class="row login_form">
 							<input type="hidden" name="memberNo" value="${members.memberNo }">
 
-							<div class="col-md-12 form-group" >
-								 <i class="icon-thumbs-up"> 
-								<strong>이름</strong>  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.name }</i>
+							<div class="col-md-12 form-group" style="text-align : left">
+								 <i class="icon-thumbs-up"> </i>
+								<strong>이름</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.name }
 								</div>
-							<div class="col-md-12 form-group">
+								
+							<div class="col-md-12 form-group" style="text-align : left">
 							<i class="icon-envelope-alt"></i>
-								<strong>이메일</strong> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.email }
+								<strong>이메일</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; ${members.email }
 							</div>
-							<div class="col-md-12 form-group">
+							<div class="col-md-12 form-group" style="text-align : left">
 							<i class="icon-map-marker"></i>
-								<strong>가입일</strong>&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.regDate }
+								<strong>가입일</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.regDate }
 							</div>
-							<div class="col-md-12 form-group">
+							<div class="col-md-12 form-group" style="text-align : left">
 							<i class="icon-phone"></i>
-								<strong>번호 </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${members.phone }
+								<strong>번호 </strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.phone }
 							</div>
 
 						</form>
