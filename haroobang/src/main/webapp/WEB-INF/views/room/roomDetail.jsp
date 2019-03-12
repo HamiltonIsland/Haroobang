@@ -15,11 +15,23 @@
 <title>roomDetail</title>
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c407abd2e5f1baaf84ff1d382b79c8e4"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
 	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new daum.maps.LatLng(37.4954031, 126.88736900000004), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
 	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
+	
 	
 	$('#idCheck').click(function(e){
 		alert("로그인페이지로 이동합니다.")
@@ -228,7 +240,7 @@ $(function(){
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
-					<div style="border:solid 1px;height:200px;width:500px"></div>
+					<div style="height:500px;width:1050px" id="map"></div>
 					<p style="white-space: pre">${room.roomProfile}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel"
