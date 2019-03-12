@@ -1,5 +1,6 @@
 package com.haroobang.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.haroobang.vo.ReservationVO;
@@ -9,6 +10,6 @@ public interface LastReservationMapper {
 
 	List<ReservationVO> selectAllMyLastReservation(int memberNo);
 
-	ReservationVO selectRoomByRoomNo(int roomNo);
+	ReservationVO selectRoomByRoomNo(HashMap<String, Object> params);
 	
 }

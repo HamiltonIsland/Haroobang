@@ -9,6 +9,6 @@ public interface LastReservationDao {
 
 	List<ReservationVO> selectAllMyLastReservation(int memberNo);
 
-	ReservationVO selectRoomByRoomNo(int roomNo);
+	ReservationVO selectRoomByRoomNo(int roomNo, int memberNo, String startdate);
 
 }

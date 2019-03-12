@@ -133,7 +133,7 @@
 							</c:otherwise>
 							</c:choose>
 								<div class="product-details">
-								<a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }">
+								<a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" >
 									<h6> ${ myroom.roomVO.roomName }</h6>
 								</a>
 									<div class="price">

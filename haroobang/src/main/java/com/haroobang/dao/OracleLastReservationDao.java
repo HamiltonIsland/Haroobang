@@ -1,5 +1,6 @@
 package com.haroobang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.haroobang.mapper.LastReservationMapper;
@@ -20,8 +21,12 @@ public class OracleLastReservationDao implements LastReservationDao {
 	}
 
 	@Override
-	public ReservationVO selectRoomByRoomNo(int roomNo) {
-		ReservationVO myroom = lastReservationMapper.selectRoomByRoomNo(roomNo);
+	public ReservationVO selectRoomByRoomNo(int roomNo, int memberNo, String startdate) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("roomNo", roomNo);
+		params.put("memberNo", memberNo);
+		params.put("startDate", startdate);
+		ReservationVO myroom = lastReservationMapper.selectRoomByRoomNo(params);
 		return myroom;
 	}
 
