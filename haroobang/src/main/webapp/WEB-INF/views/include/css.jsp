@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/haroobang/resources/css/linearicons.css">
 <link rel="stylesheet" href="/haroobang/resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="/haroobang/resources/css/font-awesome.css">
 <link rel="stylesheet" href="/haroobang/resources/css/themify-icons.css">
 <link rel="stylesheet" href="/haroobang/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/haroobang/resources/css/owl.carousel.css">
