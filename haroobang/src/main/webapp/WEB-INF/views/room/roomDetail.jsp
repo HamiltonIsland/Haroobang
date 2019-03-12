@@ -270,7 +270,8 @@ $(function(){
 							<div class="review_list">
 								<div class="review_item" style="width: 1050px">
 								<c:choose>
-								<c:when test="${room.roomCommentList != null }">
+								<c:when test="${room.roomCommentList.size()>0 }">
+								<hr>
 							<c:forEach var="comment" items="${room.roomCommentList }">
 								<div class="media">
 										<div class="d-flex">
@@ -300,7 +301,7 @@ $(function(){
 									</div>
 								
 									<div style="display: inline;width: 500px">
-									<p>${comment.content }</p>
+									<p style="white-space: pre">${comment.content }</p>
 										<a class="reply_btn" href="javascript:" id="report" commentNo="${comment.commentNo }" style="color:gray;font-size: 10px;">신고하기</a>
 										<hr>
 									</div>
@@ -308,10 +309,10 @@ $(function(){
 									<br>
 								</c:forEach>
 								</c:when>
-								
 								<c:otherwise>
-								<div style="border:solid 1px">
-								
+								<hr>
+								<div class="review_item">
+									<p>&nbsp;&nbsp;&nbsp;등록된 후기가 없습니다.</p>
 								</div>
 								</c:otherwise>
 								</c:choose>

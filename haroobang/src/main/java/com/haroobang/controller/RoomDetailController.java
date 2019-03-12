@@ -116,6 +116,10 @@ public class RoomDetailController {
 
 		AccountVO member = (AccountVO) session.getAttribute("login");
 		int memberNo = member.getMemberNo();
+		
+		if(reservationVo.getRequest().length() == 0) {
+			reservationVo.setRequest("요청사항없음");
+		}
 
 		String StartDate = reservationVo.getStartDate();
 		LocalDate startDate = LocalDate.parse(StartDate);
