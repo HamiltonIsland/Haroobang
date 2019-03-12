@@ -121,14 +121,26 @@
 						
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+							<c:choose>
+								<c:when test="${ not empty myroom.roomVO.roomAttachList }">
+									<c:forEach var="attach" items="${ myroom.roomVO.roomAttachList }">
+										<img id="img" src="/haroobang/resources/upload/${ attach.savedFileName }" alt="" 
+										onerror="this.src = '/haroobang/resources/img/product/p1.jpg'"/>
+									</c:forEach>
+								</c:when>
+							<c:otherwise>
+								<img id="img" class="img-fluid" src="/haroobang/resources/img/product/p1.jpg"/>
+							</c:otherwise>
+							</c:choose>
 								<div class="product-details">
 								<a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }">
 									<h6> ${ myroom.roomVO.roomName }</h6>
 								</a>
 									<div class="price">
 										<h6>${ myroom.totalPrice } 원</h6>
-										<h6>${ myroom.regDate }</h6>
+										<br>
+										<h6>${ myroom.startDate } ~ ${ myroom.endDate }</h6>
+										
 									</div>
 									
 								</div>
