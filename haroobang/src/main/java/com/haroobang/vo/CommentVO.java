@@ -10,8 +10,6 @@ public class CommentVO {
 	private int reportCount;
 	private String regDate;
 	private boolean restricted;
-	private String nickName;
-	private AccountVO member;
 	
 	public int getCommentNo() {
 		return commentNo;
@@ -60,18 +58,6 @@ public class CommentVO {
 	}
 	public void setRestricted(boolean restricted) {
 		this.restricted = restricted;
-	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	public AccountVO getMember() {
-		return member;
-	}
-	public void setMember(AccountVO member) {
-		this.member = member;
 	}
 	
 
