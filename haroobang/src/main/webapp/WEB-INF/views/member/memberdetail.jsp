@@ -73,8 +73,8 @@
 	 <section class="login_box_area section_gap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6" style="border-radius: 700px;">
-					<div class="login_box_img"style="height:100%; border-radius: 700px;"> 
+				<div class="col-lg-6" style="border-radius: 700px;background: white">
+					<div class="login_box_img"style="height:100%; border-radius: 700px;background: white"> 
 						<img id ="LoadImg" class="img-fluid" style="height:100%; border-radius: 700px;" src="/haroobang/resources/upload/${members.savedFileName }" alt="">						
 					</div> 
 				</div>
@@ -101,7 +101,7 @@
 								<strong>번호 </strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.phone }
 							</div>
 							<div class="button-group-area mt-40" style="margin:auto; margin-top:50px;">
-								 <a href="javascript:history.go(-1)" class="genric-btn primary circle arrow">목록보기</a>
+								 <a href="/haroobang/member/memberlist.action?" class="genric-btn primary circle arrow">목록보기</a>
 							</div>	
 						</form>
 					</div>
