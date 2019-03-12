@@ -85,7 +85,7 @@ $(function(){
 		if(${login != null}){
 			$.ajax({
 				url:"/haroobang/room/commentReport.action",
-				data:{"content":content,"commentNo":commentNo,"memberNo":${login.memberNo}},
+				data:{"content":content,"commentNo":commentNo},
 				method:"get",
 				success:function(data,status,xhr){
 					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
@@ -269,7 +269,9 @@ $(function(){
 							</div>
 							<div class="review_list">
 								<div class="review_item" style="width: 1050px">
-								<c:forEach var="comment" items="${room.roomCommentList }">
+								<c:choose>
+								<c:when test="${room.roomCommentList != null }">
+							<c:forEach var="comment" items="${room.roomCommentList }">
 								<div class="media">
 										<div class="d-flex">
 										<hr>
@@ -288,7 +290,7 @@ $(function(){
 											<h4>${comment.nickName }</h4>
 											
 											<c:forEach var="y" begin="1" end="${comment.rates}">
-											<a href="#"><i class="fa fa-star"></i></a>
+											<i class="fa fa-star"></i>
 											</c:forEach>
 											<%-- <c:forEach var="z" begin="1" end="${5 - comment.rates}">
 											<i class="fa fa-star"></i>	
@@ -305,6 +307,15 @@ $(function(){
 									
 									<br>
 								</c:forEach>
+								</c:when>
+								
+								<c:otherwise>
+								<div style="border:solid 1px">
+								
+								</div>
+								</c:otherwise>
+								</c:choose>
+						
 									
 								</div>
 							</div>

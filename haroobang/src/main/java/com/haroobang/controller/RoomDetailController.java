@@ -147,8 +147,10 @@ public class RoomDetailController {
 	
 	@RequestMapping(value="commentReport", method=RequestMethod.GET)
 	@ResponseBody
-	public String commentReport(int memberNo, int commentNo, String content) {
+	public String commentReport(HttpSession session, int commentNo, String content) {
 		
+		AccountVO member = (AccountVO) session.getAttribute("login");
+		int memberNo = member.getMemberNo();
 		roomDetailService.commentReport(commentNo, content, memberNo);
 		return "success";
 	}
