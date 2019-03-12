@@ -137,7 +137,19 @@
       <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
    	</bean>
 
-
+	<!-- ReviewReport -->
+	 	<bean id="reviewReportService" class="com.haroobang.service.ReviewReportServiceImpl">
+      <property name="reviewReportDao" ref="reviewReportDao" />
+   	</bean>
+   
+ 	<bean id="reviewReportDao" class="com.haroobang.dao.OracleReviewReportDao">
+      <property name="reviewReportMapper" ref="reviewReportMapper"/>
+   	</bean>
+   
+   	<bean id="reviewReportMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+      <property name="mapperInterface" value="com.haroobang.mapper.ReviewReportMapper" />
+      <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+   	</bean>
 </beans>
 
 
