@@ -15,11 +15,23 @@
 <title>roomDetail</title>
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c407abd2e5f1baaf84ff1d382b79c8e4"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
 	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new daum.maps.LatLng(37.4954031, 126.88736900000004), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
 	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
+	
 	
 	$('#idCheck').click(function(e){
 		alert("로그인페이지로 이동합니다.")
@@ -79,20 +91,43 @@ $(function(){
 		}else{	}
 	});
 	
-	$("#report").click(function(e){
-		var content = prompt("신고하는 사유를 적어 주세요");
+	//$(".reply_btn").['#report'].click(function(e){
+	//$('a[id ^=report]').click(function(e){
+	$('.reply_btn').click(function(e){
+	
+		if(${login == null}){
+			alert("로그인페이지로 이동합니다.")
+			location.href = "/haroobang/account/login.action"
+		}else{
+			
+		
+		var content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
 		var commentNo = $(this).attr('commentNo');
-		if(${login != null}){
+		
+		if(content != null){
+			while(content == ""){
+				alert("내용을 입력해주세요.")
+				content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+			}
 			$.ajax({
 				url:"/haroobang/room/commentReport.action",
 				data:{"content":content,"commentNo":commentNo},
 				method:"get",
 				success:function(data,status,xhr){
+					if(data == "success"){
 					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
+					}else{
+						alert("이미 신고가 접수되었습니다.")
+					}
 				}	
 			});
 		}
-		 
+			
+			/* 	alert("이유를 적어주세요");
+				content=prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+			 */
+		
+		}
 	});
 });
 			
@@ -205,6 +240,7 @@ $(function(){
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
+					<div style="height:500px;width:1050px" id="map"></div>
 					<p style="white-space: pre">${room.roomProfile}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel"
@@ -270,7 +306,8 @@ $(function(){
 							<div class="review_list">
 								<div class="review_item" style="width: 1050px">
 								<c:choose>
-								<c:when test="${room.roomCommentList != null }">
+								<c:when test="${room.roomCommentList.size()>0 }">
+								<hr>
 							<c:forEach var="comment" items="${room.roomCommentList }">
 								<div class="media">
 										<div class="d-flex">
@@ -300,7 +337,7 @@ $(function(){
 									</div>
 								
 									<div style="display: inline;width: 500px">
-									<p>${comment.content }</p>
+									<p style="white-space: pre">${comment.content }</p>
 										<a class="reply_btn" href="javascript:" id="report" commentNo="${comment.commentNo }" style="color:gray;font-size: 10px;">신고하기</a>
 										<hr>
 									</div>
@@ -308,10 +345,10 @@ $(function(){
 									<br>
 								</c:forEach>
 								</c:when>
-								
 								<c:otherwise>
-								<div style="border:solid 1px">
-								
+								<hr>
+								<div class="review_item">
+									<p>&nbsp;&nbsp;&nbsp;등록된 후기가 없습니다.</p>
 								</div>
 								</c:otherwise>
 								</c:choose>

@@ -56,4 +56,10 @@ public class RoomListDaoImpl implements RoomListDao{
 		int count = roomListMapper.selectRoomCount();
 		return count;
 	}
+
+	@Override
+	public List<RoomVO> searchRoomListDao(RoomVO vo) {
+		List<RoomVO> list = roomListMapper.searchRoomList(vo);
+		return list;
+	}
 }

@@ -16,4 +16,6 @@ public interface RoomListService {
 
 	int findRoomCount();
 
+	List<RoomVO> searchRoomListService(RoomVO vo);
+
 }

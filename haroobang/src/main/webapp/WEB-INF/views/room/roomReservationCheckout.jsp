@@ -23,14 +23,20 @@
 
 $(function(){
 	
-	if("${result}"=="fail"){
+/* 	if("${result}"=="fail"){
 		alert("선택하신 날짜에는 예약이 불가합니다. 이전페이지로 이동합니다.")
 		 window.history.back();
-	}
+	} */
 	
 	$('#pay').click(function(e){
-		$("#form").submit()
+		if($("#agreement").checked = true){
+			$("#form").submit()
+		}else{
+			alert("결제정보 동의에 체크해 주세요")
+		}
+	
 	})
+	
 })
 
 </script>
@@ -108,14 +114,16 @@ $(function(){
 									<li><a href="#">&#8361; 50000 /1박 <span class="middle">x
 												${nights }</span> <span class="last">&#8361; ${nights*50000 }</span></a></li>
 									<li><a href="#">쿠폰 사용 내역<span>등록된 쿠폰이 없습니다</span></a></li>
+									<hr>
 									
 								</ul>
 								<ul class="list list_2">
-									<li>Total <span>&#8361; ${nights*50000 }</span></li>
+									<li>Total <span style="float:right">&#8361; ${nights*50000 }</span></li>
+									<hr>
 								</ul>
 								<div class="payment_item">
 									<div class="radion_btn">
-										<input type="radio" id="f-option5" name="payment" value="카드결제">
+										<input type="radio" id="f-option5" name="payment" value="카드결제" checked="checked">
 										<label for="f-option5" id="card">카드 결제</label>
 										<div class="check"></div>
 									</div>
@@ -131,7 +139,7 @@ $(function(){
 									<p><img style="height:320px;width:250px" src="/haroobang/resources/img/cashPayment.jpg"/></p>
 								</div>
 								<div class="creat_account">
-									<input type="checkbox" id="f-option4" name="selector">
+									<input type="checkbox" id="f-option4" name="selector" id="agreement">
 									<label for="f-option4">위의 결제정보에 동의합니다.</label> <a
 										href="#">terms & conditions*</a>
 								</div>

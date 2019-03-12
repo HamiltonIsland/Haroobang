@@ -19,4 +19,6 @@ public interface RoomListDao {
 
 	int selectRoomCount();
 
+	List<RoomVO> searchRoomListDao(RoomVO vo);
+
 }

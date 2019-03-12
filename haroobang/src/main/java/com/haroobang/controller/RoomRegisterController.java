@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -52,12 +53,13 @@ public class RoomRegisterController {
 
 	// 숙소 등록하기
 	@RequestMapping(value = "/roomRegister.action", method = RequestMethod.POST)
-	public String roomRegisterInsert(RoomAttachVO vos, RoomVO vo, HttpSession session,
-			MultipartHttpServletRequest req) {
-		if (session.getAttribute("login") == null) {
-			return "redirect:/account/login.action";
+	@ResponseBody
+	public int roomRegisterInsert(RoomAttachVO vos, RoomVO vo, HttpSession session,
+			MultipartHttpServletRequest req,Model model) {
+		
+		if(vo.getRoomProfile().equals("")) {
+			vo.setRoomProfile("안녕하세요 "+vo.getRoomName()+" 입니다");
 		}
-
 		roomRegisterService.roomRegisterService(vo);
 		
 		int roomNo = 0;
@@ -85,7 +87,7 @@ public class RoomRegisterController {
 		}
 
 		
-		return "redirect:/room/roomRegisterConfig.action?roomNo="+roomNo;
+		return roomNo;
 	}
 	
 	// 숙소등록확인 페이지 보여주기

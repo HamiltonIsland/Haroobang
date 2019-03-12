@@ -18,7 +18,7 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>Karma Shop</title>
+<title>숙소 등록</title>
 
 <!--
             CSS
@@ -82,7 +82,7 @@
 					<form class="row contact_form" action="roomRegister.action"
 						method="post" enctype="multipart/form-data">
 						<div class="col-md-6">
-							<input type="hidden" name="memberNo" value="${login.memberNo}">
+							<input type="hidden" id="memberNo"name="memberNo" value="${login.memberNo}">
 							<input type="hidden" id="order_start_lon" name="longitude">
 							<input type="hidden" id="order_start_lat" name="latitude">
 							<div class="form-group">
@@ -92,12 +92,12 @@
 									onblur="this.placeholder = '숙소 이름'">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="price"
+								<input type="text" class="form-control" id="price"name="price"
 									placeholder="가격" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '가격'">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="maximum"
+								<input type="text" class="form-control" id="maximum"name="maximum"
 									placeholder="최대인원" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '최대인원'">
 							</div>
@@ -109,31 +109,69 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="file" multiple="multiple"
+								<input type="file" id="file"multiple="multiple"
 									class="form-control-file border" name="file" placeholder="숙소사진"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '숙소사진'">
 							</div>
 
 							<div class="form-group">
-								
-									<textarea id="test"class="form-control" name="roomProfile"
-										placeholder="Enter Message" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Enter Message'"></textarea>
-								
+
+								<textarea id="test" class="form-control" name="roomProfile"
+									placeholder="Enter Message" onfocus="this.placeholder = ''"
+									onblur="this.placeholder = 'Enter Message'"></textarea>
+
 							</div>
 						</div>
+						
+					</form>
 						<div class="col-md-12 text-right">
-							<button type="submit" value="submit"
+							<button type="submit" id="submitbtn"value="submit"
 								class="genric-btn primary radius">숙소 등록</button>
 						</div>
-					</form>
 
 				</div>
 			</div>
 		</div>
 	</section>
 	<!--================Contact Area =================-->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#submitbtn").on("click",function(e){
+	        var formData = new FormData();
+	        formData.append("memberNo", $("#memberNo").val())
+	        formData.append("longitude", $("#order_start_lon").val())
+	        formData.append("latitude", $("#order_start_lat").val())
+	        formData.append("roomName", $("#roomName").val())
+	        formData.append("roomProfile", $("#test").val())
+	        formData.append("maximum", $("#maximum").val())
+	        formData.append("memberNo", $("#memberNo").val())
+	        formData.append("address", $("#address").val())
+	        formData.append("price", $("#price").val())
+	        var ins = document.getElementById('file').files.length;
+            for (var x = 0; x < ins; x++) {
+                formData.append("file", document.getElementById('file').files[x]);
+            }
+	        $.ajax({
+	            url: 'roomRegister.action',
+	            processData: false,
+	            contentType: false,
+	            data: formData,
+	            type: 'POST',
+	            success: function(data,status,xhr){
+	            	location.href="roomRegisterConfig.action?roomNo="+data;
+	            },
+	            error:function(xhr,status,err){
+	            	alert("입력사항을 확인해주세요.")
+	            }
+	           });
+	
+			})
+	
+		});
+	</script>
+
 
 	<jsp:include page="../include/footer.jsp" />
 

@@ -20,6 +20,8 @@ public class RoomVO {
 	private List<RoomAttachVO> roomAttachList;
 	private List<CommentVO> roomCommentList;
 	private float averageRates;
+	private String checkIn;
+	private String checkOut;
 	
 	public int getRoomNo() {
 		return roomNo;
@@ -116,6 +118,18 @@ public class RoomVO {
 	}
 	public void setAverageRates(float averageRates) {
 		this.averageRates = averageRates;
+	}
+	public String getCheckIn() {
+		return checkIn;
+	}
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+	public String getCheckOut() {
+		return checkOut;
+	}
+	public void setCheckOut(String checkOut) {
+		this.checkOut = checkOut;
 	}
 
 

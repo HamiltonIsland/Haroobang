@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 	function LoadImg(value) {
@@ -71,37 +73,40 @@
 	 <section class="login_box_area section_gap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="login_box_img"style="height:100%">
-						<img id ="LoadImg" class="img-fluid" style="height:100%" src="/haroobang/resources/upload/${members.savedFileName }" alt="">						
-					</div>
+				<div class="col-lg-6" style="border-radius: 700px;background: white">
+					<div class="login_box_img"style="height:100%; border-radius: 700px;background: white"> 
+						<img id ="LoadImg" class="img-fluid" style="height:100%; border-radius: 700px;" src="/haroobang/resources/upload/${members.savedFileName }" alt="">						
+					</div> 
 				</div>
 				<div class="col-lg-6"> 
-					<div class="login_form_inner" style="margin-bottom : 100px">
+					<div class="login_form_inner" >
 						<form class="row login_form">
 							<input type="hidden" name="memberNo" value="${members.memberNo }">
 
-							<div class="col-md-12 form-group" style="text-align : left">
+							<div class="col-md-12 form-group" style="text-align : left; margin-top:50px">
 								 <i class="icon-thumbs-up"> </i>
 								<strong>이름</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.name }
 								</div>
 								
 							<div class="col-md-12 form-group" style="text-align : left">
 							<i class="icon-envelope-alt"></i>
-								<strong>이메일</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; ${members.email }
+								<strong>이메일</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp; ${members.email }
 							</div>
 							<div class="col-md-12 form-group" style="text-align : left">
 							<i class="icon-map-marker"></i>
-								<strong>가입일</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.regDate }
+								<strong>가입일</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; ${members.regDate }
 							</div>
 							<div class="col-md-12 form-group" style="text-align : left">
 							<i class="icon-phone"></i>
 								<strong>번호 </strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.phone }
 							</div>
-
+							<div class="button-group-area mt-40" style="margin:auto; margin-top:50px;">
+								 <a href="/haroobang/member/memberlist.action?" class="genric-btn primary circle arrow">목록보기</a>
+							</div>	
 						</form>
 					</div>
 				</div>
+		
 			</div>
 		</div>
 	</section> 
