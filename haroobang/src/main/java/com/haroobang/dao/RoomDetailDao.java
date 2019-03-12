@@ -23,6 +23,6 @@ public interface RoomDetailDao {
 
 	void roomDelete(int roomNo);
 
-	void commentReport(int commentNo, String content, int memberNo);
+	String commentReport(int commentNo, String content, int memberNo);
 
 }

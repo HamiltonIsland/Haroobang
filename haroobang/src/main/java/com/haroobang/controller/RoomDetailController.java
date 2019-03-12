@@ -155,7 +155,11 @@ public class RoomDetailController {
 		
 		AccountVO member = (AccountVO) session.getAttribute("login");
 		int memberNo = member.getMemberNo();
-		roomDetailService.commentReport(commentNo, content, memberNo);
+		String result =roomDetailService.commentReport(commentNo, content, memberNo);
+		if(result =="fail") {
+			return "fail";
+		}else {
 		return "success";
+		}
 	}
 }

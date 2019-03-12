@@ -93,12 +93,20 @@ $(function(){
 		var commentNo = $(this).attr('commentNo');
 		
 		if(content != null){
+			while(content == ""){
+				alert("내용을 입력해주세요.")
+				content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+			}
 			$.ajax({
 				url:"/haroobang/room/commentReport.action",
 				data:{"content":content,"commentNo":commentNo},
 				method:"get",
 				success:function(data,status,xhr){
+					if(data == "success"){
 					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
+					}else{
+						alert("이미 신고가 접수되었습니다.")
+					}
 				}	
 			});
 		}
@@ -220,6 +228,7 @@ $(function(){
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
+					<div style="border:solid 1px;height:200px;width:500px"></div>
 					<p style="white-space: pre">${room.roomProfile}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel"

@@ -143,14 +143,23 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public void commentReport(int commentNo, String content, int memberNo) {
+	public String commentReport(int commentNo, String content, int memberNo) {
 		
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("commentNo", commentNo);
-		params.put("content",content);
-		params.put("memberNo",memberNo);
+		String result = "success";
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("commentNo", commentNo);
+			params.put("content",content);
+			params.put("memberNo",memberNo);
+			
+			roomDetailMapper.commentReport(params);
+			
+		} catch (Exception e) {
+			result = "fail";
+		}
 		
-		roomDetailMapper.commentReport(params);
+		return result;
+	
 		
 	}
 }
