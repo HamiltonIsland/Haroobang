@@ -242,7 +242,7 @@ $(function(){
 								<a href="/haroobang/account/login.action" id="idCheck">
 								</c:when>
 								<c:otherwise>
-								<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${member.memberNo}&loginMemberNo=${login.memberNo}">
+								<a href="/haroobang/message/messageRoom.action?memberNo=${login.memberNo}">
 								</c:otherwise>
 								</c:choose>
 								<img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
