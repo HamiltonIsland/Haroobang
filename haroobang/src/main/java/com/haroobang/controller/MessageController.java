@@ -27,13 +27,16 @@ public class MessageController {
 	
 	//messageRoom창 보여주기
 	@RequestMapping (value = "/messageRoom.action", method = RequestMethod.GET)
-	public String messageRoomView(HttpSession session,Model model) {
+	public String messageRoomView(HttpSession session, Model model) {
+
 		AccountVO logins = (AccountVO)session.getAttribute("login");
 		if(logins==null)
 		{
 			return "redirect:/account/login.action";
 		}
 		int memberNo = logins.getMemberNo();
+
+
 		List<MessageRoomVO> list =  messageService.getMessageRoomListService(memberNo);
 		List<MessagesVO> lists = null;
 		for (MessageRoomVO vo : list) {
