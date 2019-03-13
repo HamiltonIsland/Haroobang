@@ -38,6 +38,7 @@ public class CommentController {
 		model.addAttribute("reservationNo", reservationNo);
 		model.addAttribute("roomNo", roomNo);
 		model.addAttribute("memberNo", memberNo);
+		
 		return "mypage/commentRegister";
 	}
 	
