@@ -277,15 +277,15 @@ $(function(){
 
 								</c:otherwise>
 								</c:choose>
-								<img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt="">
+								<img src="/haroobang/resources/upload/${room.memberSavedFileName }" class="rounded-circle" style="height: 60px;width:60px" alt="">
 								<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-envelope-alt"></i>
-								<br>&nbsp;채팅하기</a>
+								<br>채팅하기</a>
 								
 								</div>
 
 								<div class="media-body">
 								<div style=" display: inline-block;">
-									<h4>${member.nickname} &nbsp;님</h4>(${member.regDate.substring(0,10)}등록)
+									<h4>${member.nickname} &nbsp;님</h4>
 								</div>	
 								<hr>
 									<p>${member.profile}</p>
