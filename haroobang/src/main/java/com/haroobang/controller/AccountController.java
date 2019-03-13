@@ -67,9 +67,10 @@ public class AccountController {
 
 		} catch (Exception ex) {
 		}
-	}
+	}else {
 		vo.setSavedFileName("default.jpg");
 		vo.setUserFileName("default.jpg");
+	}
 		accountService.insertAccountService(vo);
 		
 		return "account/login";
