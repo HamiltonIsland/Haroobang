@@ -57,7 +57,8 @@ public class MessageController {
 	@RequestMapping (value = "/messageRoomBoxes.action", method = RequestMethod.GET)
 	public String messageRoomBoxsView(HttpSession session,int loginMemberNo,int memberNo,Model model) {
 		
-		if(session.getAttribute("login")==null)
+		AccountVO logins = (AccountVO)session.getAttribute("login");
+		if(logins==null)
 		{
 			return "redirect:/account/login.action";
 		}
@@ -74,6 +75,13 @@ public class MessageController {
 			vo.setMessagesList(listss);
 		}
 		
+
+		//메시지 작성하면 개수세기
+		
+		int message = messageService.countMessageService(logins.getMemberNo());
+		session.removeAttribute("messageCount");
+		session.setAttribute("messageCount",message);
+		
 		model.addAttribute("messageRoomList",lists);
 		model.addAttribute("messageList",list);
 		model.addAttribute("messageRoomNo",messageRoomNo);
@@ -84,10 +92,15 @@ public class MessageController {
 	//message insert
 	@RequestMapping (value = "/writeMessage.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String writeMessage(MessagesVO vo, Model model) {
+	public String writeMessage(MessagesVO vo, Model model,HttpSession session) {		
 		
+		AccountVO logins = (AccountVO)session.getAttribute("login");
+		int message = messageService.countMessageService(logins.getMemberNo());
+		session.removeAttribute("messageCount");
+		session.setAttribute("messageCount",message);
 		
 		messageService.insertMessagesService(vo);
+		
 		return "success";
 	}	
 		

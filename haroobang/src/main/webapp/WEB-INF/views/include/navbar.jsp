@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header class="header_area sticky-header">
 	<div class="main_menu">
@@ -83,11 +85,13 @@
 					<c:if test="${not empty login }">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a
-								href="/haroobang/account/profile.action"><span
-									class="lnr lnr-user"></span></a></li>
-							<li class="nav-item"><a
 								href="/haroobang/message/messageRoom.action"><span
-									class="lnr lnr-bubble"></span></a></li>
+									class="lnr lnr-bubble" ></span><span class="badge badge-pill badge-danger" style="height:15px;margin:0 auto;line-height: 10px;color:white">${messageCount}</span></a></li>
+							<li class="nav-item"><a
+								href="/haroobang/account/profile.action"><span>								
+								<img src="/haroobang/resources/upload/${login.savedFileName }" class="rounded-circle" style="height: 30px;width:30px" alt="">
+								</span></a></li>
+							
 						</ul>
 					</c:if>
 					<!-- <ul class="nav navbar-nav navbar-right">

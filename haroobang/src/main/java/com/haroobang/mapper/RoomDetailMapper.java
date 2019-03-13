@@ -35,6 +35,10 @@ public interface RoomDetailMapper {
 
 	void commentReport(HashMap<String, Object> params);
 
+	void addReportCount(int commentNo);
+
+	String findMemberSavedFileName(int memberNo);
+
 	
 
 }

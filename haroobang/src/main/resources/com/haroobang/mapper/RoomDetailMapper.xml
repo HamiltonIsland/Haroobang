@@ -56,4 +56,11 @@
 		value (#{commentNo}, #{content}, #{memberNo})
 	</insert>
 	
+	<update id="addReportCount" parameterType="int">
+		update comment set reportCount = reportCount+1 where commentNo = #{commentNo}
+	</update>
+	
+	<select id="findMemberSavedFileName" parameterType="int" resultType="String">
+		select savedFileName from member where memberNo=#{memberNo}
+	</select>
 </mapper>

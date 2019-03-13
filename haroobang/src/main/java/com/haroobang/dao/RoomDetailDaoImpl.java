@@ -46,6 +46,9 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	public RoomVO findRoomDetail(int roomNo) {
 		
 		RoomVO room = roomDetailMapper.findRoomDetail(roomNo);
+		int memberNo = room.getMemberNo();
+		room.setMemberSavedFileName(roomDetailMapper.findMemberSavedFileName(memberNo));
+		
 		List<RoomAttachVO> roomAttachList = roomDetailMapper.findRoomAttach(roomNo);
 		List<CommentVO> commentList = roomDetailMapper.findCommentList(roomNo);
 		for(int i =0;i<commentList.size();i++) {
@@ -153,6 +156,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 			params.put("memberNo",memberNo);
 			
 			roomDetailMapper.commentReport(params);
+			roomDetailMapper.addReportCount(commentNo);
 			
 		} catch (Exception e) {
 			result = "fail";

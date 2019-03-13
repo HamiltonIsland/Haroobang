@@ -28,23 +28,27 @@ public class CommentController {
 	
 	//후기등록 페이지 보여주기
 	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.GET)
-	public String commentRegisterForm(HttpSession session, HttpServletRequest req) {
+	public String commentRegisterForm(@RequestParam("reservationno")int reservationNo, @RequestParam("roomno")int roomNo, HttpSession session, HttpServletRequest req, Model model) {
 		if (session.getAttribute("login") == null) {
-			return "/account/login.action";
+			return "redirect:/login.action";
 		}
+		AccountVO member = (AccountVO) session.getAttribute("login");
+		int memberNo = member.getMemberNo();
+		
+		model.addAttribute("reservationNo", reservationNo);
+		model.addAttribute("roomNo", roomNo);
+		model.addAttribute("memberNo", memberNo);
 		
 		return "mypage/commentRegister";
 	}
 	
 	//후기등록 제출
 	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.POST)
-	public String commentRegister(HttpSession session, HttpServletRequest req, CommentVO comment, Model model) {
+	public String commentRegister(HttpSession session, HttpServletRequest req, CommentVO comment) {
 		
 		commentService.writeComment(comment);
 		
-		model.addAttribute("comment", comment);
-		
-		return "redirect:/haroobang/home.action";
+		return "redirect:lastReservationList.action?memberno=" + comment.getMemberNo();
 	}
 	
 	

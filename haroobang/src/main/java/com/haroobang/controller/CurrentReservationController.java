@@ -30,9 +30,15 @@ public class CurrentReservationController {
 	//이전 예약 리스트 페이지 보여주기
 	@RequestMapping(value = "/currentReservationList.action", method = RequestMethod.GET)
 	public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model, HttpSession session) {
-		
+		if (session.getAttribute("login") == null) {
+			return "/account/login.action";
+		} else {
+			List<ReservationVO> currents = currentReservationService.findMyCurrentReservation(memberNo);
+			
+			model.addAttribute("currents", currents);
+			
 			return "mypage/currentReservation";
-		
+		}
 	}
 	
 	/*//예약 디테일로 가기

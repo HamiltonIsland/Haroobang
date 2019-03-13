@@ -12,7 +12,14 @@ public class CommentVO {
 	private boolean restricted;
 	private String nickName;
 	private AccountVO member;
+	private int reservationNo;
 	
+	public int getReservationNo() {
+		return reservationNo;
+	}
+	public void setReservationNo(int reservationNo) {
+		this.reservationNo = reservationNo;
+	}
 	public String getNickName() {
 		return nickName;
 	}

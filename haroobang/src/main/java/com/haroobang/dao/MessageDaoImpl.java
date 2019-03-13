@@ -76,6 +76,12 @@ public class MessageDaoImpl implements MessageDao{
 		return messageRoomNo;
 	}
 
+	@Override
+	public int countMessageDao(int memberNo) {
+		int message = messageMapper.countMessage(memberNo);
+		return message;
+	}
+
 	
 	
 

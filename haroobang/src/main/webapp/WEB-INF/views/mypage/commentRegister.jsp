@@ -34,9 +34,20 @@ $(function(){
 	  $(this).addClass('on').prevAll('span').addClass('on');
 	  
 	  var rating = $('.starR.on').length;		//별점 숫자를 저장
-	  $('#rate').html(rating);
+	  $('#rate').val(rating);
 	  return false;
 	});
+	
+	$('#submit').click(function(){
+		//alert($('#rate').val());
+		if($('#rate').val()){
+			$('#contactForm').submit();
+		} else {
+			alert('별점을 등록해주세요!');
+		}
+		
+	});
+	
 })
 </script>
 
@@ -108,7 +119,7 @@ $(function(){
   										<span class="starR">별4</span>
   										<span class="starR">별5</span>
   									</div>
-  									<input type="text" id="rate" name="rates">
+  									<input type="hidden" id="rate" name="rates">
 									</div>
 									</div>
 									<div class="col-md-12">
@@ -120,22 +131,22 @@ $(function(){
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<p>닉네임</p>
-											<input type="text" readonly="readonly" class="form-control" value="${ comment.reservationNo }"
+											
+											<input type="hidden" readonly="readonly" class="form-control" value="${ reservationNo }"
 												id="reservationNo" name="reservationNo">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<p>닉네임</p>
-											<input type="text" readonly="readonly" class="form-control" value="${ comment.roomNo }"
+											
+											<input type="hidden" readonly="readonly" class="form-control" value="${ roomNo }"
 												id="roomNo" name="roomNo">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<p>닉네임</p>
-											<input type="text" readonly="readonly" class="form-control" value="${ comment.memberNo }"
+											
+											<input type="hidden" readonly="readonly" class="form-control" value="${login.memberNo }"
 												id="memberNo" name="memberNo">
 										</div>
 									</div>
@@ -147,8 +158,8 @@ $(function(){
 										</div>
 									</div>
 									<div class="col-md-12 text-right">
-										<button type="submit" value="submit" class="primary-btn">Submit
-											Now</button>
+										<a href="javascript:" class="primary-btn" id="submit">Submit
+											Now</a>
 									</div>
 								</form>
 							</div>
