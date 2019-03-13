@@ -10,6 +10,8 @@ public class CommentVO {
 	private int reportCount;
 	private String regDate;
 	private boolean restricted;
+	private String nickName;
+	private AccountVO member;
 	
 	public int getCommentNo() {
 		return commentNo;
