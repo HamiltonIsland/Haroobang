@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.haroobang.common.Util;
 import com.haroobang.service.AccountService;
+import com.haroobang.service.MessageService;
 import com.haroobang.vo.AccountVO;
 
 @Controller
@@ -26,6 +27,10 @@ public class AccountController {
 	@Autowired
 	@Qualifier("AccountService")
 	private AccountService accountService;
+	
+	@Autowired
+	@Qualifier("MessageService")
+	private MessageService messageService;
 	
 	//login창 보여주기
 	@RequestMapping (value = "/login.action", method = RequestMethod.GET)
@@ -47,7 +52,14 @@ public class AccountController {
 		if(login == null || login.size()==0) {
 			return "account/login"; 
 		}
-		session.setAttribute("login", login.get(0));		
+		
+		session.setAttribute("login", login.get(0));
+		
+		AccountVO logins = (AccountVO)session.getAttribute("login");
+		if(login!=null){
+			int message = messageService.countMessageService(logins.getMemberNo());
+			session.setAttribute("messageCount",message);
+		}
 		return "redirect:/home.action";
 	}
 	

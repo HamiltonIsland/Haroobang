@@ -21,4 +21,10 @@
 	<insert id="insertMessageRoom" parameterType="hashmap">
 		insert into messageRoom(memberNo,memberNo2) values(#{memberNo},#{loginMemberNo})
 	</insert>
+	<select id="countMessage" parameterType="int" resultType="int">
+		select count(messageNo) 
+		from messages 
+		where regDate <![CDATA[>]]> SUBDATE(NOW(), INTERVAL 24 HOUR) and 
+		memberNo in (select memberNo from messageRoom where memberNo2=#{memberNo} union select memberNo2 from messageRoom where memberNo=#{memberNo} );
+	</select>
 </mapper>

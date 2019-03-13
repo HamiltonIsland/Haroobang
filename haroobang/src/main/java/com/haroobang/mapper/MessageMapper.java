@@ -23,5 +23,7 @@ public interface MessageMapper {
 
 	void insertMessageRoom(HashMap<String, Object> params);
 
+	int countMessage(int memberNo);
+
 
 }
