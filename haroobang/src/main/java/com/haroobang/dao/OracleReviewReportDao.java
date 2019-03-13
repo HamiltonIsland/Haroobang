@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.haroobang.mapper.ReviewReportMapper;
 import com.haroobang.vo.CommentVO;
+import com.haroobang.vo.ReportVO;
 
 public class OracleReviewReportDao implements ReviewReportDao {
 
@@ -14,8 +15,12 @@ public class OracleReviewReportDao implements ReviewReportDao {
 	}
 
 	@Override
-	public List<CommentVO> selectAllReviewReports() {
-		List<CommentVO> reports = reviewReportMapper.selectAllReviewReports();
+	public List<ReportVO> selectAllReviewReports() {
+		List<ReportVO> reports = reviewReportMapper.selectAllReviewReports();
+		for(int i =0;i<reports.size();i++) {
+			CommentVO commentVo = reviewReportMapper.findCommentVo(reports.get(i).getCommentNo());
+			reports.get(i).setCommentVO(commentVo);
+		}
 		return reports;
 	}
 

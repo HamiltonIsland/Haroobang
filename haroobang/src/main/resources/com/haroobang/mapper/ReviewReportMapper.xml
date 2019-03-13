@@ -4,22 +4,36 @@
 
 <mapper namespace="com.haroobang.mapper.ReviewReportMapper">
 
-	<resultMap type="CommentVO" id="reviewReportMap">
+	<resultMap type="CommentVO" id="CommentVO">
 		<id column="commentNo" property="commentNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑 -->
+		<result column="reportCount" property="reportCount" />
+		<result column="restricted" property="restricted" />
 		<result column="content" property="content" />
+		<result column="nickName" property="nickName" />
+		<result column="nickName" property="nickName" />
 		
+	</resultMap>
 	
-
+	<resultMap type="ReportVO" id="reviewReportMap">
+		<result column="commentNo" property="commentNo" />
+		<result column="memberNo" property="memberNo" />
+		<result column="regDate" property="regDate" />
+		<result column="content" property="content" />
 	</resultMap>
 
-	<select id="selectAllReviewReports" parameterType="int"
-		resultMap="reviewReportMap">
-		select * from comment
+	<select id="selectAllReviewReports" resultMap="reviewReportMap">
+		select *
+		from report
 	</select>
 
 	<select id="selectAllReviewReportCount" parameterType="int"
 		resultType="int">
 		SELECT COUNT(*) FROM comment
+	</select>
+	
+	<select id="findCommentVo" parameterType="int" resultType="CommentVO">
+		select * from comment 
+		where commentNo = #{commentNo} 
 	</select>
 
 </mapper>

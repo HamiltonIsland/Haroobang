@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.haroobang.service.ReviewReportService;
-import com.haroobang.vo.CommentVO;
+import com.haroobang.vo.ReportVO;
 
 @Controller
 @RequestMapping("/room")
@@ -23,12 +23,13 @@ public class ReviewReportController {
 	@RequestMapping(value="/reviewReport.action", method=RequestMethod.GET)
 	public String reviewReportForm(Model model) {
 		
-		List<CommentVO> reports = reviewReportService.findAllReviewReports();
+		List<ReportVO> reports = reviewReportService.findAllReviewReports();
 		int reportCount = reviewReportService.findAllReviewReportCount();
 		
 		model.addAttribute("reports", reports);
 		model.addAttribute("reportcountno", reportCount);
 		
+				
 		return "room/reviewReport";
 	}
 	

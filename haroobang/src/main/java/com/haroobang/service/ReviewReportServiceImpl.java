@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.ReviewReportDao;
-import com.haroobang.vo.CommentVO;
+import com.haroobang.vo.ReportVO;
 
 @Service("ReviewReportService")
 public class ReviewReportServiceImpl implements ReviewReportService{
@@ -17,8 +17,8 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 	}
 
 	@Override
-	public List<CommentVO> findAllReviewReports() {
-		List<CommentVO> reports = reviewReportDao.selectAllReviewReports();
+	public List<ReportVO> findAllReviewReports() {
+		List<ReportVO> reports = reviewReportDao.selectAllReviewReports();
 		
 		return reports;
 	}

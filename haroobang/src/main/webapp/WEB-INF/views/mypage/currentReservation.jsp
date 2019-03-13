@@ -173,10 +173,7 @@
                                         </div>
                                         
                                         <div class="media-body">
-                                        
-											<c:set var="spacebar" value=" " />
-		                
-                                            <p class="searchh">${fn:replace(current.roomVO.roomName, spacebar, "<br>") }</p>
+                                            <p class="searchh" style="overflow: hidden; text-overflow: ellipsis; width: 100px; height: 20px;">${current.roomVO.roomName}</p>
                                         </div>
                                         
                                     </div>
