@@ -15,4 +15,6 @@ public interface MessageDao {
 
 	int getMessageRoomNoDao(int memberNo, int loginMemberNo);
 
+	int countMessageDao(int memberNo);
+
 }

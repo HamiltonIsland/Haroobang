@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -60,8 +61,8 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
 								 class="lnr lnr-arrow-right"></span>내 예약 목록</a>
 							<ul class="collapse show" id="homeClean" data-toggle="collapse" aria-expanded="false" aria-controls="homeClean">
-								<li class="main-nav-list child"><a href="#">현재 예약 목록</a></li>
-								<li class="main-nav-list child"><a href="#" style="color: #ffc107;">이전 예약 목록</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }" style="color: #ffc107;">현재 예약 목록</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">이전 예약 목록</a></li>
 							</ul>
 						</li>
 						
@@ -114,10 +115,111 @@
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
+				<table class="table">
+		       <thead>
+							<tr class="bottom_button">
+								<td></td><td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+								<td></td><td></td><td></td>
+								<td>
+					<div class="button-group-area mt-40">
+                                    	<a href="#" class="genric-btn primary circle">환불</a>
+									</div>
+								</td>
+							</tr>
+							</thead>
+						</table>
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
 						<!-- single product -->
-						<h1>우헤헤헤헤헤</h1>
+						<div class="table-responsive">
+                    <table class="table" id="search">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">Stay</th>
+                                <!-- <th scope="col">Check IN or OUT</th> -->
+                                <th scope="col">Settlement day</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="current" items="${currents}">
+                         
+                        	<tr class="search">
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                        <input type="checkbox">
+                                <a href="/haroobang/room/roomDetail.action?roomNo=${current.roomNo}">
+                                <c:choose>
+									<c:when test="${not empty current.roomAttachList}">
+										 <div class="main-carousel" data-flickity='{ "autoPlay": true }'>
+										<c:forEach var="attach" items="${current.roomAttachList}">
+												  
+												  <img style="width: 50px; height: 50px" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
+									</c:when>
+									<c:otherwise>
+										<img style="width: 50px; height: 50px" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+								</a>
+                                        </div>
+                                        
+                                        <div class="media-body">
+                                        
+											<c:set var="spacebar" value=" " />
+		                
+                                            <p class="searchh">${fn:replace(current.roomVO.roomName, spacebar, "<br>") }</p>
+                                        </div>
+                                        
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <h5>${current.payment}</h5>
+                                </td>
+                                
+                                <td>
+                                    <h5>${current.startDate} ~ ${current.endDate}</h5>
+                                </td>
+                                
+                              <%--   <td>
+                                    <h5>
+                                    <c:choose>
+                                    	<c:when test='${not empty reservation.checkin and reservation.checkin eq true }'>
+                                    		<h5 style="color: blue; text-align: center;">Check-IN</h5>
+                                    		
+                                    		<c:if test='${ reservation.checkin eq 2 }'>
+                                    		<h5 style="color: red;">Check-OUT</h5>
+                                    		</c:if>
+                                    		
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<h5 style="color: red; text-align: center;">NOT Arrive</h5>
+                                    	</c:otherwise>
+                                    </c:choose>
+                                    </h5>
+                                </td> --%>
+                                
+                                <td>
+                                    <h5>${current.regDate}</h5>
+                                </td>
+                                
+                                <td>
+                                    <h5>$${current.totalPrice}</h5>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
 						
 					</div>
 				</section>

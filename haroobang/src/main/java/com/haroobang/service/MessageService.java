@@ -17,4 +17,6 @@ public interface MessageService {
 
 	int getMessageRoomNoService(int memberNo, int loginMemberNo);
 
+	int countMessageService(int memberNo);
+
 }
