@@ -60,7 +60,7 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
 								 class="lnr lnr-arrow-right"></span>내 예약 목록</a>
 							<ul class="collapse show" id="homeClean" data-toggle="collapse" aria-expanded="false" aria-controls="homeClean">
-								<li class="main-nav-list child"><a href="#">현재 예약 목록</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">현재 예약 목록</a></li>
 								<li class="main-nav-list child"><a href="#" style="color: #ffc107;">이전 예약 목록</a></li>
 							</ul>
 						</li>

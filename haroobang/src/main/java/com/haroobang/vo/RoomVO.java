@@ -22,6 +22,7 @@ public class RoomVO {
 	private float averageRates;
 	private String checkIn;
 	private String checkOut;
+	private String memberSavedFileName;
 	
 	public int getRoomNo() {
 		return roomNo;
@@ -130,6 +131,12 @@ public class RoomVO {
 	}
 	public void setCheckOut(String checkOut) {
 		this.checkOut = checkOut;
+	}
+	public String getMemberSavedFileName() {
+		return memberSavedFileName;
+	}
+	public void setMemberSavedFileName(String memberSavedFileName) {
+		this.memberSavedFileName = memberSavedFileName;
 	}
 
 

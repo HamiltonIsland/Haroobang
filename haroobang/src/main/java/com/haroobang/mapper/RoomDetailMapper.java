@@ -37,6 +37,8 @@ public interface RoomDetailMapper {
 
 	void addReportCount(int commentNo);
 
+	String findMemberSavedFileName(int memberNo);
+
 	
 
 }

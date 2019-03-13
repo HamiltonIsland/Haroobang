@@ -67,9 +67,10 @@ public class AccountController {
 
 		} catch (Exception ex) {
 		}
-	}
+	}else {
 		vo.setSavedFileName("default.jpg");
 		vo.setUserFileName("default.jpg");
+	}
 		accountService.insertAccountService(vo);
 		
 		return "account/login";
@@ -108,11 +109,11 @@ public class AccountController {
 
 			} catch (Exception ex) {
 			}
-		}
+		}else {
 		AccountVO logins = (AccountVO)session.getAttribute("login");
 		vo.setSavedFileName(logins.getSavedFileName());
 		vo.setUserFileName(logins.getUserFileName());
-		
+		}
 		accountService.updateProfileService(vo);
 		List<AccountVO> login = accountService.loginServices(vo);
 		session.setAttribute("login", login.get(0));
