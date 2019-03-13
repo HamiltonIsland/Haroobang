@@ -43,6 +43,12 @@ public class MessageServiceImpl implements MessageService{
 		return messageRoomNo;
 	}
 
+	@Override
+	public int countMessageService(int memberNo) {
+		int message = messageDao.countMessageDao(memberNo);
+		return message;
+	}
+
 	
 
 	
