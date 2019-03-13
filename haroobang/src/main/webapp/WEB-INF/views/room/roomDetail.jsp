@@ -90,7 +90,7 @@
 						<div class="card_area d-flex align-items-center">
 						<c:choose>
 							<c:when test="${login.userType == 'admin'}">
-							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">삭제하기</a>
+							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">삭제하기</a>  
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">예약하기</a>
