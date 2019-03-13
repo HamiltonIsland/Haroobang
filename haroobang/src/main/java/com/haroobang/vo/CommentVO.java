@@ -13,6 +13,18 @@ public class CommentVO {
 	private String nickName;
 	private AccountVO member;
 	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public AccountVO getMember() {
+		return member;
+	}
+	public void setMember(AccountVO member) {
+		this.member = member;
+	}
 	public int getCommentNo() {
 		return commentNo;
 	}
