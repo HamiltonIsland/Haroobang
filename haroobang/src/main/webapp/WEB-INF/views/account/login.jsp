@@ -51,8 +51,8 @@
 					<div class="login_box_img">
 						<img class="img-fluid" src="/haroobang/resources/img/login.jpg" alt="">
 						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+							<h4>간편하게 가입후 자유롭게 이용해 보세요!</h4>
+							<!-- <p>간편하게 가입후 자유롭게 이용해 보세요!</p> -->
 							<a class="primary-btn" href="/haroobang/account/register.action">Create an Account</a>
 						</div>
 					</div>

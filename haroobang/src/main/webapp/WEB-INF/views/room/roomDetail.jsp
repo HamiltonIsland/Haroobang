@@ -279,15 +279,13 @@ $(function(){
 
 								</c:otherwise>
 								</c:choose>
-								<img src="/haroobang/resources/upload/${room.memberSavedFileName }" class="rounded-circle" style="height: 60px;width:60px" alt="">
-								<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-envelope-alt"></i>
-								<br>채팅하기</a>
-								
+								<img src="/haroobang/resources/upload/${room.memberSavedFileName }" class="rounded-circle" style="height: 70px;width:70px" alt="">
+								</a>
 								</div>
 
 								<div class="media-body">
 								<div style=" display: inline-block;">
-									<h4>${member.nickname} &nbsp;님</h4>
+									<h3>&nbsp;${member.nickname}님 &nbsp;&nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}"><i class="icon-envelope-alt"></i>문의하기</a></h3>
 								</div>	
 								<hr>
 									<p>${member.profile}</p>
