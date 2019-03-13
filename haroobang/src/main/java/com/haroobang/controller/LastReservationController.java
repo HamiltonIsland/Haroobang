@@ -55,6 +55,7 @@ public class LastReservationController {
 			if (reservationdetail == null) {
 				return "redirect:last-reservation-list.action";
 			}
+			
 
 			model.addAttribute("reservationdetail", reservationdetail);
 			model.addAttribute("roomno", roomNo);
