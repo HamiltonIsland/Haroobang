@@ -58,10 +58,6 @@
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
 					<h1>회원 상세</h1>
-					<nav class="d-flex align-items-center">
-						<a href="/haroobang/home.action">Home<span
-							class="lnr lnr-arrow-right"></span></a> <a href="#">Profile</a>
-					</nav>
 				</div>
 			</div>
 		</div>
