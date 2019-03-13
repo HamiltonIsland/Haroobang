@@ -108,11 +108,11 @@ public class AccountController {
 
 			} catch (Exception ex) {
 			}
-		}
+		}else {
 		AccountVO logins = (AccountVO)session.getAttribute("login");
 		vo.setSavedFileName(logins.getSavedFileName());
 		vo.setUserFileName(logins.getUserFileName());
-		
+		}
 		accountService.updateProfileService(vo);
 		List<AccountVO> login = accountService.loginServices(vo);
 		session.setAttribute("login", login.get(0));
