@@ -79,9 +79,9 @@
 				<div class="col-first">
 					<h1>회원 리스트</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a> <a
-							href="category.html">Fashon Category</a>
+						<a href="#">Home<span class="lnr lnr-arrow-right"></span></a>
+						 <a
+							href="#">MemberList</a>
 					</nav>
 				</div>
 			</div>

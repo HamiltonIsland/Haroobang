@@ -106,36 +106,6 @@ $(function(){
 						</tbody>
 
 					</table>
-					<%--  
-                    <thead>
-                            <tr>
-                                <th scope="col">결제일시</th>
-                                <th scope="col">입실날짜</th>
-                                <th scope="col">퇴실날짜</th>
-                                <th scope="col">결제고객</th>
-                                
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr >
-                                <td >
-                                    <h5>${reservationdetail.regDate }</h5>
-                                </td>
-                                
-                                <td>
-                                    <h5>${reservationdetail.startDate }</h5>
-                                </td>
-                                
-                                <td>
-                                    <h5>${reservationdetail.endDate }</h5>
-                                </td>
-                                
-                                	<td>
-                                    	<h5>${reservationdetail.name }</h5>
-                                	</td>
-                                	
-                            </tr>
-                          </tbody> --%>
 					<a class="gray_btn" href="/haroobang/mypage/commentRegister.action">후기등록</a>
 				</div>
 

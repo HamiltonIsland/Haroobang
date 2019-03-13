@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.haroobang.service.CommentService;
+import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.CommentVO;
 
 
 
@@ -24,14 +26,26 @@ public class CommentController {
 	@Qualifier("commentService")
 	private CommentService commentService;
 	
-	//이전 예약 리스트 페이지 보여주기
+	//후기등록 페이지 보여주기
 	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.GET)
-	public String commentRegisterForm(HttpSession session, HttpServletRequest req ) {
-		
+	public String commentRegisterForm(HttpSession session, HttpServletRequest req) {
+		if (session.getAttribute("login") == null) {
+			return "/account/login.action";
+		}
 		
 		return "mypage/commentRegister";
 	}
 	
+	//후기등록 제출
+	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.POST)
+	public String commentRegister(HttpSession session, HttpServletRequest req, CommentVO comment, Model model) {
+		
+		commentService.writeComment(comment);
+		
+		model.addAttribute("comment", comment);
+		
+		return "redirect:/haroobang/home.action";
+	}
 	
 	
 	

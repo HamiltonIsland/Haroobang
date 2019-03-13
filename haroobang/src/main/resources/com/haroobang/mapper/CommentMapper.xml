@@ -4,5 +4,9 @@
 
 <mapper namespace="com.haroobang.mapper.CommentMapper">
 
+	<insert id="insertComment" parameterType="CommentVO">
+      INSERT INTO comment (commentNo, content, rates, nickName, reservationNo, roomNo, memberNo) 
+      VALUES (comment_sequence.nextval,#{ content }, #{ rates }, #{ nickName }, #{ reservationNo }, #{ roomNo }, #{ memberNo })
+   </insert>
    
 </mapper>
