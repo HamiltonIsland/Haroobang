@@ -94,7 +94,7 @@
 							</c:when>
 							<c:otherwise>
 							<a class="primary-btn" href="javascript:" id="roomReservation">예약하기</a>
-							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a> 
 							</c:otherwise>
 						</c:choose>
 							
