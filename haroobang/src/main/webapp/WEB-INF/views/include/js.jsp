@@ -6,7 +6,7 @@
 <script src="/haroobang/resources/js/jquery.nice-select.min.js"></script>
 <script src="/haroobang/resources/js/jquery.sticky.js"></script>
 <script src="/haroobang/resources/js/nouislider.min.js"></script>
-<!-- <script src="/haroobang/resources/js/countdown.js"></script> -->
+<script src="/haroobang/resources/js/countdown.js"></script>
 <script src="/haroobang/resources/js/jquery.magnific-popup.min.js"></script>
 <script src="/haroobang/resources/js/owl.carousel.min.js"></script>
 
