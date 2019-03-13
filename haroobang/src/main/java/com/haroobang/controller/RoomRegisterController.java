@@ -84,6 +84,15 @@ public class RoomRegisterController {
 				} catch (Exception ex) {
 				}
 			}
+		}else{
+			vos.setSavedFileName("default.jpg");
+			vos.setUserFileName("default.jpg");
+			attachs.add(vos);
+			vo.setRoomAttachList(attachs);
+			
+			roomNo = vo.getRoomNo();
+			vos.setRoomNo(vo.getRoomNo());// 위에서 등록한 글번호 저장
+			roomRegisterService.insertRoomAttachService(vos);
 		}
 
 		
