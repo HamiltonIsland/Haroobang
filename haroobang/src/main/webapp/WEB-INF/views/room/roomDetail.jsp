@@ -255,7 +255,7 @@ $(function(){
 								</c:when>
 								<c:otherwise>
 
-								<a href="/haroobang/message/messageRoomBoxes.action?memberNo=${member.memberNo}">
+								<a href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}">
 
 								</c:otherwise>
 								</c:choose>
