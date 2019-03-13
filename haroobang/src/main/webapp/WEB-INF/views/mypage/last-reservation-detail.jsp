@@ -106,7 +106,7 @@ $(function(){
 						</tbody>
 
 					</table>
-					<a class="gray_btn" href="/haroobang/mypage/commentRegister.action">후기등록</a>
+					<a class="gray_btn" href="/haroobang/mypage/commentRegister.action?roomno=${ roomno }&reservationno=${ reservationdetail.reservationNo }">후기등록</a>
 				</div>
 
 			</div>

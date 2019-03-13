@@ -51,7 +51,7 @@ public class LastReservationController {
 			AccountVO member = (AccountVO) session.getAttribute("login");
 			int memberNo = member.getMemberNo();
 			
-			ReservationVO reservationdetail = lastReservationService.findRoomByRoomNo(roomNo,memberNo, startdate);
+			ReservationVO reservationdetail = lastReservationService.findRoomByRoomNo(roomNo, memberNo, startdate);
 			if (reservationdetail == null) {
 				return "redirect:last-reservation-list.action";
 			}

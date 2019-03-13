@@ -125,7 +125,7 @@
 								<c:when test="${ not empty myroom.roomVO.roomAttachList }">
 									<c:forEach var="attach" items="${ myroom.roomVO.roomAttachList }">
 										<img id="img" src="/haroobang/resources/upload/${ attach.savedFileName }" alt="" 
-										onerror="this.src = '/haroobang/resources/img/product/p1.jpg'"/>
+										onerror="this.src = '/haroobang/resources/img/product/p8.jpg'"/>
 									</c:forEach>
 								</c:when>
 							<c:otherwise>

@@ -34,7 +34,7 @@ $(function(){
 	  $(this).addClass('on').prevAll('span').addClass('on');
 	  
 	  var rating = $('.starR.on').length;		//별점 숫자를 저장
-	  $('#rate').html(rating);
+	  $('#rate').val(rating);
 	  return false;
 	});
 })
@@ -120,22 +120,22 @@ $(function(){
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<p>닉네임</p>
-											<input type="text" readonly="readonly" class="form-control" value="${ comment.reservationNo }"
+											<p>예약번호</p>
+											<input type="text" readonly="readonly" class="form-control" value="${ reservationNo }"
 												id="reservationNo" name="reservationNo">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<p>닉네임</p>
-											<input type="text" readonly="readonly" class="form-control" value="${ comment.roomNo }"
+											<p>방번호</p>
+											<input type="text" readonly="readonly" class="form-control" value="${ roomNo }"
 												id="roomNo" name="roomNo">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<p>닉네임</p>
-											<input type="text" readonly="readonly" class="form-control" value="${ comment.memberNo }"
+											<p>멤버넘버</p>
+											<input type="text" readonly="readonly" class="form-control" value="${login.memberNo }"
 												id="memberNo" name="memberNo">
 										</div>
 									</div>
