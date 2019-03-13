@@ -92,6 +92,11 @@
 									onblur="this.placeholder = '숙소 이름'">
 							</div>
 							<div class="form-group">
+								<input type="text" class="form-control" id="address"
+									name="address" placeholder="주소" onfocus="this.placeholder = ''"
+									onblur="this.placeholder = '주소'">
+							</div>
+							<div class="form-group">
 								<input type="text" class="form-control" id="price"name="price"
 									placeholder="가격" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '가격'">
@@ -101,11 +106,7 @@
 									placeholder="최대인원" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '최대인원'">
 							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" id="address"
-									name="address" placeholder="주소" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = '주소'">
-							</div>
+							
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
@@ -237,7 +238,7 @@
 	    	getAddressInfo(); 
 	    	getMap();
 	    })
-	    $("#test").on("click",function(e){
+	    $("#price").on("click",function(e){
 	    	getMap();
 	    })
 	    

@@ -153,6 +153,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 			params.put("memberNo",memberNo);
 			
 			roomDetailMapper.commentReport(params);
+			roomDetailMapper.addReportCount(commentNo);
 			
 		} catch (Exception e) {
 			result = "fail";

@@ -15,20 +15,34 @@
 <title>roomDetail</title>
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c407abd2e5f1baaf84ff1d382b79c8e4"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c407abd2e5f1baaf84ff1d382b79c8e4"></script>
+		
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
 	
-	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new daum.maps.LatLng(37.4954031, 126.88736900000004), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new daum.maps.LatLng(${room.latitude+0.001500}, ${room.longitude-0.006400}), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
 
-	var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+	var markerPosition  = new daum.maps.LatLng(${room.latitude}, ${room.longitude}); 
+	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	var marker = new daum.maps.Marker({
+		map:map,
+		position:markerPosition
+	})
+	/* // 지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new daum.maps.Marker({ 
+   	 // 지도 중심좌표에 마커를 생성합니다 
+    	position: map.getCenter() 
+	}); */ 
+	// 지도에 마커를 표시합니다
+	marker.setMap(map);
+
+
 	
 	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
 	
@@ -240,7 +254,11 @@ $(function(){
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
-					<div style="height:500px;width:1050px" id="map"></div>
+					<div id="map" style="width:100%;height:350px;"></div>
+					<hr>
+					<p> 주소 : ${room.address }</p>
+					<p> 최대인원 : ${room.maximum } 명 </p>
+					<hr>
 					<p style="white-space: pre">${room.roomProfile}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel"
@@ -254,14 +272,22 @@ $(function(){
 								<a href="/haroobang/account/login.action" id="idCheck">
 								</c:when>
 								<c:otherwise>
-								<a href="/haroobang/message/messageRoom.action?memberNo=${login.memberNo}">
+
+								<a href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}">
+
 								</c:otherwise>
 								</c:choose>
-								<img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt=""></a>
+								<img src="/haroobang/resources/upload/default.jpg" class="rounded-circle" style="height: 60px;width:60px" alt="">
+								<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-envelope-alt"></i></a>
+								
 								</div>
 
 								<div class="media-body">
-									<h4>${member.nickname}님에게 메세지 보내기</h4>
+								<div style=" display: inline-block;">
+									<h4>${member.nickname} &nbsp;님</h4><h5>(${member.regDate.substring(0,10)}등록)</h5>
+								
+								</div>	
+								<hr>
 									<p>${member.profile}</p>
 								</div>
 							</div>

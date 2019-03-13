@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.MessageService;
@@ -27,15 +28,17 @@ public class MessageController {
 	
 	//messageRoom창 보여주기
 	@RequestMapping (value = "/messageRoom.action", method = RequestMethod.GET)
-	public String messageRoomView(HttpSession session, Model model) {
+	public String messageRoomView(@RequestParam(required=false, defaultValue="0")int memberNo,HttpSession session, Model model) {
+
 		AccountVO logins = (AccountVO)session.getAttribute("login");
 		if(logins==null)
 		{
 			return "redirect:/account/login.action";
 		}
-		int memberNo = logins.getMemberNo();
+		int memberNos = logins.getMemberNo();
 
-		List<MessageRoomVO> list =  messageService.getMessageRoomListService(memberNo);
+
+		List<MessageRoomVO> list =  messageService.getMessageRoomListService(memberNos);
 		List<MessagesVO> lists = null;
 		for (MessageRoomVO vo : list) {
 			int messageRoomNo = vo.getMessageRoomNo();
@@ -44,7 +47,9 @@ public class MessageController {
 		}
 		model.addAttribute("messageList",lists);
 		model.addAttribute("messageRoomList",list);
-		model.addAttribute("memberNo",memberNo);
+		model.addAttribute("memberNo",memberNos);
+		model.addAttribute("memberNos",memberNo);
+	
 		return "message/messageRoom";
 	}	
 	

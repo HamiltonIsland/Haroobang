@@ -95,38 +95,44 @@
 									</div>
 
 								</div>
-							</div>							
+							</div>
 							<div id="contacts">
 								<ul>
 									<c:forEach var="messageRoomList" items="${messageRoomList}">
-									<c:forEach var="list" items="${messageRoomList.memberList}">
-									<li class="contact" data-memberNo="${list.memberNo }" data-loginMemberNo="${login.memberNo }"> 
-									<!-- <li class="contact active"> -->
-										<div class="wrap">
-											<span class="contact-status"></span> <img
-												src="/haroobang/resources/upload/${list.savedFileName}" alt="" />
-											<div class="meta">
-												<p class="name">${list.name}</p>
-												<c:forEach var="lists" items="${messageRoomList.messagesList}"
-														varStatus="index">
-														<c:if test="${index.last}">
-															<p class="preview">
-															<c:if test="${lists.messageRoomNo==messageRoomList.messageRoomNo }">
-																<c:if test="${lists.memberNo==login.memberNo}"><span>You: </span></c:if>
+										<c:forEach var="list" items="${messageRoomList.memberList}">
+											<li class="contact" id="contact${list.memberNo }"
+												data-memberNo="${list.memberNo }"
+												data-loginMemberNo="${login.memberNo }">
+												<!-- <li class="contact active"> -->
+												<div class="wrap">
+													<span class="contact-status"></span> <img
+														src="/haroobang/resources/upload/${list.savedFileName}"
+														alt="" />
+													<div class="meta">
+														<p class="name">${list.name}</p>
+														<c:forEach var="lists"
+															items="${messageRoomList.messagesList}" varStatus="index">
+															<c:if test="${index.last}">
+																<p class="preview">
+																	<c:if
+																		test="${lists.messageRoomNo==messageRoomList.messageRoomNo }">
+																		<c:if test="${lists.memberNo==login.memberNo}">
+																			<span>You: </span>
+																		</c:if>
 																${lists.content}
-															</c:if>															
-															</p>
-														</c:if>
-												</c:forEach>
-											</div> 
-										</div>
-									</li>
+															</c:if>
+																</p>
+															</c:if>
+														</c:forEach>
+													</div>
+												</div>
+											</li>
+										</c:forEach>
 									</c:forEach>
-									</c:forEach>
-									
+
 								</ul>
-							</div>							
-						</div>						
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -137,16 +143,24 @@
 	<script type="text/javascript">
 	
 		$(function(){	
+			var memberNo=${memberNos};
+			var loginMemberNo = ${login.memberNo}
 			$(".messageSection").on("click",".contact",function(e){
 				loginMemberNo = $(this).attr("data-loginMemberNo");
 				memberNo = $(this).attr("data-memberNo");
 				$(".messageSection").load("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo);
 				/* location.replace("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo); */
-			});		
+			});
+			if(memberNo!=0){
+				$("#contact"+memberNo).trigger("click");
+				if($("#contact"+memberNo).length==0){
+					$(".messageSection").load("messageRoomBoxes.action?memberNo="+memberNo+"&loginMemberNo="+loginMemberNo);
+				}
+			}
 		});
 	</script>
-	
-	
+
+
 	<jsp:include page="../include/footer.jsp" />
 	<jsp:include page="../include/js.jsp" />
 	<script src="/haroobang/resources/js/chat.js"></script>
