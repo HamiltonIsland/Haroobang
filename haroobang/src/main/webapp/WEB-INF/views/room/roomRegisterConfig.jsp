@@ -90,7 +90,7 @@ $(function(){
 						<input type="date" style="width:300px" id="checkinDate"/>
 						</div> -->
 						<br>
-						<div class="product_count">
+						<!-- <div class="product_count">
 							<label for="qty">Checkin</label> 
 						<input type="date" style="width:150px" id="checkinDate"/>
 							<label for="qty">Days&nbsp;&nbsp;</label> 
@@ -107,7 +107,7 @@ $(function(){
 								class="reduced items-count" type="button">
 								<i class="lnr lnr-chevron-down"></i>
 							</button>
-						</div>
+						</div> -->
 						<div class="card_area d-flex align-items-center">
 							<a class="genric-btn danger circle"
 								href="/haroobang/room/deleteRegister.action?roomNo=${room.roomNo }"
