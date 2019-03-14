@@ -10,6 +10,8 @@
 <script src="/haroobang/resources/js/jquery.magnific-popup.min.js"></script>
 <script src="/haroobang/resources/js/owl.carousel.min.js"></script>
 
+
+
  
 <!--gmaps Js-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
