@@ -5,6 +5,7 @@ import java.util.List;
 import com.haroobang.mapper.ReviewReportMapper;
 import com.haroobang.vo.CommentVO;
 import com.haroobang.vo.ReportVO;
+import com.haroobang.vo.RoomAttachVO;
 
 public class OracleReviewReportDao implements ReviewReportDao {
 
@@ -17,10 +18,16 @@ public class OracleReviewReportDao implements ReviewReportDao {
 	@Override
 	public List<ReportVO> selectAllReviewReports() {
 		List<ReportVO> reports = reviewReportMapper.selectAllReviewReports();
+		
 		for(int i =0;i<reports.size();i++) {
+			String reportsPhoto = reviewReportMapper.selectAllReviewPhotos(reports.get(i).getCommentNo());
+			reports.get(i).setRoomAttach(reportsPhoto);
+			
 			CommentVO commentVo = reviewReportMapper.findCommentVo(reports.get(i).getCommentNo());
+			
 			reports.get(i).setCommentVO(commentVo);
 		}
+		
 		return reports;
 	}
 
@@ -31,6 +38,8 @@ public class OracleReviewReportDao implements ReviewReportDao {
 	}
 
 
+
+	
 
 
 

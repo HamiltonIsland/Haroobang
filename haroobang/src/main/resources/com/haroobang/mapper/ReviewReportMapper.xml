@@ -20,6 +20,13 @@
 		<result column="regDate" property="regDate" />
 		<result column="content" property="content" />
 	</resultMap>
+	
+	<resultMap type="RoomAttachVO" id="selectAllReviewPhotos">
+		
+	</resultMap>
+	<select id="selectAllReviewPhotos" parameterType="int" resultType="string">
+		select savedFileName from roomattach where roomNo=(select roomNo from comment where commentNo=#{commentNo}) order by roomNo desc limit 1
+	</select>
 
 	<select id="selectAllReviewReports" resultMap="reviewReportMap">
 		select *

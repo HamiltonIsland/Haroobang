@@ -1,5 +1,7 @@
 package com.haroobang.vo;
 
+import java.util.List;
+
 public class ReportVO {
 	
 	private int commentNo;
@@ -7,6 +9,7 @@ public class ReportVO {
 	private String regDate;
 	private String content;
 	private CommentVO commentVO;
+	private String roomAttach;
 	
 
 	public int getCommentNo() {
@@ -38,6 +41,12 @@ public class ReportVO {
 	}
 	public void setCommentVO(CommentVO commentVO) {
 		this.commentVO = commentVO;
+	}
+	public String getRoomAttach() {
+		return roomAttach;
+	}
+	public void setRoomAttach(String roomAttach) {
+		this.roomAttach = roomAttach;
 	}
 	
 	

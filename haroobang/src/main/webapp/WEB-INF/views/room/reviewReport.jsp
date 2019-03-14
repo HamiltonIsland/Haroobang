@@ -81,7 +81,7 @@
 										</c:otherwise>
 										</c:choose>
 											 --%>
-											 <img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/default.jpg"/>
+											 <img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${reports.roomAttach}"/>
 										</div>
 										<div class="media-body">
 										<p style="white-space: pre">${reports.commentVO.nickName }</p>
