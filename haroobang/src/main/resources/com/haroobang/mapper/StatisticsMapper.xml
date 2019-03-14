@@ -9,4 +9,8 @@
 	<select id="getTotalPrice" resultType="int">
 		select sum(totalPrice) from reservation
 	</select>
+	<select id="getMonthCount" resultType="ReservationVO">
+		SELECT CONCAT(YEAR(startDate), '-', MONTH(startDate)) months, COUNT(*) count FROM reservation GROUP BY months
+	</select>
+	
 </mapper>

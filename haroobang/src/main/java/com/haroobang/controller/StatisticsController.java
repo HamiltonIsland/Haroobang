@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.haroobang.service.StatisticsService;
+import com.haroobang.vo.ReservationVO;
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +33,10 @@ public class StatisticsController {
 		}
 		int totalprice = statisticsService.getTotalPriceService();
 		int totalcheckinprice = statisticsService.getTotalCheckinPriceService();
+		
+		List<ReservationVO> monthCount = statisticsService.getMonthCountService(); 		
+		
+		model.addAttribute("monthCount",monthCount);
 		model.addAttribute("totalPrice",totalprice);
 		model.addAttribute("totalCheckinPrice",totalcheckinprice);
 		

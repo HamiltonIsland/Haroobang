@@ -76,8 +76,8 @@
 	//통계1
     var svg1 = dimple.newSvg("#chartContainer1", 590, 400);    
    	var data1 = [
-   	     { "이름": "check-in 숙박비용", "가격":${totalCheckinPrice}},
-   	     { "이름": "아직 check-in 안한 숙박비용", "가격":${totalPrice}-${totalCheckinPrice}}
+   	     { "이름": "check-in Price", "가격":${totalCheckinPrice}},
+   	     { "이름": "uncheck-in Price", "가격":${totalPrice}-${totalCheckinPrice}}
    	     
    	];   	
     var myChart1 = new dimple.chart(svg1, data1);
@@ -90,13 +90,11 @@
     
  	//통계2
     var svg2 = dimple.newSvg("#chartContainer2", 590, 400);    
-   	var data2 = [
-   	     { "Month": "1월", "예약건수":10008 },
-   	     { "Month": "2월", "예약건수":100004},
-   	     { "Month": "3월", "예약건수":108000 },
-   	     { "Month": "4월", "예약건수":40800 },
-   	     { "Month": "5월", "예약건수":20800 }
-   	];   	
+   	var data2 = [];   
+   	for(var i=0;i<${monthCount}.length;i++){
+			var monthCount = { "Month": ${monthCount.[0]}, "예약건수":${monthCount.[1]} }
+			data2.append(monthCount);
+		}
    	var myChart2 = new dimple.chart(svg2, data2);
     myChart2.setBounds(60, 30, 510, 305)
     var x = myChart2.addCategoryAxis("x", "Month");
