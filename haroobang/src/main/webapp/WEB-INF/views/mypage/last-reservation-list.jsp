@@ -124,7 +124,7 @@
 								<th scope="col">숙소정보</th>
 								<th scope="col">체크인</th>
 								<th scope="col">체크아웃</th>
-								<th scope="col">합계</th>
+								<th scope="col">총결제금액</th>
 							</tr>
 						</thead>
 						<tbody>

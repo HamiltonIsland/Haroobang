@@ -57,7 +57,7 @@ public class CommentController {
 		public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model, HttpSession session) {
 			
 			if (session.getAttribute("login") == null) {
-				return "/account/login.action";
+				return "account/login.action";
 			} else {
 				List<CommentVO> mycomments = commentService.findMycomment(memberNo);
 				
