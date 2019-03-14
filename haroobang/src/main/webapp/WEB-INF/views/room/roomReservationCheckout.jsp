@@ -69,14 +69,13 @@ $(function(){
 							<form class="row contact_form" action="payment.action" id="form" method="post"
 								novalidate="novalidate">
 								<div class="col-md-12 form-group p_star">
-									<select class="country_select" name="startDate">
-										<option value="${checkinDate}">${checkinDate}</option>
-									</select>
+									<p>예약일 : ${checkinDate}~${endDate }</p>
+									<p>총 ()박 : ()</p>
 								</div>
-								
+						<%-- 		
 								<div class="col-md-12 form-group p_star">
 									<select class="country_select" name="nights">
-										<option value=${nights }>${nights} 박</option>
+										<option value=${nights }>${endDate }</option>
 										<option value=1>1 박</option>
 										<option value=2>2 박</option>
 										<option value=3>3 박</option>
@@ -93,7 +92,7 @@ $(function(){
 										<option value=14>14 박</option>
 										<option value=15>15 박</option>
 									</select>
-								</div>
+								</div> --%>
 								<div class="col-md-12 form-group">
 									<textarea class="form-control" name="request" id="message"
 										rows="1" placeholder="요청사항을 입력해 주세요"></textarea>

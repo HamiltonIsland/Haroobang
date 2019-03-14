@@ -131,7 +131,7 @@ $(function(){
                             
                         </tbody>
                     </table>
-                      <a class="gray_btn" href="#">마이페이지로 가기</a>
+                      <a class="gray_btn" href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">마이페이지로 가기</a>
                 </div>
                
             </div>

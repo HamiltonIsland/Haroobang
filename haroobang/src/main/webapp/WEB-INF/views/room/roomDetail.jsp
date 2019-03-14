@@ -18,136 +18,7 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=98c601126ea50820acff69a288897c63&libraries=services"></script>
 		
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript">
-$(function(){
-	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new daum.maps.LatLng(${room.latitude}, ${room.longitude}), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
 
-	var markerPosition  = new daum.maps.LatLng(${room.latitude}, ${room.longitude}); 
-	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-	var marker = new daum.maps.Marker({
-		map:map,
-		position:markerPosition
-	})
-	/* // 지도를 클릭한 위치에 표출할 마커입니다
-	var marker = new daum.maps.Marker({ 
-   	 // 지도 중심좌표에 마커를 생성합니다 
-    	position: map.getCenter() 
-	}); */ 
-	// 지도에 마커를 표시합니다
-	marker.setMap(map);
-
-
-	
-	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
-	
-	
-	$('#idCheck').click(function(e){
-		alert("로그인페이지로 이동합니다.")
-	})
-	
-	$("#like").click(function(e){
-		
-			$.ajax({
-				url :"addLike.action" ,
-				data: {"roomNo":${room.roomNo}},
-				method:"GET",
-				success:function(data,status,xhr){
-					if(data == "success"){
-						alert("즐겨찾기에 등록되었습니다")	
-					}else if(data =="fail"){
-						alert("이미 등록되었습니다.")
-					}else{
-						alert("로그인 페이지로 이동합니다.")
-						location.href = "/haroobang/account/login.action"
-					}
-				}
-			})
-	})
-	
-	$("#roomReservation").click(function(e){
-		var checkinDate = $("#checkinDate").val();
-		var nights = $("#sst").val();
-		if(checkinDate.length == 0 || nights.length == 0){
-			alert("날짜를 선택해 주세요")
-		}else {
-			if(${login == null}){
-				alert("로그인페이지로 이동합니다.")
-				location.href = "/haroobang/account/login.action"
-			}else{
-			$.ajax({
-				url:"/haroobang/room/checkDate.action",
-				data:{"checkinDate":checkinDate,"nights":nights,"roomNo":${room.roomNo}},
-				method:"get",
-				success:function(data,status,xhr){
-					if(data == "fail"){
-						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
-					}else {
-						location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}
-					}
-				}
-			})
-		}
-		}
-	});
-	
-	$("#roomDelete").click(function(e){
-		
-		var c = confirm("삭제하시겠습니까?");
-		
-		if(c == true){
-			location.href = "/haroobang/room/roomDelete.action?roomNo="+${room.roomNo}
-		}else{	}
-	});
-	
-	//$(".reply_btn").['#report'].click(function(e){
-	//$('a[id ^=report]').click(function(e){
-	$('.reply_btn').click(function(e){
-	
-		if(${login == null}){
-			alert("로그인페이지로 이동합니다.")
-			location.href = "/haroobang/account/login.action"
-		}else{
-			
-		
-		var content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
-		var commentNo = $(this).attr('commentNo');
-		
-		if(content != null){
-			while(content == ""){
-				alert("내용을 입력해주세요.")
-				content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
-			}
-			$.ajax({
-				url:"/haroobang/room/commentReport.action",
-				data:{"content":content,"commentNo":commentNo},
-				method:"get",
-				success:function(data,status,xhr){
-					if(data == "success"){
-					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
-					}else{
-						alert("이미 신고가 접수되었습니다.")
-					}
-				}	
-			});
-		}
-			
-			/* 	alert("이유를 적어주세요");
-				content=prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
-			 */
-		
-		}
-	});
-});
-			
-
-</script>
 
 
 
@@ -192,7 +63,7 @@ $(function(){
 						<h2>${room.roomName}</h2>
 						<h4>&#8361; ${room.price}&nbsp;</h4>
 						<hr>
-						<div id="calendarBox" style="height:250px;width:350px;">
+						<div id="calendarBox" style="height:350px;width:350px;">
 						<div id='calendar'></div>
 						</div>
 						<br>
@@ -202,13 +73,13 @@ $(function(){
 						</div> -->
 						<br>
 						<div class="product_count">
-						<label for="qty">Checkin</label> 
+						<!-- <label for="qty">Checkin</label> 
 						<input type="date" style="width:150px" id="checkinDate"/>
 							<label for="qty">Days&nbsp;&nbsp;</label> 
 							<input type="text" name="qty"
 								id="sst" maxlength="12" value="1" title="Quantity:"
-								class="input-text qty">
-								
+								class="input-text qty"> -->
+			<!-- 					
 							<button
 								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 								class="increase items-count" type="button">
@@ -218,7 +89,7 @@ $(function(){
 								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
 								class="reduced items-count" type="button">
 								<i class="lnr lnr-chevron-down"></i>
-							</button>
+							</button> -->
 						</div>
 						<!-- <a href="/haroobang/room/calender.action">날짜확인</a> -->
 						<div class="card_area d-flex align-items-center">
@@ -227,8 +98,8 @@ $(function(){
 							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">삭제하기</a>  
 							</c:when>
 							<c:otherwise>
-							<a class="primary-btn" href="javascript:" id="roomReservation">예약하기</a>
-							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a> 
+							<!-- <a class="primary-btn" href="javascript:" id="roomReservation">예약하기</a>
+							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>  -->
 							</c:otherwise>
 						</c:choose>
 							
@@ -333,7 +204,7 @@ $(function(){
 								<c:choose>
 								<c:when test="${room.roomCommentList.size()>0 }">
 								<hr>
-							<c:forEach var="comment" items="${room.roomCommentList }">
+								<c:forEach var="comment" items="${room.roomCommentList }">
 								<div class="media">
 										<div class="d-flex">
 										<hr>
@@ -360,12 +231,24 @@ $(function(){
 										</div>
 										
 									</div>
-								
+									<c:choose>
+									<c:when test="${comment.restricted == false }">
 									<div style="display: inline;width: 500px">
 									<p style="white-space: pre">${comment.content }</p>
 										<a class="reply_btn" href="javascript:" id="report" commentNo="${comment.commentNo }" style="color:gray;font-size: 10px;">신고하기</a>
 										<hr>
 									</div>
+									</c:when>
+									<c:when test="${comment.restricted == true }">
+									<div style="display: inline;width: 500px">
+									<p style="white-space: pre">관리자의 요청에의에 후기가 삭제되었습니다.</p>
+										<%-- <a class="reply_btn" href="javascript:" id="report" commentNo="${comment.commentNo }" style="color:gray;font-size: 10px;">신고하기</a> --%>
+										<hr>
+									</div>
+									</c:when>
+									</c:choose>
+								
+									
 									
 									<br>
 								</c:forEach>
@@ -390,6 +273,136 @@ $(function(){
 	<!--================End Product Description Area =================-->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
+	
+	<script type="text/javascript">
+$(function(){
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new daum.maps.LatLng(${room.latitude}, ${room.longitude}), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+	var markerPosition  = new daum.maps.LatLng(${room.latitude}, ${room.longitude}); 
+	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	var marker = new daum.maps.Marker({
+		map:map,
+		position:markerPosition
+	})
+	/* // 지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new daum.maps.Marker({ 
+   	 // 지도 중심좌표에 마커를 생성합니다 
+    	position: map.getCenter() 
+	}); */ 
+	// 지도에 마커를 표시합니다
+	marker.setMap(map);
+
+
+	
+	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo});
+	
+	
+	$('#idCheck').click(function(e){
+		alert("로그인페이지로 이동합니다.")
+	})
+	
+	$("#like").click(function(e){
+		
+			$.ajax({
+				url :"addLike.action" ,
+				data: {"roomNo":${room.roomNo}},
+				method:"GET",
+				success:function(data,status,xhr){
+					if(data == "success"){
+						alert("즐겨찾기에 등록되었습니다")	
+					}else if(data =="fail"){
+						alert("이미 등록되었습니다.")
+					}else{
+						alert("로그인 페이지로 이동합니다.")
+						location.href = "/haroobang/account/login.action"
+					}
+				}
+			})
+	})
+	
+/* 	$("#roomReservation").click(function(e){
+		var checkinDate = $("#checkinDate").val();
+		var nights = $("#sst").val();
+		if(checkinDate.length == 0 || nights.length == 0){
+			alert("날짜를 선택해 주세요")
+		}else {
+			if(${login == null}){
+				alert("로그인페이지로 이동합니다.")
+				location.href = "/haroobang/account/login.action"
+			}else{
+			$.ajax({
+				url:"/haroobang/room/checkDate.action",
+				data:{"checkinDate":checkinDate,"nights":nights,"roomNo":${room.roomNo}},
+				method:"get",
+				success:function(data,status,xhr){
+					if(data == "fail"){
+						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
+					}else {
+						location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}
+					}
+				}
+			});
+		}
+		}
+	}); */
+	
+	$("#roomDelete").click(function(e){
+		
+		var c = confirm("삭제하시겠습니까?");
+		
+		if(c == true){
+			location.href = "/haroobang/room/roomDelete.action?roomNo="+${room.roomNo}
+		}else{	}
+	});
+	
+	//$(".reply_btn").['#report'].click(function(e){
+	//$('a[id ^=report]').click(function(e){
+	$('.reply_btn').click(function(e){
+	
+		if(${login == null}){
+			alert("로그인페이지로 이동합니다.")
+			location.href = "/haroobang/account/login.action"
+		}else{
+			
+		
+		var content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+		var commentNo = $(this).attr('commentNo');
+		
+		if(content != null){
+			while(content == ""){
+				alert("내용을 입력해주세요.")
+				content = prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+			}
+			$.ajax({
+				url:"/haroobang/room/commentReport.action",
+				data:{"content":content,"commentNo":commentNo},
+				method:"get",
+				success:function(data,status,xhr){
+					if(data == "success"){
+					alert("신고 완료되었습니다. 관리자의 확인후 후기가 삭제됩니다.")
+					}else{
+						alert("이미 신고가 접수되었습니다.")
+					}
+				}	
+			});
+		}
+			
+			/* 	alert("이유를 적어주세요");
+				content=prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
+			 */
+		
+		}
+	});
+});
+			
+
+</script>
 
 </body>
 

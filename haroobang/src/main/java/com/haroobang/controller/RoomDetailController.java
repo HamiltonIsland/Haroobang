@@ -67,12 +67,14 @@ public class RoomDetailController {
 
 	@RequestMapping(value = "checkDate.action", method = RequestMethod.GET)
 	@ResponseBody
-	public String checkDate(String checkinDate, int nights, Model model, HttpSession session,
+	public String checkDate(String checkinDate, String endDate, Model model, HttpSession session,
 			int roomNo) {
 
 		if (session.getAttribute("login") == null) {
 			return "redirect:/account/login.action";
 		}
+		
+		int nights = (Integer.parseInt(endDate.substring(8,10))-Integer.parseInt(checkinDate.substring(8,10)));
 		
 		List<LocalDate> dateList = new ArrayList();
 		LocalDate startDate = LocalDate.parse(checkinDate);
@@ -91,12 +93,15 @@ public class RoomDetailController {
 	}
 	
 	@RequestMapping(value="reservationCheckout.action")
-	public String reservationCheckout(String checkinDate, int nights, Model model, HttpSession session,
+	public String reservationCheckout(String checkinDate,String endDate, Model model, HttpSession session,
 			int roomNo) {
 		
+		
+		int nights = (Integer.parseInt(endDate.substring(8,10))-Integer.parseInt(checkinDate.substring(8,10)))-1;
+		System.out.println(nights);
 		model.addAttribute("roomNo", roomNo);
 		model.addAttribute("checkinDate", checkinDate);
-		model.addAttribute("nights", nights);
+		model.addAttribute("endDate", endDate);
 		
 		return "room/roomReservationCheckout";
 	}
@@ -107,6 +112,7 @@ public class RoomDetailController {
 		List<String> dateList = roomDetailService.findDateList(roomNo);
 	
 		model.addAttribute("dateList",dateList);
+		model.addAttribute("roomNo",roomNo);
 		
 		return "room/calender";
 	}
