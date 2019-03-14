@@ -143,7 +143,7 @@
                                 </td>
                                 
                                 <td>
-                                    <h5>$${reservation.totalPrice}</h5>
+                                    <h5>${reservation.totalPrice}&#8361;</h5>
                                 </td>
                                 <td>
                                     <div class="button-group-area mt-40">

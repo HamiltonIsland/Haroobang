@@ -39,7 +39,7 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>이전 예약 목록</h1>
+					<h1>내가 찜한 숙소</h1>
 					
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 				<div class="sidebar-categories">
 					<div class="head">My page</div>
 					<ul class="main-categories">
-						<li class="main-nav-list"><a href="#">
+						<li class="main-nav-list"><a href="/haroobang/mypage/likeList.action?memberno=${ login.memberNo }" style="color: #ffc107;">
 							<span class="lnr lnr-arrow-right"></span>내가 찜한 숙소</a>
 						</li>
 						
@@ -117,37 +117,42 @@
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
 						<!-- single product -->
-						<%-- <c:forEach var="myroom" items="${ myrooms }">
-						
+						<c:forEach var="likeList" items="${ likeLists }">
+						<a href="/haroobang/room/roomDetail.action?roomNo=${likeList.roomNo}">
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
 							<c:choose>
-								<c:when test="${ not empty myroom.roomVO.roomAttachList }">
-									<c:forEach var="attach" items="${ myroom.roomVO.roomAttachList }">
-										<img id="img" src="/haroobang/resources/upload/${ attach.savedFileName }" alt="" 
-										onerror="this.src = '/haroobang/resources/img/product/p8.jpg'"/>
-									</c:forEach>
+								<c:when test="${not empty likeList.roomAttachList}">
+									<div class="main-carousel"
+										data-flickity='{ "autoPlay": true }'>
+										<c:forEach var="attach"
+											items="${likeList.roomAttachList}">
+
+											<img style="width: 100px; height: 100px"
+												src="/haroobang/resources/upload/${attach.savedFileName}"
+												alt=""
+												onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</div>
 								</c:when>
 							<c:otherwise>
-								<img id="img" class="img-fluid" src="/haroobang/resources/img/product/p1.jpg"/>
+								<img style="width: 100px; height: 100px"
+									src="/haroobang/resources/img/product/p1.jpg" alt="">
 							</c:otherwise>
 							</c:choose>
+							
 								<div class="product-details">
-								<a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" >
-									<h6> ${ myroom.roomVO.roomName }</h6>
-								</a>
+									<h6> ${ likeList.roomName }</h6>
 									<div class="price">
-										<h6>${ myroom.totalPrice } 원</h6>
-										<br>
-										<h6>${ myroom.startDate } ~ ${ myroom.endDate }</h6>
+										<h6>${ likeList.price }&#8361;</h6>
 										
 									</div>
 									
 								</div>
 							</div>
 						</div>
-						
-						</c:forEach> --%>
+						</a>
+						</c:forEach>
 						<!-- single product -->
 						
 					</div>

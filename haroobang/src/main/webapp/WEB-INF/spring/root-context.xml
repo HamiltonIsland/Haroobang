@@ -159,6 +159,10 @@
       <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
    	</bean>
    	
+   	<bean id="LikeListMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+      <property name="mapperInterface" value="com.haroobang.mapper.LikeListMapper" />
+      <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+   	</bean>
    	
    	<!-- MyRoom -->
 	 	<bean id="myRoomService" class="com.haroobang.service.MyRoomServiceImpl">

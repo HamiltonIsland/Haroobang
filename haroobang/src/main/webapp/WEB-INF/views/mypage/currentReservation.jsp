@@ -56,7 +56,7 @@
 				<div class="sidebar-categories">
 					<div class="head">My page</div>
 					<ul class="main-categories">
-						<li class="main-nav-list"><a href="#"> <span
+						<li class="main-nav-list"><a href="/haroobang/mypage/likeList.action?memberno=${ login.memberNo }"> <span
 								class="lnr lnr-arrow-right"></span>내가 찜한 숙소
 						</a></li>
 
@@ -251,7 +251,7 @@
 												</td>
 
 												<td>
-													<h5>$${current.totalPrice}</h5>
+													<h5>${current.totalPrice}&#8361;</h5>
 												</td>
 											</tr>
 										</c:forEach>

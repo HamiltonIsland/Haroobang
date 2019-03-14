@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 커밋... -->
+<mapper namespace="com.haroobang.mapper.LikeListMapper">
+	<resultMap type="LikedVO" id="LikedVO">
+		<result column="memberNo" property="memberNo" />
+		<result column="roomNo" property="roomNo" />
+		<result column="regDate" property="regDate" />
+	</resultMap>
+
+
+	<resultMap type="RoomVO" id="RoomMap">
+		<id column="roomNo" property="roomNo" />
+		<result column="memberNo" property="memberNo" />
+		<result column="regDate" property="regDate" />
+		<result column="roomName" property="roomName" />
+		<result column="address" property="address" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="roomProfile" property="roomProfile" />
+		<result column="price" property="price" />
+		<result column="readCount" property="readCount" />
+		<result column="maximum" property="maximum" />
+		 <collection property="likdVO" resultMap="LikedVO"></collection>
+	</resultMap>
+	
+	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
+		SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
+	
+	<select id="selectAllMyLiked" resultMap="RoomMap">
+		select rs.roomNo, rs.memberNo, rs.roomName, rs.regDate, rs.address, rs.longitude, rs.latitude,
+		rs.roomProfile, rs.price, rs.readCount, rs.maximum
+	  	from room as rs join liked as r
+      	where r.roomNo = rs.roomNo and r.memberNo = #{ memberNo }
+	</select>
+	
+</mapper>
+<!-- 썅 -->

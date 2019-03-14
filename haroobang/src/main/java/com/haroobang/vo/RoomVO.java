@@ -23,7 +23,14 @@ public class RoomVO {
 	private String checkIn;
 	private String checkOut;
 	private String memberSavedFileName;
+	private LikedVO likdVO;
 	
+	public LikedVO getLikdVO() {
+		return likdVO;
+	}
+	public void setLikdVO(LikedVO likdVO) {
+		this.likdVO = likdVO;
+	}
 	public int getRoomNo() {
 		return roomNo;
 	}
