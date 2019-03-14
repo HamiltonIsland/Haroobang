@@ -22,12 +22,12 @@
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
    
-   <select id="selectAllCurrentReservations" resultMap="ReservationMap">
+   <select id="selectAllCurrentReservations" parameterType="int" resultMap="ReservationMap">
 		<!-- select * from reservation -->
 		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
 		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
 	  	from reservation as rs join room as r
-      	where r.roomNo = rs.roomNo and rs.checkin = 0
+      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo }
 	</select>
 	
 	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
