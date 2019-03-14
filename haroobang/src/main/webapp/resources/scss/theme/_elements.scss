@@ -923,10 +923,9 @@ h1, h2, h3, h4, h5, h6 {
 .default-select {
 	height: 40px;
 	.nice-select {
-		border: none;
 		border-radius: 0px;
 		height: 40px;
-		background: #f9f9ff;
+		background: #000000;
 		padding-left: 20px;
 		padding-right: 40px;
 		.list {
@@ -966,10 +965,10 @@ h1, h2, h3, h4, h5, h6 {
 	height: 40px;
 	width: 100%;
 	.nice-select {
-		border: none;
 		border-radius: 0px;
 		height: 40px;
-		background: #f9f9ff;
+		background: #000000;
+		
 		padding-left: 45px;
 		padding-right: 40px;
 		width: 100%;

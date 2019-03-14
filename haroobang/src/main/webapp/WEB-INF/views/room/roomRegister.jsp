@@ -97,11 +97,25 @@
 									placeholder="가격" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '가격'">
 							</div>
-							<div class="form-group">
+							
+							<div class="input-group-icon mt-10">
+								<div class="icon" style="font-size:10px">최대</div>  
+								<div class="form-select" id="default-select">
+									<select id="maximum"name="maximum">
+										<option value=" 1">1명</option>
+										<option value="2">2명</option>
+										<option value="3">3명</option>
+										<option value="4">4명</option>
+										<option value="5">5명</option>
+										<option value="6">6명</option>
+									</select>
+								</div>
+							</div>
+							<!-- <div class="form-group">
 								<input type="text" class="form-control" id="maximum"name="maximum"
 									placeholder="최대인원" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '최대인원'">
-							</div>
+							</div> -->
 							
 						</div>
 						<div class="col-md-6">

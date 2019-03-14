@@ -80,7 +80,7 @@ public class RoomRegisterController {
 				
 				ByteArrayInputStream is = new ByteArrayInputStream(mf.getBytes());
 				
-				int width = 500;
+				int width = 600;
 				int height = 500;
 				
 				BufferedImage image = ImageIO.read(is);
