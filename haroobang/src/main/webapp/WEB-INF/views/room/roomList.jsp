@@ -96,6 +96,46 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
+
+
+.overlay {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 15%;
+	left: 70%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 1;
+}
+
+.span3 .overlay2 {
+	transition: .5s ease;
+	position: absolute;
+	opacity: 0;
+	top: 23%;
+	left: 70%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.span3:hover .overlay {
+	opacity: 1;
+}
+
+.span3:hover .widget-content {
+	background-color: #BDBDBD;
+	opacity: 0.7;
+}
+
+.span3 .text {
+	color: black;
+	font-size: 40px;
+	padding: 16px 32px;
+}
+
 </style>
 </head>
 
@@ -366,15 +406,49 @@ img {vertical-align: middle;}
 							
 							<c:choose>
 									<c:when test="${not empty room.roomAttachList}">
-										 <div class="main-carousel" data-flickity='{ "autoPlay": true }'>
+										 <div class="span3">
+										 <div class="main-carousel span3" data-flickity='{ "autoPlay": true }'>
 										<c:forEach var="attach" items="${room.roomAttachList}">
 												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
 													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
 										</c:forEach>
+										</div>
+										<div class="overlay">
+									<label class="checkbox inline"> 
+									<input type="checkbox" class="membercheck lnr lnr-heart" data-roomno="${room.roomNo}">
+										회원선택
+										<!-- <a href="" class="membercheck"> <span
+											class="lnr lnr-heart"></span></a> -->
+									</label>
+								</div>
+
+								<div class="overlay2" id="member${room.roomNo}search">
+									<div class=text>
+										<i class="lnr lnr-heart" style="color: red;"></i>
+									</div>
+								</div>
 									</div>
 									</c:when>
 									<c:otherwise>
+									<div class="span3">
+									<div class="main-carousel" data-flickity='{ "autoPlay": true }'>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</div>
+									<div class="overlay">
+									<label class="checkbox inline"> 
+									<input type="checkbox" class="membercheck" data-roomno="${room.roomNo}">
+										회원선택
+										<!-- <a href="" class="membercheck"> <span
+											class="lnr lnr-heart" style="font-size: 40px;"></span></a> -->
+									</label>
+								</div>
+
+								<div class="overlay2" id="member${room.roomNo}search">
+									<div class=text>
+										<i class="lnr lnr-heart" style="color: red;"></i>
+									</div>
+								</div>
+									</div>
 									</c:otherwise>
 								</c:choose>
 							
@@ -573,6 +647,16 @@ img {vertical-align: middle;}
   	
 	<script type="text/javascript">
 		$(function(){
+			
+			$('#search').on('click', '.membercheck', function(event) {
+				var memberno = $(this).attr('data-roomno');
+				if ($(this).prop('checked')) {
+					$('#member' + memberno + "search").css('opacity', '1');
+				} else {
+					$('#member' + memberno + "search").css('opacity', '0');
+				}
+			});
+			
 			
 			$("#keyword").on('keyup', function() {
 				var k = $(this).val();
