@@ -106,7 +106,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="file" id="file"multiple="multiple"
+								<input type="file" id="file"multiple="multiple" accept=".jpg,.jpeg,.png,.bnp"
 									class="form-control-file border" name="file" placeholder="숙소사진"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '숙소사진'">
