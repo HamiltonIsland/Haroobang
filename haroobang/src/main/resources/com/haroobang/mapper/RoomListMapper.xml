@@ -4,6 +4,10 @@
 <!-- 커밋... -->
 <mapper namespace="com.haroobang.mapper.RoomListMapper">
 
+	<insert id="likedRoom" parameterType="hashmap">
+		insert into liked(memberNo, roomNo) values(#{ memberno }, #{ roomno })
+	</insert>
+
 	<select id="selectAllRooms" resultType="RoomVO">
 		select * from room where approval=1
 	</select>
@@ -61,7 +65,6 @@
 		set approval = 1
 		where roomNo = #{formdate}
 	</update>
-	
 	
 	<select id="searchRoomList" parameterType="RoomVO" resultType="RoomVO">
 		select * from room 

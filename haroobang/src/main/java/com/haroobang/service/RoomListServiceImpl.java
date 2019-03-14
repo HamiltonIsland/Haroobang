@@ -72,4 +72,9 @@ public class RoomListServiceImpl implements RoomListService{
 		return list;
 	}
 
+	@Override
+	public void likedRoom(String memberno, String roomno) {
+		roomlistDao.likedRoom(memberno, roomno);
+	}
+
 }

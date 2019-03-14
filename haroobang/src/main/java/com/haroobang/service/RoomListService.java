@@ -18,4 +18,6 @@ public interface RoomListService {
 
 	List<RoomVO> searchRoomListService(RoomVO vo);
 
+	void likedRoom(String memberno, String roomno);
+
 }

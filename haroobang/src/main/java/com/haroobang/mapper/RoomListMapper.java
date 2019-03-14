@@ -21,4 +21,8 @@ public interface RoomListMapper {
 	List<RoomVO> selectRoomList(HashMap<String, Object> params);
 
 	List<RoomVO> searchRoomList(RoomVO vo);
+
+	void likedRoom(HashMap<String, Object> params);
+
+
 }

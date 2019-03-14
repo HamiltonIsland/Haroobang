@@ -21,4 +21,6 @@ public interface RoomListDao {
 
 	List<RoomVO> searchRoomListDao(RoomVO vo);
 
+	void likedRoom(String memberno, String roomno);
+
 }

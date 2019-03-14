@@ -62,4 +62,13 @@ public class RoomListDaoImpl implements RoomListDao{
 		List<RoomVO> list = roomListMapper.searchRoomList(vo);
 		return list;
 	}
+
+	@Override
+	public void likedRoom(String memberno, String roomno) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("memberno", Integer.parseInt(memberno));
+		params.put("roomno", Integer.parseInt(roomno));
+		
+		roomListMapper.likedRoom(params);
+	}
 }

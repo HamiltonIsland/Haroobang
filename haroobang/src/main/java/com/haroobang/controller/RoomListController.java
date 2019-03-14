@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.RoomListService;
 import com.haroobang.ui.ThePager;
@@ -55,14 +56,31 @@ public class RoomListController {
 	}
 	
 	@RequestMapping(value="/roomApproval.action", method=RequestMethod.POST)
+	@ResponseBody
 	public String roomApproval(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
-		
+		//@RequestParam(value="formdate")
 		roomListService.approvalRoom(formdate);
 		
 		return "success";
 	}
 	
+	@RequestMapping(value="/roomLiked.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String roomLiked(String memberno, String roomno, HttpSession session) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		//@RequestParam(value="userId")
+		roomListService.likedRoom(memberno, roomno);
+			
+		return "success";
+	}
 	
+	@RequestMapping(value="/roomUnLiked.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String roomUnLiked(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		
+		
+		return "success";
+	}
 	
 	
 	//home에서 검색목록

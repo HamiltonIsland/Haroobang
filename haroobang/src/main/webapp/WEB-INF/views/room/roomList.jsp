@@ -100,41 +100,36 @@ img {vertical-align: middle;}
 
 .overlay {
 	transition: .5s ease;
-	opacity: 0;
+	opacity: 1;
 	position: absolute;
 	top: 15%;
-	left: 70%;
+	left: 85%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	text-align: center;
 	z-index: 1;
+	font-size: 40px
 }
 
 .span3 .overlay2 {
 	transition: .5s ease;
 	position: absolute;
 	opacity: 0;
-	top: 23%;
-	left: 70%;
+	top: 15%;
+	left: 85%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	text-align: center;
+	font-size: 40px
 }
 
-.span3:hover .overlay {
+/* .span3:visited .overlay {
+	opacity: 0;
+} */
+
+/* .membercheck:visited .overlay2{
 	opacity: 1;
-}
-
-.span3:hover .widget-content {
-	background-color: #BDBDBD;
-	opacity: 0.7;
-}
-
-.span3 .text {
-	color: black;
-	font-size: 40px;
-	padding: 16px 32px;
-}
+} */
 
 </style>
 </head>
@@ -284,7 +279,7 @@ img {vertical-align: middle;}
 								<div class="product-details">
 									<h6 class="searchh">${disapproval.roomName}</h6>
 									<div class="price">
-										<h6>${disapproval.price}</h6>
+										<h6>${disapproval.price}&#8361;</h6>
 									</div>
 									<div class="prd-bottom">
 										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>
@@ -406,47 +401,49 @@ img {vertical-align: middle;}
 							
 							<c:choose>
 									<c:when test="${not empty room.roomAttachList}">
-										 <div class="span3">
+										 <div class="span3" data-memberno="${ login.memberNo }">
 										 <div class="main-carousel span3" data-flickity='{ "autoPlay": true }'>
 										<c:forEach var="attach" items="${room.roomAttachList}">
 												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
 													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
 										</c:forEach>
 										</div>
-										<div class="overlay">
+										<div class="overlay" id="member${room.roomNo}search">
 									<label class="checkbox inline"> 
-									<input type="checkbox" class="membercheck lnr lnr-heart" data-roomno="${room.roomNo}">
-										회원선택
-										<!-- <a href="" class="membercheck"> <span
-											class="lnr lnr-heart"></span></a> -->
+									<%-- <input type="checkbox" class="membercheck" data-roomno="${room.roomNo}">
+										회원선택 --%>
+										<a href="javascript:;" class="membercheck"> <span
+											class="lnr lnr-heart"></span></a>
 									</label>
 								</div>
 
-								<div class="overlay2" id="member${room.roomNo}search">
-									<div class=text>
-										<i class="lnr lnr-heart" style="color: red;"></i>
-									</div>
+								<div class="overlay2" id="member${room.roomNo}search2">
+									<!-- <div class=text> -->
+										<a href="javascript:;" class="membercheck2">
+										 <span class="lnr lnr-heart" style="color: red;"></span></a>
+									<!-- </div> -->
 								</div>
 									</div>
 									</c:when>
 									<c:otherwise>
-									<div class="span3">
+									<div class="span3" data-memberno="${ login.memberNo }">
 									<div class="main-carousel" data-flickity='{ "autoPlay": true }'>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</div>
-									<div class="overlay">
+									<div class="overlay" id="member${room.roomNo}search">
 									<label class="checkbox inline"> 
-									<input type="checkbox" class="membercheck" data-roomno="${room.roomNo}">
-										회원선택
-										<!-- <a href="" class="membercheck"> <span
-											class="lnr lnr-heart" style="font-size: 40px;"></span></a> -->
+									<%-- <input type="checkbox" class="membercheck" data-roomno="${room.roomNo}">
+										회원선택 --%>
+										<a href="javascript:;" class="membercheck"> <span
+											class="lnr lnr-heart"></span></a>
 									</label>
 								</div>
 
-								<div class="overlay2" id="member${room.roomNo}search">
-									<div class=text>
-										<i class="lnr lnr-heart" style="color: red;"></i>
-									</div>
+								<div class="overlay2" id="member${room.roomNo}search2">
+									<!-- <div class=text> -->
+										<a href="javascript:;" class="membercheck2">
+										 <span class="lnr lnr-heart" style="color: red;"></span></a>
+									<!-- </div> -->
 								</div>
 									</div>
 									</c:otherwise>
@@ -494,7 +491,7 @@ img {vertical-align: middle;}
 								<div class="product-details">
 									<h6 class="searchh">${room.roomName}</h6>
 									<div class="price">
-										<h6>$${room.price}</h6>
+										<h6>${room.price}&#8361;</h6>
 									</div>
 									<div class="prd-bottom">
 										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>
@@ -648,13 +645,54 @@ img {vertical-align: middle;}
 	<script type="text/javascript">
 		$(function(){
 			
-			$('#search').on('click', '.membercheck', function(event) {
+			/* $('#search').on('click', '.membercheck', function(event) {
 				var memberno = $(this).attr('data-roomno');
-				if ($(this).prop('checked')) {
+				if ($(this).prop('click')) {
 					$('#member' + memberno + "search").css('opacity', '1');
 				} else {
 					$('#member' + memberno + "search").css('opacity', '0');
 				}
+			}); */
+			
+			$("a[class ^=membercheck]").on('click',function(event){
+				//var memberno = ${ login.memberNo };
+				var session = $(this).parents('.span3').attr('data-memberno');
+				if(session == ""){
+					window.location="/haroobang/account/login.action";
+				}
+				else{
+					var memberno = $(this).parents('.span3').attr('data-memberno');
+					var roomno = $(this).parents('.disapprovalNo').attr('data-roomno');
+					
+					$('#member' + roomno + "search").css({'z-index': 0, 'opacity': 0});
+					$('#member' + roomno + "search2").css({'z-index': 1, 'opacity': 1});
+					
+					$.ajax({
+						"url": "roomLiked.action",
+						"method": "POST",
+						"data": { 'memberno' : memberno, 'roomno' : roomno },
+						"success": function(data, status, xhr) {
+							if (data === "success"){
+								alert('찜목록에 추가 되었습니다.');
+								//location.reload(true);
+							}
+							/* alert('숙소가 승인 되었습니다.'); */
+						},
+						"error": function(xhr, status, err) {
+							alert('찜목록 실패했다 임마!!');
+							//location.reload(true);
+						}
+					});
+				}
+
+			});
+			
+			$("a[class ^=membercheck2]").on('click',function(event){
+				//var memberno = ${ login.memberNo };
+				var roomno = $(this).parents('.disapprovalNo').attr('data-roomno');
+				
+				$('#member' + roomno + "search").css({'z-index': 1, 'opacity': 1});
+				$('#member' + roomno + "search2").css({'z-index': 0, 'opacity': 0});
 			});
 			
 			
@@ -682,11 +720,15 @@ img {vertical-align: middle;}
 					"url": "roomApproval.action",
 					"method": "POST",
 					"data": { 'formdate' : formData },
-					"success": function(formData, status, xhr) {
-						alert('숙소가 승인 되었습니다.');
+					"success": function(data, status, xhr) {
+						if (data === "success"){
+							alert('숙소가 승인 되었습니다.');
+							location.reload(true);
+						}
+						/* alert('숙소가 승인 되었습니다.'); */
 					},
 					"error": function(xhr, status, err) {
-						alert('숙소 승인');
+						alert('숙소 실패');
 						location.reload(true);
 					}
 				});
