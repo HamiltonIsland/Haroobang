@@ -36,7 +36,7 @@ $(function(){
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>이전예약보기</h1>
+					<h1>이전 예약 보기</h1>
 				</div>
 			</div>
 		</div>
@@ -53,11 +53,11 @@ $(function(){
 							<tr>
 								<th scope="col">숙소정보</th>
 								<th scope="col">몇박</th>
-								<th scope="col">총금액</th>
+								<th scope="col">총결제금액</th>
 								<th scope="col">결제수단</th>
 								<th scope="col">결제일시</th>
-								<th scope="col">입실날짜</th>
-                                <th scope="col">퇴실날짜</th>
+								<th scope="col">체크인</th>
+                                <th scope="col">체크아웃</th>
 								<th scope="col">결제고객</th>
 							</tr>
 						</thead>

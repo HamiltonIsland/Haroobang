@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.StatisticsDao;
+import com.haroobang.vo.ReservationVO;
 
 @Service("StatisticsService")
 public class StatisticsServiceImpl implements StatisticsService{
@@ -25,6 +26,12 @@ public class StatisticsServiceImpl implements StatisticsService{
 	public int getTotalCheckinPriceService() {
 		int price = statisticsDao.getTotalCheckinPriceDao();
 		return price;
+	}
+
+	@Override
+	public List<ReservationVO> getMonthCountService() {
+		List<ReservationVO> monthCount = statisticsDao.getMonthCountDao();
+		return monthCount;
 	}
 
 }

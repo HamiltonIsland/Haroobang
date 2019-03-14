@@ -13,6 +13,7 @@
 		<typeAlias type="com.haroobang.vo.ReservationVO" alias="ReservationVO" />	
 		<typeAlias type="com.haroobang.vo.CommentVO" alias="CommentVO" />	
 		<typeAlias type="com.haroobang.vo.ReportVO" alias="ReportVO" />
+		<typeAlias type="com.haroobang.vo.StatisticsVO" alias="StatisticsVO" />
 	</typeAliases>
 
 	<environments default="development">

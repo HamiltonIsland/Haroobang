@@ -15,9 +15,12 @@ public class ReservationVO {
 	 private String startDate;
 	 private String endDate;
 	 private String Coupon;
-	 
+	 private String months;
+	 private int count;
 	 private RoomVO roomVO;
 	 private AccountVO accountVO;
+	 
+	 
 	 
 	 private List<RoomAttachVO> roomAttachList;
 	 
@@ -110,6 +113,18 @@ public class ReservationVO {
 	}
 	public void setAccountVO(AccountVO accountVO) {
 		this.accountVO = accountVO;
+	}
+	public String getMonths() {
+		return months;
+	}
+	public void setMonths(String months) {
+		this.months = months;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 }
