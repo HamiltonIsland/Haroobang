@@ -174,7 +174,7 @@
 									<thead>
 										<tr>
 											<th scope="col">숙소정보</th>
-											<th scope="col">가격</th>
+											<th scope="col">결제수단</th>
 											<th scope="col">숙박기간</th>
 											<!-- <th scope="col">Check IN or OUT</th> -->
 											<th scope="col">결제일시</th>
