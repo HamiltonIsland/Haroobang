@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.RoomListDao;
+import com.haroobang.vo.LikedVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -75,6 +76,17 @@ public class RoomListServiceImpl implements RoomListService{
 	@Override
 	public void likedRoom(String memberno, String roomno) {
 		roomlistDao.likedRoom(memberno, roomno);
+	}
+
+	@Override
+	public void unLikedRoom(String memberno, String roomno) {
+		roomlistDao.unLikedRoom(memberno, roomno);
+	}
+
+	@Override
+	public List<LikedVO> findAllLikeds(int memberNo) {
+		List<LikedVO> likeds = roomlistDao.selectAllLiked(memberNo);
+		return likeds;
 	}
 
 }

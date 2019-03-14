@@ -642,19 +642,27 @@ img {vertical-align: middle;}
   	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   	
-	<script type="text/javascript">
+  	<c:choose>
+  		<c:when test="${not empty likeds}">
+  		<script type="text/javascript">
+		  		$(function(){
+		  			
+  			<c:forEach var="liked" items="${likeds}">
+  			
+		  			$('#member' + ${liked.roomNo} + "search").css({'z-index': 0, 'opacity': 0});
+					$('#member' + ${liked.roomNo} + "search2").css({'z-index': 1, 'opacity': 1});
+
+		  	</c:forEach>
+		  		});
+		  	</script>
+  		</c:when>
+  		<c:otherwise>
+  		</c:otherwise>
+  	</c:choose>
+  	
+  	<script type="text/javascript">
 		$(function(){
-			
-			/* $('#search').on('click', '.membercheck', function(event) {
-				var memberno = $(this).attr('data-roomno');
-				if ($(this).prop('click')) {
-					$('#member' + memberno + "search").css('opacity', '1');
-				} else {
-					$('#member' + memberno + "search").css('opacity', '0');
-				}
-			}); */
-			
-			$("a[class ^=membercheck]").on('click',function(event){
+			$("a.membercheck").on('click',function(event){
 				//var memberno = ${ login.memberNo };
 				var session = $(this).parents('.span3').attr('data-memberno');
 				if(session == ""){
@@ -676,7 +684,7 @@ img {vertical-align: middle;}
 								alert('찜목록에 추가 되었습니다.');
 								//location.reload(true);
 							}
-							/* alert('숙소가 승인 되었습니다.'); */
+							
 						},
 						"error": function(xhr, status, err) {
 							alert('찜목록 실패했다 임마!!');
@@ -687,12 +695,36 @@ img {vertical-align: middle;}
 
 			});
 			
-			$("a[class ^=membercheck2]").on('click',function(event){
+			$("a.membercheck2").on('click',function(event){
 				//var memberno = ${ login.memberNo };
-				var roomno = $(this).parents('.disapprovalNo').attr('data-roomno');
-				
-				$('#member' + roomno + "search").css({'z-index': 1, 'opacity': 1});
-				$('#member' + roomno + "search2").css({'z-index': 0, 'opacity': 0});
+				var session = $(this).parents('.span3').attr('data-memberno');
+				if(session == ""){
+					window.location="/haroobang/account/login.action";
+				}
+				else{
+					var memberno = $(this).parents('.span3').attr('data-memberno');
+					var roomno = $(this).parents('.disapprovalNo').attr('data-roomno');
+					
+					$('#member' + roomno + "search").css({'z-index': 1, 'opacity': 1});
+					$('#member' + roomno + "search2").css({'z-index': 0, 'opacity': 0});
+					
+					$.ajax({
+						"url": "roomUnLiked.action",
+						"method": "POST",
+						"data": { 'memberno' : memberno, 'roomno' : roomno },
+						"success": function(data, status, xhr) {
+							if (data === "success"){
+								alert('찜을 취소했습니다.');
+								//location.reload(true);
+							}
+							
+						},
+						"error": function(xhr, status, err) {
+							alert('찜 취초 실패다 임마');
+							//location.reload(true);
+						}
+					});
+				}
 			});
 			
 			

@@ -73,4 +73,12 @@
 		maximum <![CDATA[<=]]> #{maximum} and roomNo not in 
 		(select roomNo from reservationDate where reservationDate.date between date(#{checkIn}) and date(#{checkOut})+1)
 	</select>
+	
+	<select id="selectAllLiked" parameterType="int" resultType="LikedVO">
+		select * from liked where memberno = #{memberNo}
+	</select>
+	
+	<delete id="unLikedRoom" parameterType="hashmap">
+		DELETE FROM liked WHERE memberNo = #{ memberno } and roomNo = #{ roomno }
+	</delete>
 </mapper>
