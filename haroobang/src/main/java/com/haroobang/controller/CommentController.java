@@ -63,7 +63,7 @@ public class CommentController {
 				
 				model.addAttribute("mycomments", mycomments);
 				
-				return "mypage/commentList2";
+				return "mypage/commentList";
 			}
 			
 		}

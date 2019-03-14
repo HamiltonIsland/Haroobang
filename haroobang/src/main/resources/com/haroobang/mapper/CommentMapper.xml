@@ -9,6 +9,9 @@
       VALUES (#{ content }, #{ rates }, #{ nickName }, #{ reservationNo }, #{ roomNo }, #{ memberNo })
    </insert>
    
+   <resultMap type="RoomVO" id="RoomVO">
+      <result column="roomName" property="roomName" />
+   </resultMap>
    <resultMap type="CommentVO" id="commentMap">
       <result column="commentNo" property="commentNo" />
       <result column="roomNo" property="roomNo" />
@@ -16,11 +19,17 @@
       <result column="rates" property="rates" />
       <result column="content" property="content" />
       <result column="regDate" property="regDate" />
+      <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
    <select id="selectAllMycomments" parameterType="int" resultMap="commentMap">
-      select commentNo, roomNo, rates, content, regDate
-	  from comment
-      where memberNo = #{ memberNo } order by regDate desc;
+      select c.commentNo, c.roomNo, c.rates, c.content, c.regDate, r.roomName
+	  from comment as c join room as r
+      where c.roomNo = r.roomNo and c.memberNo = #{ memberNo } order by regDate desc;
    </select>
+   
+   <select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
+		SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
    
 </mapper>
