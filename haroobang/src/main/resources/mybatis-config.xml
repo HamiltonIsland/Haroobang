@@ -40,6 +40,7 @@
 		<mapper resource="com/haroobang/mapper/CurrentReservationMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/ReviewReportMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/StatisticsMapper.xml" />
+		<mapper resource="com/haroobang/mapper/MyRoomMapper.xml" />
 	</mappers>
 </configuration>
 
