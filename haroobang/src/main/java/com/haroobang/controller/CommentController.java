@@ -31,7 +31,7 @@ public class CommentController {
 	@RequestMapping(value = "/commentRegister.action", method = RequestMethod.GET)
 	public String commentRegisterForm(@RequestParam("reservationno")int reservationNo, @RequestParam("roomno")int roomNo, HttpSession session, HttpServletRequest req, Model model) {
 		if (session.getAttribute("login") == null) {
-			return "redirect:/login.action";
+			return "redirect:/account/login.action";
 		}
 		AccountVO member = (AccountVO) session.getAttribute("login");
 		int memberNo = member.getMemberNo();
@@ -57,7 +57,7 @@ public class CommentController {
 		public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model, HttpSession session) {
 			
 			if (session.getAttribute("login") == null) {
-				return "redirect:/login.action";
+				return "redirect:/account/login.action";
 			} else {
 				List<CommentVO> mycomments = commentService.findMycomment(memberNo);
 				
