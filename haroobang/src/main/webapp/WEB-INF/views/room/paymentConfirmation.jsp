@@ -71,7 +71,7 @@ $(function(){
                                     <h5>&#8361; ${roomDetail.price }</h5>
                                 </td>
                                 <td>
-                                    <h5>${reservaion.nights }박</h5>
+                                    <h5>${reservation.nights }박</h5>
                                 </td>
                                 <td>
                                     <h5>&#8361; ${reservation.totalPrice }</h5>

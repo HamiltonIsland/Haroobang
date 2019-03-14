@@ -1,9 +1,15 @@
 package com.haroobang.controller;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +61,7 @@ public class RoomRegisterController {
 	@RequestMapping(value = "/roomRegister.action", method = RequestMethod.POST)
 	@ResponseBody
 	public int roomRegisterInsert(RoomAttachVO vos, RoomVO vo, HttpSession session,
-			MultipartHttpServletRequest req,Model model) {
+			MultipartHttpServletRequest req,Model model) throws IOException {
 		
 		if(vo.getRoomProfile().equals("")) {
 			vo.setRoomProfile("안녕하세요 "+vo.getRoomName()+" 입니다");
@@ -63,15 +69,32 @@ public class RoomRegisterController {
 		roomRegisterService.roomRegisterService(vo);
 		
 		int roomNo = 0;
+		
 		List<MultipartFile> attach = req.getFiles("file");
+		
 		ArrayList<RoomAttachVO> attachs = new ArrayList<RoomAttachVO>();
+		
 		if (attach != null && !attach.isEmpty()) {
 
 			for (MultipartFile mf : attach) {
+				
+				ByteArrayInputStream is = new ByteArrayInputStream(mf.getBytes());
+				
+				int width = 500;
+				int height = 500;
+				
+				BufferedImage image = ImageIO.read(is);
+				
+				
+				BufferedImage resized= resize(image, height, width);
+				
 				String savedFileName = Util.makeUniqueFileName(mf.getOriginalFilename());
 				String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
 				try {
-				mf.transferTo(new File(path));
+//				mf.transferTo(new File(path));
+				File output = new File(path);
+				boolean result = ImageIO.write(resized,"jpg",output);
+				
 				vos.setSavedFileName(savedFileName);
 				vos.setUserFileName(mf.getOriginalFilename());
 				attachs.add(vos);
@@ -98,6 +121,15 @@ public class RoomRegisterController {
 		
 		return roomNo;
 	}
+	
+	private static BufferedImage resize(BufferedImage img, int height, int width) {
+        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
+    }
 	
 	// 숙소등록확인 페이지 보여주기
 		@RequestMapping(value = "/deleteRegister.action", method = RequestMethod.GET)
