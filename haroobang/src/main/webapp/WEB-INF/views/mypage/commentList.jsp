@@ -41,7 +41,7 @@
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>이전 예약 목록</h1>
+					<h1>내가 쓴 후기</h1>
 
 				</div>
 			</div>
