@@ -55,13 +55,12 @@
 											<ul class="dropdown-menu">
 												<li class="nav-item"><a class="nav-link"
 													href="/haroobang/room/roomList.action">ALL Room List</a></li>
-
-												<li class="nav-item"><a class="nav-link"
-													href="/haroobang/reservation/reservationList.action">ALL
-														RESERVATIONS</a></li>
 												<li class="nav-item"><a class="nav-link"
 													href="/haroobang/member/memberlist.action">ALL
 														MEMBERLISTS</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="/haroobang/reservation/reservationList.action">ALL
+														RESERVATIONS</a></li>
 												<li class="nav-item"><a class="nav-link"
 													href="/haroobang/room/reviewReport.action">ALL REPORTED
 														REVIEWS</a></li>
