@@ -67,9 +67,18 @@ $(function(){
 									<div class="media">
 										<div class="d-flex">
 											<a href="/haroobang/room/roomDetail.action?roomNo=${roomno}">
-											<img style="height: 100px; width: 100px"
-												src="/haroobang/resources/upload/${reservationdetail.roomAttachList.savedFileName}" alt=""
-												onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+											<c:choose>
+												<c:when test="${not empty reservationdetail.roomAttachList}">
+													<c:forEach var="attach" items="${reservationdetail.roomAttachList}">
+                                						<img style="height: 100px; width: 100px"
+															src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+															onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<img style="width: 100px; height: 100px" src="/haroobang/resources/img/product/p1.jpg" alt="">
+												</c:otherwise>
+											</c:choose>
 											</a>
 										</div>
 										<div class="media-body" style="text-align: left">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.haroobang.mapper.CommentMapper;
 import com.haroobang.vo.CommentVO;
+import com.haroobang.vo.RoomAttachVO;
 
 public class OracleCommentDao implements CommentDao {
 	
@@ -22,6 +23,12 @@ public class OracleCommentDao implements CommentDao {
 	public List<CommentVO> selectAllMycomments(int memberNo) {
 		List<CommentVO> mycomments = commentMapper.selectAllMycomments(memberNo);
 		return mycomments;
+	}
+
+	@Override
+	public List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo) {
+		List<RoomAttachVO> attachs = commentMapper.selectRoomAttachByRoomNo(roomNo);
+		return attachs;
 	}
 	
 }

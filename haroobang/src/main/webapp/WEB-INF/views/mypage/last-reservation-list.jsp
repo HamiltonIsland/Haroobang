@@ -134,9 +134,18 @@
 									<div class="media">
                                         <div>
                                 <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }">
-                                <img style="height: 100px; width: 100px"
-												src="/haroobang/resources/upload/${reservationdetail.roomAttachList.savedFileName}" alt=""
+                                <c:choose>
+									<c:when test="${not empty myroom.roomAttachList}">
+										<c:forEach var="attach" items="${myroom.roomAttachList}">
+                                			<img style="height: 100px; width: 100px"
+												src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
 												onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<img style="width: 100px; height: 100px" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
 								</a>
                                         </div>
                                         

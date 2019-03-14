@@ -51,5 +51,10 @@
 	  WHERE r.roomNo=#{ roomNo } And rs.memberNo=#{ memberNo } And rs.startDate=#{ startDate } And r.roomNo = rs.roomNo And m.memberNo = rs.memberNo;
    </select>
    
+   <select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
+		SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
+   
    
 </mapper>

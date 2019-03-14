@@ -1,5 +1,7 @@
 package com.haroobang.vo;
 
+import java.util.List;
+
 public class CommentVO {
 	
 	private int commentNo;
@@ -13,7 +15,21 @@ public class CommentVO {
 	private String nickName;
 	private AccountVO member;
 	private int reservationNo;
+	private RoomVO roomVO;
+	private List<RoomAttachVO> roomAttachList;
 	
+	public List<RoomAttachVO> getRoomAttachList() {
+		return roomAttachList;
+	}
+	public void setRoomAttachList(List<RoomAttachVO> roomAttachList) {
+		this.roomAttachList = roomAttachList;
+	}
+	public RoomVO getRoomVO() {
+		return roomVO;
+	}
+	public void setRoomVO(RoomVO roomVO) {
+		this.roomVO = roomVO;
+	}
 	public int getReservationNo() {
 		return reservationNo;
 	}

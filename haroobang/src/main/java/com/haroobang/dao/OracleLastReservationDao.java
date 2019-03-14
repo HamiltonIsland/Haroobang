@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.haroobang.mapper.LastReservationMapper;
 import com.haroobang.vo.ReservationVO;
+import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
 public class OracleLastReservationDao implements LastReservationDao {
@@ -28,6 +29,12 @@ public class OracleLastReservationDao implements LastReservationDao {
 		params.put("startDate", startdate);
 		ReservationVO myroom = lastReservationMapper.selectRoomByRoomNo(params);
 		return myroom;
+	}
+
+	@Override
+	public List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo) {
+		List<RoomAttachVO> attachs = lastReservationMapper.selectRoomAttachByRoomNo(roomNo);
+		return attachs;
 	}
 
 }

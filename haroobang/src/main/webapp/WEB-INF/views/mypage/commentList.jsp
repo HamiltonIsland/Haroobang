@@ -137,7 +137,7 @@
 											<th scope="col">숙소정보</th>
 											<th scope="col" style="width: 64px;">별점</th>
 											<th scope="col">내용</th>
-											<th scope="col">등록날짜</th>
+											<th scope="col" style="width: 100px;">등록날짜</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -149,26 +149,17 @@
 															href="/haroobang/room/roomDetail.action?roomNo=${mycomment.roomNo}">
 															<c:choose>
 																<c:when test="${not empty mycomment.roomAttachList}">
-																	<div class="main-carousel"
-																		data-flickity='{ "autoPlay": true }'>
-																		<c:forEach var="attach"
-																			items="${mycomment.roomAttachList}">
-
-																			<img style="width: 100px; height: 100px"
-																				src="/haroobang/resources/upload/${attach.savedFileName}"
-																				alt=""
-																				onerror="this.src = '/haroobang/resources/upload/default.jpg'">
-																		</c:forEach>
-																	</div>
+																	<c:forEach var="attach" items="${mycomment.roomAttachList}">
+							                                			<img style="height: 100px; width: 100px"
+																			src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+																			onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+																	</c:forEach>
 																</c:when>
 																<c:otherwise>
-																	<img style="width: 100px; height: 100px"
-																		src="/haroobang/resources/img/product/p1.jpg" alt="">
+																	<img style="width: 100px; height: 100px" src="/haroobang/resources/img/product/p1.jpg" alt="">
 																</c:otherwise>
 															</c:choose>
-														</a> <a
-															href="/haroobang/room/roomDetail.action?roomNo=${mycomment.roomNo}">
-															<p>${mycomment.roomNo }</p>
+															<p>${mycomment.roomVO.roomName }</p>
 														</a>
 													</div>
 												</td>
