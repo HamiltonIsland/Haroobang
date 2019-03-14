@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.RoomListMapper;
+import com.haroobang.vo.LikedVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -61,5 +62,29 @@ public class RoomListDaoImpl implements RoomListDao{
 	public List<RoomVO> searchRoomListDao(RoomVO vo) {
 		List<RoomVO> list = roomListMapper.searchRoomList(vo);
 		return list;
+	}
+
+	@Override
+	public void likedRoom(String memberno, String roomno) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("memberno", Integer.parseInt(memberno));
+		params.put("roomno", Integer.parseInt(roomno));
+		
+		roomListMapper.likedRoom(params);
+	}
+
+	@Override
+	public void unLikedRoom(String memberno, String roomno) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("memberno", Integer.parseInt(memberno));
+		params.put("roomno", Integer.parseInt(roomno));
+		
+		roomListMapper.unLikedRoom(params);
+	}
+
+	@Override
+	public List<LikedVO> selectAllLiked(int memberNo) {
+		List<LikedVO> likeds = roomListMapper.selectAllLiked(memberNo);
+		return likeds;
 	}
 }

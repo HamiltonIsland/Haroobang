@@ -30,6 +30,7 @@ public class StatisticsDaoImpl implements StatisticsDao{
 
 	@Override
 	public List<ReservationVO> getMonthCountDao() {
+		
 		List<ReservationVO> monthCount = statisticsMapper.getMonthCount();
 		return monthCount;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -90,14 +91,15 @@
     
  	//통계2
     var svg2 = dimple.newSvg("#chartContainer2", 590, 400);    
-   	var data2 = [];   
-   	for(var i=0;i<${monthCount}.length;i++){
-			var monthCount = { "Month": ${monthCount.[0]}, "예약건수":${monthCount.[1]} }
-			data2.append(monthCount);
-		}
+   	var data2 = [];  
+   	//for(var i=0;i<${ fn:length(monthCount)};i++){
+   	<c:forEach var="monthCounts" items="${monthCount}">
+   		data2.push({ "": '${monthCounts.months}',"예약건수":${monthCounts.count} })
+   	</c:forEach>
+   	//}
    	var myChart2 = new dimple.chart(svg2, data2);
     myChart2.setBounds(60, 30, 510, 305)
-    var x = myChart2.addCategoryAxis("x", "Month");
+    var x = myChart2.addCategoryAxis("x", "");
     x.addOrderRule("Date");
     myChart2.addMeasureAxis("y", "예약건수");
     myChart2.addSeries(null, dimple.plot.bar);

@@ -12,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.RoomListService;
 import com.haroobang.ui.ThePager;
 import com.haroobang.vo.AccountVO;
+import com.haroobang.vo.LikedVO;
 import com.haroobang.vo.RoomVO;
 
 @Controller
@@ -27,7 +29,7 @@ public class RoomListController {
 	private RoomListService roomListService;
 	
 	@RequestMapping(value="/roomList.action", method=RequestMethod.GET)
-	public String roomList(Model model) {//(@RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo, Model model) {
+	public String roomList(Model model, HttpSession session, HttpServletRequest req, AccountVO accountVO) {//(@RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo, Model model) {
 		
 		/*int pageSize = 12;	//한 페이지에 표시되는 데이터 개수
 		int from = (pageNo - 1) * pageSize + 1; //해당 페이지에 포함된 시작 글번호
@@ -43,9 +45,16 @@ public class RoomListController {
 		//List<RoomVO> disapproval = roomListService.findAllDisapprovalRoomsByPage(from, to);
 		//int disapprovalCount = roomListService.findDisapprovalRoomsCount();
 		
+		accountVO = (AccountVO)session.getAttribute("login");
+		List<LikedVO> likeds = null;
+		if (accountVO != null) {
+			likeds = roomListService.findAllLikeds(accountVO.getMemberNo());
+		}
+		
 		//ThePager pager = new ThePager(roomCount, pageNo, pageSize, pagerSize, linkUrl);
 		//ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
 		
+		model.addAttribute("likeds", likeds);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("disapproval", disapproval);
 		//model.addAttribute("pager", pager);
@@ -55,14 +64,31 @@ public class RoomListController {
 	}
 	
 	@RequestMapping(value="/roomApproval.action", method=RequestMethod.POST)
+	@ResponseBody
 	public String roomApproval(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
-		
+		//@RequestParam(value="formdate")
 		roomListService.approvalRoom(formdate);
 		
 		return "success";
 	}
 	
+	@RequestMapping(value="/roomLiked.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String roomLiked(String memberno, String roomno, HttpSession session) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		//@RequestParam(value="userId")
+		roomListService.likedRoom(memberno, roomno);
+			
+		return "success";
+	}
 	
+	@RequestMapping(value="/roomUnLiked.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String roomUnLiked(String memberno, String roomno) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		roomListService.unLikedRoom(memberno, roomno);
+		
+		return "success";
+	}
 	
 	
 	//home에서 검색목록

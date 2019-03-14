@@ -2,6 +2,7 @@ package com.haroobang.service;
 
 import java.util.List;
 
+import com.haroobang.vo.LikedVO;
 import com.haroobang.vo.RoomVO;
 //커밋...
 public interface RoomListService {
@@ -17,5 +18,11 @@ public interface RoomListService {
 	int findRoomCount();
 
 	List<RoomVO> searchRoomListService(RoomVO vo);
+
+	void likedRoom(String memberno, String roomno);
+
+	void unLikedRoom(String memberno, String roomno);
+
+	List<LikedVO> findAllLikeds(int memberNo);
 
 }

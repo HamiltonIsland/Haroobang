@@ -4,6 +4,10 @@
 <!-- 커밋... -->
 <mapper namespace="com.haroobang.mapper.RoomListMapper">
 
+	<insert id="likedRoom" parameterType="hashmap">
+		insert into liked(memberNo, roomNo) values(#{ memberno }, #{ roomno })
+	</insert>
+
 	<select id="selectAllRooms" resultType="RoomVO">
 		select * from room where approval=1
 	</select>
@@ -62,7 +66,6 @@
 		where roomNo = #{formdate}
 	</update>
 	
-	
 	<select id="searchRoomList" parameterType="RoomVO" resultType="RoomVO">
 		select * from room 
 		where approval=1 and 
@@ -70,4 +73,12 @@
 		maximum <![CDATA[<=]]> #{maximum} and roomNo not in 
 		(select roomNo from reservationDate where reservationDate.date between date(#{checkIn}) and date(#{checkOut})+1)
 	</select>
+	
+	<select id="selectAllLiked" parameterType="int" resultType="LikedVO">
+		select * from liked where memberno = #{memberNo}
+	</select>
+	
+	<delete id="unLikedRoom" parameterType="hashmap">
+		DELETE FROM liked WHERE memberNo = #{ memberno } and roomNo = #{ roomno }
+	</delete>
 </mapper>
