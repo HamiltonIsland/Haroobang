@@ -13,6 +13,7 @@
 		<typeAlias type="com.haroobang.vo.ReservationVO" alias="ReservationVO" />	
 		<typeAlias type="com.haroobang.vo.CommentVO" alias="CommentVO" />	
 		<typeAlias type="com.haroobang.vo.ReportVO" alias="ReportVO" />
+		<typeAlias type="com.haroobang.vo.StatisticsVO" alias="StatisticsVO" />
 	</typeAliases>
 
 	<environments default="development">
@@ -40,6 +41,7 @@
 		<mapper resource="com/haroobang/mapper/CurrentReservationMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/ReviewReportMapper.xml"/>
 		<mapper resource="com/haroobang/mapper/StatisticsMapper.xml" />
+		<mapper resource="com/haroobang/mapper/MyRoomMapper.xml" />
 	</mappers>
 </configuration>
 

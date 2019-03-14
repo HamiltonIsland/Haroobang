@@ -31,7 +31,7 @@ public class LastReservationController {
 	public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model, HttpSession session) {
 		
 		if (session.getAttribute("login") == null) {
-			return "/account/login.action";
+			return "account/login.action";
 		} else {
 			List<ReservationVO> myrooms = lastReservationService.findMyLastReservation(memberNo);
 			
@@ -46,7 +46,7 @@ public class LastReservationController {
 	@RequestMapping(value = "/lastReservationDetail.action", method = RequestMethod.GET)
 	public String lastReservationdetail(@RequestParam("roomno")int roomNo, String startdate, Model model, HttpSession session) {
 		if (session.getAttribute("login") == null) {
-			return "/account/login.action";
+			return "account/login.action";
 		} else {
 			AccountVO member = (AccountVO) session.getAttribute("login");
 			int memberNo = member.getMemberNo();
