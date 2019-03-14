@@ -158,6 +158,21 @@
       <property name="mapperInterface" value="com.haroobang.mapper.ReviewReportMapper" />
       <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
    	</bean>
+   	
+   	
+   	<!-- MyRoom -->
+	 	<bean id="myRoomService" class="com.haroobang.service.MyRoomServiceImpl">
+      <property name="myRoomDao" ref="myRoomDao" />
+   	</bean>
+   
+ 	<bean id="myRoomDao" class="com.haroobang.dao.OracleMyRoomDao">
+      <property name="myRoomMapper" ref="myRoomMapper"/>
+   	</bean>
+   
+   	<bean id="myRoomMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+      <property name="mapperInterface" value="com.haroobang.mapper.MyRoomMapper" />
+      <property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+   	</bean>
 </beans>
 
 

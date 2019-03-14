@@ -33,8 +33,11 @@
 	<select id="selectAllReviewReports" resultMap="reviewReportMap">
 		select r.commentNo, r.memberNo, r.regDate, r.content, c.restricted, c.reportCount 
 		from report as r join comment as c
-		where r.commentNo = c.commentNo and c.restricted=0 and c.reportCount=1 
-	</select>
+		where r.commentNo = c.commentNo and c.restricted=0 and reportCount<![CDATA[>]]>0
+	</select>  
+	
+
+	
 
 	<select id="selectAllReviewReportCount" parameterType="int"
 		resultType="int">
