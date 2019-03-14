@@ -145,6 +145,7 @@
 		
 		var formData = $(this).parents('.reviewRestricted').attr('data-commentno');
 		
+		
 		$.ajax({
 			"url": "reviewStay.action",
 			"method": "POST",
@@ -162,7 +163,7 @@
 	$("a[id ^=reviewdelete]").on('click',function(event){
 		
 		var formData = $(this).parents('.reviewRestricted').attr('data-commentno');
-		
+		alert(formData);
 		$.ajax({
 			"url": "reviewRestricted.action",
 			"method": "POST",

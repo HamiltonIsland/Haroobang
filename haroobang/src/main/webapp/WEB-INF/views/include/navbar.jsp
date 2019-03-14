@@ -80,7 +80,7 @@
 										<li class="nav-item"><a class="nav-link"
 											href="/haroobang/room/roomRegister.action">roomRegister</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
+											href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="/haroobang/account/logout.action">Log-Out</a></li>
 									</c:otherwise>

@@ -39,7 +39,7 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>이전 예약 목록</h1>
+					<h1>내 숙소 예약 리스트 </h1>
 					
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 								<th scope="col">숙소정보</th>
 								<th scope="col">체크인</th>
 								<th scope="col">체크아웃</th>
-								<th scope="col">총결제금액</th>
+								<th scope="col">합계</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -134,18 +134,9 @@
 									<div class="media">
                                         <div>
                                 <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }">
-                                <c:choose>
-									<c:when test="${not empty myroom.roomAttachList}">
-										<c:forEach var="attach" items="${myroom.roomAttachList}">
-                                			<img style="height: 100px; width: 100px"
-												src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+                                <img style="height: 100px; width: 100px"
+												src="/haroobang/resources/upload/${reservationdetail.roomAttachList.savedFileName}" alt=""
 												onerror="this.src = '/haroobang/resources/upload/default.jpg'">
-										</c:forEach>
-									</c:when>
-									<c:otherwise>
-										<img style="width: 100px; height: 100px" src="/haroobang/resources/img/product/p1.jpg" alt="">
-									</c:otherwise>
-								</c:choose>
 								</a>
                                         </div>
                                         
