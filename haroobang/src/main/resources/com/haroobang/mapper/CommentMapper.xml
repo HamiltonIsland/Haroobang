@@ -18,7 +18,7 @@
       <result column="regDate" property="regDate" />
    </resultMap>
    <select id="selectAllMycomments" parameterType="int" resultMap="commentMap">
-      select commentNo, roomNo, reservationNo, rates, content, regDate
+      select commentNo, roomNo, rates, content, regDate
 	  from comment
       where memberNo = #{ memberNo } order by regDate desc;
    </select>
