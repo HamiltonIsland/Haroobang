@@ -12,6 +12,19 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta charset="UTF-8">
+<style>
+.wp-caption {
+	margin: 5px;
+	margin-right: 50px;
+	padding: 5px;
+	border: solid 1px #E5E5FF;
+	background: #E5F2FF;
+	font-size: 90%;
+	color: black;
+	text-align: center;
+	
+}
+</style>
 <title>reviewReport</title>
 <jsp:include page="/WEB-INF/views/include/css.jsp" />
 
@@ -68,7 +81,7 @@
 								
 								<hr>
 							<c:forEach var="reports" items="${ reports }">
-								<div class="media">
+								<div class="media reviewRestricted" data-commentno="${reports.commentVO.commentNo}">
 										<div class="d-flex">
 										<hr>
 										<hr><hr><hr>
@@ -81,26 +94,34 @@
 										</c:otherwise>
 										</c:choose>
 											 --%>
-											 <img style="width:50px;height:50px;border-radius:50px" src="/haroobang/resources/upload/${reports.roomAttach}"/>
-										</div>
+											 </div>
+											 <div class="wp-caption alignright">
+											 <img style="width:100px;height:100px; display:block;" src="/haroobang/resources/upload/${reports.roomAttach}">
+											No.${reports.commentVO.roomNo }
+											</div>
+										
 										<div class="media-body">
-										<p style="white-space: pre">${reports.commentVO.nickName }</p>
-										<p style="white-space: pre">${reports.regDate }</p>
-											<h4>${reports.content }</h4>
-											<c:forEach var="y" begin="1" end="${comment.rates}">
-											</c:forEach>
+										
+										<h3 style="white-space: pre;">${reports.content }</h3>
+										<h5 style="white-space: pre">${reports.commentVO.nickName }</h5>
+										<h5 style="white-space: pre">${reports.regDate }</h5>
+											<h4>${reports.commentVO.content }</h4>
+										
 									
 											<%-- <c:forEach var="z" begin="1" end="${5 - comment.rates}">
 											<i class="fa fa-star"></i>	
 											</c:forEach> --%>
 										</div>
-										
+										<div style="margin-top: 50px;margin-right: 30px;">
+										<a href="javascript:;" class="genric-btn primary-border radius" id='reviewstay${reports.commentVO.commentNo }'>유지</a>&nbsp;
+										<a href="javascript:;" class="genric-btn info-border radius" id='reviewdelete${reports.commentVO.commentNo }'>삭제</a>
+										</div>
 									</div>
 								
-									<div style="display: inline;width: 500px">
-
+								<!-- 	<div style="display: inline;width: 500px; ">
+									
 										<hr>
-									</div>
+									</div> -->
 									
 									<br>
 								</c:forEach>
@@ -119,7 +140,44 @@
 	<!--================End Product Description Area =================-->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
-
+	<script type="text/javascript">
+	$("a[id ^=reviewstay]").on('click',function(event){
+		
+		var formData = $(this).parents('.reviewRestricted').attr('data-commentno');
+		
+		$.ajax({
+			"url": "reviewStay.action",
+			"method": "POST",
+			"data": { 'formdate' : formData },
+			"success": function(data, status, xhr) {
+				alert('리뷰 유지.');
+				location.reload(true);
+			},
+			"error": function(xhr, status, err) {
+				alert('실패!');
+				location.reload(true);
+			}
+		});
+	});
+	$("a[id ^=reviewdelete]").on('click',function(event){
+		
+		var formData = $(this).parents('.reviewRestricted').attr('data-commentno');
+		
+		$.ajax({
+			"url": "reviewRestricted.action",
+			"method": "POST",
+			"data": { 'formdate' : formData },
+			"success": function(data, status, xhr) {
+				alert('리뷰가 삭제되었습니다.');
+				location.reload(true);
+			},
+			"error": function(xhr, status, err) {
+				alert('실패!');
+				location.reload(true);
+			}
+		});
+	});
+	</script>
 </body>
 
 </html>

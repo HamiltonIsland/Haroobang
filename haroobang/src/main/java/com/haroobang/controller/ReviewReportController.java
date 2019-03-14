@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.ReviewReportService;
 import com.haroobang.vo.ReportVO;
@@ -31,6 +32,24 @@ public class ReviewReportController {
 		
 				
 		return "room/reviewReport";
+	}
+	
+	@RequestMapping(value="/reviewRestricted.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String reviewRestricted(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		reviewReportService.restrictedReview(formdate);
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/reviewStay.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String reviewStay(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		reviewReportService.stayReview(formdate);
+		
+		return "success";
 	}
 	
 }

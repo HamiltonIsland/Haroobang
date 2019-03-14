@@ -37,6 +37,18 @@ public class OracleReviewReportDao implements ReviewReportDao {
 		return reportCount;
 	}
 
+	@Override
+	public void restrictedReview(String formdate) {
+		reviewReportMapper.restrictedReview(Integer.parseInt(formdate));
+		
+	}
+
+	@Override
+	public void stayReview(String formdate) {
+		reviewReportMapper.stayReview(Integer.parseInt(formdate));
+		
+	}
+
 
 
 	

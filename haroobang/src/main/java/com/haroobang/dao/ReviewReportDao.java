@@ -11,4 +11,8 @@ public interface ReviewReportDao {
 
 	int selectAllReviewReportCount();
 
+	void restrictedReview(String formdate);
+
+	void stayReview(String formdate);
+
 }

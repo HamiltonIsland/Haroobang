@@ -30,6 +30,19 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 		return reportCount;
 	}
 
+	@Override
+	public void restrictedReview(String formdate) {
+		
+		reviewReportDao.restrictedReview(formdate);
+	}
+
+	@Override
+	public void stayReview(String formdate) {
+
+		reviewReportDao.stayReview(formdate);
+		
+	}
+
 	
 
 }

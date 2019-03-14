@@ -10,7 +10,8 @@
 		<result column="restricted" property="restricted" />
 		<result column="content" property="content" />
 		<result column="nickName" property="nickName" />
-		<result column="nickName" property="nickName" />
+		<result column="roomNo" property="roomNo" />
+		
 		
 	</resultMap>
 	
@@ -19,6 +20,7 @@
 		<result column="memberNo" property="memberNo" />
 		<result column="regDate" property="regDate" />
 		<result column="content" property="content" />
+		<collection property="commentVO" resultMap="CommentVO"></collection>
 	</resultMap>
 	
 	<resultMap type="RoomAttachVO" id="selectAllReviewPhotos">
@@ -29,8 +31,9 @@
 	</select>
 
 	<select id="selectAllReviewReports" resultMap="reviewReportMap">
-		select *
-		from report
+		select r.commentNo, r.memberNo, r.regDate, r.content, c.restricted, c.reportCount 
+		from report as r join comment as c
+		where r.commentNo = c.commentNo and c.restricted=0 and c.reportCount=1 
 	</select>
 
 	<select id="selectAllReviewReportCount" parameterType="int"
@@ -42,5 +45,17 @@
 		select * from comment 
 		where commentNo = #{commentNo} 
 	</select>
+	
+	<update id="stayReview" parameterType="int" >
+		update comment set reportCount = 0
+		where commentNo = #{parseInt}
+	</update>
+	
+	<update id="restrictedReview" parameterType="int" >
+		update comment set restricted = 1
+		where commentNo = #{parseInt}
+	</update>
+	
+	
 
 </mapper>

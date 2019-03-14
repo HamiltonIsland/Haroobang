@@ -66,10 +66,11 @@ $(function(){
 								<td>
 									<div class="media">
 										<div class="d-flex">
-											<a
-												href="/haroobang/room/roomDetail.action?roomNo=${roomno}"><img
-												style="height: 100px; width: 100px"
-												src="/haroobang/resources/img/cashPayment.jpg" alt=""></a>
+											<a href="/haroobang/room/roomDetail.action?roomNo=${roomno}">
+											<img style="height: 100px; width: 100px"
+												src="/haroobang/resources/upload/${reservationdetail.roomAttachList.savedFileName}" alt=""
+												onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+											</a>
 										</div>
 										<div class="media-body" style="text-align: left">
 											<a href="/haroobang/room/roomDetail.action?roomNo=${roomno}">
