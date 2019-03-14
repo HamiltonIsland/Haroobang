@@ -10,6 +10,10 @@ public interface ReviewReportService {
 
 	int findAllReviewReportCount();
 
+	void restrictedReview(String formdate);
+
+	void stayReview(String formdate);
+
 	
 
 }

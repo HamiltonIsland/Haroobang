@@ -51,7 +51,8 @@
 
 										<li class="nav-item submenu dropdown"><a href="#"
 											class="nav-link dropdown-toggle" data-toggle="dropdown"
-											role="button" aria-haspopup="true" aria-expanded="false">MANAGE ALL</a>
+											role="button" aria-haspopup="true" aria-expanded="false">MANAGE
+												ALL</a>
 											<ul class="dropdown-menu">
 												<li class="nav-item"><a class="nav-link"
 													href="/haroobang/room/roomList.action">ALL Room List</a></li>
@@ -64,6 +65,8 @@
 												<li class="nav-item"><a class="nav-link"
 													href="/haroobang/room/reviewReport.action">ALL REPORTED
 														REVIEWS</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="/haroobang/room/statistics.action">Statistics</a></li>
 											</ul></li>
 
 										<li class="nav-item"><a class="nav-link"

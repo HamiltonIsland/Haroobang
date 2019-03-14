@@ -1,10 +1,18 @@
 package com.haroobang.controller;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.bytecode.ByteArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -65,19 +73,36 @@ public class AccountController {
 	
 	//register insert
 	@RequestMapping (value = "/register.action", method = RequestMethod.POST)
-	public String registerInsert(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) {
+	public String registerInsert(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) throws IOException {
+		
 		MultipartFile attach = req.getFile("file");	
+		
+		byte[] bytes = attach.getBytes();
+		ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+		
+		int width = 500;
+		int height = 500;
+		
+		BufferedImage image = ImageIO.read(is);
+		
+		
+		BufferedImage resized= resize(image, height, width);
+		
+		
 	if (attach != null && !attach.isEmpty()) {
 		String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
 		String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
 
 		try {
-			attach.transferTo(new File(path));
+//			attach.transferTo(new File(path));
+			File output = new File(path);
+			boolean result = ImageIO.write(resized,"jpg",output);
 			
 			vo.setSavedFileName(savedFileName);
 			vo.setUserFileName(attach.getOriginalFilename());
 
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}else {
 		vo.setSavedFileName("default.jpg");
@@ -87,6 +112,16 @@ public class AccountController {
 		
 		return "account/login";
 	}
+	
+	private static BufferedImage resize(BufferedImage img, int height, int width) {
+        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
+    }
+	
 	
 	//logout
 	@RequestMapping (value = "/logout.action", method = RequestMethod.GET)

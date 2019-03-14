@@ -17,4 +17,8 @@ public interface ReviewReportMapper {
 
 	String selectAllReviewPhotos(int commentNo);
 
+	void restrictedReview(int parseInt);
+
+	void stayReview(int parseInt);
+
 }
