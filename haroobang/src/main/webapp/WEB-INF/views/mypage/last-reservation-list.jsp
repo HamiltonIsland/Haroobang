@@ -77,7 +77,7 @@
 							<span class="lnr lnr-arrow-right"></span>내 후기 관리</a>
 						</li>
 						
-						<li class="main-nav-list"><a href="#">
+						<li class="main-nav-list"><a href="/haroobang/account/profile.action">
 							<span class="lnr lnr-arrow-right"></span>내 정보 수정</a>
 						</li>
 						
