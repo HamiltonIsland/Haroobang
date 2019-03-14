@@ -11,4 +11,6 @@ public interface CommentService {
 
 	void writeComment(CommentVO comment);
 
+	List<CommentVO> findMycomment(int memberNo);
+
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.haroobang.service.CommentService;
 import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.CommentVO;
+import com.haroobang.vo.ReservationVO;
 
 
 
@@ -51,6 +52,20 @@ public class CommentController {
 		return "redirect:lastReservationList.action?memberno=" + comment.getMemberNo();
 	}
 	
-	
+	//후기 리스트 페이지 보여주기
+		@RequestMapping(value = "/commentList.action", method = RequestMethod.GET)
+		public String lastReservationlist(@RequestParam("memberno")int memberNo, Model model, HttpSession session) {
+			
+			if (session.getAttribute("login") == null) {
+				return "/account/login.action";
+			} else {
+				List<CommentVO> mycomments = commentService.findMycomment(memberNo);
+				
+				model.addAttribute("mycomments", mycomments);
+				
+				return "mypage/commentList2";
+			}
+			
+		}
 	
 }

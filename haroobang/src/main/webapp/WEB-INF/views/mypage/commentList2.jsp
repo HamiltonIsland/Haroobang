@@ -73,7 +73,7 @@
 							</ul>
 						</li>
 						
-						<li class="main-nav-list"><a href="/haroobang/mypage/commentList.action?memberno=${ login.memberNo }">
+						<li class="main-nav-list"><a href="/haroobang/mypage/commentList.action?memberno=${ login.memberNo }"  style="color: #ffc107;">
 							<span class="lnr lnr-arrow-right"></span>내 후기 관리</a>
 						</li>
 						
@@ -114,50 +114,61 @@
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
-					<div class="row">
-						<!-- single product -->
-						<c:forEach var="myroom" items="${ myrooms }">
-						
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-							<c:choose>
-								<c:when test="${ not empty myroom.roomVO.roomAttachList }">
-									<c:forEach var="attach" items="${ myroom.roomVO.roomAttachList }">
-										<img id="img" src="/haroobang/resources/upload/${ attach.savedFileName }" alt="" 
-										onerror="this.src = '/haroobang/resources/img/product/p8.jpg'"/>
-									</c:forEach>
-								</c:when>
-							<c:otherwise>
-								<img id="img" class="img-fluid" src="/haroobang/resources/img/product/p1.jpg"/>
-							</c:otherwise>
-							</c:choose>
-								<div class="product-details">
-								<a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" >
-									<h6> ${ myroom.roomVO.roomName }</h6>
-								</a>
-									<div class="price">
-										<h6>${ myroom.totalPrice } 원</h6>
-										<br>
-										<h6>${ myroom.startDate } ~ ${ myroom.endDate }</h6>
-										
+				<section class="cart_area" style="padding-top:10px">
+		<div class="container">
+			<div class="cart_inner">
+				<div class="table-responsive" style="text-align: center">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">숙소정보</th>
+								<th scope="col" style="width:64px;">별점</th>
+								<th scope="col">내용</th>
+								<th scope="col">등록날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach var="mycomment" items="${ mycomments }">
+							<tr>
+								<td>
+									<div >
+										<a href="/haroobang/room/roomDetail.action?roomNo=${mycomment.roomNo}">
+											<img style="height: 100px; width: 100px" src="/haroobang/resources/img/cashPayment.jpg" alt="">
+										</a>
+										<a href="/haroobang/room/roomDetail.action?roomNo=${mycomment.roomNo}">
+											<p>${mycomment.roomNo }</p>
+										</a>
 									</div>
-									
-								</div>
-							</div>
-						</div>
-						
+								</td>
+								<td>
+									<h5>${mycomment.rates } 점</h5>
+								</td>
+								<td>
+									<h5>${mycomment.content }</h5>
+								</td>
+								<td>
+                                    <h5>${mycomment.regDate}</h5>
+                                </td>
+								
+							</tr>
 						</c:forEach>
-						<!-- single product -->
-						
-					</div>
-				</section>
+						</tbody>
+
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
 				<!-- End Best Seller -->
 				
 			</div>
 		</div>
 	</div>
 
+	
 	<br><br><br><br><br><br><br><br>
 
 	<!-- start footer Area -->

@@ -22,17 +22,7 @@
 					<ul class="nav navbar-nav menu_nav ml-auto">
 						<li class="nav-item"><a class="nav-link"
 							href="/haroobang/home.action">Home</a></li>
-						<li class="nav-item submenu dropdown"><a href="#"
-							class="nav-link dropdown-toggle" data-toggle="dropdown"
-							role="button" aria-haspopup="true" aria-expanded="false">Room</a>
-							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="/haroobang/room/roomList.action">Room List</a></li>
 
-								<!-- <li class="nav-item"><a class="nav-link" href="/haroobang/checkout.action">Product Checkout</a></li> -->
-								<!-- <li class="nav-item"><a class="nav-link" href="/haroobang/cart.action">Shopping Cart</a></li> -->
-								<!-- <li class="nav-item"><a class="nav-link" href="/haroobang/confirmation.action">Confirmation</a></li> -->
-							</ul></li>
 						<!-- <li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false">Blog</a>
@@ -54,27 +44,53 @@
 
 						<c:choose>
 							<c:when test="${not empty login}">
-								<c:if test='${ not empty login and login.userType eq "admin" }'>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/reservation/reservationList.action">RESERVATION</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/member/memberlist.action">memberList</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/room/reviewReport.action">reviewreportlist</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/account/logout.action">Log-Out</a></li>
-								</c:if>
-								<c:if test='${ not empty login and login.userType eq "user" }'>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/room/roomRegister.action">roomRegister</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="/haroobang/account/logout.action">Log-Out</a></li>
-								</c:if>
+
+								<c:choose>
+									<c:when
+										test='${ not empty login and login.userType eq "admin" }'>
+
+										<li class="nav-item submenu dropdown"><a href="#"
+											class="nav-link dropdown-toggle" data-toggle="dropdown"
+											role="button" aria-haspopup="true" aria-expanded="false">MANAGE ALL</a>
+											<ul class="dropdown-menu">
+												<li class="nav-item"><a class="nav-link"
+													href="/haroobang/room/roomList.action">ALL Room List</a></li>
+
+												<li class="nav-item"><a class="nav-link"
+													href="/haroobang/reservation/reservationList.action">ALL
+														RESERVATIONS</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="/haroobang/member/memberlist.action">ALL
+														MEMBERLISTS</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="/haroobang/room/reviewReport.action">ALL REPORTED
+														REVIEWS</a></li>
+											</ul></li>
+
+										<li class="nav-item"><a class="nav-link"
+											href="/haroobang/account/logout.action">Log-Out</a></li>
+
+									</c:when>
+									<c:otherwise>
+
+										<li class="nav-item"><a class="nav-link"
+											href="/haroobang/room/roomList.action">Room List</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="/haroobang/room/roomRegister.action">roomRegister</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="/haroobang/account/logout.action">Log-Out</a></li>
+									</c:otherwise>
+								</c:choose>
+
+
 							</c:when>
 
 							<c:otherwise>
+								<li class="nav-item"><a class="nav-link"
+									href="/haroobang/room/roomList.action">Room List</a></li>
+
 								<li class="nav-item"><a class="nav-link"
 									href="/haroobang/account/login.action">Log-In</a></li>
 								<li class="nav-item"><a class="nav-link"
@@ -86,12 +102,16 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a
 								href="/haroobang/message/messageRoom.action"><span
-									class="lnr lnr-bubble" ></span><span class="badge badge-pill badge-danger" style="height:15px;margin:0 auto;line-height: 10px;color:white">${messageCount}</span></a></li>
+									class="lnr lnr-bubble"></span><span
+									class="badge badge-pill badge-danger"
+									style="height: 15px; margin: 0 auto; line-height: 10px; color: white">${messageCount}</span></a></li>
 							<li class="nav-item"><a
-								href="/haroobang/account/profile.action"><span>								
-								<img src="/haroobang/resources/upload/${login.savedFileName }" class="rounded-circle" style="height: 30px;width:30px" alt="">
+								href="/haroobang/account/profile.action"><span> <img
+										src="/haroobang/resources/upload/${login.savedFileName }"
+										class="rounded-circle" style="height: 30px; width: 30px"
+										alt="">
 								</span></a></li>
-							
+
 						</ul>
 					</c:if>
 					<!-- <ul class="nav navbar-nav navbar-right">
