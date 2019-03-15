@@ -24,7 +24,7 @@
 	<select id="countMessage" parameterType="int" resultType="int">
 		select count(messageNo) 
 		from messages 
-		where regDate <![CDATA[>]]> SUBDATE(NOW(), INTERVAL 24 HOUR) and messageRoomNo in(select messageRoomNo from messageRoom where memberNo2=#{memberNo} union select memberNo2 from messageRoom where memberNo=#{memberNo}) 
+		where regDate <![CDATA[>]]> SUBDATE(NOW(), INTERVAL 24 HOUR) and messageRoomNo in(select messageRoomNo from messageRoom where memberNo2=#{memberNo} union select messageRoomNo from messageRoom where memberNo=#{memberNo}) 
 		and	memberNo in (select memberNo from messageRoom where memberNo2=#{memberNo} union select memberNo2 from messageRoom where memberNo=#{memberNo} );
 	</select>
 </mapper>

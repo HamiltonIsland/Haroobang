@@ -34,13 +34,21 @@ public class RoomDetailController {
 	private RoomDetailService roomDetailService;
 
 	@RequestMapping(value = "roomDetail.action", method = RequestMethod.GET)
-	public String roomDetail(Model model, int roomNo) {
+	public String roomDetail(Model model, int roomNo,HttpSession session) {
 
+		String result ="";
 		RoomVO room = roomDetailService.findRoomDetail(roomNo);
+		
+		if(session.getAttribute("login")!= null) {
+			AccountVO member = (AccountVO) session.getAttribute("login");
+			int memberNo = member.getMemberNo();
+			result = roomDetailService.findMyLike(roomNo, memberNo);
+		}
 
 		int memberNo = room.getMemberNo();
 		AccountVO member = roomDetailService.findMember(memberNo);
 
+		model.addAttribute("like", result);
 		model.addAttribute("room", room);
 		model.addAttribute("member", member);
 
@@ -79,11 +87,17 @@ public class RoomDetailController {
 			return "redirect:/account/login.action";
 		}
 		
+		LocalDate now = LocalDate.now();
+		LocalDate startDate = LocalDate.parse(checkinDate);
+		if(startDate .isBefore(now)) {
+			return "fail";
+		}else {
 		String result = roomDetailService.findReservedDate(roomNo,checkinDate,endDate);
 		
 		model.addAttribute("roomNo",roomNo);
 
 		return result;
+		}
 	}
 
 	@RequestMapping(value="reservationCheckout.action")

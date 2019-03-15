@@ -53,8 +53,19 @@
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
 						<h2>${room.roomName}</h2>
-						<h4>&#8361; ${room.price}&nbsp;</h4>
+						<h4>&#8361; ${room.price}&nbsp;
+						<a class="icon_btn" href="javascript:" id="like" style="display: inline;">
+						 	<c:choose>
+						<c:when test="${like == 'true' }">
+						<i class="fa fa-heart" id="liked" style="font-size:35px;color:red;float:right;margin-right:25%"></i></h4>
+						</c:when>
+						<c:otherwise>
+						<i class="fa fa-heart-o" id="notLiked" style="font-size:35px;color:red;float:right;margin-right:25%"></i></h4>
+						</c:otherwise>
+						</c:choose>
+						 </a>
 						<hr>
+					
 						<div id="calendarBox" style="height:350px;width:350px;">
 					
 						</div>
@@ -223,8 +234,11 @@
 					</div>
 				</div>
 			</div>
+	<a class="primary-btn" href="javascript:" id="back" style="width:100%;text-align: center;">뒤로가기</a>
 		</div>
 	</section>
+	
+	
 	<!--================End Product Description Area =================-->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
@@ -253,7 +267,10 @@ $(function(){
 	// 지도에 마커를 표시합니다
 	marker.setMap(map);
 
-
+	$('#back').click(function(e){
+		history.back();
+	});
+	
 	
 	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo});
 	
@@ -263,6 +280,16 @@ $(function(){
 	})
 	
 	$("#like").click(function(e){
+		
+		if($("#liked").attr('class',"fa fa-heart")){
+			$("#liked").attr('class',"fa fa-heart-o");
+		}else if($("#liked").attr('class',"fa fa-heart-o")){
+			$("#liked").attr('class',"fa fa-heart");
+		}else if($("#notLiked").attr('class',"fa fa-heart")){
+			$("#notLiked").attr('class',"fa fa-heart-o")
+		}else if($("#notLiked").attr('class',"fa fa-heart-o")){
+			$("#notLiked").attr('class',"fa fa-heart")
+		}
 		
 			$.ajax({
 				url :"addLike.action" ,

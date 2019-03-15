@@ -76,4 +76,10 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		
 	}
 
+	@Override
+	public String findMyLike(int roomNo, int memberNo) {
+		String result = roomDetailDao.findMyLike(roomNo, memberNo);
+		return result;
+	}
+
 }
