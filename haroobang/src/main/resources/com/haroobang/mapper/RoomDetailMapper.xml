@@ -64,4 +64,8 @@
 	<select id="findMemberSavedFileName" parameterType="int" resultType="String">
 		select savedFileName from member where memberNo=#{memberNo}
 	</select>
+	
+	<select id="findMyLike" parameterType="hashmap" resultType="int">
+		select count(*) from liked where roomNo=#{roomNo} and memberNo=#{memberNo}
+	</select>
 </mapper>

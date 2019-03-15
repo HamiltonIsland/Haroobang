@@ -25,4 +25,6 @@ public interface RoomDetailDao {
 
 	String findReservedDate(int roomNo, String checkinDate, String endDate);
 
+	String findMyLike(int roomNo, int memberNo);
+
 }

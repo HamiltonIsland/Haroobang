@@ -39,6 +39,8 @@ public interface RoomDetailMapper {
 
 	String findMemberSavedFileName(int memberNo);
 
+	int findMyLike(HashMap<String, Object> params);
+
 	
 
 }
