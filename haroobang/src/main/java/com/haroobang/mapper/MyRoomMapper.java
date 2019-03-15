@@ -17,6 +17,10 @@ public interface MyRoomMapper {
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
+	List<RoomVO> selectWaitingsList(HashMap<String, Object> params);
+
+	int selectWaitingCount(int memberNo);
+
 
 
 	

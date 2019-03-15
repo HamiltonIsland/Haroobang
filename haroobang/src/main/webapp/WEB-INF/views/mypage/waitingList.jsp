@@ -47,7 +47,7 @@
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>현재 예약 목록</h1>
+					<h1>승인 대기중 / 등록된 숙소</h1>
 
 				</div>
 			</div>
@@ -68,11 +68,11 @@
 						<li class="main-nav-list"><a data-toggle="collapse"
 							href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
 								class="lnr lnr-arrow-right"></span>내 예약 목록</a>
-							<ul class="collapse show" id="homeClean" data-toggle="collapse"
+							<ul class="collapse" id="homeClean" data-toggle="collapse"
 								aria-expanded="false" aria-controls="homeClean">
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }"
-									style="color: #ffc107;">현재 예약 목록</a></li>
+									>현재 예약 목록</a></li>
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">이전
 										예약 목록</a></li>
@@ -82,9 +82,9 @@
 							href="#officeProduct" aria-expanded="false"
 							aria-controls="officeProduct"><span
 								class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
-							<ul class="collapse" id="officeProduct" data-toggle="collapse"
+							<ul class="collapse show" id="officeProduct" data-toggle="collapse"
 								aria-expanded="false" aria-controls="officeProduct">
-								<li class="main-nav-list child"><a href="/haroobang/mypage/waitingList.action?memberno=${ login.memberNo }">승인 대기중 /
+								<li class="main-nav-list child"><a href="/haroobang/mypage/waitingList.action?memberno=${ login.memberNo }" style="color: #ffc107;">승인 대기중 /
 										등록된 숙소</a></li>
 								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
 							</ul></li>
@@ -120,11 +120,11 @@
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
 						</select> -->
-						<div class="bottom_button">
+						<!-- <div class="bottom_button">
 							<div class="button-group-area mt-40">
 								<a href="#" class="genric-btn primary circle">환불</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="pagination">
 					${ pager }
@@ -148,28 +148,25 @@
 									<thead>
 										<tr>
 											<th scope="col">숙소정보</th>
-											<th scope="col">결제수단</th>
-											<th scope="col">숙박기간</th>
-											<!-- <th scope="col">Check IN or OUT</th> -->
-											<th scope="col">결제일시</th>
-											<th scope="col">총결제금액</th>
+											<th scope="col">등록일시</th>
+											<th scope="col">승인여부</th>
+											<th scope="col">숙소금액</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="current" items="${currents}">
+										<c:forEach var="waiting" items="${waitings}">
 
 											<tr class="search">
 												<td>
 													<div class="media">
 														<div class="d-flex">
-															<input type="checkbox"> <a
-																href="/haroobang/room/roomDetail.action?roomNo=${current.roomNo}">
+															<a href="/haroobang/room/roomDetail.action?roomNo=${waiting.roomNo}">
 																<c:choose>
-																	<c:when test="${not empty current.roomAttachList}">
+																	<c:when test="${not empty waiting.roomAttachList}">
 																		<div class="main-carousel"
 																			data-flickity='{ "autoPlay": true }'>
 																			<c:forEach var="attach"
-																				items="${current.roomAttachList}">
+																				items="${waiting.roomAttachList}">
 
 																				<img style="width: 100px; height: 100px"
 																					src="/haroobang/resources/upload/${attach.savedFileName}"
@@ -187,44 +184,43 @@
 														</div>
 
 														<div class="media-body">
-															<p class="txt_line">${current.roomVO.roomName}</p>
+															<p class="txt_line">${waiting.roomName}</p>
 														</div>
 
 													</div>
 												</td>
 
 												<td>
-													<h5>${current.payment}</h5>
+													<h5>${waiting.regDate}</h5>
 												</td>
-
+												
 												<td>
-													<h5>${current.startDate}~ ${current.endDate}</h5>
+				                                    <h5>
+				                                    <c:choose>
+				                                    	<c:when test='${not empty waiting.approval and waiting.approval eq true }'>
+				                                    		<h5 style="color: blue; text-align: center;">승인</h5>	
+				                                    	</c:when>
+				                                    	<c:otherwise>
+				                                    		<h5 style="color: red; text-align: center;">승인대기</h5>
+				                                    	</c:otherwise>
+				                                    </c:choose>
+				                                    </h5>
+				                                </td>
+				                                
+				                                <td>
+													<h5>${waiting.price}원</h5>
 												</td>
-
-												<%--   <td>
-                                    <h5>
-                                    <c:choose>
-                                    	<c:when test='${not empty reservation.checkin and reservation.checkin eq true }'>
-                                    		<h5 style="color: blue; text-align: center;">Check-IN</h5>
-                                    		
-                                    		<c:if test='${ reservation.checkin eq 2 }'>
-                                    		<h5 style="color: red;">Check-OUT</h5>
-                                    		</c:if>
-                                    		
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<h5 style="color: red; text-align: center;">NOT Arrive</h5>
-                                    	</c:otherwise>
-                                    </c:choose>
-                                    </h5>
-                                </td> --%>
-
+												
 												<td>
-													<h5>${current.regDate}</h5>
-												</td>
-
-												<td>
-													<h5>${current.totalPrice}원</h5>
+													<c:choose>
+				                                    	<c:when test='${not empty waiting.approval and waiting.approval eq true }'>
+				                                    	</c:when>
+				                                    	<c:otherwise>
+				                                    		<div class="button-group-area mt-40">
+																<a href="javascript:;" class="genric-btn danger circle">삭제</a>
+															</div>
+				                                    	</c:otherwise>
+				                                    </c:choose>
 												</td>
 											</tr>
 										</c:forEach>

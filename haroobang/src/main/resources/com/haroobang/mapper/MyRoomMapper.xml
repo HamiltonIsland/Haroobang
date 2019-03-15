@@ -53,5 +53,13 @@
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
 		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
 	</select>
- 	
+	
+ 	<select id="selectWaitingsList" parameterType="hashmap" resultType="RoomVO">
+		SELECT * FROM room WHERE memberNo = #{ memberNo } ORDER BY roomNo DESC limit #{ first }, #{ last }
+	</select>
+	
+	<select id="selectWaitingCount" resultType="int">
+		SELECT COUNT(*) FROM room WHERE memberNo = #{ memberNo }
+	</select>
+	
   </mapper>

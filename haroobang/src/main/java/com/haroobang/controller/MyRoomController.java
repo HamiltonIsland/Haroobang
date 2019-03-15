@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.haroobang.service.MyRoomService;
+import com.haroobang.ui.ThePager2;
 import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
@@ -65,6 +66,33 @@ public class MyRoomController {
 			model.addAttribute("roomno", roomNo);
 
 			return "mypage/myRoomReservationDetail";
+		}
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value = "/waitingList.action", method = RequestMethod.GET)
+	public String lastReservationlist(@RequestParam("memberno")int memberNo, 
+			@RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo, Model model, HttpSession session) {
+		
+		if (session.getAttribute("login") == null) {
+			return "/account/login.action";
+		} else {
+			
+			int pageSize = 4;	//한 페이지에 표시되는 데이터 개수
+			int from = (pageNo - 1) * pageSize; // + 1; //해당 페이지에 포함된 시작 글번호
+			int to = pageSize; /*from + pageSize;*/				//해당 페이지에 포함된 마지막 글번호 + 1
+			int pagerSize = 5;	//한 번에 표시되는 페이지 번호 개수
+			String linkUrl = "waitingList.action"; //페이지 번호를 눌렀을 때 이동할 경로
+			
+			List<RoomVO> waitings = myRoomService.findWaitingListByPage(memberNo, from, to);
+			int likeCount = myRoomService.findWaitingCount(memberNo);
+			
+			ThePager2 pager = new ThePager2(likeCount, pageNo, memberNo, pageSize, pagerSize, linkUrl);
+			
+			model.addAttribute("waitings", waitings);
+			model.addAttribute("pager", pager);
+			model.addAttribute("pageno", pageNo);
+			
+			return "mypage/waitingList";
 		}
 	}
 }
