@@ -92,7 +92,7 @@ $(function(){
 									<h5>${reservationdetail.nights }박</h5>
 								</td>
 								<td>
-									<h5>&#8361; ${reservationdetail.totalPrice }</h5>
+									<h5>${reservationdetail.totalPrice }원</h5>
 								</td>
 								<td>
                                     <h5>${reservationdetail.payment}</h5>

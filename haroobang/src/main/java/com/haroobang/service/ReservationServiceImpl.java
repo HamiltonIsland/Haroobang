@@ -27,5 +27,23 @@ public class ReservationServiceImpl implements ReservationService{
 		return reservations;
 	}
 
+	@Override
+	public List<ReservationVO> findAllReservationsByPage(int from, int to) {
+		List<ReservationVO> reservations = reservationDao.selectReservationsByPage(from, to);
+		
+		for(int i=0; i<reservations.size(); i++) {
+			List<RoomAttachVO> attachVos = reservationDao.selectRoomAttachByRoomNo(reservations.get(i).getRoomNo());
+			reservations.get(i).setRoomAttachList(attachVos);
+		}
+		
+		return reservations;
+	}
+
+	@Override
+	public int findReserCount() {
+		int count = reservationDao.selectReserCount();
+		return count;
+	}
+
 }
 //썅

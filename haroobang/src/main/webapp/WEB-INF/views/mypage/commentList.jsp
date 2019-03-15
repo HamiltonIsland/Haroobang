@@ -23,9 +23,6 @@
 <!-- Site Title -->
 <title>CommentList</title>
 
-<style type="text/css">
-   .txt_line { width:200px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-   </style>
 <!--
             CSS
             ============================================= -->
@@ -119,13 +116,7 @@
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i
-							class="fa fa-long-arrow-left" aria-hidden="true"></i></a> <a href="#"
-							class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a
-							href="#" class="dot-dot"><i class="fa fa-ellipsis-h"
-							aria-hidden="true"></i></a> <a href="#">6</a> <a href="#"
-							class="next-arrow"><i class="fa fa-long-arrow-right"
-							aria-hidden="true"></i></a>
+						${ pager }
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -137,7 +128,7 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th scope="col">숙소정보</th>
+											<th scope="col" style="width: 150px;">숙소정보</th>
 											<th scope="col" style="width: 64px;">별점</th>
 											<th scope="col">내용</th>
 											<th scope="col" style="width: 100px;">등록날짜</th>
@@ -162,7 +153,7 @@
 																	<img style="width: 100px; height: 100px" src="/haroobang/resources/img/product/p1.jpg" alt="">
 																</c:otherwise>
 															</c:choose>
-															<p class="txt_line">${mycomment.roomVO.roomName }</p>
+															<p>${mycomment.roomVO.roomName }</p>
 														</a>
 													</div>
 												</td>

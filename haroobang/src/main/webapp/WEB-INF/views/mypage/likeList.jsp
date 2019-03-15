@@ -139,7 +139,7 @@
 								<div class="product-details">
 									<h6 class="txt_line">${likeList.roomName}</h6>
 									<div class="price">
-										<h6>${likeList.price}&#8361;</h6>
+										<h6>${likeList.price}원</h6>
 									</div>
 									<div class="prd-bottom">
 									</div>

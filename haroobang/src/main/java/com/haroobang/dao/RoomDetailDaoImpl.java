@@ -166,4 +166,20 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	
 		
 	}
+
+	@Override
+	public String findMyLike(int roomNo, int memberNo) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("roomNo",roomNo);
+		params.put("memberNo", memberNo);
+		
+		String result ="true";
+		
+		int count = roomDetailMapper.findMyLike(params);
+		if(count==0) {
+			result = "false";
+		}
+		return result;
+	}
 }

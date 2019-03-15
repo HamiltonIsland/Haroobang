@@ -25,4 +25,6 @@ public interface RoomDetailService {
 
 	String findReservedDate(int roomNo, String checkinDate, String endDate);
 
+	String findMyLike(int roomNo, int memberNo);
+
 }

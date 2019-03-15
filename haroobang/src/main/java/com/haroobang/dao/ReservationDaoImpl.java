@@ -1,5 +1,6 @@
 package com.haroobang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,22 @@ public class ReservationDaoImpl implements ReservationDao{
 	public List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo) {
 		List<RoomAttachVO> attachs = reservationMapper.selectRoomAttachByRoomNo(roomNo);
 		return attachs;
+	}
+
+	@Override
+	public List<ReservationVO> selectReservationsByPage(int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<ReservationVO> reservations = reservationMapper.selectReservationsByPage(params);
+		return reservations;
+	}
+
+	@Override
+	public int selectReserCount() {
+		int count = reservationMapper.selectReserCount();
+		return count;
 	}
 }
 //썅

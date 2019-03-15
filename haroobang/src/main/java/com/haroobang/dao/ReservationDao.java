@@ -11,5 +11,9 @@ public interface ReservationDao {
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
+	List<ReservationVO> selectReservationsByPage(int from, int to);
+
+	int selectReserCount();
+
 }
 //썅

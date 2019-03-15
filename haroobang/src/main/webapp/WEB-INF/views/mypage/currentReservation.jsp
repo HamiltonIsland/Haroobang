@@ -106,70 +106,39 @@
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting">
+					<!-- <div class="sorting">
 						<select>
 							<option value="1">Default sorting</option>
 							<option value="1">Default sorting</option>
 							<option value="1">Default sorting</option>
 						</select>
-					</div>
+					</div> -->
+					
 					<div class="sorting mr-auto">
-						<select>
+						<!-- <select>
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
-						</select>
+						</select> -->
+						<div class="bottom_button">
+							<div class="button-group-area mt-40">
+								<a href="#" class="genric-btn primary circle">환불</a>
+							</div>
+						</div>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i
+					${ pager }
+						<!-- <a href="#" class="prev-arrow"><i
 							class="fa fa-long-arrow-left" aria-hidden="true"></i></a> <a href="#"
 							class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a
 							href="#" class="dot-dot"><i class="fa fa-ellipsis-h"
 							aria-hidden="true"></i></a> <a href="#">6</a> <a href="#"
 							class="next-arrow"><i class="fa fa-long-arrow-right"
-							aria-hidden="true"></i></a>
+							aria-hidden="true"></i></a> -->
 					</div>
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<table class="table">
-					<thead>
-						<tr class="bottom_button">
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td>
-								<div class="button-group-area mt-40">
-									<a href="#" class="genric-btn primary circle">환불</a>
-								</div>
-							</td>
-						</tr>
-					</thead>
-				</table>
 				<section class="cart_area" style="padding-top: 10px">
 					<div class="container">
 						<div class="cart_inner">
@@ -255,7 +224,7 @@
 												</td>
 
 												<td>
-													<h5>${current.totalPrice}&#8361;</h5>
+													<h5>${current.totalPrice}원</h5>
 												</td>
 											</tr>
 										</c:forEach>

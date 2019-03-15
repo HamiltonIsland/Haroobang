@@ -9,10 +9,14 @@ import com.haroobang.vo.RoomVO;
 
 public interface LastReservationMapper {
 
-	List<ReservationVO> selectAllMyLastReservation(int memberNo);
+	//List<ReservationVO> selectAllMyLastReservation(int memberNo);
 
 	ReservationVO selectRoomByRoomNo(HashMap<String, Object> params);
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
+
+	List<ReservationVO> selectAllMyLastReservationByPage(HashMap<String, Object> params);
+
+	int selectRoomCount(int memberNo);
 	
 }
