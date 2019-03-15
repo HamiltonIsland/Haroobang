@@ -178,12 +178,19 @@ public class AccountController {
 	}
 	
 	@RequestMapping (value = "/password.action", method = RequestMethod.POST)
-	public String findPassword(AccountVO vo, Model model) {	
+	@ResponseBody
+	public int findPassword(AccountVO vo, Model model) {	
 		AccountVO member = accountService.getAccountService(vo);
 		if(member==null) {
-			return "redirect:/account/findPassword.action";
+			return 0;
 		}		
 		model.addAttribute("member",member);
+		return member.getMemberNo();
+	}
+	//비밀번호 변경
+	@RequestMapping (value = "/updatePassword.action", method = RequestMethod.GET)
+	public String updatePasswordView(AccountVO vo,Model model,int memberNo) {
+		model.addAttribute("memberNo",memberNo);
 		return "account/updatePassword";
 	}
 	

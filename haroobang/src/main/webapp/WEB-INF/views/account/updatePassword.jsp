@@ -51,15 +51,15 @@
 					<div class="login_form_inner">
 						<h3>비밀번호 변경</h3>
 						<form class="row login_form" action="updatePassword.action" method="post" novalidate="novalidate"style="margin : 0 auto">
-                            <input type="hidden" name="memberNo" value="${member.memberNo }">
+                            <input type="hidden" id="memberNo" value="${memberNo }">
                             <div class="col-md-12 form-group p_star">
-                                <input type="password" class="form-control" name="password" placeholder="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'">
+                                <input type="password" class="form-control" id="password" placeholder="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'">
                             </div>                           
                             <div class="col-md-12 form-group p_star">
-                                <input type="password" class="form-control" name="password확인" placeholder="password확인" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password확인'">
+                                <input type="password" class="form-control" id="password2" placeholder="password확인" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password확인'">
                             </div>
                             <div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">수정</button>								
+								<button type="button" id="submit" class="primary-btn">수정</button>								
 							</div>
                         </form>
 							
@@ -71,6 +71,57 @@
 	<!--================End Login Box Area =================-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#submit").on("click",function(e){
+	        var formData = new FormData();
+	        
+	        formData.append("memberNo", $("#memberNo").val())
+	     	//password입력
+	        var password = $("#password").val();
+	        password = $.trim(password);
+	        var passwordRule = /^[A-Za-z0-9]{6,12}$/;//숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
+  
+	        if(password==""){
+	        	alert("password을 입력하세요");
+	        	return;
+	        }else if(!passwordRule.test(password)){
+	        	alert("숫자와 문자 포함 형태의 6~12자리 이내의 암호");
+	        	return;        	
+	        }else{
+	        	formData.append("password", password);	
+	        }
+	        
+	        var password2 = $("#password2").val();
+	        password2 = $.trim(password2);
+	        
+	        if(password2==""){
+	        	alert("password를 확인하세요");
+	        	return;
+	        }else if(password2!=password){
+	        	alert("비밀번호가 틀렸습니다.");
+	        	return;        	
+	        }  
+	        
+	        $.ajax({
+	            url: 'updatePassword.action',
+	            processData: false,
+	            contentType: false,
+	            data: formData,
+	            type: 'POST',
+	            success: function(data,status,xhr){
+	            	location.href="login.action";
+	            },
+	            error:function(xhr,status,err){
+	            	alert("입력사항을 확인해주세요.")
+	            }
+	           });
+	
+			})
+
+	})
+</script>
 
 	<jsp:include page="../include/footer.jsp"/>
 
