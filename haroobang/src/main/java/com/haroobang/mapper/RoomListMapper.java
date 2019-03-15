@@ -21,7 +21,7 @@ public interface RoomListMapper {
 
 	List<RoomVO> selectRoomList(HashMap<String, Object> params);
 
-	List<RoomVO> searchRoomList(RoomVO vo);
+	List<RoomVO> searchRoomList(HashMap<String, Object> params);
 
 	void likedRoom(HashMap<String, Object> params);
 
@@ -32,6 +32,8 @@ public interface RoomListMapper {
 	List<RoomVO> selectDisapprovalRoomList(HashMap<String, Object> params);
 
 	int selectDisapprovalRoomCount();
+
+	int selectSearchRoomCount(RoomVO vo);
 
 
 }

@@ -64,8 +64,14 @@ public class RoomListServiceImpl implements RoomListService{
 	}
 
 	@Override
-	public List<RoomVO> searchRoomListService(RoomVO vo) {
-		List<RoomVO> list = roomlistDao.searchRoomListDao(vo);
+	public int findSearchRoomCount(RoomVO vo) {
+		int count = roomlistDao.selectSearchRoomCount(vo);
+		return count;
+	}
+	
+	@Override
+	public List<RoomVO> searchRoomListService(RoomVO vo, int from, int to) {
+		List<RoomVO> list = roomlistDao.searchRoomListDao(vo, from, to);
 		for(RoomVO room : list) {
 			List<RoomAttachVO> attachments = roomlistDao.selectRoomAttachByRoomNo(room.getRoomNo());
 			room.setRoomAttachList(attachments);
