@@ -5,7 +5,7 @@
 
   <mapper namespace="com.haroobang.mapper.MyRoomMapper">
   
-  	<resultMap type="RoomVO" id="roomMap">
+  	<resultMap type="RoomVO" id="RoomVO">
 		<id column="roomNo" property="roomNo" />
 		<result column="memberNo" property="memberNo" />
 		<result column="regDate" property="regDate" />

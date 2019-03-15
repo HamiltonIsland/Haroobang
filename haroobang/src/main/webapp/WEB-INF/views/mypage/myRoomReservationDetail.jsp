@@ -63,7 +63,7 @@
 						<li class="main-nav-list"><a data-toggle="collapse"
 							href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
 								class="lnr lnr-arrow-right"></span>내 예약 목록</a>
-							<ul class="collapse show" id="homeClean" data-toggle="collapse"
+							<ul class="collapse " id="homeClean" data-toggle="collapse"
 								aria-expanded="false" aria-controls="homeClean">
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }"
@@ -77,11 +77,11 @@
 							href="#officeProduct" aria-expanded="false"
 							aria-controls="officeProduct"><span
 								class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
-							<ul class="collapse" id="officeProduct" data-toggle="collapse"
+							<ul class="collapse show" id="officeProduct" data-toggle="collapse"
 								aria-expanded="false" aria-controls="officeProduct">
 								<li class="main-nav-list child"><a href="#">승인 대기중 /
 										등록된 숙소</a></li>
-								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }"style="color: #ffc107;">내 숙소 예약 목록</a></li>
 							</ul></li>
 
 						<li class="main-nav-list"><a
@@ -157,11 +157,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td>
-								<div class="button-group-area mt-40">
-									<a href="#" class="genric-btn primary circle">환불</a>
-								</div>
-							</td>
+						
 						</tr>
 					</thead>
 				</table>
@@ -214,7 +210,7 @@
 
 														<div class="media-body">
 															<p class="searchh"
-																style="overflow: hidden; text-overflow: ellipsis; width: 100px; height: 20px;">${current.roomVO.roomName}</p>
+																style="overflow: hidden; text-overflow: ellipsis; width: 100px; height: 20px;">${current.RoomVO.roomName}</p>
 														</div>
 
 													</div>
