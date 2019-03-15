@@ -21,8 +21,11 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>LastReservation</title>
+<title>CommentList</title>
 
+<style type="text/css">
+   .txt_line { width:200px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+   </style>
 <!--
             CSS
             ============================================= -->
@@ -159,7 +162,7 @@
 																	<img style="width: 100px; height: 100px" src="/haroobang/resources/img/product/p1.jpg" alt="">
 																</c:otherwise>
 															</c:choose>
-															<p>${mycomment.roomVO.roomName }</p>
+															<p class="txt_line">${mycomment.roomVO.roomName }</p>
 														</a>
 													</div>
 												</td>
