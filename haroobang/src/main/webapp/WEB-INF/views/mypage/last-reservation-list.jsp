@@ -21,7 +21,9 @@
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>LastReservation</title>    
-
+	<style type="text/css">
+   .txt_line { width:200px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+   </style>
 	<!--
             CSS
             ============================================= -->
@@ -150,7 +152,7 @@
                                         </div>
                                         
                                         <div class="media-body">
-                                            <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" >${myroom.roomVO.roomName}</a>
+                                            <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" class="txt_line">${myroom.roomVO.roomName}</a>
                                         </div>
                                         
                                     </div>
