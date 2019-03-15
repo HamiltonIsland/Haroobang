@@ -73,9 +73,13 @@ public class AccountController {
 	
 	//register insert
 	@RequestMapping (value = "/register.action", method = RequestMethod.POST)
+	@ResponseBody
 	public String registerInsert(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) throws IOException {
 		
 		MultipartFile attach = req.getFile("file");	
+		
+		
+	if (attach != null && !attach.isEmpty()) {
 		
 		byte[] bytes = attach.getBytes();
 		ByteArrayInputStream is = new ByteArrayInputStream(bytes);
@@ -88,8 +92,6 @@ public class AccountController {
 		
 		BufferedImage resized= resize(image, height, width);
 		
-		
-	if (attach != null && !attach.isEmpty()) {
 		String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
 		String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
 
@@ -110,7 +112,7 @@ public class AccountController {
 	}
 		accountService.insertAccountService(vo);
 		
-		return "account/login";
+		return "success";
 	}
 	
 	private static BufferedImage resize(BufferedImage img, int height, int width) {

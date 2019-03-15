@@ -28,6 +28,11 @@
             CSS
             ============================================= -->
 <jsp:include page="../include/css.jsp" />
+
+<style type="text/css">
+	.txt_line { width:100px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+</style>
+
 </head>
 
 <body id="category">
@@ -213,8 +218,7 @@
 														</div>
 
 														<div class="media-body">
-															<p class="searchh"
-																style="overflow: hidden; text-overflow: ellipsis; width: 100px; height: 20px;">${current.roomVO.roomName}</p>
+															<p class="txt_line">${current.roomVO.roomName}</p>
 														</div>
 
 													</div>

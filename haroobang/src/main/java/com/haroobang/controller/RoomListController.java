@@ -29,21 +29,23 @@ public class RoomListController {
 	private RoomListService roomListService;
 	
 	@RequestMapping(value="/roomList.action", method=RequestMethod.GET)
-	public String roomList(Model model, HttpSession session, HttpServletRequest req, AccountVO accountVO) {//(@RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo, Model model) {
+	public String roomList(@RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo, Model model,
+			HttpSession session, HttpServletRequest req, AccountVO accountVO) {
+	//(Model model, HttpSession session, HttpServletRequest req, AccountVO accountVO) {
 		
-		/*int pageSize = 12;	//한 페이지에 표시되는 데이터 개수
-		int from = (pageNo - 1) * pageSize + 1; //해당 페이지에 포함된 시작 글번호
-		int to = from + pageSize;				//해당 페이지에 포함된 마지막 글번호 + 1
-		int pagerSize = 3;	//한 번에 표시되는 페이지 번호 개수
+		int pageSize = 4;	//한 페이지에 표시되는 데이터 개수
+		int from = (pageNo - 1) * pageSize; // + 1; //해당 페이지에 포함된 시작 글번호
+		int to = pageSize; /*from + pageSize;*/				//해당 페이지에 포함된 마지막 글번호 + 1
+		int pagerSize = 2;	//한 번에 표시되는 페이지 번호 개수
 		String linkUrl = "roomList.action"; //페이지 번호를 눌렀을 때 이동할 경로
-*/		
-		List<RoomVO> rooms = roomListService.findAllRooms();
-		//List<RoomVO> rooms = roomListService.findAllRoomsByPage(from, to);
-		//int roomCount = roomListService.findRoomCount();
 		
-		List<RoomVO> disapproval = roomListService.findAllDisapprovalRooms();
-		//List<RoomVO> disapproval = roomListService.findAllDisapprovalRoomsByPage(from, to);
-		//int disapprovalCount = roomListService.findDisapprovalRoomsCount();
+		//List<RoomVO> rooms = roomListService.findAllRooms();
+		List<RoomVO> rooms = roomListService.findAllRoomsByPage(from, to);
+		int roomCount = roomListService.findRoomCount();
+		
+		//List<RoomVO> disapproval = roomListService.findAllDisapprovalRooms();
+		List<RoomVO> disapproval = roomListService.findAllDisapprovalRoomsByPage(from, to);
+		int disapprovalCount = roomListService.findDisapprovalRoomsCount();
 		
 		accountVO = (AccountVO)session.getAttribute("login");
 		List<LikedVO> likeds = null;
@@ -51,14 +53,15 @@ public class RoomListController {
 			likeds = roomListService.findAllLikeds(accountVO.getMemberNo());
 		}
 		
-		//ThePager pager = new ThePager(roomCount, pageNo, pageSize, pagerSize, linkUrl);
-		//ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
+		ThePager pager = new ThePager(roomCount, pageNo, pageSize, pagerSize, linkUrl);
+		ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
 		
 		model.addAttribute("likeds", likeds);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("disapproval", disapproval);
-		//model.addAttribute("pager", pager);
-		//model.addAttribute("pageno", pageNo);
+		model.addAttribute("pager", pager);
+		model.addAttribute("disPager", disPager);
+		model.addAttribute("pageno", pageNo);
 		
 		return "room/roomList";
 	}
@@ -93,9 +96,38 @@ public class RoomListController {
 	
 	//home에서 검색목록
 	@RequestMapping(value="/searchRoomList.action", method=RequestMethod.GET)
-	public String searchRoomList(RoomVO vo,Model model) {
+	public String searchRoomList(@RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo,RoomVO vo,Model model,HttpSession session) {
 		
 		List<RoomVO> roomList = roomListService.searchRoomListService(vo);
+		AccountVO accountVO = (AccountVO)session.getAttribute("login");
+		List<LikedVO> likeds = null;
+		if (accountVO != null) {
+			likeds = roomListService.findAllLikeds(accountVO.getMemberNo());
+		}
+		
+		int pageSize = 4;	//한 페이지에 표시되는 데이터 개수
+		int from = (pageNo - 1) * pageSize; // + 1; //해당 페이지에 포함된 시작 글번호
+		int to = pageSize; /*from + pageSize;*/				//해당 페이지에 포함된 마지막 글번호 + 1
+		int pagerSize = 2;	//한 번에 표시되는 페이지 번호 개수
+		String linkUrl = "roomList.action"; //페이지 번호를 눌렀을 때 이동할 경로
+		
+		//List<RoomVO> disapproval = roomListService.findAllDisapprovalRooms();
+		List<RoomVO> disapproval = roomListService.findAllDisapprovalRoomsByPage(from, to);
+		int disapprovalCount = roomListService.findDisapprovalRoomsCount();
+		
+		//List<RoomVO> rooms = roomListService.findAllRooms();
+		List<RoomVO> rooms = roomListService.findAllRoomsByPage(from, to);
+		int roomCount = roomListService.findRoomCount();
+		
+		ThePager pager = new ThePager(roomCount, pageNo, pageSize, pagerSize, linkUrl);
+		ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("disPager", disPager);
+		model.addAttribute("disapproval", disapproval);
+		model.addAttribute("rooms", rooms);
+		model.addAttribute("pageno", pageNo);
+		model.addAttribute("likeds", likeds);
 		model.addAttribute("rooms",roomList);
 		return "room/roomList";
 	}

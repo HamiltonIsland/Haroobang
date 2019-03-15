@@ -29,13 +29,13 @@ public class ThePager {
 		
 		//1. 처음, 이전 항목 만들기
 		if (currentPage > 1) {
-			linkString.append(
+			/*linkString.append(
 				String.format("[<a href='%s?pageno=1'>처음</a>]",linkUrl));
 			linkString.append("&nbsp;");
-			linkString.append("&nbsp;");
-			linkString.append(String.format(
-				"[<a href='%s?pageno=%d'>이전</a>]", linkUrl, currentPage - 1));
-			linkString.append("&nbsp;");
+			linkString.append("&nbsp;");*/
+			linkString.append(String.format(//"[<a href='%s?pageno=%d'>이전</a>]"
+					"<a href='%s?pageno=1' class='prev-arrow'><i class='fa fa-long-arrow-left' aria-hidden='true'></i></a>", linkUrl, currentPage - 1));
+			//linkString.append("&nbsp;");
 		}
 		
 		//2. 페이지 번호 Link 만들기
@@ -44,25 +44,25 @@ public class ThePager {
 		int end = start + pagerSize;
 		for (int i = start; i < end; i++) {
 			if (i > pageCount) break;
-			linkString.append("&nbsp;");
-			if(i == currentPage) {
-				linkString.append(String.format("[%d]", i));
+			//linkString.append("&nbsp;"); 
+			if(i == currentPage) {//"[%d]"
+				linkString.append(String.format("<a href='%s?pageno=%d' class='active'>%d</a>", linkUrl, i, i));
 			} else { 
-				linkString.append(String.format(
-					"<a href='%s?pageno=%d'>%d</a>", linkUrl, i, i));
+				linkString.append(String.format(//"<a href='%s?pageno=%d'>%d</a>"
+						"<a href='%s?pageno=%d'>%d</a>", linkUrl, i, i));
 			}
-			linkString.append("&nbsp;");
+			//linkString.append("&nbsp;");
 		}
 		
 		//3. 다음, 마지막 항목 만들기
 		if (currentPage < pageCount) {
-			linkString.append("&nbsp;");
-			linkString.append(String.format(
-				"[<a href='%s?pageno=%d'>다음</a>]",linkUrl, currentPage + 1));
-			linkString.append("&nbsp;");
-			linkString.append("&nbsp;");
-			linkString.append(String.format(
-				"[<a href='%s?pageno=%d'>마지막</a>]", linkUrl, pageCount));
+			//linkString.append("&nbsp;");
+			linkString.append(String.format(//"[<a href='%s?pageno=%d'>다음</a>]"
+					"<a href='%s?pageno=%d' class='next-arrow'><i class='fa fa-long-arrow-right' aria-hidden='true'></i></a>",linkUrl, currentPage + 1));
+			//linkString.append("&nbsp;");
+			//linkString.append("&nbsp;");
+			/*linkString.append(String.format(
+				"[<a href='%s?pageno=%d'>마지막</a>]", linkUrl, pageCount));*/
 		}
 		
 		return linkString.toString();

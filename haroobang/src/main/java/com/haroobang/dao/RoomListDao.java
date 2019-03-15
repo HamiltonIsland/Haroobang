@@ -28,4 +28,8 @@ public interface RoomListDao {
 
 	List<LikedVO> selectAllLiked(int memberNo);
 
+	List<RoomVO> selectAllDisapprovalRoomByPage(int from, int to);
+
+	int selectDisapprovalRoomCount();
+
 }

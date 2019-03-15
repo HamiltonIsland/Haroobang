@@ -25,4 +25,8 @@ public interface RoomListService {
 
 	List<LikedVO> findAllLikeds(int memberNo);
 
+	List<RoomVO> findAllDisapprovalRoomsByPage(int from, int to);
+
+	int findDisapprovalRoomsCount();
+
 }

@@ -151,15 +151,51 @@
 	$(function(){
 		$("#submitbtn").on("click",function(e){
 	        var formData = new FormData();
+	        
+	      	//숙소이름 입력
+	        var roomName= $("#roomName").val();
+	       
+	        if(roomName==""){
+	        	alert("숙소 이름을 입력하세요");
+	        	return;
+	        }else{
+	        	formData.append("roomName", roomName);	
+	        }
+	        
+	     	//주소 입력
+	        var address = $("#address").val();
+	       
+	        if(address==""){
+	        	alert("주소를 입력하세요");
+	        	return;
+	        }else{
+	        	formData.append("address", address);	
+	        }
+	        	     	
+	      	//가격입력
+	        var price = $("#price").val();
+	        price = $.trim(price);
+	       
+	        if(price==""){
+	        	alert("가격을 입력하세요");
+	        	return;
+	        }else if(isNaN(price)){
+	        	alert("가격 형식을 확인하세요\n\n Ex : 120000");
+	        	return;	        		
+	        }else{
+	        	formData.append("price", price);
+	        }	        
+	      	
+	        
 	        formData.append("memberNo", $("#memberNo").val())
 	        formData.append("longitude", $("#order_start_lon").val())
 	        formData.append("latitude", $("#order_start_lat").val())
-	        formData.append("roomName", $("#roomName").val())
+	        
 	        formData.append("roomProfile", $("#test").val())
 	        formData.append("maximum", $("#maximum").val())
 	        formData.append("memberNo", $("#memberNo").val())
-	        formData.append("address", $("#address").val())
-	        formData.append("price", $("#price").val())
+	        
+	        
 	        var ins = document.getElementById('file').files.length;
             for (var x = 0; x < ins; x++) {
                 formData.append("file", document.getElementById('file').files[x]);

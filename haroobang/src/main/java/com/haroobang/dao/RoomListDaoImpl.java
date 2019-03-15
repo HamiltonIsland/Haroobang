@@ -87,4 +87,20 @@ public class RoomListDaoImpl implements RoomListDao{
 		List<LikedVO> likeds = roomListMapper.selectAllLiked(memberNo);
 		return likeds;
 	}
+
+	@Override
+	public List<RoomVO> selectAllDisapprovalRoomByPage(int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<RoomVO> rooms = roomListMapper.selectDisapprovalRoomList(params);
+		return rooms;
+	}
+
+	@Override
+	public int selectDisapprovalRoomCount() {
+		int count = roomListMapper.selectDisapprovalRoomCount();
+		return count;
+	}
 }
