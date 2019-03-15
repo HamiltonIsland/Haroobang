@@ -64,8 +64,14 @@ public class RoomListServiceImpl implements RoomListService{
 	}
 
 	@Override
-	public List<RoomVO> searchRoomListService(RoomVO vo) {
-		List<RoomVO> list = roomlistDao.searchRoomListDao(vo);
+	public int findSearchRoomCount(RoomVO vo) {
+		int count = roomlistDao.selectSearchRoomCount(vo);
+		return count;
+	}
+	
+	@Override
+	public List<RoomVO> searchRoomListService(RoomVO vo, int from, int to) {
+		List<RoomVO> list = roomlistDao.searchRoomListDao(vo, from, to);
 		for(RoomVO room : list) {
 			List<RoomAttachVO> attachments = roomlistDao.selectRoomAttachByRoomNo(room.getRoomNo());
 			room.setRoomAttachList(attachments);
@@ -87,6 +93,24 @@ public class RoomListServiceImpl implements RoomListService{
 	public List<LikedVO> findAllLikeds(int memberNo) {
 		List<LikedVO> likeds = roomlistDao.selectAllLiked(memberNo);
 		return likeds;
+	}
+
+	@Override
+	public List<RoomVO> findAllDisapprovalRoomsByPage(int from, int to) {
+		List<RoomVO> rooms = roomlistDao.selectAllDisapprovalRoomByPage(from, to);
+		
+		for(int i=0; i<rooms.size(); i++) {
+			List<RoomAttachVO> attachVos = roomlistDao.selectRoomAttachByRoomNo(rooms.get(i).getRoomNo());
+			rooms.get(i).setRoomAttachList(attachVos);
+		}
+		
+		return rooms;
+	}
+
+	@Override
+	public int findDisapprovalRoomsCount() {
+		int count = roomlistDao.selectDisapprovalRoomCount();
+		return count;
 	}
 
 }

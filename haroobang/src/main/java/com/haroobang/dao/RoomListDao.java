@@ -20,12 +20,18 @@ public interface RoomListDao {
 
 	int selectRoomCount();
 
-	List<RoomVO> searchRoomListDao(RoomVO vo);
+	List<RoomVO> searchRoomListDao(RoomVO vo, int from, int to);
 
 	void likedRoom(String memberno, String roomno);
 
 	void unLikedRoom(String memberno, String roomno);
 
 	List<LikedVO> selectAllLiked(int memberNo);
+
+	List<RoomVO> selectAllDisapprovalRoomByPage(int from, int to);
+
+	int selectDisapprovalRoomCount();
+
+	int selectSearchRoomCount(RoomVO vo);
 
 }

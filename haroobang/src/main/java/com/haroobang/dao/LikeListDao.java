@@ -11,4 +11,8 @@ public interface LikeListDao {
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
+	List<RoomVO> selectAllRoomByPage(int memberNo, int from, int to);
+
+	int selectLikedCount(int memberNo);
+
 }

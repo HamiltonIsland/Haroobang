@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.LikeListDao;
-import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
 
@@ -25,5 +24,21 @@ public class LikeListServiceImpl implements LikeListService{
 			likeList.setRoomAttachList(attachments);
 		}
 		return likeLists;
+	}
+
+	@Override
+	public int findLikedCount(int memberNo) {
+		int count = likeListDao.selectLikedCount(memberNo);
+		return count;
+	}
+
+	@Override
+	public List<RoomVO> findMyLikedByPage(int memberNo, int from, int to) {
+		List<RoomVO> likeds = likeListDao.selectAllRoomByPage(memberNo,from, to);
+		for(int i=0; i<likeds.size(); i++) {
+			List<RoomAttachVO> attachVos = likeListDao.selectRoomAttachByRoomNo(likeds.get(i).getRoomNo());
+			likeds.get(i).setRoomAttachList(attachVos);
+		}
+		return likeds;
 	}
 }

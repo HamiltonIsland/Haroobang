@@ -17,12 +17,18 @@ public interface RoomListService {
 
 	int findRoomCount();
 
-	List<RoomVO> searchRoomListService(RoomVO vo);
+	List<RoomVO> searchRoomListService(RoomVO vo, int from, int to);
 
 	void likedRoom(String memberno, String roomno);
 
 	void unLikedRoom(String memberno, String roomno);
 
 	List<LikedVO> findAllLikeds(int memberNo);
+
+	List<RoomVO> findAllDisapprovalRoomsByPage(int from, int to);
+
+	int findDisapprovalRoomsCount();
+
+	int findSearchRoomCount(RoomVO vo);
 
 }

@@ -59,8 +59,19 @@ public class RoomListDaoImpl implements RoomListDao{
 	}
 
 	@Override
-	public List<RoomVO> searchRoomListDao(RoomVO vo) {
-		List<RoomVO> list = roomListMapper.searchRoomList(vo);
+	public int selectSearchRoomCount(RoomVO vo) {
+		int count = roomListMapper.selectSearchRoomCount(vo);
+		return count;
+	}
+	
+	@Override
+	public List<RoomVO> searchRoomListDao(RoomVO vo, int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("RoomVO", vo);
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<RoomVO> list = roomListMapper.searchRoomList(params);
 		return list;
 	}
 
@@ -86,5 +97,21 @@ public class RoomListDaoImpl implements RoomListDao{
 	public List<LikedVO> selectAllLiked(int memberNo) {
 		List<LikedVO> likeds = roomListMapper.selectAllLiked(memberNo);
 		return likeds;
+	}
+
+	@Override
+	public List<RoomVO> selectAllDisapprovalRoomByPage(int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<RoomVO> rooms = roomListMapper.selectDisapprovalRoomList(params);
+		return rooms;
+	}
+
+	@Override
+	public int selectDisapprovalRoomCount() {
+		int count = roomListMapper.selectDisapprovalRoomCount();
+		return count;
 	}
 }

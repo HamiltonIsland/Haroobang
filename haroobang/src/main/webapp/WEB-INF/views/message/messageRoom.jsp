@@ -74,7 +74,7 @@
 								<div class="wrap">
 									<img id="profile-img"
 										src="/haroobang/resources/upload/${login.savedFileName}"
-										class="online" alt="" />
+										class="online rounded-circle" style="height: 60px;width:60px" alt="" />
 									<p>${login.name }</p>
 									<div id="status-options">
 										<ul>
@@ -102,6 +102,7 @@
 												<!-- <li class="contact active"> -->
 												<div class="wrap">
 													<span class="contact-status"></span> <img
+														class="rounded-circle" style="height: 40px;width:40px"
 														src="/haroobang/resources/upload/${list.savedFileName}"
 														alt="" />
 													<div class="meta">

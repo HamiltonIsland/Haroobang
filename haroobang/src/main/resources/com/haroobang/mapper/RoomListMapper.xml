@@ -37,27 +37,19 @@
 	</select>
 	
 	<select id="selectRoomList" parameterType="hashmap" resultType="RoomVO">
-		SELECT *
-		FROM		
-		(
-			SELECT 
-				rownum idx, s.* 
-			FROM		
-			(
-				SELECT 
-					roomNo, roomName, address, memberNo,
-					regDate, roomProfile, longitude, latitude, 
-					price, readCount, maximum
-				FROM
-					room
-				ORDER BY roomNo DESC
-			) s		
-		)
-		WHERE idx >= #{ first } AND idx <![CDATA[<]]> #{ last } AND approval=1
+		SELECT * FROM room WHERE approval=1 ORDER BY roomNo DESC limit #{ first }, #{ last }
 	</select>
 	
 	<select id="selectRoomCount" resultType="int">
 		SELECT COUNT(*) FROM room WHERE approval=1
+	</select>
+	
+	<select id="selectDisapprovalRoomList" parameterType="hashmap" resultType="RoomVO">
+		SELECT * FROM room WHERE approval=0 ORDER BY roomNo DESC limit #{ first }, #{ last }
+	</select>
+	
+	<select id="selectDisapprovalRoomCount" resultType="int">
+		SELECT COUNT(*) FROM room WHERE approval=0
 	</select>
 	
 	<update id="approvalRoom" parameterType="int">
@@ -66,11 +58,20 @@
 		where roomNo = #{formdate}
 	</update>
 	
-	<select id="searchRoomList" parameterType="RoomVO" resultType="RoomVO">
+	<select id="searchRoomList" parameterType="hashmap" resultType="RoomVO">
 		select * from room 
 		where approval=1 and 
+		address like CONCAT('%', #{RoomVO.address}, '%') and 
+		maximum <![CDATA[>=]]> #{RoomVO.maximum} and roomNo not in 
+		(select roomNo from reservationDate where reservationDate.date between date(#{RoomVO.checkIn}) and date(#{RoomVO.checkOut})+1)
+		ORDER BY roomNo DESC limit #{ first }, #{ last }
+	</select>
+	
+	<select id="selectSearchRoomCount" parameterType="RoomVO" resultType="int">
+		select COUNT(*) from room 
+		where approval=1 and 
 		address like CONCAT('%', #{address}, '%') and 
-		maximum <![CDATA[<=]]> #{maximum} and roomNo not in 
+		maximum <![CDATA[>=]]> #{maximum} and roomNo not in 
 		(select roomNo from reservationDate where reservationDate.date between date(#{checkIn}) and date(#{checkOut})+1)
 	</select>
 	

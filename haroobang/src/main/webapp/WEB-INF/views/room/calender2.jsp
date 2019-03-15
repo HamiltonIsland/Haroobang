@@ -32,21 +32,8 @@
 
 </style>
 
-
   <div id='calendar'></div>
-  <br>
-   <c:choose>
-    <c:when test="${login.userType == 'admin' }">
-     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">목록에서 지우기</a>
-    </c:when>
-    <c:otherwise>
-     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
-    </c:otherwise>
-    </c:choose>
-<!-- <a class="icon_btn" href="javascript:" id="like" style="display: inline;"><i class="lnr lnr lnr-heart"></i></a> --> 
-
-
-  
+ 
   <script>
 	
   //debugger;
@@ -100,12 +87,13 @@
   					if(data == "fail"){
   						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
   					}else if(data == "redirect:/account/login.action"){
-  						alert("로그인이 필요합니다.")
   						location.href = "/haroobang/account/login.action"
   					}
   					else {
   						startDate1 = startDate.format();
   						endDate1 = endDate.format()
+  						/* alert(startDate.substring(8,10)-endDate.substring(8,10)); */
+  						//location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}
   					}
   				}
   			});
@@ -113,18 +101,6 @@
 
     });
     
-    	$("#roomReservation").click(function(e){
-    		if(startDate1.length<1){
-    			alert("날짜를 선택해 주세요")
-    		}else{
-    			location.href = "/haroobang/room/reservationCheckout.action?checkinDate="+startDate1+"&endDate="+endDate1+"&roomNo="+${roomNo};
-    		}
-    		
-
-    	});
-  
-    	
-    	
    
 
 </script>

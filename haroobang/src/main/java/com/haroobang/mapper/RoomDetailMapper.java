@@ -19,13 +19,13 @@ public interface RoomDetailMapper {
 
 	List<RoomAttachVO> findRoomAttach(int roomNo);
 
-	void addRoomReservaion(ReservationVO reservationVo);
+	int addRoomReservaion(ReservationVO reservationVo);
 
 	void addReservationDate(HashMap<String, Object> params);
 
 	List<String> findDateList(int roomNo);
 
-	int findReservedDate(HashMap<String, Object> params);
+	List<Integer> findReservedDate(HashMap<String, Object> params);
 
 	void roomDelete(int roomNo);
 
