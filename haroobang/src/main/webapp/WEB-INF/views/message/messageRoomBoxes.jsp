@@ -12,7 +12,7 @@
 								<div class="wrap">
 									<img id="profile-img"
 										src="/haroobang/resources/upload/${login.savedFileName}"
-										class="online" alt="" />
+										class="online rounded-circle" style="height: 60px;width:60px" alt="" />
 									<p>${login.name }</p>
 									<div id="status-options">
 										<ul>
@@ -48,6 +48,7 @@
 											<!-- <li class="contact active"> -->
 											<div class="wrap">
 												<span class="contact-status"></span> <img
+													class="rounded-circle" style="height: 40px;width:40px"
 													src="/haroobang/resources/upload/${list.savedFileName}"
 													alt="" />
 												<div class="meta">
@@ -78,7 +79,7 @@
 								<c:forEach var="messageRoomList" items="${messageRoomList}">
 									<c:forEach var="list" items="${messageRoomList.memberList}">
 										<c:if test="${messageRoomList.messageRoomNo==messageRoomNo}">
-											<img src="/haroobang/resources/upload/${list.savedFileName }" />
+											<img class="rounded-circle" style="height: 40px;width:40px" src="/haroobang/resources/upload/${list.savedFileName }" />
 											<p>${list.name }</p>
 										</c:if>
 									</c:forEach>
@@ -107,6 +108,7 @@
 															<c:if
 																test="${messageRoomList.messageRoomNo==messageRoomNo}">
 																<img
+																	class="rounded-circle" style="height: 70px;width:70px"
 																	src="/haroobang/resources/upload/${lists.savedFileName}"
 																	alt="" />
 															</c:if>
