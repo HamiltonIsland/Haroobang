@@ -40,7 +40,7 @@ public class LastReservationController {
 			int from = (pageNo - 1) * pageSize; // + 1; //해당 페이지에 포함된 시작 글번호
 			int to = pageSize; /*from + pageSize;*/				//해당 페이지에 포함된 마지막 글번호 + 1
 			int pagerSize = 2;	//한 번에 표시되는 페이지 번호 개수
-			String linkUrl = "lastReservationList.action?memberno=" + memberNo; //페이지 번호를 눌렀을 때 이동할 경로
+			String linkUrl = "lastReservationList.action"; //페이지 번호를 눌렀을 때 이동할 경로
 			
 			List<ReservationVO> myrooms = lastReservationService.findMyLastReservationByPage(memberNo, from, to);
 			int roomCount = lastReservationService.findRoomCount(memberNo);
