@@ -37,23 +37,7 @@
 	</select>
 	
 	<select id="selectRoomList" parameterType="hashmap" resultType="RoomVO">
-		SELECT *
-		FROM		
-		(
-			SELECT 
-				rownum idx, s.* 
-			FROM		
-			(
-				SELECT 
-					roomNo, roomName, address, memberNo,
-					regDate, roomProfile, longitude, latitude, 
-					price, readCount, maximum
-				FROM
-					room
-				ORDER BY roomNo DESC
-			) s		
-		)
-		WHERE idx >= #{ first } AND idx <![CDATA[<]]> #{ last } AND approval=1
+		SELECT * FROM room WHERE approval=1 ORDER BY roomNo DESC limit #{ first }, #{ last };
 	</select>
 	
 	<select id="selectRoomCount" resultType="int">
