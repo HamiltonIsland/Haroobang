@@ -95,9 +95,18 @@ public class RoomListController {
 	
 	//home에서 검색목록
 	@RequestMapping(value="/searchRoomList.action", method=RequestMethod.GET)
-	public String searchRoomList(RoomVO vo,Model model) {
+	public String searchRoomList(RoomVO vo,Model model,HttpSession session) {
 		
 		List<RoomVO> roomList = roomListService.searchRoomListService(vo);
+		AccountVO accountVO = (AccountVO)session.getAttribute("login");
+		List<LikedVO> likeds = null;
+		if (accountVO != null) {
+			likeds = roomListService.findAllLikeds(accountVO.getMemberNo());
+		}
+		
+		
+		
+		model.addAttribute("likeds", likeds);
 		model.addAttribute("rooms",roomList);
 		return "room/roomList";
 	}
