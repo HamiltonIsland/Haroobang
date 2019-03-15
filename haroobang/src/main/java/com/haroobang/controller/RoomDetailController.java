@@ -1,8 +1,13 @@
 package com.haroobang.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -68,40 +73,39 @@ public class RoomDetailController {
 	@RequestMapping(value = "checkDate.action", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkDate(String checkinDate, String endDate, Model model, HttpSession session,
-			int roomNo) {
+			int roomNo){
 
 		if (session.getAttribute("login") == null) {
 			return "redirect:/account/login.action";
 		}
 		
-		int nights = (Integer.parseInt(endDate.substring(8,10))-Integer.parseInt(checkinDate.substring(8,10)));
+		String result = roomDetailService.findReservedDate(roomNo,checkinDate,endDate);
 		
-		List<LocalDate> dateList = new ArrayList();
-		LocalDate startDate = LocalDate.parse(checkinDate);
-		for(int i = 0;i<nights;i++) {
-			dateList.add(startDate.plusDays(i));
-		}
-		
-		String result = roomDetailService.findReservedDate(roomNo,dateList);
-		
-//		model.addAttribute("result",result);
-//		model.addAttribute("roomNo", roomNo);
-//		model.addAttribute("checkinDate", checkinDate);
-//		model.addAttribute("nights", nights);
+		model.addAttribute("roomNo",roomNo);
 
 		return result;
 	}
-	
+
 	@RequestMapping(value="reservationCheckout.action")
 	public String reservationCheckout(String checkinDate,String endDate, Model model, HttpSession session,
 			int roomNo) {
 		
+		LocalDate startDate = LocalDate.parse(checkinDate);
+		LocalDate endDate1 = LocalDate.parse(endDate);
+		LocalDate endDate2 = endDate1.minusDays(1);
 		
-		int nights = (Integer.parseInt(endDate.substring(8,10))-Integer.parseInt(checkinDate.substring(8,10)))-1;
-		System.out.println(nights);
-		model.addAttribute("roomNo", roomNo);
+		Period period = Period.between(startDate, endDate2);
+		int nights = period.getDays();
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		endDate = endDate2.format(formatter);
+		
+		RoomVO roomDetail = roomDetailService.findRoomDetail(roomNo);
+		
+		model.addAttribute("roomDetail", roomDetail);
 		model.addAttribute("checkinDate", checkinDate);
 		model.addAttribute("endDate", endDate);
+		model.addAttribute("nights", nights);
 		
 		return "room/roomReservationCheckout";
 	}
@@ -127,18 +131,14 @@ public class RoomDetailController {
 			reservationVo.setRequest("요청사항없음");
 		}
 
-		String StartDate = reservationVo.getStartDate();
-		LocalDate startDate = LocalDate.parse(StartDate);
+		LocalDate startDate = LocalDate.parse(reservationVo.getStartDate());
+
 		List<LocalDate> dateList = new ArrayList();
 		
-		for(int i = 0;i<reservationVo.getNights()+1;i++) {
+		for(int i = 0;i<reservationVo.getNights()-1;i++) {
 			dateList.add(startDate.plusDays(i));
 		}
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
-		String endDate = formatter.format(dateList.get(reservationVo.getNights()));
-	
-		reservationVo.setEndDate(endDate);
 		reservationVo.setMemberNo(memberNo);
 
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());

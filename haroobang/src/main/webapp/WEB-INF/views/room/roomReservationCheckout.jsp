@@ -64,35 +64,45 @@ $(function(){
 				<div class="billing_details">
 					<div class="row">
 						<div class="col-lg-8">
-							<h3>숙소 예약 상세</h3>
+							<!-- <h3>숙소 예약 상세</h3> -->
 							<!-- <a href="#">예약가능 날짜 확인a tag 사용 가능</a> -->
+							<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">숙소정보</th>
+								<th scope="col">숙소이름</th>
+								<th scope="col"></th>
+								<th scope="col">체크아웃</th>
+							
+							</tr>
+						</thead>
+						<tbody>
+					
+							<tr>
+								<td>
+									<div class="media">
+                                        <div>
+                                <a href="#">
+								<img style="width: 100px; height: 100px" src="/haroobang/resources/upload/${roomDetail.roomAttachList[0].savedFileName}" alt="">
+								</a>
+                                        </div>
+                                    </div>
+								</td>
+								<td>
+									<h5>${checkinDate}~${endDate }<br><br></h5>
+								</td>
+								<td></td>
+								<td>
+									<h5>총 ${nights }박</h5>
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+							
 							<form class="row contact_form" action="payment.action" id="form" method="post"
 								novalidate="novalidate">
-								<div class="col-md-12 form-group p_star">
-									<p>예약일 : ${checkinDate}~${endDate }</p>
-									<p>총 ()박 : ()</p>
-								</div>
-						<%-- 		
-								<div class="col-md-12 form-group p_star">
-									<select class="country_select" name="nights">
-										<option value=${nights }>${endDate }</option>
-										<option value=1>1 박</option>
-										<option value=2>2 박</option>
-										<option value=3>3 박</option>
-										<option value=4>4 박</option>
-										<option value=5>5 박</option>
-										<option value=6>6 박</option>
-										<option value=7>7 박</option>
-										<option value=8>8 박</option>
-										<option value=8>9 박</option>
-										<option value=10>10 박</option>
-										<option value=11>11 박</option>
-										<option value=12>12 박</option>
-										<option value=13>13 박</option>
-										<option value=14>14 박</option>
-										<option value=15>15 박</option>
-									</select>
-								</div> --%>
+						
 								<div class="col-md-12 form-group">
 									<textarea class="form-control" name="request" id="message"
 										rows="1" placeholder="요청사항을 입력해 주세요"></textarea>
@@ -110,14 +120,14 @@ $(function(){
 								<h2>Your Order</h2>
 								<ul class="list">
 									<li><a href="#">Product <span>Total</span></a></li>
-									<li><a href="#">&#8361; 50000 /1박 <span class="middle">x
-												${nights }</span> <span class="last">&#8361; ${nights*50000 }</span></a></li>
+									<li><a href="#">&#8361; ${roomDetail.price } /1박 <span class="middle">x
+												${nights }</span> <span class="last">&#8361; ${nights*roomDetail.price }</span></a></li>
 									<li><a href="#">쿠폰 사용 내역<span>등록된 쿠폰이 없습니다</span></a></li>
 									<hr>
 									
 								</ul>
 								<ul class="list list_2">
-									<li>Total <span style="float:right">&#8361; ${nights*50000 }</span></li>
+									<li>Total <span style="float:right">&#8361; ${nights * roomDetail.price}</span></li>
 									<hr>
 								</ul>
 								<div class="payment_item">
@@ -143,8 +153,11 @@ $(function(){
 										href="#">terms & conditions*</a>
 								</div>
 								
-								<input type="hidden" name ="totalPrice" value="${nights*50000 }">
-								<input type="hidden" name ="roomNo" value="${roomNo }">
+								<input type="hidden" name ="totalPrice" value="${nights*roomDetail.price }">
+								<input type="hidden" name ="roomNo" value="${roomDetail.roomNo }">
+								<input type="hidden" name ="startDate" value="${checkinDate }">
+								<input type="hidden" name ="endDate" value="${endDate }">
+								<input type="hidden" name = "nights" value="${nights }">
 								<!-- <button type="submit" value="submit" class="primary-btn" style="width:100px" >숙소 등록</button> -->
 								</form>
 								

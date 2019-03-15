@@ -18,11 +18,11 @@ public interface RoomDetailDao {
 	String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList);
 
 	List<String> findDateList(int roomNo);
-
-	String findReservedDate(int roomNo, List<LocalDate> dateList);
-
+	
 	void roomDelete(int roomNo);
 
 	String commentReport(int commentNo, String content, int memberNo);
+
+	String findReservedDate(int roomNo, String checkinDate, String endDate);
 
 }

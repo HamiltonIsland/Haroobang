@@ -75,8 +75,10 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 
 	@Override
 	public String addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
+		
 		roomDetailMapper.addRoomReservaion(reservationVo);
 		int reservationNo = reservationVo.getReservationNo();
+		
 		int roomNo = reservationVo.getRoomNo();
 		
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -112,31 +114,29 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public String findReservedDate(int roomNo, List<LocalDate> dateList) {
+	public String findReservedDate(int roomNo, String checkinDate, String endDate) {
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("roomNo", roomNo);
+		params.put("checkinDate",checkinDate);
+		params.put("endDate",endDate);
 
-		int reservedDate = 0 ;
+		List<Integer> reservationNo = new ArrayList<Integer>();
 		String result = "success";
-		
-			for(int i =0;i<dateList.size();i++) {
-				params.put("date",formatter.format(dateList.get(i)));
-				try {
-					reservedDate = roomDetailMapper.findReservedDate(params);
-				} catch (Exception e) {
-					
-				}
 				
-				if(reservedDate > 0) {
-					result = "fail";
-					break;
-				}
+		try {
+			reservationNo = roomDetailMapper.findReservedDate(params);
+			if(reservationNo.size()>0) {
+				result = "fail";
 			}
+		} catch (Exception e) {
+			result = "fail";
+		}
+		
+			
 		return result;
 		
-	}
+}
 
 	@Override
 	public void roomDelete(int roomNo) {
