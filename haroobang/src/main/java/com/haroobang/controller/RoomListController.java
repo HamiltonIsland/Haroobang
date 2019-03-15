@@ -43,9 +43,9 @@ public class RoomListController {
 		List<RoomVO> rooms = roomListService.findAllRoomsByPage(from, to);
 		int roomCount = roomListService.findRoomCount();
 		
-		List<RoomVO> disapproval = roomListService.findAllDisapprovalRooms();
-		//List<RoomVO> disapproval = roomListService.findAllDisapprovalRoomsByPage(from, to);
-		//int disapprovalCount = roomListService.findDisapprovalRoomsCount();
+		//List<RoomVO> disapproval = roomListService.findAllDisapprovalRooms();
+		List<RoomVO> disapproval = roomListService.findAllDisapprovalRoomsByPage(from, to);
+		int disapprovalCount = roomListService.findDisapprovalRoomsCount();
 		
 		accountVO = (AccountVO)session.getAttribute("login");
 		List<LikedVO> likeds = null;
@@ -54,12 +54,13 @@ public class RoomListController {
 		}
 		
 		ThePager pager = new ThePager(roomCount, pageNo, pageSize, pagerSize, linkUrl);
-		//ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
+		ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
 		
 		model.addAttribute("likeds", likeds);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("disapproval", disapproval);
 		model.addAttribute("pager", pager);
+		model.addAttribute("disPager", disPager);
 		model.addAttribute("pageno", pageNo);
 		
 		return "room/roomList";
