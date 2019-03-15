@@ -160,7 +160,7 @@ $(function(){
 
 								<div class="media-body">
 								<div style=" display: inline-block;">
-									<h3>&nbsp;${login.nickname}님 &nbsp;&nbsp;&nbsp;<a style="font-size: 14px" href="#"><i class="icon-envelope-alt"></i>문의하기</a></h3>
+									<h3>&nbsp;${login.nickname}님 &nbsp;&nbsp;&nbsp;<a style="font-size: 14px"class="disabled"><i class="icon-envelope-alt"></i>문의하기</a></h3>
 								</div>	
 								<hr>
 									<p>${login.profile}</p>
@@ -178,13 +178,13 @@ $(function(){
 								<div class="col-6">
 									<div class="box_total">
 										<h5>Overall</h5>
-										<h4>${room.averageRates }점</h4>
-										<h6>(${room.roomCommentList.size() } Reviews)</h6>
+										<h4>5점</h4>
+										<h6>(1 Reviews)</h6>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="rating_list">
-										<h3>Based on ${room.roomCommentList.size() } Reviews</h3>
+										<h3>Based on 1 Reviews</h3>
 										<ul class="list">
 										<c:forEach var="i" begin="1" end="5" >
 										<li>	
