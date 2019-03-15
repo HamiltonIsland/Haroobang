@@ -34,7 +34,7 @@ public class ThePager {
 			linkString.append("&nbsp;");
 			linkString.append("&nbsp;");*/
 			linkString.append(String.format(//"[<a href='%s?pageno=%d'>이전</a>]"
-					"<a href='%s?pageno=1' class='prev-arrow'><i class='fa fa-long-arrow-left' aria-hidden='true'></i></a>", linkUrl, currentPage - 1));
+					"<a href='%s?pageno=%d' class='prev-arrow'><i class='fa fa-long-arrow-left' aria-hidden='true'></i></a>", linkUrl, currentPage - 1));
 			//linkString.append("&nbsp;");
 		}
 		
