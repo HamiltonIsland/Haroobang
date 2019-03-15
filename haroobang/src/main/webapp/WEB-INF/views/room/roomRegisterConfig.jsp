@@ -38,7 +38,7 @@ $(function(){
 	}); */ 
 	// 지도에 마커를 표시합니다
 	marker.setMap(map);
-	$('#calendarBox').load("/haroobang/room/calender.action?roomNo="+${room.roomNo})
+	$('#calendarBox').load("/haroobang/room/calender2.action?roomNo="+${room.roomNo})
 });
 </script>
 

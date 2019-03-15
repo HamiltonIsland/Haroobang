@@ -18,12 +18,6 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=98c601126ea50820acff69a288897c63&libraries=services"></script>
 		
-
-
-
-
-
-
 </head>
 
 <body>
@@ -54,8 +48,6 @@
 							src="/haroobang/resources/upload/${roomattach.savedFileName}" alt="">
 						</div>
 					</c:forEach>
-						
-						
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
@@ -64,45 +56,7 @@
 						<h4>&#8361; ${room.price}&nbsp;</h4>
 						<hr>
 						<div id="calendarBox" style="height:350px;width:350px;">
-						<div id='calendar'></div>
-						</div>
-						<br>
-						<!-- <div class="product_count">
-						<label for="qty">Checkin</label> 
-						<input type="date" style="width:300px" id="checkinDate"/>
-						</div> -->
-						<br>
-						<div class="product_count">
-						<!-- <label for="qty">Checkin</label> 
-						<input type="date" style="width:150px" id="checkinDate"/>
-							<label for="qty">Days&nbsp;&nbsp;</label> 
-							<input type="text" name="qty"
-								id="sst" maxlength="12" value="1" title="Quantity:"
-								class="input-text qty"> -->
-			<!-- 					
-							<button
-								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-								class="increase items-count" type="button">
-								<i class="lnr lnr-chevron-up"></i>
-							</button>
-							<button
-								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-								class="reduced items-count" type="button">
-								<i class="lnr lnr-chevron-down"></i>
-							</button> -->
-						</div>
-						<!-- <a href="/haroobang/room/calender.action">날짜확인</a> -->
-						<div class="card_area d-flex align-items-center">
-						<c:choose>
-							<c:when test="${login.userType == 'admin'}">
-							<a class="primary-btn" href="javascript:" id="roomDelete" style="padding: 0px 150px;">삭제하기</a>  
-							</c:when>
-							<c:otherwise>
-							<!-- <a class="primary-btn" href="javascript:" id="roomReservation">예약하기</a>
-							<a class="icon_btn" href="javascript:" id="like"><i class="lnr lnr lnr-heart"></i></a>  -->
-							</c:otherwise>
-						</c:choose>
-							
+						
 						</div>
 					</div>
 				</div>
