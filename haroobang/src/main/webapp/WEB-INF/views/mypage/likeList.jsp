@@ -26,6 +26,9 @@
             CSS
             ============================================= -->
 	<jsp:include page="../include/css.jsp"/>
+	<style type="text/css">
+	.txt_line { width:200px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+	</style>
 </head>
 
 <body id="category">
@@ -116,45 +119,34 @@
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
-						<!-- single product -->
 						<c:forEach var="likeList" items="${ likeLists }">
+						<div class="col-lg-3 col-md-5">
 						<a href="/haroobang/room/roomDetail.action?roomNo=${likeList.roomNo}">
-						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
 							<c:choose>
-								<c:when test="${not empty likeList.roomAttachList}">
-									<div class="main-carousel"
-										data-flickity='{ "autoPlay": true }'>
-										<c:forEach var="attach"
-											items="${likeList.roomAttachList}">
-
-											<img style="width: 100px; height: 100px"
-												src="/haroobang/resources/upload/${attach.savedFileName}"
-												alt=""
-												onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+									<c:when test="${not empty likeList.roomAttachList}">
+										<c:forEach var="attach" items="${likeList.roomAttachList}">
+												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
+													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
 										</c:forEach>
-									</div>
-								</c:when>
-							<c:otherwise>
-								<img style="width: 100px; height: 100px"
-									src="/haroobang/resources/img/product/p1.jpg" alt="">
-							</c:otherwise>
-							</c:choose>
-							
-								<div class="product-details">
-									<h6> ${ likeList.roomName }</h6>
-									<div class="price">
-										<h6>${ likeList.price }&#8361;</h6>
-										
-									</div>
+									</c:when>
+									<c:otherwise>
 									
+										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
+									</c:otherwise>
+								</c:choose>
+								<div class="product-details">
+									<h6 class="txt_line">${likeList.roomName}</h6>
+									<div class="price">
+										<h6>${likeList.price}&#8361;</h6>
+									</div>
+									<div class="prd-bottom">
+									</div>
 								</div>
 							</div>
+							</a>
 						</div>
-						</a>
 						</c:forEach>
-						<!-- single product -->
-						
 					</div>
 				</section>
 				<!-- End Best Seller -->
