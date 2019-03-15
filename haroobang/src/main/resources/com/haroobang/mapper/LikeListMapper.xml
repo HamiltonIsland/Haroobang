@@ -37,5 +37,16 @@
       	where r.roomNo = rs.roomNo and r.memberNo = #{ memberNo }
 	</select>
 	
+	<select id="selectLikedRoomList" parameterType="hashmap" resultType="RoomVO">
+		select rs.roomNo, rs.memberNo, rs.roomName, rs.regDate, rs.address, rs.longitude, rs.latitude,
+		rs.roomProfile, rs.price, rs.readCount, rs.maximum, r.roomNo, r.memberNo
+	  	from liked as r join room as rs
+      	where r.roomNo = rs.roomNo and r.memberno = #{ memberNo } ORDER BY r.regDate DESC limit #{ first }, #{ last }
+	</select>
+	
+	<select id="selectLikedRoomCount" parameterType="int" resultType="int">
+		select COUNT(*) from liked as r join room as rs where r.roomNo = rs.roomNo and r.memberno = #{ memberNo }
+	</select>
+	
 </mapper>
 <!-- 썅 -->

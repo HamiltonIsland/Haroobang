@@ -120,6 +120,17 @@ public class RoomDetailController {
 		
 		return "room/calender";
 	}
+	
+	@RequestMapping(value = "calender2.action", method = RequestMethod.GET)
+	public String calender2(int roomNo,Model model) {
+		
+		List<String> dateList = roomDetailService.findDateList(roomNo);
+	
+		model.addAttribute("dateList",dateList);
+		model.addAttribute("roomNo",roomNo);
+		
+		return "room/calender2";
+	}
 
 	@RequestMapping(value = "payment.action", method = RequestMethod.POST)
 	public String payment(ReservationVO reservationVo, HttpSession session, Model model) {

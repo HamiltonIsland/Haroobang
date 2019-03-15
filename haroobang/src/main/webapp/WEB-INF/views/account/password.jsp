@@ -50,19 +50,19 @@
 			<div class="row" >				
 				<div class="col-lg-6" style="margin:0 auto">
 					<div class="login_form_inner">
-						<h3>비밀번호 찾기</h3>
-						<form class="row login_form" action="password.action" method="post" novalidate="novalidate"style="margin : 0 auto">
+						<h3>개인정보 확인</h3>
+						<form class="row login_form" novalidate="novalidate"style="margin : 0 auto">
                             <div class="col-md-12 form-group p_star">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'">
+                                <input type="email" class="form-control" id="email"name="email" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'">
                             </div>                           
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
+                                <input type="text" class="form-control" id="name"name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
                             </div>                                                   
                             <div class="col-md-12 form-group p_star">
-                                <input type="date" class="form-control" name="birthDate" placeholder="Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Birth'">
+                                <input type="date" class="form-control"id="birthDate" name="birthDate" placeholder="Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Birth'">
                             </div> 
                             <div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">확인하기</button>								
+								<button type="button" id="submit" value="submit" class="primary-btn">확인하기</button>								
 							</div>
                         </form>
 							
@@ -74,6 +74,74 @@
 	<!--================End Login Box Area =================-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#submit").on("click",function(e){			
+	        var formData = new FormData();
+	        //email입력
+	        var email = $("#email").val();
+	        email = $.trim(email);	        
+	        var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;	       
+	        if(email==""){
+	        	alert("email을 입력하세요");
+	        	return;
+	        }else if(!emailRule.test(email)){
+	        	alert("email을 올바르게 입력하세요\n\nEx : example@haroobang.com");     
+	        	return;        	
+	        }else{
+	        	formData.append("email", email);	
+	        }	        
+	     	
+	        //이름입력
+	        var name = $("#name").val();
+	        name = $.trim(name);
+	       
+	        if(name==""){
+	        	alert("이름을 입력하세요");
+	        	return;
+	        }else{
+	        	formData.append("name", name);	
+	        }	        
+	      		     	
+	      	//birthDate입력
+	        var birthDate = $("#birthDate").val();
+	        birthDate = $.trim(birthDate);
+	          
+	        if(birthDate==""){
+	        	alert("생일을 입력하세요");
+	        	return;	              	
+	        }else{
+	        	formData.append("birthDate", birthDate);	
+	        }
+	       
+	        
+	        
+	        $.ajax({
+	            url: 'password.action',
+	            processData: false,
+	            contentType: false,
+	            data: formData,
+	            type: 'POST',
+	            success: function(data,status,xhr){
+	            	if(data==0){
+	            		alert("정보가 틀렸습니다.")
+	            		location.href="findPassword.action";
+	            	}else{
+	            	location.href="updatePassword.action?memberNo="+data;
+	            	}
+	            },
+	            error:function(xhr,status,err){
+	            	alert("입력사항을 확인해주세요.")
+	            }
+	           });
+	
+			})
+
+
+		
+	})
+</script>
 
 	<jsp:include page="../include/footer.jsp"/>
 

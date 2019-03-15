@@ -72,7 +72,7 @@
 								 class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
 							<ul class="collapse" id="officeProduct" data-toggle="collapse" aria-expanded="false" aria-controls="officeProduct">
 								<li class="main-nav-list child"><a href="#">승인 대기중 / 등록된 숙소</a></li>
-								<li class="main-nav-list child"><a href="#">내 숙소 예약 목록</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
 							</ul>
 						</li>
 						
@@ -106,13 +106,14 @@
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+					${ pager }
+						<!-- <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 						<a href="#" class="active">1</a>
 						<a href="#">2</a>
 						<a href="#">3</a>
 						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
 						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
 					</div>
 				</div>
 				<!-- End Filter Bar -->

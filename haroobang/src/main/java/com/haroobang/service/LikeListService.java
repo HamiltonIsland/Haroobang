@@ -8,4 +8,8 @@ public interface LikeListService {
 
 	List<RoomVO> findMyLiked(int memberNo);
 
+	int findLikedCount(int memberNo);
+
+	List<RoomVO> findMyLikedByPage(int memberNo, int from, int to);
+
 }
