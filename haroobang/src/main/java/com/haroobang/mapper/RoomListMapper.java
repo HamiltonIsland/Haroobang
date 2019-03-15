@@ -29,5 +29,9 @@ public interface RoomListMapper {
 
 	List<LikedVO> selectAllLiked(int memberNo);
 
+	List<RoomVO> selectDisapprovalRoomList(HashMap<String, Object> params);
+
+	int selectDisapprovalRoomCount();
+
 
 }

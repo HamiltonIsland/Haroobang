@@ -44,6 +44,14 @@
 		SELECT COUNT(*) FROM room WHERE approval=1
 	</select>
 	
+	<select id="selectDisapprovalRoomList" parameterType="hashmap" resultType="RoomVO">
+		SELECT * FROM room WHERE approval=0 ORDER BY roomNo DESC limit #{ first }, #{ last };
+	</select>
+	
+	<select id="selectDisapprovalRoomCount" resultType="int">
+		SELECT COUNT(*) FROM room WHERE approval=0
+	</select>
+	
 	<update id="approvalRoom" parameterType="int">
 		update room
 		set approval = 1

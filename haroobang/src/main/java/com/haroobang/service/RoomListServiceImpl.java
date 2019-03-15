@@ -89,4 +89,22 @@ public class RoomListServiceImpl implements RoomListService{
 		return likeds;
 	}
 
+	@Override
+	public List<RoomVO> findAllDisapprovalRoomsByPage(int from, int to) {
+		List<RoomVO> rooms = roomlistDao.selectAllDisapprovalRoomByPage(from, to);
+		
+		for(int i=0; i<rooms.size(); i++) {
+			List<RoomAttachVO> attachVos = roomlistDao.selectRoomAttachByRoomNo(rooms.get(i).getRoomNo());
+			rooms.get(i).setRoomAttachList(attachVos);
+		}
+		
+		return rooms;
+	}
+
+	@Override
+	public int findDisapprovalRoomsCount() {
+		int count = roomlistDao.selectDisapprovalRoomCount();
+		return count;
+	}
+
 }
