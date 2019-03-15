@@ -5,4 +5,53 @@
 
   <mapper namespace="com.haroobang.mapper.MyRoomMapper">
   
+  	<resultMap type="RoomVO" id="roomMap">
+		<id column="roomNo" property="roomNo" />
+		<result column="memberNo" property="memberNo" />
+		<result column="regDate" property="regDate" />
+		<result column="roomName" property="roomName" />
+		<result column="address" property="address" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="roomProfile" property="roomProfile" />
+		<result column="price" property="price" />
+		<result column="readCount" property="readCount" />
+		<result column="maximum" property="maximum" />
+	</resultMap>
+  
+  	<select id="selectAllMyRooms" resultType="RoomVO">
+		select * from room 
+		where memberNo = #{ memberNo }
+	</select>
+	
+	 	<select id="selectAllMyRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
+	SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo }
+	</select>
+	
+	<resultMap type="ReservationVO" id="ReservationVO">
+      <id column="reservationNo" property="reservationNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+      <result column="totalPrice" property="totalPrice" />
+      <result column="regDate" property="regDate" />
+      <result column="startDate" property="startDate" />
+      <result column="endDate" property="endDate" />
+      <result column="memberNo" property="memberNo" />
+      <result column="nights" property="nights" />
+      <result column="payment" property="payment" />
+      <collection property="roomVO" resultMap="Room"></collection>
+      <collection property="accountVO" resultMap="Account"></collection>
+   </resultMap>
+	
+	
+	<select id="selectReservationByRoomNo" parameterType="hashmap" resultMap="ReservationVO">
+	 SELECT rs.reservationNo, r.roomNo, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.nights, rs.payment, r.roomName, r.price, m.name, m.memberNo
+	  FROM reservation as rs join room as r join member as m
+	  WHERE r.roomNo=#{ roomNo } And rs.memberNo=#{ memberNo } And r.roomNo = rs.roomNo And m.memberNo = rs.memberNo;
+	</select>
+	
+	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
+		SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
+ 	
   </mapper>
