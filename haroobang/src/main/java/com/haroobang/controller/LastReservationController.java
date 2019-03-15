@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.haroobang.service.LastReservationService;
 import com.haroobang.service.RoomRegisterService;
-import com.haroobang.ui.ThePager;
+import com.haroobang.ui.ThePager2;
 import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
@@ -45,7 +45,7 @@ public class LastReservationController {
 			List<ReservationVO> myrooms = lastReservationService.findMyLastReservationByPage(memberNo, from, to);
 			int roomCount = lastReservationService.findRoomCount(memberNo);
 			
-			ThePager pager = new ThePager(roomCount,pageNo, pageSize, pagerSize, linkUrl);
+			ThePager2 pager = new ThePager2(roomCount,pageNo, memberNo, pageSize, pagerSize, linkUrl);
 			
 			
 			model.addAttribute("myrooms", myrooms);
