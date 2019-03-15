@@ -37,7 +37,7 @@
       	where r.roomNo = rs.roomNo and r.memberNo = #{ memberNo }
 	</select>
 	
-	<select id="selectLikedRoomList" parameterType="hashmap" resultType="RoomVO">
+	<select id="selectLikedRoomList" parameterType="hashmap" resultMap="RoomMap">
 		select rs.roomNo, rs.memberNo, rs.roomName, rs.regDate, rs.address, rs.longitude, rs.latitude,
 		rs.roomProfile, rs.price, rs.readCount, rs.maximum, r.roomNo, r.memberNo
 	  	from liked as r join room as rs

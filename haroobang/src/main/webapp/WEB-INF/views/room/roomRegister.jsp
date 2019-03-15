@@ -185,7 +185,18 @@
 	        }else{
 	        	formData.append("price", price);
 	        }	        
-	      	
+	      	//숙소이름 입력
+	        var file= document.getElementById('file').files[0];
+	       
+	        if(typeof file == "undefined"){
+	        	alert("사진을 첨부하세요");
+	        	return;
+	        }else{
+	        	var ins = document.getElementById('file').files.length;
+	            for (var x = 0; x < ins; x++) {
+	                formData.append("file", document.getElementById('file').files[x]);
+	            }
+	        }
 	        
 	        formData.append("memberNo", $("#memberNo").val())
 	        formData.append("longitude", $("#order_start_lon").val())
@@ -196,10 +207,7 @@
 	        formData.append("memberNo", $("#memberNo").val())
 	        
 	        
-	        var ins = document.getElementById('file').files.length;
-            for (var x = 0; x < ins; x++) {
-                formData.append("file", document.getElementById('file').files[x]);
-            }
+	        
 	        $.ajax({
 	            url: 'roomRegister.action',
 	            processData: false,
