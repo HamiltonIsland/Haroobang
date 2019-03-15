@@ -103,10 +103,12 @@
 					<c:if test="${not empty login }">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a
-								href="/haroobang/message/messageRoom.action"><span
-									class="lnr lnr-bubble"></span><c:if test="${messageCount !=0}"><span
+								href="/haroobang/message/messageRoom.action"><span><i style="font-size:20px" class="fa fa-commenting-o" style=""></i></span><c:if test="${messageCount !=0}"><span
 									class="badge badge-pill badge-danger"
 									style="height: 15px; margin: 0 auto; line-height: 10px; color: white">${messageCount}</span></c:if></a></li>
+							<li class="nav-item"><a	href="/haroobang/message/messageRoom.action?memberNo=8">
+							<span><i style="font-size:20px" class="fa fa-question-circle-o"></i></span></a></li>
+							
 							<li class="nav-item"><a
 								href="/haroobang/account/profile.action"><span> <img
 										src="/haroobang/resources/upload/${login.savedFileName }"
