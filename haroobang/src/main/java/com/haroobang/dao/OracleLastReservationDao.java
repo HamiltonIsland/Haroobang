@@ -16,11 +16,11 @@ public class OracleLastReservationDao implements LastReservationDao {
 		this.lastReservationMapper = lastReservationMapper;
 	}
 
-	public List<ReservationVO> selectAllMyLastReservation(int memberNo) {
+	/*public List<ReservationVO> selectAllMyLastReservation(int memberNo) {
 		List<ReservationVO> myrooms = lastReservationMapper.selectAllMyLastReservation(memberNo);
 		return myrooms;
 	}
-
+*/
 	@Override
 	public ReservationVO selectRoomByRoomNo(int roomNo, int memberNo, String startdate) {
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -35,6 +35,23 @@ public class OracleLastReservationDao implements LastReservationDao {
 	public List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo) {
 		List<RoomAttachVO> attachs = lastReservationMapper.selectRoomAttachByRoomNo(roomNo);
 		return attachs;
+	}
+
+	@Override
+	public List<ReservationVO> selectAllMyLastReservationByPage(int memberNo, int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("memberNo", memberNo);
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<ReservationVO> myrooms = lastReservationMapper.selectAllMyLastReservationByPage(params);
+		return myrooms;
+	}
+
+	@Override
+	public int selectRoomCount(int memberNo) {
+		int count = lastReservationMapper.selectRoomCount(memberNo);
+		return count;
 	}
 
 }

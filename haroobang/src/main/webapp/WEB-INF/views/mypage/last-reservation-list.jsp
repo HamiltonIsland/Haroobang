@@ -21,7 +21,9 @@
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>LastReservation</title>    
-
+	<style type="text/css">
+   .txt_line { width:200px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+   </style>
 	<!--
             CSS
             ============================================= -->
@@ -103,13 +105,7 @@
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						${ pager }
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -150,7 +146,7 @@
                                         </div>
                                         
                                         <div class="media-body">
-                                            <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" >${myroom.roomVO.roomName}</a>
+                                            <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" class="txt_line">${myroom.roomVO.roomName}</a>
                                         </div>
                                         
                                     </div>

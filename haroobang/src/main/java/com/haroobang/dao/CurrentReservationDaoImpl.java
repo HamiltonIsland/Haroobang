@@ -1,5 +1,6 @@
 package com.haroobang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,23 @@ public class CurrentReservationDaoImpl implements CurrentReservationDao{
 	@Override
 	public List<ReservationVO> selectAllCurrentReservations(int memberNo) {
 		List<ReservationVO> currents = currentReservationMapper.selectAllCurrentReservations(memberNo);
+		return currents;
+	}
+
+	@Override
+	public int selectCurrentCount(int memberNo) {
+		int count = currentReservationMapper.selectCurrentCount(memberNo);
+		return count;
+	}
+
+	@Override
+	public List<ReservationVO> selectCurrentRoomByPage(int memberNo, int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("memberNo", memberNo);
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<ReservationVO> currents = currentReservationMapper.selectCurrentRoomByPage(params);
 		return currents;
 	}
 

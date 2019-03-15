@@ -14,15 +14,15 @@ public class LastReservationServiceImpl implements LastReservationService {
 		this.lastReservationDao = lastReservationDao;
 	}
 	
-	@Override
-	public List<ReservationVO> findMyLastReservation(int memberNo) {
+	/*public List<ReservationVO> findMyLastReservation(int memberNo) {
 		List<ReservationVO> myrooms = lastReservationDao.selectAllMyLastReservation(memberNo);
 		for(ReservationVO myroom : myrooms) {
 			List<RoomAttachVO> attachments = lastReservationDao.selectRoomAttachByRoomNo(myroom.getRoomNo());
 			myroom.setRoomAttachList(attachments);
 		}
 		return myrooms;
-	}
+	}*/
+
 
 	@Override
 	public ReservationVO findRoomByRoomNo(int roomNo, int memberNo, String startdate) {
@@ -32,6 +32,22 @@ public class LastReservationServiceImpl implements LastReservationService {
 		myroom.setRoomAttachList(attachments);
 		
 		return myroom;
+	}
+
+	@Override
+	public List<ReservationVO> findMyLastReservationByPage(int memberNo, int from, int to) {
+		List<ReservationVO> myrooms = lastReservationDao.selectAllMyLastReservationByPage(memberNo,from,to);
+		for(int i=0; i<myrooms.size(); i++) {
+			List<RoomAttachVO> attachments = lastReservationDao.selectRoomAttachByRoomNo(myrooms.get(i).getRoomNo());
+			myrooms.get(i).setRoomAttachList(attachments);
+		}
+		return myrooms;
+	}
+
+	@Override
+	public int findRoomCount(int memberNo) {
+		int count = lastReservationDao.selectRoomCount(memberNo);
+		return count;
 	}
 
 }

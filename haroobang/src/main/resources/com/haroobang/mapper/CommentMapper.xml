@@ -21,15 +21,27 @@
       <result column="regDate" property="regDate" />
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
-   <select id="selectAllMycomments" parameterType="int" resultMap="commentMap">
+   <select id="selectAllMycommentsByPage" parameterType="hashmap" resultMap="commentMap">
+      select c.commentNo, c.roomNo, c.rates, c.content, c.regDate, r.roomName
+	  from comment as c join room as r
+      where c.roomNo = r.roomNo and c.memberNo = #{ memberNo } order by regDate desc limit #{first}, #{last};
+   </select>
+   
+   <!-- <select id="selectAllMycomments" parameterType="int" resultMap="commentMap">
       select c.commentNo, c.roomNo, c.rates, c.content, c.regDate, r.roomName
 	  from comment as c join room as r
       where c.roomNo = r.roomNo and c.memberNo = #{ memberNo } order by regDate desc;
-   </select>
+   </select> -->
    
    <select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
 		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
+	
+	<select id="selectCommentCount" parameterType="int" resultType="int">
+		select COUNT(*) 
+		from comment as c join room as r 
+		where c.roomNo = r.roomNo and c.memberNo = #{ memberNo }
 	</select>
    
 </mapper>

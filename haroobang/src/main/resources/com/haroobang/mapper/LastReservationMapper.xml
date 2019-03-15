@@ -17,11 +17,17 @@
       <result column="memberNo" property="memberNo" />
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
-   <select id="selectAllMyLastReservation" parameterType="int" resultMap="lastReservationMap">
+   <select id="selectAllMyLastReservationByPage" parameterType="hashmap" resultMap="lastReservationMap">
+		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo
+	  from reservation as rs join room as r
+      where r.roomNo = rs.roomNo AND rs.checkin = 1 AND rs.memberNo = #{ memberNo } order by regDate desc limit #{ first }, #{ last };
+   </select>
+   
+   <!-- <select id="selectAllMyLastReservation" parameterType="int" resultMap="lastReservationMap">
       select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo
 	  from reservation as rs join room as r
       where r.roomNo = rs.roomNo AND rs.checkin = 1 AND rs.memberNo = #{ memberNo } order by regDate desc;
-   </select>
+   </select> -->
    
    
    <resultMap type="RoomVO" id="Room">
@@ -55,6 +61,13 @@
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
 		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
 	</select>
-   
+	
+	<select id="selectRoomCount" parameterType="int" resultType="int">
+		select COUNT(*) 
+		from reservation as rs join room as r
+		where r.roomNo = rs.roomNo AND rs.checkin = 1 AND rs.memberNo = #{ memberNo };
+	</select>
+	
+	
    
 </mapper>

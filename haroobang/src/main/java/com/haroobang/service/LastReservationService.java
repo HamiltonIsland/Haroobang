@@ -8,8 +8,11 @@ import com.haroobang.vo.RoomVO;
 
 public interface LastReservationService {
 
-	List<ReservationVO> findMyLastReservation(int memberNo);
 
 	ReservationVO findRoomByRoomNo(int roomNo, int memberNo, String startdate);
+
+	List<ReservationVO> findMyLastReservationByPage(int memberNo, int from, int to);
+
+	int findRoomCount(int memberNo);
 
 }

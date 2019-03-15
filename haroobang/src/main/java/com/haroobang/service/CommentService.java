@@ -11,6 +11,10 @@ public interface CommentService {
 
 	void writeComment(CommentVO comment);
 
-	List<CommentVO> findMycomment(int memberNo);
+	//List<CommentVO> findMycomment(int memberNo);
+
+	List<CommentVO> findMycommentByPage(int memberNo, int from, int to);
+
+	int findcommentCount(int memberNo);
 
 }
