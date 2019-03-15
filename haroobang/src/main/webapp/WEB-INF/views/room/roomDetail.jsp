@@ -41,7 +41,7 @@
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="s_Product_carousel"  style="height:450px;width:500px" >
+					<div class="s_Product_carousel"  style="height:450px;width:500px;box-shadow: 10px 10px 5px #aaaaaa">
 					<c:forEach var="roomattach" items="${room.roomAttachList }">
 						<div class="single-prd-item">
 							<img class="img-fluid"
@@ -51,9 +51,9 @@
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
-					<div class="s_product_text">
+					<div>
 						<h2>${room.roomName}</h2>
-						<h4>&#8361; ${room.price}&nbsp;
+						<h4>${room.price} 원&nbsp;
 						<a class="icon_btn" href="javascript:" id="like" style="display: inline;">
 						 	<c:choose>
 						<c:when test="${like == 'true' }">
@@ -83,10 +83,10 @@
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item"><a class="nav-link active" id="home-tab"
 					data-toggle="tab" href="#home" role="tab" aria-controls="home"
-					aria-selected="true">숙소 설명</a></li>
+					aria-selected="true">숙소 위치</a></li>
 				<li class="nav-item"><a class="nav-link" id="profile-tab"
 					data-toggle="tab" href="#profile" role="tab"
-					aria-controls="profile" aria-selected="false">판매자 정보</a></li>
+					aria-controls="profile" aria-selected="false">숙소 정보</a></li>
 				<li class="nav-item"><a class="nav-link" id="review-tab"
 					data-toggle="tab" href="#review" role="tab" aria-controls="review"
 					aria-selected="false">숙소 후기</a></li>
@@ -97,9 +97,7 @@
 					<div id="map" style="width:100%;height:350px;"></div>
 					<hr>
 					<p> 주소 : ${room.address }</p>
-					<p> 최대인원 : ${room.maximum } 명 </p>
-					<hr>
-					<p style="white-space: pre">${room.roomProfile}</p>
+					
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
@@ -122,10 +120,13 @@
 
 								<div class="media-body">
 								<div style=" display: inline-block;">
+								
 									<h3>&nbsp;${member.nickname}님 &nbsp;&nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}"><i class="icon-envelope-alt"></i>문의하기</a></h3>
-								</div>	
+								</div>
 								<hr>
-									<p>${member.profile}</p>
+								<p> 최대인원 : ${room.maximum } 명 </p>	
+								<p> 숙소안내 : </p>
+								<p style="white-space: pre">${room.roomProfile}</p>
 								</div>
 							</div>
 
@@ -237,9 +238,129 @@
 	<a class="primary-btn" href="javascript:" id="back" style="width:100%;text-align: center;">뒤로가기</a>
 		</div>
 	</section>
-	
-	
 	<!--================End Product Description Area =================-->
+	
+	<!-- modal section -->
+	<%-- <div class ="bg-modal">
+		<div class="modal-content">
+		<span id="closeBtn">&times;</span>
+			<table class="table" style="text-align: center;margin-top: 4%">
+						<thead>
+							<tr>
+								<th scope="col">숙소정보</th>
+								<th scope="col">숙소이름</th>
+								<th scope="col"></th>
+								<th scope="col">체크아웃</th>
+							
+							</tr>
+						</thead>
+						<tbody>
+					
+							<tr>
+								<td>
+									<div class="media">
+                                        <div>
+                                <a href="#">
+								<img style="width: 100px; height: 100px" src="/haroobang/resources/upload/${roomDetail.roomAttachList[0].savedFileName}" alt="">
+								</a>
+                                        </div>
+                                    </div>
+								</td>
+								<td>
+									<h5>${checkinDate}~${endDate }<br><br></h5>
+								</td>
+								<td></td>
+								<td>
+									<h5>총 ${nights }박</h5>
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+					
+						<div class="col-lg-4" style="margin-left: 7%">
+							<div class="order_box" style="width: 900px;">
+								<h2>Your Order</h2>
+								<ul class="list">
+									<li><a href="#">Product <span>Total</span></a></li>
+									<li><a href="#">&#8361; ${roomDetail.price } /1박 <span class="middle">x
+												${nights }</span> <span class="last">&#8361; ${nights*roomDetail.price }</span></a></li>
+									<li><a href="#">쿠폰 사용 내역<span>등록된 쿠폰이 없습니다</span></a></li>
+									<hr>
+									
+								</ul>
+								<ul class="list list_2">
+									<li>Total <span style="float:right">&#8361; ${nights * roomDetail.price}</span></li>
+									<hr>
+								</ul>
+								<div>
+								<div class="payment_item">
+									<div class="radion_btn">
+										<input type="radio" id="f-option5" name="payment" value="카드결제" checked="checked">
+										<label for="f-option5" id="card">카드 결제</label>
+										<div class="check"></div>
+									</div>
+									<p><img style="height:150px;width:250px" src="/haroobang/resources/img/cardCompanies.jpg"/></p>
+								</div>
+								<div class="payment_item active">
+									<div class="radion_btn">
+										<input type="radio" id="f-option6" name="payment" value="무통장입금"> 
+										<label for="f-option6" id="cash">무통장 입금 </label> 
+										<!-- <img src="img/product/card.jpg" alt=""> -->
+										<div class="check"></div>
+									</div>
+									<p><img style="height:150px;width:250px" src="/haroobang/resources/img/banklist.png"/></p>
+								</div>
+								</div>
+								<div class="creat_account">
+									<input type="checkbox" id="f-option4" name="selector" id="agreement">
+									<label for="f-option4">위의 결제정보에 동의합니다.</label> <a href="#">terms & conditions*</a>
+								</div>
+								</form>
+								<!-- <a class="primary-btn" href="javascript:" id="pay" style="">결제하기</a> -->
+								</div>
+								<br>
+								<a class="primary-btn" href="javascript:" id="pay" style="width: 900px;text-align: center;">결제하기</a>
+								<br><br>
+								</div>
+		</div>
+	</div> --%>
+<!-- 	
+	<style>
+	.bg-modal {
+	width:100%;
+	height:100%;
+	background-color: rgba(0,0,0,0.7);
+	position: absolute;
+	top:0;
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+	display: none;
+	}
+	.modal-content {
+	margin-top:10%;
+	width:80%;
+	height:80%;
+	background-color:white;
+	opacity:1;
+	z-index: +1;
+	overflow-y: auto;
+	}
+	#closeBtn{
+	margin-left:97%;
+	margin-top:1%;
+	font-size: 30px;
+	position: sticky;
+	cursor: pointer;
+	}
+	#closeBtn:hover {
+	background: black;
+	width: 20px;
+	border-radius:100px;
+}
+	</style> -->
+	<!-- emd Modal -->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
 	
@@ -259,12 +380,7 @@ $(function(){
 		map:map,
 		position:markerPosition
 	})
-	/* // 지도를 클릭한 위치에 표출할 마커입니다
-	var marker = new daum.maps.Marker({ 
-   	 // 지도 중심좌표에 마커를 생성합니다 
-    	position: map.getCenter() 
-	}); */ 
-	// 지도에 마커를 표시합니다
+	
 	marker.setMap(map);
 
 	$('#back').click(function(e){
@@ -281,16 +397,8 @@ $(function(){
 	
 	$("#like").click(function(e){
 		
-		if($("#liked").attr('class',"fa fa-heart")){
-			$("#liked").attr('class',"fa fa-heart-o");
-		}else if($("#liked").attr('class',"fa fa-heart-o")){
-			$("#liked").attr('class',"fa fa-heart");
-		}else if($("#notLiked").attr('class',"fa fa-heart")){
-			$("#notLiked").attr('class',"fa fa-heart-o")
-		}else if($("#notLiked").attr('class',"fa fa-heart-o")){
-			$("#notLiked").attr('class',"fa fa-heart")
-		}
-		
+		$(this).attr('class',"fa fa-heart");
+	
 			$.ajax({
 				url :"addLike.action" ,
 				data: {"roomNo":${room.roomNo}},
@@ -307,32 +415,6 @@ $(function(){
 				}
 			})
 	})
-	
-/* 	$("#roomReservation").click(function(e){
-		var checkinDate = $("#checkinDate").val();
-		var nights = $("#sst").val();
-		if(checkinDate.length == 0 || nights.length == 0){
-			alert("날짜를 선택해 주세요")
-		}else {
-			if(${login == null}){
-				alert("로그인페이지로 이동합니다.")
-				location.href = "/haroobang/account/login.action"
-			}else{
-			$.ajax({
-				url:"/haroobang/room/checkDate.action",
-				data:{"checkinDate":checkinDate,"nights":nights,"roomNo":${room.roomNo}},
-				method:"get",
-				success:function(data,status,xhr){
-					if(data == "fail"){
-						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
-					}else {
-						location.href = "/haroobang/room/reservationCheckout.action?checkinDate=" + checkinDate+"&nights="+nights+"&roomNo="+${room.roomNo}
-					}
-				}
-			});
-		}
-		}
-	}); */
 	
 	$("#roomDelete").click(function(e){
 		
@@ -374,11 +456,6 @@ $(function(){
 				}	
 			});
 		}
-			
-			/* 	alert("이유를 적어주세요");
-				content=prompt("신고하는 사유를 적어 주세요\nex)\n1.부적절한 언행 \n2.선정적인 언행 \n3.광고성글");
-			 */
-		
 		}
 	});
 });

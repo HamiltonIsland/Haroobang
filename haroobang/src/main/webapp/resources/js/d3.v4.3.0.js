@@ -3511,7 +3511,7 @@ var reHslaPercent = /^hsla\(\s*([-+]?\d+(?:\.\d+)?)\s*,\s*([-+]?\d+(?:\.\d+)?)%\
 
 var named = {
   aliceblue: 0xf0f8ff,
-  antiquewhite: 0xfaebd7,
+//  #e8f0f2: 0xfaebd7,
   aqua: 0x00ffff,
   aquamarine: 0x7fffd4,
   azure: 0xf0ffff,

@@ -20,6 +20,8 @@
   #calendar {
   font-size: 7px;
   defaultView: 'month'
+  
+  
    /*  max-width: 200px;
     height: 200px; */
    /*  margin: 0 auto; */

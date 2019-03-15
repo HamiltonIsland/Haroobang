@@ -29,7 +29,7 @@
     /* fix for flashing background */
     -webkit-transform: translate3d(0px, 0px, 0px); }
   .owl-carousel .owl-item {
-    position: relative;
+ /*    position: fixed; */
     min-height: 1px;
     float: left;
     -webkit-backface-visibility: hidden;
@@ -38,6 +38,7 @@
   .owl-carousel .owl-item img {
     display: block;
     width: 100%;
+    height:480px;
     -webkit-transform-style: preserve-3d; }
   .owl-carousel .owl-nav.disabled,
   .owl-carousel .owl-dots.disabled {

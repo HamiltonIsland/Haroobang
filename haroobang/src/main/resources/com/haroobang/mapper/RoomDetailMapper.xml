@@ -37,7 +37,7 @@
 	
 	<select id="findReservedDate" parameterType="hashmap" resultType="int">
 		select reservationNo from reservationDate 
-		where date <![CDATA[>=]]> date(#{checkinDate}) and date <![CDATA[<]]> date(#{endDate})
+		where date <![CDATA[>=]]> date(#{checkinDate}) and date <![CDATA[<]]> date(#{endDate}) and roomNo=#{roomNo}
 	</select>
 	
 	<update id="roomDelete" parameterType="int">
