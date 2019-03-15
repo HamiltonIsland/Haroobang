@@ -238,7 +238,7 @@ h1, h2, h3, h4, h5, h6 {
   .genric-btn.radius {
     border-radius: 3px; }
   .genric-btn.circle {
-    border-radius: 20px; }
+    /* border-radius: 20px; */ }
   .genric-btn.arrow {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;

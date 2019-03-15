@@ -56,13 +56,14 @@
 						<h4>&#8361; ${room.price}&nbsp;</h4>
 						<hr>
 						<div id="calendarBox" style="height:350px;width:350px;">
-						
+					
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<br>
 	<!--================End Single Product Area =================-->
 
 	<!--================Product Description Area =================-->

@@ -114,8 +114,12 @@
     });
     
     	$("#roomReservation").click(function(e){
+    		if(startDate1.length<1){
+    			alert("날짜를 선택해 주세요")
+    		}else{
+    			location.href = "/haroobang/room/reservationCheckout.action?checkinDate="+startDate1+"&endDate="+endDate1+"&roomNo="+${roomNo};
+    		}
     		
-    		location.href = "/haroobang/room/reservationCheckout.action?checkinDate="+startDate1+"&endDate="+endDate1+"&roomNo="+${roomNo};
 
     	});
   

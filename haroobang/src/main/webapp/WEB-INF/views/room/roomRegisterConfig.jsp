@@ -108,8 +108,9 @@ $(function(){
 								<i class="lnr lnr-chevron-down"></i>
 							</button>
 						</div> -->
+						<br>
 						<div class="card_area d-flex align-items-center">
-							<a class="genric-btn danger circle"
+							&nbsp;&nbsp;&nbsp;<a class="genric-btn danger circle"
 								href="/haroobang/room/deleteRegister.action?roomNo=${room.roomNo }"
 								style="padding: 0px 60px">돌아가기</a> <a
 								class="genric-btn primary circle" href="/haroobang/home.action"
