@@ -26,6 +26,9 @@
             CSS
             ============================================= -->
     <jsp:include page="/WEB-INF/views/include/css.jsp" />
+    <style type="text/css">
+		.txt_line { width:100px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+	</style>
 </head>
 
 <body>
@@ -71,6 +74,13 @@
                 <div class="table-responsive">
                     <table class="table" id="search">
                         <thead>
+                        <%-- <tr><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>
+                            <div class="pagination">
+								${ pager }
+				               </div>
+				               </td>
+				               </tr> --%>
                             <tr>
                                 <th scope="col">Product</th>
                                 <th scope="col">Payment</th>
@@ -103,10 +113,7 @@
                                         </div>
                                         
                                         <div class="media-body">
-                                        
-											<c:set var="spacebar" value=" " />
-		                
-                                            <p class="searchh">${fn:replace(reservation.roomVO.roomName, spacebar, "<br>") }</p>
+                                            <p class="searchh txt_line">${reservation.roomVO.roomName}</p>
                                         </div>
                                         
                                     </div>
@@ -143,7 +150,7 @@
                                 </td>
                                 
                                 <td>
-                                    <h5>${reservation.totalPrice}&#8361;</h5>
+                                    <h5>${reservation.totalPrice}원</h5>
                                 </td>
                                 <td>
                                     <div class="button-group-area mt-40">
@@ -269,7 +276,13 @@
                                     <h5>$2160.00</h5>
                                 </td>
                             </tr> -->
-                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>
+                            <div class="pagination">
+								${ pager }
+				               </div>
+				               </td>
+				               </tr>
                         </tbody>
                     </table>
                 </div>

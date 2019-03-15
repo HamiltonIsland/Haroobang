@@ -33,10 +33,10 @@ public class RoomListController {
 			HttpSession session, HttpServletRequest req, AccountVO accountVO) {
 	//(Model model, HttpSession session, HttpServletRequest req, AccountVO accountVO) {
 		
-		int pageSize = 4;	//한 페이지에 표시되는 데이터 개수
+		int pageSize = 16;	//한 페이지에 표시되는 데이터 개수
 		int from = (pageNo - 1) * pageSize; // + 1; //해당 페이지에 포함된 시작 글번호
 		int to = pageSize; /*from + pageSize;*/				//해당 페이지에 포함된 마지막 글번호 + 1
-		int pagerSize = 2;	//한 번에 표시되는 페이지 번호 개수
+		int pagerSize = 10;	//한 번에 표시되는 페이지 번호 개수
 		String linkUrl = "roomList.action"; //페이지 번호를 눌렀을 때 이동할 경로
 		
 		//List<RoomVO> rooms = roomListService.findAllRooms();

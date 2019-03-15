@@ -7,5 +7,8 @@ import com.haroobang.vo.ReservationVO;
 public interface CurrentReservationService {
 
 	List<ReservationVO> findMyCurrentReservation(int memberNo);
-//썅
+
+	List<ReservationVO> findMyCurrentReservationByPage(int memberNo, int from, int to);
+
+	int findMyCurrentCount(int memberNo);
 }

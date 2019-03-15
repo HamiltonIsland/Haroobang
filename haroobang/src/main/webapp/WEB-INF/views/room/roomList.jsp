@@ -280,7 +280,7 @@ img {vertical-align: middle;}
 								<div class="product-details">
 									<h6 class="searchh">${disapproval.roomName}</h6>
 									<div class="price">
-										<h6>${disapproval.price}&#8361;</h6>
+										<h6>${disapproval.price}원</h6>
 									</div>
 									<div class="prd-bottom">
 										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>
@@ -497,7 +497,7 @@ img {vertical-align: middle;}
 								<div class="product-details">
 									<h6 class="searchh">${room.roomName}</h6>
 									<div class="price">
-										<h6>${room.price}&#8361;</h6>
+										<h6>${room.price}원</h6>
 									</div>
 									<div class="prd-bottom">
 										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>

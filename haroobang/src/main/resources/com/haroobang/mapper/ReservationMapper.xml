@@ -36,5 +36,18 @@
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
 		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
 	</select>
+	
+	<select id="selectReservationsByPage" parameterType="hashmap" resultMap="ReservationMap">
+		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
+		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
+	  	from reservation as rs join room as r
+      	where r.roomNo = rs.roomNo ORDER BY roomNo DESC limit #{ first }, #{ last }
+	</select>
+	
+	<select id="selectReserCount" resultType="int">
+		select COUNT(*) from reservation as rs join room as r
+      	where r.roomNo = rs.roomNo
+	</select>
+	
 </mapper>
 <!-- 썅 -->
