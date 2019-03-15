@@ -35,8 +35,14 @@
 
   <div id='calendar'></div>
   <br>
-
-    <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
+   <c:choose>
+    <c:when test="${login.userType == 'admin' }">
+     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">목록에서 지우기</a>
+    </c:when>
+    <c:otherwise>
+     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
+    </c:otherwise>
+    </c:choose>
 <!-- <a class="icon_btn" href="javascript:" id="like" style="display: inline;"><i class="lnr lnr lnr-heart"></i></a> --> 
 
 
@@ -108,8 +114,12 @@
     });
     
     	$("#roomReservation").click(function(e){
+    		if(startDate1.length<1){
+    			alert("날짜를 선택해 주세요")
+    		}else{
+    			location.href = "/haroobang/room/reservationCheckout.action?checkinDate="+startDate1+"&endDate="+endDate1+"&roomNo="+${roomNo};
+    		}
     		
-    		location.href = "/haroobang/room/reservationCheckout.action?checkinDate="+startDate1+"&endDate="+endDate1+"&roomNo="+${roomNo};
 
     	});
   
