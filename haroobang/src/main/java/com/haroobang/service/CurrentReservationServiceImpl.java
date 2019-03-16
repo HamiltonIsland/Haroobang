@@ -52,4 +52,18 @@ public class CurrentReservationServiceImpl implements CurrentReservationService{
 		}
 		
 	}
+
+	@Override
+	public RoomVO findRoomFinish(int roomNo) {
+		RoomVO room = currentReservationDao.selectRoomFinish(roomNo);
+		RoomAttachVO roomattach = currentReservationDao.selectRoomAttach(roomNo);
+		room.setRoomAttach(roomattach);
+		return room;
+	}
+
+	@Override
+	public ReservationVO findreservation(int reservationNo) {
+		ReservationVO reservation = currentReservationDao.selectReservation(reservationNo);
+		return reservation;
+	}
 }

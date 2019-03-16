@@ -25,6 +25,15 @@ public class RoomVO {
 	private String memberSavedFileName;
 	private LikedVO likdVO;
 	private int counts;
+	private RoomAttachVO roomAttach;
+
+	public RoomAttachVO getRoomAttach() {
+		return roomAttach;
+	}
+
+	public void setRoomAttach(RoomAttachVO roomAttach) {
+		this.roomAttach = roomAttach;
+	}
 
 	public int getCounts() {
 		return counts;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
+import com.haroobang.vo.RoomVO;
 
 public interface CurrentReservationMapper {
 
@@ -17,4 +18,10 @@ public interface CurrentReservationMapper {
 	List<ReservationVO> selectCurrentRoomByPage(HashMap<String, Object> params);
 
 	void refundCheck(int refundNum);
+
+	RoomVO selectRoomFinish(int roomNo);
+
+	ReservationVO selectReservation(int reservationNo);
+
+	RoomAttachVO selectRoomAttach(int roomNo);
 }

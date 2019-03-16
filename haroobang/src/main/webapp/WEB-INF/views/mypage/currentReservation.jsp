@@ -164,7 +164,7 @@
 													<div class="media">
 														<div class="d-flex">
 															<input type="checkbox" class="checkrefund" data-reservationNo="${current.reservationNo}"> 
-															<a href="/haroobang/room/roomDetail.action?roomNo=${current.roomNo}">
+															<a href="/haroobang/mypage/currentReservationDetail.action?memberno=${ login.memberNo }&reservationNo=${current.reservationNo}&roomNo=${current.roomNo}">
 																<c:choose>
 																	<c:when test="${not empty current.roomAttachList}">
 																		<div class="main-carousel"
