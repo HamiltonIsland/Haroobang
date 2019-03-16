@@ -24,6 +24,15 @@ public class RoomVO {
 	private String checkOut;
 	private String memberSavedFileName;
 	private LikedVO likdVO;
+	private int counts;
+
+	public int getCounts() {
+		return counts;
+	}
+
+	public void setCounts(int counts) {
+		this.counts = counts;
+	}
 	
 	public LikedVO getLikdVO() {
 		return likdVO;

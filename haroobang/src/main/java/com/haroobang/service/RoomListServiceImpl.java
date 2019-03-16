@@ -52,7 +52,9 @@ public class RoomListServiceImpl implements RoomListService{
 		List<RoomVO> rooms = roomlistDao.selectAllRoomByPage(from, to);
 		for(int i=0; i<rooms.size(); i++) {
 			List<RoomAttachVO> attachVos = roomlistDao.selectRoomAttachByRoomNo(rooms.get(i).getRoomNo());
+			int counts = roomlistDao.selectCountsint(rooms.get(i).getRoomNo());
 			rooms.get(i).setRoomAttachList(attachVos);
+			rooms.get(i).setCounts(counts);
 		}
 		return rooms;
 	}
@@ -111,6 +113,16 @@ public class RoomListServiceImpl implements RoomListService{
 	public int findDisapprovalRoomsCount() {
 		int count = roomlistDao.selectDisapprovalRoomCount();
 		return count;
+	}
+
+	@Override
+	public void deleteRoom(String roomno) {
+		roomlistDao.deleteRoom(roomno);
+	}
+
+	@Override
+	public void deleteapproval(String formdate) {
+		roomlistDao.deleteapproval(formdate);
 	}
 
 }

@@ -9,7 +9,7 @@
 	</insert>
 
 	<select id="selectAllRooms" resultType="RoomVO">
-		select * from room where approval=1
+		select * from room where approval=1 and deleted = 0
 	</select>
 	
 	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
@@ -29,27 +29,28 @@
 		<result column="price" property="price" />
 		<result column="readCount" property="readCount" />
 		<result column="maximum" property="maximum" />
+		<result column="deleted" property="deleted" />
 	</resultMap>
 	
 	
 	<select id="selectAllDisapprovalRooms" resultType="RoomVO">
-		select * from room where approval=0
+		select * from room where approval=0 and deleted = 0
 	</select>
 	
 	<select id="selectRoomList" parameterType="hashmap" resultType="RoomVO">
-		SELECT * FROM room WHERE approval=1 ORDER BY roomNo DESC limit #{ first }, #{ last }
+		SELECT * FROM room WHERE approval=1 and deleted = 0 ORDER BY roomNo DESC limit #{ first }, #{ last }
 	</select>
 	
 	<select id="selectRoomCount" resultType="int">
-		SELECT COUNT(*) FROM room WHERE approval=1
+		SELECT COUNT(*) FROM room WHERE approval=1 and deleted = 0
 	</select>
 	
 	<select id="selectDisapprovalRoomList" parameterType="hashmap" resultType="RoomVO">
-		SELECT * FROM room WHERE approval=0 ORDER BY roomNo DESC limit #{ first }, #{ last }
+		SELECT * FROM room WHERE approval=0 and deleted = 0 ORDER BY roomNo DESC limit #{ first }, #{ last }
 	</select>
 	
 	<select id="selectDisapprovalRoomCount" resultType="int">
-		SELECT COUNT(*) FROM room WHERE approval=0
+		SELECT COUNT(*) FROM room WHERE approval=0 and deleted = 0
 	</select>
 	
 	<update id="approvalRoom" parameterType="int">
@@ -60,7 +61,7 @@
 	
 	<select id="searchRoomList" parameterType="hashmap" resultType="RoomVO">
 		select * from room 
-		where approval=1 and 
+		where approval=1 and deleted = 0 and 
 		address like CONCAT('%', #{RoomVO.address}, '%') and 
 		maximum <![CDATA[>=]]> #{RoomVO.maximum} and roomNo not in 
 		(select roomNo from reservationDate where reservationDate.date between date(#{RoomVO.checkIn}) and date(#{RoomVO.checkOut})+1)
@@ -69,17 +70,42 @@
 	
 	<select id="selectSearchRoomCount" parameterType="RoomVO" resultType="int">
 		select COUNT(*) from room 
-		where approval=1 and 
+		where approval=1 and deleted = 0 and 
 		address like CONCAT('%', #{address}, '%') and 
 		maximum <![CDATA[>=]]> #{maximum} and roomNo not in 
 		(select roomNo from reservationDate where reservationDate.date between date(#{checkIn}) and date(#{checkOut})+1)
 	</select>
 	
 	<select id="selectAllLiked" parameterType="int" resultType="LikedVO">
-		select * from liked where memberno = #{memberNo}
+		select * from liked where memberno = #{memberNo} and deleted = 0
 	</select>
 	
-	<delete id="unLikedRoom" parameterType="hashmap">
+	<!-- <delete id="unLikedRoom" parameterType="hashmap">
 		DELETE FROM liked WHERE memberNo = #{ memberno } and roomNo = #{ roomno }
-	</delete>
+	</delete> -->
+	<select id="selectCounts" parameterType="int" resultType="CountVo">
+		select count(*) as counts from reservation where roomNo = #{ roomNo } and checkin = 0
+	</select>
+	
+	<select id="selectCountsint" parameterType="int" resultType="int">
+		select count(*) from reservation where roomNo = #{ roomNo } and checkin = 0
+	</select>
+	
+	<update id="unLikedRoom" parameterType="hashmap">
+		update liked
+		set deleted = 1
+		where memberNo = #{ memberno } and roomNo = #{ roomno }
+	</update>
+	
+	<update id="deleteapproval" parameterType="int">
+		update room
+		set deleted = 1
+		where roomNo = #{formdate}
+	</update>
+	
+	<update id="deleteRoom" parameterType="int">
+		update room set deleted = 1 where roomNo = #{ roomno };
+		
+		update liked set deleted = 1 where roomNo = #{ roomno };
+	</update>
 </mapper>

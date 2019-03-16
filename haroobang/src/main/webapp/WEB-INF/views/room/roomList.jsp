@@ -222,7 +222,7 @@ img {vertical-align: middle;}
 						<c:forEach var="disapproval" items="${disapproval}">
 						<div class="col-lg-3 col-md-5 disapprovalNo search" data-roomno="${disapproval.roomNo}" >
 							<div class="single-product" id="imglist${disapproval.roomNo}">
-							
+							<div class="span3" data-memberno="${ login.memberNo }">
 							<c:choose>
 									<c:when test="${not empty disapproval.roomAttachList}">
 										 <div class="main-carousel" data-flickity='{ "autoPlay": true }'>
@@ -230,7 +230,7 @@ img {vertical-align: middle;}
 												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
 													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
 										</c:forEach>
-									</div>
+										</div>
 									</c:when>
 									<c:otherwise>
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
@@ -298,11 +298,12 @@ img {vertical-align: middle;}
 										
 										<div class="button-group-area mt-40">
 											<a href="javascript:;" class="genric-btn success circle" id='roomapproval${disapproval.roomNo}'>승인</a>
-											<a href="javascript:;" class="genric-btn danger circle" id='roomdelete${disapproval.roomNo}'>삭제</a>
+											<a href="javascript:;" class="genric-btn danger circle" id='deleteapproval${disapproval.roomNo}'>삭제</a>
 										</div>
 									</div>
 								</div>
 								</a>
+							</div>
 							</div>
 						</div>
 						</c:forEach>
@@ -398,13 +399,13 @@ img {vertical-align: middle;}
 				<section class="lattest-product-area pb-40 category-list" id="search">
 					<div class="row">
 						<c:forEach var="room" items="${rooms}">
-						<div class="col-lg-3 col-md-5 disapprovalNo search" data-roomno="${room.roomNo}">
+						<div class="col-lg-3 col-md-5 roomNos search" data-roomno="${room.roomNo}">
 							<div class="single-product" id="imglist${room.roomNo}">
 							
 							<c:choose>
 									<c:when test="${not empty room.roomAttachList}">
 										 <div class="span3" data-memberno="${ login.memberNo }">
-										 <div class="main-carousel span3" data-flickity='{ "autoPlay": true }'>
+										 <div class="main-carousel" data-flickity='{ "autoPlay": true }'>
 										<c:forEach var="attach" items="${room.roomAttachList}">
 												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
 													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
@@ -513,9 +514,23 @@ img {vertical-align: middle;}
 											<p class="hover-text">view more</p>
 										</a> -->
 										<c:if test='${ not empty login and login.userType eq "admin" }'>
-										<div class="button-group-area mt-40">
-											<a href="javascript:;" class="genric-btn danger circle" id='roomdelete${room.roomNo}'>삭제</a>
-										</div>
+										
+										<c:choose>
+										<c:when test="${room.counts eq 0}">
+											 
+											<div class="button-group-area mt-40">
+												<a href="javascript:;" class="genric-btn danger circle" id='roomdelete${room.roomNo}'>삭제</a>
+											</div>
+											
+										</c:when>
+										<c:otherwise>
+											<div class="button-group-area mt-40">
+												<%-- <a href="" class="genric-btn danger circle" id='roomdelete${room.roomNo}'>삭제</a> --%>
+												<h6>${room.counts}명 사용중입니다.</h6>
+											</div>
+										</c:otherwise>
+									</c:choose>
+										
 										</c:if>
 									</div>
 								</div>
@@ -677,7 +692,7 @@ img {vertical-align: middle;}
 				}
 				else{
 					var memberno = $(this).parents('.span3').attr('data-memberno');
-					var roomno = $(this).parents('.disapprovalNo').attr('data-roomno');
+					var roomno = $(this).parents('.roomNos').attr('data-roomno');
 					
 					$('#member' + roomno + "search").css({'z-index': 0, 'opacity': 0});
 					$('#member' + roomno + "search2").css({'z-index': 1, 'opacity': 1});
@@ -710,7 +725,7 @@ img {vertical-align: middle;}
 				}
 				else{
 					var memberno = $(this).parents('.span3').attr('data-memberno');
-					var roomno = $(this).parents('.disapprovalNo').attr('data-roomno');
+					var roomno = $(this).parents('.roomNos').attr('data-roomno');
 					
 					$('#member' + roomno + "search").css({'z-index': 1, 'opacity': 1});
 					$('#member' + roomno + "search2").css({'z-index': 0, 'opacity': 0});
@@ -773,10 +788,47 @@ img {vertical-align: middle;}
 				});
 			});
 			
-			 //$("#roomdelete"+roomNo).on('click',function(event){
+			$("a[id ^=deleteapproval]").on('click',function(event){
+				
+				var formData = $(this).parents('.disapprovalNo').attr('data-roomno');
+				
+				$.ajax({
+					"url": "deleteapproval.action",
+					"method": "POST",
+					"data": { 'formdate' : formData },
+					"success": function(data, status, xhr) {
+						if (data === "success"){
+							alert('숙소가 삭제 되었습니다.');
+							location.reload(true);
+						}
+					},
+					"error": function(xhr, status, err) {
+						alert('숙소 실패다!! 이놈아!!');
+						location.reload(true);
+					}
+				});
+			});
+			
+			 
 			$("a[id ^=roomdelete]").on('click',function(event){
-				var roomNo = $(this).parents('.disapprovalNo').attr('data-roomno');
-				alert(roomNo+'준비중~');
+				var roomno = $(this).parents('.roomNos').attr('data-roomno');
+				
+				$.ajax({
+					"url": "roomDelete.action",
+					"method": "POST",
+					"data": { 'roomno' : roomno },
+					"success": function(data, status, xhr) {
+						if (data === "success"){
+							alert('숙소가 삭제 되었습니다.');
+							location.reload(true);
+						}
+						
+					},
+					"error": function(xhr, status, err) {
+						alert('삭제 실패했다 임마!!');
+						location.reload(true);
+					}
+				});
 			});
 			
 			/* $("div[id ^=imglist]").hover(function(event){

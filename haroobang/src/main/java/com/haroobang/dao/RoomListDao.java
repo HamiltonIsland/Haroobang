@@ -34,4 +34,10 @@ public interface RoomListDao {
 
 	int selectSearchRoomCount(RoomVO vo);
 
+	void deleteRoom(String roomno);
+
+	void deleteapproval(String formdate);
+
+	int selectCountsint(int roomNo);
+
 }

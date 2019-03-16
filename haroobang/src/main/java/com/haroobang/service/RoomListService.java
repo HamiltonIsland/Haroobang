@@ -31,4 +31,8 @@ public interface RoomListService {
 
 	int findSearchRoomCount(RoomVO vo);
 
+	void deleteRoom(String roomno);
+
+	void deleteapproval(String formdate);
+
 }
