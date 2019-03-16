@@ -1,5 +1,6 @@
 package com.haroobang.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,14 @@ public class CurrentReservationServiceImpl implements CurrentReservationService{
 	public int findMyCurrentCount(int memberNo) {
 		int count = currentReservationDao.selectCurrentCount(memberNo);
 		return count;
+	}
+
+	@Override
+	public void refundCheck(ArrayList<Integer> refundArray) {
+		for(int i = 0; i < refundArray.size(); i++) {
+			int refundNum = refundArray.get(i);
+			currentReservationDao.refundCheck(refundNum);
+		}
+		
 	}
 }

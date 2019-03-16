@@ -14,4 +14,6 @@ public interface CurrentReservationDao {
 	int selectCurrentCount(int memberNo);
 
 	List<ReservationVO> selectCurrentRoomByPage(int memberNo, int from, int to);
+
+	void refundCheck(int refundNum);
 }

@@ -46,4 +46,9 @@ public class CurrentReservationDaoImpl implements CurrentReservationDao{
 		return currents;
 	}
 
+	@Override
+	public void refundCheck(int refundNum) {
+		currentReservationMapper.refundCheck(refundNum);
+	}
+
 }

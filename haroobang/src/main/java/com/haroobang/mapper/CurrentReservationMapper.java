@@ -15,4 +15,6 @@ public interface CurrentReservationMapper {
 	int selectCurrentCount(int memberNo);
 
 	List<ReservationVO> selectCurrentRoomByPage(HashMap<String, Object> params);
+
+	void refundCheck(int refundNum);
 }
