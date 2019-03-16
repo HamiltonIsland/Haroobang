@@ -7,6 +7,7 @@
 		<result column="memberNo" property="memberNo" />
 		<result column="roomNo" property="roomNo" />
 		<result column="regDate" property="regDate" />
+		<result column="deleted" property="deleted" />
 	</resultMap>
 
 
@@ -22,6 +23,7 @@
 		<result column="price" property="price" />
 		<result column="readCount" property="readCount" />
 		<result column="maximum" property="maximum" />
+		<result column="deleted" property="deleted" />
 		 <collection property="likdVO" resultMap="LikedVO"></collection>
 	</resultMap>
 	
@@ -34,18 +36,18 @@
 		select rs.roomNo, rs.memberNo, rs.roomName, rs.regDate, rs.address, rs.longitude, rs.latitude,
 		rs.roomProfile, rs.price, rs.readCount, rs.maximum
 	  	from room as rs join liked as r
-      	where r.roomNo = rs.roomNo and r.memberNo = #{ memberNo }
+      	where r.roomNo = rs.roomNo and r.memberNo = #{ memberNo } and r.deleted = 0
 	</select>
 	
 	<select id="selectLikedRoomList" parameterType="hashmap" resultMap="RoomMap">
 		select rs.roomNo, rs.memberNo, rs.roomName, rs.regDate, rs.address, rs.longitude, rs.latitude,
 		rs.roomProfile, rs.price, rs.readCount, rs.maximum, r.roomNo, r.memberNo
 	  	from liked as r join room as rs
-      	where r.roomNo = rs.roomNo and r.memberno = #{ memberNo } ORDER BY r.regDate DESC limit #{ first }, #{ last }
+      	where r.roomNo = rs.roomNo and r.memberno = #{ memberNo } and r.deleted = 0 ORDER BY r.regDate DESC limit #{ first }, #{ last }
 	</select>
 	
 	<select id="selectLikedRoomCount" parameterType="int" resultType="int">
-		select COUNT(*) from liked as r join room as rs where r.roomNo = rs.roomNo and r.memberno = #{ memberNo }
+		select COUNT(*) from liked as r join room as rs where r.roomNo = rs.roomNo and r.memberno = #{ memberNo } and r.deleted = 0
 	</select>
 	
 </mapper>

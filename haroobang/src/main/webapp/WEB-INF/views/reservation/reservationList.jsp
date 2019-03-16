@@ -92,7 +92,7 @@
                         </thead>
                         <tbody>
                         <c:forEach var="reservation" items="${reservations}">
-                        	<tr class="search">
+                        	<tr class="search" data-reservationNo="${reservation.reservationNo}">
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
@@ -154,128 +154,24 @@
                                 </td>
                                 <td>
                                     <div class="button-group-area mt-40">
-                                    	<a href="#" class="genric-btn primary circle">환불</a>
-										<a href="javascript:;" class="genric-btn danger circle">삭제</a>
+                                    <c:choose>
+                                    	<c:when test='${not empty reservation.checkin and reservation.checkin eq true }'>
+											<a href="javascript:;" class="genric-btn danger circle" id='deleteRservation${reservation.reservationNo}'>삭제</a>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<c:if test='${not empty reservation.refund and reservation.refund eq 1 }'>
+                       							<a href="javascript:;" class="genric-btn primary circle" id='refundRservation${reservation.reservationNo}'>환불</a>
+                       						</c:if>
+                       						<c:if test='${not empty reservation.refund and reservation.refund eq 0 }'>
+                       							<h6>환불 신청이 없습니다.</h6>
+                       						</c:if>
+                                    	</c:otherwise>
+                                    </c:choose>
 									</div>
                                 </td>
                             </tr>
                         </c:forEach>
-                            <!-- <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr class="bottom_button">
-                                <td>
-                                    <a class="gray_btn" href="#">Update Cart</a>
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <div class="cupon_text d-flex align-items-center">
-                                        <input type="text" placeholder="Coupon Code">
-                                        <a class="primary-btn" href="#">Apply</a>
-                                        <a class="gray_btn" href="#">Close Coupon</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <h5>Subtotal</h5>
-                                </td>
-                                <td>
-                                    <h5>$2160.00</h5>
-                                </td>
-                            </tr> -->
+                            
                             <tr><td></td><td></td><td></td><td></td><td></td><td></td>
                             <td>
                             <div class="pagination">
@@ -305,6 +201,48 @@
 
 			var temp = $("p.searchh:contains('" + k + "')");
 			$(temp).parents(".search").show();
+		});
+   		
+   		$("a[id ^=deleteRservation]").on('click',function(event){
+			
+			var reservationNo = $(this).parents('.search').attr('data-reservationNo');
+			
+			$.ajax({
+				"url": "deleteRservation.action",
+				"method": "POST",
+				"data": { 'reservationNo' : reservationNo },
+				"success": function(data, status, xhr) {
+					if (data === "success"){
+						alert('내역이 삭제 되었습니다.');
+						location.reload(true);
+					}
+				},
+				"error": function(xhr, status, err) {
+					alert('삭제 실패다!! 얌마!!');
+					location.reload(true);
+				}
+			});
+		});
+   		
+		$("a[id ^=refundRservation]").on('click',function(event){
+			
+			var reservationNo = $(this).parents('.search').attr('data-reservationNo');
+			
+			$.ajax({
+				"url": "refundRservation.action",
+				"method": "POST",
+				"data": { 'reservationNo' : reservationNo },
+				"success": function(data, status, xhr) {
+					if (data === "success"){
+						alert('환불 되었습니다.');
+						location.reload(true);
+					}
+				},
+				"error": function(xhr, status, err) {
+					alert('환불 실패다!! 얌마!!');
+					location.reload(true);
+				}
+			});
 		});
    	});
    </script>

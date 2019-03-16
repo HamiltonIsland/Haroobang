@@ -45,5 +45,16 @@ public class ReservationServiceImpl implements ReservationService{
 		return count;
 	}
 
+	@Override
+	public void deleteReservation(String reservationNo) {
+		reservationDao.deleteReservation(reservationNo);
+	}
+
+	@Override
+	public void refundRservation(String reservationNo) {
+		reservationDao.refundRservation(reservationNo);
+		
+	}
+
 }
 //썅

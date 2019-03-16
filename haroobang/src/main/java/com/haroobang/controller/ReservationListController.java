@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.ReservationService;
 import com.haroobang.ui.ThePager;
@@ -48,6 +49,24 @@ public class ReservationListController {
 			
 			return "reservation/reservationList";
 		}
+	}
+	
+	@RequestMapping(value="/deleteRservation.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteReservation(String reservationNo) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		reservationService.deleteReservation(reservationNo);
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/refundRservation.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String refundRservation(String reservationNo) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		reservationService.refundRservation(reservationNo);
+		
+		return "success";
 	}
 }
 //샹

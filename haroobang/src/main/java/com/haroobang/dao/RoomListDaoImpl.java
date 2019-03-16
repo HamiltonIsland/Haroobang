@@ -77,7 +77,7 @@ public class RoomListDaoImpl implements RoomListDao{
 
 	@Override
 	public void likedRoom(String memberno, String roomno) {
-		HashMap<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("memberno", Integer.parseInt(memberno));
 		params.put("roomno", Integer.parseInt(roomno));
 		
@@ -86,7 +86,7 @@ public class RoomListDaoImpl implements RoomListDao{
 
 	@Override
 	public void unLikedRoom(String memberno, String roomno) {
-		HashMap<String, Object> params = new HashMap<>();
+		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("memberno", Integer.parseInt(memberno));
 		params.put("roomno", Integer.parseInt(roomno));
 		
@@ -113,5 +113,21 @@ public class RoomListDaoImpl implements RoomListDao{
 	public int selectDisapprovalRoomCount() {
 		int count = roomListMapper.selectDisapprovalRoomCount();
 		return count;
+	}
+
+	@Override
+	public void deleteRoom(String roomno) {
+		roomListMapper.deleteRoom(Integer.parseInt(roomno));
+	}
+
+	@Override
+	public void deleteapproval(String formdate) {
+		roomListMapper.deleteapproval(Integer.parseInt(formdate));
+	}
+
+	@Override
+	public int selectCountsint(int roomNo) {
+		int counts = roomListMapper.selectCountsint(roomNo);
+		return counts;
 	}
 }

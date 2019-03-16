@@ -12,5 +12,8 @@ public interface ReservationService {
 
 	int findReserCount();
 
+	void deleteReservation(String reservationNo);
+
+	void refundRservation(String reservationNo);
+
 }
-//썅
