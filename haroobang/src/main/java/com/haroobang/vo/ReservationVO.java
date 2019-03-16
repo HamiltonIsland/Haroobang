@@ -19,7 +19,7 @@ public class ReservationVO {
 	 private int count;
 	 private RoomVO roomVO;
 	 private AccountVO accountVO;
-	 
+	 private int people;
 	 
 	 
 	 private List<RoomAttachVO> roomAttachList;
@@ -125,6 +125,12 @@ public class ReservationVO {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public int getPeople() {
+		return people;
+	}
+	public void setPeople(int people) {
+		this.people = people;
 	}
 	
 }

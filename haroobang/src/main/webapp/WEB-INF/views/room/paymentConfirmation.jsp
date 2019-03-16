@@ -40,7 +40,7 @@ $(function(){
         </div>
     </section>
     <!-- End Banner Area -->
-
+<a href="/haroobang/WEB-INF/views/room/roomReservationCheckout2.jsp">hjhgjgjgj</a>
     <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
@@ -105,6 +105,15 @@ $(function(){
                                       	<h5>카드 결제</h5>
                                       	<h5>visa card </h5>
                                       	<h5>0002-****-****-3545 </h5>
+                                    	</div>
+                                	</td>
+                                	</c:when>
+                                	<c:when test="${reservation.payment=='모바일결' }">
+                                		<td>
+                                    	<div class="shipping_box">
+                                      	<h5>모바일 결제</h5>
+                                      	<h5>LG TELECOM </h5>
+                                      	<h5>010-****-3545 </h5>
                                     	</div>
                                 	</td>
                                 	</c:when>

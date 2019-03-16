@@ -22,8 +22,8 @@
 	</select>
 	
 	<insert id="addRoomReservaion" parameterType="ReservationVO" useGeneratedKeys="true" keyProperty="reservationNo" keyColumn="reservationNo" >
-	 insert into reservation(memberNo, roomNo, payment, totalPrice,nights,request,startDate,endDate,coupon)
-	 values (#{memberNo},#{roomNo},#{payment},#{totalPrice},#{nights},#{request},#{startDate},#{endDate},#{coupon})
+	 insert into reservation(memberNo, roomNo, payment, totalPrice,nights,request,startDate,endDate,coupon,people)
+	 values (#{memberNo},#{roomNo},#{payment},#{totalPrice},#{nights},#{request},#{startDate},#{endDate},#{coupon},#{people})
 	</insert>
 	
 	<insert id="addReservationDate" parameterType="hashmap">

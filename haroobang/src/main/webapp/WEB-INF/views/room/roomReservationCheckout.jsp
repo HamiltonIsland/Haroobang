@@ -24,21 +24,22 @@
 
 $(function(){
 	
-/* 	if("${result}"=="fail"){
-		alert("선택하신 날짜에는 예약이 불가합니다. 이전페이지로 이동합니다.")
-		 window.history.back();
-	} */
-	
 	$('#pay').click(function(e){
 		if($("#agreement").checked = true){
 			$("#form").submit()
 		}else{
 			alert("결제정보 동의에 체크해 주세요")
 		}
+	});
 	
-	})
+	$("#point").on("change keyup paste", function() {
+	var usePoint = $(this).val()
+	    alert(usePoint);
+	});
+
 	
-})
+});
+
 
 </script>
 
@@ -59,109 +60,99 @@ $(function(){
 	<!-- End Banner Area -->
 
 	<!--================Checkout Area =================-->
-	<section class="checkout_area section_gap">
-		<div class="container">
-			<div class="returning_customer">
-				<div class="billing_details">
-					<div class="row">
-						<div class="col-lg-8">
-							<table class="table" style="text-align: center;margin-left: 20%">
-						<thead>
-							<tr>
-								<th scope="col">숙소정보</th>
-								<th scope="col">숙소이름</th>
-								<th scope="col">체크아웃</th>
-							
-							</tr>
-						</thead>
-						<tbody>
-					
-							<tr>
-								<td>
-									<h5>${checkinDate}~${endDate }<br><br></h5>
-								</td>
-								<td>
-									<h5>총 ${nights }박</h5>
-								</td>
-								<td>
-								 <select name="cars">
-								 <c:forEach var="i" begin="1" end="10">
+<section class="checkout_area section_gap">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>숙소 예약 정보</h3>
+                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                           
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="예약일정 : ${checkinDate}~${endDate }" style="border: white" readonly>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="총 숙박일수 :  ${nights }박" style="border: white" readonly>
+                            </div>
+                           
+                            <div class="col-md-12 form-group p_star">
+                                <select class="country_select" name="people">
+                                    <option value="1">인원수를 선택해 주세요</option>
+                                     <c:forEach var="i" begin="1" end="10">
 								  <option value="${i }">${i }명</option>
 								 </c:forEach>
-  								</select>
-								</td>
-							
-							</tr>
-						</tbody>
-					</table>
-					
-						<div class="col-lg-4" style="margin-left: 7%">
-							<div class="order_box" style="width: 900px;">
-								<h2>Your Order</h2>
-								<ul class="list">
-									<li><a href="#">Product <span>Total</span></a></li>
-									<li><a href="#">&#8361; ${roomDetail.price } /1박 <span class="middle">x
-												${nights }</span> <span class="last">&#8361; ${nights*roomDetail.price }</span></a></li>
-									<li><a href="#">쿠폰 사용 내역<span>등록된 쿠폰이 없습니다</span></a></li>
-									<hr>
-									
-								</ul>
-								<ul class="list list_2">
-									<li>Total <span style="float:right">&#8361; ${nights * roomDetail.price}</span></li>
-									<hr>
-								</ul>
-								<div>
-								<div class="payment_item" style="display: inline-block;width: 300px">
-									<div class="radion_btn">
-										<input type="radio" id="f-option5" name="payment" value="카드결제" checked="checked">
-										<label for="f-option5" id="card">카드 결제</label>
-										<div class="check"></div>
-									</div>
-									<p><img style="height:150px;width:250px" src="/haroobang/resources/img/cardCompanies.jpg"/></p>
-								</div>
-								<div class="payment_item active"style="display: inline-block;">
-									<div class="radion_btn">
-										<input type="radio" id="f-option6" name="payment" value="무통장입금"> 
-										<label for="f-option6" id="cash">무통장 입금 </label> 
-										<!-- <img src="img/product/card.jpg" alt=""> -->
-										<div class="check"></div>
-									</div>
-									<p><img style="height:150px;width:250px" src="/haroobang/resources/img/banklist.png"/></p>
-								</div>
-									<div class="payment_item active"style="display: inline-block;">
-									<div class="radion_btn">
-										<input type="radio" id="f-option6" name="payment" value="모바일결제"> 
-										<label for="f-option6" id="mobile">모바일 결제</label> 
-										<!-- <img src="img/product/card.jpg" alt=""> -->
-										<div class="check"></div>
-									</div>
-									<p><img style="height:150px;width:250px" src="/haroobang/resources/img/mobilePay.png"/></p>
-								</div>
-								</div>
-								<div class="creat_account">
-									<input type="checkbox" id="f-option4" name="selector" id="agreement">
-									<label for="f-option4">위의 결제정보에 동의합니다.</label> <a href="#">terms & conditions*</a>
-								</div>
-								
-								<input type="hidden" name ="totalPrice" value="${nights*roomDetail.price }">
+                                </select>
+                            </div>
+                            
+                         
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" name="coupon" placeholder="쿠폰코드를 입력해 주세요">
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="point" name="point" placeholder="사용할 포인트를 입력해주세요 /사용가능포인트:${login.point}점">
+                            </div>
+                         
+                            <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <h3>요청사항</h3>
+                                </div>
+                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="요청사항/문의사항을 입력해 주세요."></textarea>
+                            </div>
+                            <input type="hidden" name ="totalPrice" value="${nights*roomDetail.price }">
 								<input type="hidden" name ="roomNo" value="${roomDetail.roomNo }">
 								<input type="hidden" name ="startDate" value="${checkinDate }">
 								<input type="hidden" name ="endDate" value="${endDate }">
 								<input type="hidden" name = "nights" value="${nights }">
-								</form>
-								<!-- <a class="primary-btn" href="javascript:" id="pay" style="">결제하기</a> -->
-								</div>
-								<br>
-								<a class="primary-btn" href="javascript:" id="pay" style="width: 900px;text-align: center;">결제하기</a>
-								<br><br>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-				</div>
-	</section>
+								
+								<a class="primary-btn" href="#">결제하기</a>
+                    </div>
+                    
+                    
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li><a>Product <span>Total</span></a></li>
+                                <li><a>${roomDetail.price }원/박 <span class="middle">x 02</span> <span class="last">${nights * roomDetail.price}원</span></a></li>
+                                 <li><a>포인트 사용 <span class="last"></span></a></li>
+                                
+                            </ul>
+                            <hr>
+                            <ul class="list list_2">
+                                <li><a href="#">Total <span id="totalPrice">${nights * roomDetail.price}원</span></a></li>
+                            </ul>
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="selector">
+                                    <label for="f-option5">카드결제</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p><img style="height:150px;width:250px" src="/haroobang/resources/img/cardCompanies.jpg"/></p>
+                            </div>
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="selector">
+                                    <label for="f-option6">무통장 입</label>
+                                    <img src="img/product/card.jpg" alt="">
+                                    <div class="check"></div>
+                                </div>
+                                <p><img style="height:150px;width:250px" src="/haroobang/resources/img/banklist.png"/></p>
+                            </div>
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option4" name="selector">
+                                <label for="f-option4">위의 결제 정보에 동의하며 주의사항을 숙지했습니다. </label>
+                                <a href="#">terms & conditions*</a>
+                            </div>
+                            </form>
+                            <a class="primary-btn" href="#">결제하기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
 	<!--================End Checkout Area =================-->
 	
 	
