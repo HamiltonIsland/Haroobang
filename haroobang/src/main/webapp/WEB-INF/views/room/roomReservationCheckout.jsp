@@ -25,16 +25,24 @@
 $(function(){
 	
 	$('#pay').click(function(e){
-		if($("#agreement").checked = true){
+		
+		if($("#agreement").is(":checked")){
 			$("#form").submit()
 		}else{
 			alert("결제정보 동의에 체크해 주세요")
 		}
 	});
 	
-	$("#point").on("change keyup paste", function() {
+	$("#point").on("keyup paste", function() {
 	var usePoint = $(this).val()
-	    alert(usePoint);
+	$('#minusPoint').text(usePoint);
+	    if(usePoint>${login.point}){
+	    	alert("사용가능한 포인트를 초과하였습니다.")
+	    }
+	});
+	
+	$("#goback").click(function(e){
+		history.back();
 	});
 
 	
@@ -66,7 +74,7 @@ $(function(){
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>숙소 예약 정보</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="payment.action" id="form" method="post" novalidate="novalidate">
                            
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control"placeholder="예약일정 : ${checkinDate}~${endDate }" style="border: white" readonly>
@@ -90,7 +98,7 @@ $(function(){
                             </div>
                             
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="point" name="point" placeholder="사용할 포인트를 입력해주세요 /사용가능포인트:${login.point}점">
+                                <input type="number" class="form-control" pattern="[0-9]" maxlength="5" id="point" name="point" placeholder="사용할 포인트를 입력해주세요 /사용가능포인트:${login.point}점">
                             </div>
                          
                             <div class="col-md-12 form-group">
@@ -105,7 +113,7 @@ $(function(){
 								<input type="hidden" name ="endDate" value="${endDate }">
 								<input type="hidden" name = "nights" value="${nights }">
 								
-								<a class="primary-btn" href="#">결제하기</a>
+								<a class="primary-btn" href="javascript:" id="goback">이전단계로 가기</a>
                     </div>
                     
                     
@@ -115,7 +123,7 @@ $(function(){
                             <ul class="list">
                                 <li><a>Product <span>Total</span></a></li>
                                 <li><a>${roomDetail.price }원/박 <span class="middle">x 02</span> <span class="last">${nights * roomDetail.price}원</span></a></li>
-                                 <li><a>포인트 사용 <span class="last"></span></a></li>
+                                 <li><a>포인트 사용 <span class="last" id="minusPoint"></span></a></li>
                                 
                             </ul>
                             <hr>
@@ -124,7 +132,7 @@ $(function(){
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector">
+                                    <input type="radio" id="f-option5" name="selector" checked="checked">
                                     <label for="f-option5">카드결제</label>
                                     <div class="check"></div>
                                 </div>
@@ -133,19 +141,19 @@ $(function(){
                             <div class="payment_item active">
                                 <div class="radion_btn">
                                     <input type="radio" id="f-option6" name="selector">
-                                    <label for="f-option6">무통장 입</label>
+                                    <label for="f-option6">무통장 입금</label>
                                     <img src="img/product/card.jpg" alt="">
                                     <div class="check"></div>
                                 </div>
                                 <p><img style="height:150px;width:250px" src="/haroobang/resources/img/banklist.png"/></p>
                             </div>
                             <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
+                                <input type="checkbox" id="agreement">
                                 <label for="f-option4">위의 결제 정보에 동의하며 주의사항을 숙지했습니다. </label>
                                 <a href="#">terms & conditions*</a>
                             </div>
                             </form>
-                            <a class="primary-btn" href="#">결제하기</a>
+                            <a class="primary-btn" href="javascript:" id="pay">결제하기</a>
                         </div>
                     </div>
                 </div>

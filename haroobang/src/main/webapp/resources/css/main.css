@@ -5620,7 +5620,7 @@ label {
     .contact_form .form-group textarea.form-control {
       height: 134px; }
 .contact_form .primary-btn {
-  background: #ffba00;
+  /* background: #ffba00; */
   color: #fff;
   margin-top: 20px;
   border: none;
