@@ -83,9 +83,6 @@
 	<!-- <delete id="unLikedRoom" parameterType="hashmap">
 		DELETE FROM liked WHERE memberNo = #{ memberno } and roomNo = #{ roomno }
 	</delete> -->
-	<select id="selectCounts" parameterType="int" resultType="CountVo">
-		select count(*) as counts from reservation where roomNo = #{ roomNo } and checkin = 0
-	</select>
 	
 	<select id="selectCountsint" parameterType="int" resultType="int">
 		select count(*) from reservation where roomNo = #{ roomNo } and checkin = 0

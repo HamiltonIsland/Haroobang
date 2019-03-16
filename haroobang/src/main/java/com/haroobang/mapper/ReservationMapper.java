@@ -16,4 +16,8 @@ public interface ReservationMapper {
 
 	int selectReserCount();
 
+	void deleteReservation(int reservationNo);
+
+	void refundRservation(int parseInt);
+
 }

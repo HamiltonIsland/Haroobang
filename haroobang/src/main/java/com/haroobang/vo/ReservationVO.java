@@ -20,7 +20,21 @@ public class ReservationVO {
 	 private RoomVO roomVO;
 	 private AccountVO accountVO;
 	 private int people;
-	 
+	 private boolean deleted;
+	 private int refund;
+		
+	public int getRefund() {
+		return refund;
+	}
+	public void setRefund(int refund) {
+		this.refund = refund;
+	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	 
 	 private List<RoomAttachVO> roomAttachList;
 	 
