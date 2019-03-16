@@ -55,11 +55,15 @@
 	</select>
 	
  	<select id="selectWaitingsList" parameterType="hashmap" resultType="RoomVO">
-		SELECT * FROM room WHERE memberNo = #{ memberNo } ORDER BY roomNo DESC limit #{ first }, #{ last }
+		SELECT * FROM room WHERE memberNo = #{ memberNo } and deleted = 0 ORDER BY roomNo DESC limit #{ first }, #{ last }
 	</select>
 	
 	<select id="selectWaitingCount" resultType="int">
-		SELECT COUNT(*) FROM room WHERE memberNo = #{ memberNo }
+		SELECT COUNT(*) FROM room WHERE memberNo = #{ memberNo } and deleted = 0
 	</select>
+	
+	<update id="deleteMyRoom" parameterType="int">
+		update room set deleted = 1 WHERE roomNo = #{ roomNo }
+	</update>
 	
   </mapper>

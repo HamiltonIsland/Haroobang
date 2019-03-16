@@ -20,6 +20,7 @@
       <result column="request" property="request" />
       <result column="checkin" property="checkin" />
       <result column="coupon" property="Coupon" />
+      <result column="refund" property="refund" />
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
    
@@ -27,7 +28,7 @@
 	<select id="selectAllReservations" resultMap="ReservationMap">
 		<!-- select * from reservation -->
 		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
-		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
+		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon, rs.refund
 	  	from reservation as rs join room as r
       	where r.roomNo = rs.roomNo and rs.deleted = 0
 	</select>
@@ -39,7 +40,7 @@
 	
 	<select id="selectReservationsByPage" parameterType="hashmap" resultMap="ReservationMap">
 		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
-		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
+		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon, rs.refund
 	  	from reservation as rs join room as r
       	where r.roomNo = rs.roomNo and rs.deleted = 0 ORDER BY roomNo DESC limit #{ first }, #{ last }
 	</select>

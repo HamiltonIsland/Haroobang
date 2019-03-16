@@ -19,4 +19,6 @@ public interface MyRoomService {
 
 	int findWaitingCount(int memberNo);
 
+	void deleteMyRoom(String roomNo);
+
 }

@@ -24,6 +24,8 @@ public interface MyRoomDao {
 
 	int selectWaitingCount(int memberNo);
 
+	void deleteMyRoom(String roomNo);
+
 
 
 

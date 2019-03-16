@@ -76,6 +76,13 @@ public class OracleMyRoomDao implements MyRoomDao {
 		return count;
 	}
 
+
+
+	@Override
+	public void deleteMyRoom(String roomNo) {
+		myRoomMapper.deleteMyRoom(Integer.parseInt(roomNo));
+	}
+
 	
 	
 
