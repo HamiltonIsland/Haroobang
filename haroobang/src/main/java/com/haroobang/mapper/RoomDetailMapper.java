@@ -43,6 +43,8 @@ public interface RoomDetailMapper {
 
 	void updateFinalPoint(HashMap<String, Object> params);
 
+	void deleteLike(HashMap<String, Object> params);
+
 	
 
 }

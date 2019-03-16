@@ -108,7 +108,7 @@ $(function(){
                             <div class="payment_item">
                                 <p>
                                 <a href="/haroobang/room/roomDetail.action?roomNo=${reservation.roomNo }">
-                                <img style="height:250px;width:300px; box-shadow:-13px 14px 20px rgba(0, 0, 0, 0.5);" src="/haroobang/resources/upload/${roomDetail.roomAttachList[0].savedFileName}"/>
+                                <img style="height:250px;width:300px; box-shadow:-9px 8px 20px rgba(0, 0, 0, 0.5);" src="/haroobang/resources/upload/${roomDetail.roomAttachList[0].savedFileName}"/>
                                 </a></p>
                             </div>
                             <h3>판매자 정보</h3>

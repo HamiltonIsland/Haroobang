@@ -192,4 +192,21 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		roomDetailMapper.updateFinalPoint(params);
 		
 	}
+
+	@Override
+	public String deleteLike(int roomNo, int memberNo) {
+		
+		String result = "success";
+		try {
+			HashMap<String,Object> params = new HashMap<String, Object>();
+			params.put("roomNo", roomNo);
+			params.put("memberNo", memberNo);
+			roomDetailMapper.deleteLike(params);
+			
+		} catch (Exception e) {
+			result = "fail";
+		}
+		return result;
+		
+	}
 }

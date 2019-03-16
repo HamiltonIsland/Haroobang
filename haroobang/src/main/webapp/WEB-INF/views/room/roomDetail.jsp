@@ -57,10 +57,12 @@
 						<a class="icon_btn" href="javascript:" id="like" style="display: inline;">
 						 	<c:choose>
 						<c:when test="${like == 'true' }">
-						<i class="fa fa-heart" id="liked" style="font-size:35px;color:red;float:right;margin-right:25%"></i></h4>
+						<i class="fa fa-heart" id="liked" style="font-size:35px;color:red;float:right;margin-right:25%;display:block"></i>
+						<i class="fa fa-heart-o" id="notLiked" style="font-size:35px;color:red;float:right;margin-right:25%;display:none"></i></h4>
 						</c:when>
 						<c:otherwise>
-						<i class="fa fa-heart-o" id="notLiked" style="font-size:35px;color:red;float:right;margin-right:25%"></i></h4>
+						<i class="fa fa-heart" id="liked" style="font-size:35px;color:red;float:right;margin-right:25%;display:none"></i>
+						<i class="fa fa-heart-o" id="notLiked" style="font-size:35px;color:red;float:right;margin-right:25%;display:block"></i></h4>
 						</c:otherwise>
 						</c:choose>
 						 </a>
@@ -395,9 +397,10 @@ $(function(){
 		alert("로그인페이지로 이동합니다.")
 	})
 	
-	$("#like").click(function(e){
+	$("#notLiked").click(function(e){
 		
-		$(this).attr('class',"fa fa-heart");
+		 $("#liked").css('display','block');
+		 $("#notLiked").css('display','none');
 	
 			$.ajax({
 				url :"addLike.action" ,
@@ -405,7 +408,7 @@ $(function(){
 				method:"GET",
 				success:function(data,status,xhr){
 					if(data == "success"){
-						alert("즐겨찾기에 등록되었습니다")	
+						alert("찜목록에 추가되었습니다")	
 					}else if(data =="fail"){
 						alert("이미 등록되었습니다.")
 					}else{
@@ -414,16 +417,31 @@ $(function(){
 					}
 				}
 			})
-	})
-	
-	$("#roomDelete").click(function(e){
-		
-		var c = confirm("삭제하시겠습니까?");
-		
-		if(c == true){
-			location.href = "/haroobang/room/roomDelete.action?roomNo="+${room.roomNo}
-		}else{	}
 	});
+	
+	$("#liked").click(function(e){
+		
+		 $("#notLiked").css('display','block');
+		 $("#liked").css('display','none');
+		 
+		 $.ajax({
+			 url:"deleteLike.action",
+			 data:{"roomNo":${room.roomNo}},
+			 method:"GET",
+			 success:function(data,status,xhr){
+				 if(data == "success"){
+					 alert("찜목록에서 삭제되었습니다.")
+				 }else if(data=="fail"){
+					 alert("찜목록 삭제실패")
+				 }else{
+					 alert("로그인 페이지로 이동합니다.")
+					 location.href = "/haroobang/account/login.action";
+				 }
+			 }
+		 });
+	
+	});
+	
 	
 	//$(".reply_btn").['#report'].click(function(e){
 	//$('a[id ^=report]').click(function(e){

@@ -59,13 +59,27 @@ public class RoomDetailController {
 	@ResponseBody
 	public String addLike(int roomNo, HttpSession session) {
 
-		System.out.println(session.getAttribute("login"));
 		if (session.getAttribute("login") == null) {
 			return "/account/login.action";
 		} else {
 			AccountVO member = (AccountVO) session.getAttribute("login");
 			int memberNo = member.getMemberNo();
 			String result = roomDetailService.addLike(roomNo, memberNo);
+
+			return result;
+		}
+	}
+	
+	@RequestMapping(value = "deleteLike.action", method = RequestMethod.GET)
+	@ResponseBody
+	public String deleteLike(int roomNo, HttpSession session) {
+
+		if (session.getAttribute("login") == null) {
+			return "/account/login.action";
+		} else {
+			AccountVO member = (AccountVO) session.getAttribute("login");
+			int memberNo = member.getMemberNo();
+			String result = roomDetailService.deleteLike(roomNo, memberNo);
 
 			return result;
 		}

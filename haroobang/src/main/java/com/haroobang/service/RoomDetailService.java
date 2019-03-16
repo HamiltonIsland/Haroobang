@@ -29,4 +29,6 @@ public interface RoomDetailService {
 
 	void updateFinalPoint(int memberNo, int finalPoint);
 
+	String deleteLike(int roomNo, int memberNo);
+
 }

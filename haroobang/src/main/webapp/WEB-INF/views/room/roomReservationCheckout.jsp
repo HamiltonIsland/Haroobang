@@ -100,9 +100,9 @@ $(function(){
                             <div class="col-md-12 form-group p_star">
                                 <select class="country_select" name="people">
                                     <option value="1">인원수를 선택해 주세요</option>
-                                     <c:forEach var="i" begin="1" end="10">
-								  <option value="${i }">${i }명</option>
-								 </c:forEach>
+                                     <c:forEach var="i" begin="1" end="${roomDetail.maximum }">
+								  		<option value="${i }">${i }명</option>
+								 	</c:forEach>
                                 </select>
                             </div>
                             

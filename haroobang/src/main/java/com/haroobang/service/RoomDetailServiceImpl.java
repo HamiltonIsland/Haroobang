@@ -88,4 +88,10 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		
 	}
 
+	@Override
+	public String deleteLike(int roomNo, int memberNo) {
+		String result = roomDetailDao.deleteLike(roomNo, memberNo);
+		return result;
+	}
+
 }

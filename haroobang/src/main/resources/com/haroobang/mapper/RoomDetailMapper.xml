@@ -72,4 +72,8 @@
 	<update id="updateFinalPoint" parameterType="hashmap">
 		update member set point=#{finalPoint} where memberNo=#{memberNo}
 	</update>
+	
+	<delete id="deleteLike" parameterType="hashmap">
+	 delete from liked where memberNo=#{memberNo} and roomNo=#{roomNo}
+	</delete>
 </mapper>

@@ -39,7 +39,7 @@
   <br>
    <c:choose>
     <c:when test="${login.userType == 'admin' }">
-     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">목록에서 지우기</a>
+     <a class="primary-btn" href="javascript:" id="roomDelete" style="width:100%;text-align: center;">목록에서 지우기</a>
     </c:when>
     <c:otherwise>
     <h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>
@@ -124,6 +124,15 @@
     		}
     		
 
+    	});
+    	
+    	$("#roomDelete").click(function(e){
+    		
+    		var c = confirm("삭제하시겠습니까?");
+    		
+    		if(c == true){
+    			location.href = "/haroobang/room/roomDelete.action?roomNo="+${roomNo}
+    		}else{	}
     	});
   
     	
