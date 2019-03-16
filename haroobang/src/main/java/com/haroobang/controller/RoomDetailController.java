@@ -152,19 +152,22 @@ public class RoomDetailController {
 		AccountVO member = (AccountVO) session.getAttribute("login");
 		int memberNo = member.getMemberNo();
 		
-		if(reservationVo.getRequest().length() == 0) {
+		if(reservationVo.getRequest()== null) {
 			reservationVo.setRequest("요청사항없음");
 		}
-
+		
+		reservationVo.setTotalPrice(reservationVo.getBeforePrice()-reservationVo.getUsedPoint());
 		LocalDate startDate = LocalDate.parse(reservationVo.getStartDate());
 
 		List<LocalDate> dateList = new ArrayList();
 		
 		for(int i = 0;i<reservationVo.getNights()-1;i++) {
-			dateList.add(startDate.plusDays(i));
+			dateList.add(startDate.plusDays(i+1));
 		}
 
 		reservationVo.setMemberNo(memberNo);
+		int memberNo2 = reservationVo.getMemberNo();
+		AccountVO member2 = roomDetailService.findMember(memberNo2);
 
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
 		String message =roomDetailService.addRoomReservation(reservationVo,dateList);
@@ -172,7 +175,11 @@ public class RoomDetailController {
 		if(message =="fail") {
 			return "redirect:/account/login.action";
 		}
+		int finalPoint = member.getPoint()-reservationVo.getUsedPoint()+(int)(reservationVo.getTotalPrice()*0.03);
+		member.setPoint(finalPoint);
+		roomDetailService.updateFinalPoint(memberNo,finalPoint);
 		
+		model.addAttribute("member", member2);
 		model.addAttribute("reservation", reservationVo);
 		model.addAttribute("roomDetail", room);
 

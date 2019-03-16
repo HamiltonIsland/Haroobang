@@ -40,113 +40,90 @@ $(function(){
         </div>
     </section>
     <!-- End Banner Area -->
-<a href="/haroobang/WEB-INF/views/room/roomReservationCheckout2.jsp">hjhgjgjgj</a>
     <!--================Cart Area =================-->
-    <section class="cart_area">
+<section class="checkout_area section_gap">
         <div class="container">
-            <div class="cart_inner">
-                <div class="table-responsive"  style="text-align: center">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;숙소정보</th>
-                                <th scope="col">1박 금액</th>
-                                <th scope="col">몇박</th>
-                                <th scope="col">총금액</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td >
-                                    <div class="media">
-                                        <div class="d-flex">
-                                          <a href="roomDetail.action?roomNo=${roomDetail.roomNo}"><img style="height:100px;width:100px" src="/haroobang/resources/img/cashPayment.jpg" alt=""></a>  
-                                        </div>
-                                        <div class="media-body" style="text-align: left">
-                                           <a href="roomDetail.action?roomNo=${roomDetail.roomNo}"> <p>${roomDetail.roomName }</p></a> 
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>&#8361; ${roomDetail.price }</h5>
-                                </td>
-                                <td>
-                                    <h5>${reservation.nights }박</h5>
-                                </td>
-                                <td>
-                                    <h5>&#8361; ${reservation.totalPrice }</h5>
-                                </td>
-                            </tr>
-                
-                           
-                            <tr class="shipping_area">
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <h5>결제정보</h5>
-                                </td>
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8" style="padding-left:30px ">
+                        <h3>숙소 예약 정보</h3>
+                        <form class="row contact_form" action="payment.action" id="form" method="post" novalidate="novalidate">
+                           <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="예약일정 : ${reservation.startDate}~${reservation.endDate } ( ${reservation.nights }박 ) / 총 숙박인원:  ${reservation.people }명" style="border: white" readonly>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" maxlength="5" id="point" name="usedPoint" style="border: white" placeholder="사용한 포인트: ${reservation.usedPoint } 점 / 남은 포인트: ${login.point} 점">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="금액 : ${roomDetail.price}원 x ${reservation.nights}박 = ${roomDetail.price *reservation.nights } 원 " style="border: white" readonly>
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="총 결제금액 : ${roomDetail.price *reservation.nights } 원 - ${reservation.usedPoint } 점 = ${roomDetail.price *reservation.nights - reservation.usedPoint } 원" readonly>
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <h3>요청사항</h3>
+                                </div>
                                 <c:choose>
+                                <c:when test="${reservation.request.length() == 0 }">
+                                <p style="color: #777777"> 요청사항이 없습니다. 문의사항은 판매자와의 채팅을 통해 문의하실 수 있습니다.<p>
+                                </c:when>
+                                <c:otherwise>
+                                <pre style="overflow: auto;color: #777777;height:70px;"> ${reservation.request }</pre>
+                                </c:otherwise>
+                                </c:choose>
+                            </div>
+                            
+                            <br>
+                                  <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <h3>결제정보</h3>
+                                </div>
+                                
+                                 <c:choose>
                                 	<c:when test="${reservation.payment=='무통장입금' }">
-                                	<td>
-                                    	<div class="shipping_box">
-                                      	<h5>무통장 입금</h5>
-                                      	<h5>구트 은행 </h5>
-                                      	<h5>0002-****-****-3545 </h5>
-                                    	</div>
-                                	</td>
+                                      	무통장 입금<br>
+                                      	${reservation.totalPrice }원 <br>
+                                      	구트 은행 0002-****-****-3545<br><br>
+                                      	<hr>
                                 	</c:when>
                                 	<c:when test="${reservation.payment=='카드결제' }">
-                                	 <td>
-                                    	<div class="shipping_box">
-                                      	<h5>카드 결제</h5>
-                                      	<h5>visa card </h5>
-                                      	<h5>0002-****-****-3545 </h5>
-                                    	</div>
-                                	</td>
-                                	</c:when>
-                                	<c:when test="${reservation.payment=='모바일결' }">
-                                		<td>
-                                    	<div class="shipping_box">
-                                      	<h5>모바일 결제</h5>
-                                      	<h5>LG TELECOM </h5>
-                                      	<h5>010-****-3545 </h5>
-                                    	</div>
-                                	</td>
+                                      	카드 결제<br>
+                                      	${reservation.totalPrice }원<br>
+                                      	visa card 0002-****-****-3545<br><br>
+                                      	<hr>
                                 	</c:when>
                                 </c:choose>
-                              
-                                
-                               
-                            </tr>
-                            <tr class="bottom_button">
-                                <td>
-                                    
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
- 
-                                </td>
-                                <td>
-                                   
-                                </td>
-                            </tr>
+                            </div>
                           
-                            
-                        </tbody>
-                    </table>
-                      <a class="gray_btn" href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">마이페이지로 가기</a>
+                    </div>
+                    
+                    
+                    <div class="col-lg-4">
+                        <div class="order_box" style="padding: 0;background:white;">
+                            <h3>숙소정보</h3>
+                           
+                            <div class="payment_item">
+                                <p>
+                                <a href="/haroobang/room/roomDetail.action?roomNo=${reservation.roomNo }">
+                                <img style="height:250px;width:300px; box-shadow:-13px 14px 20px rgba(0, 0, 0, 0.5);" src="/haroobang/resources/upload/${roomDetail.roomAttachList[0].savedFileName}"/>
+                                </a></p>
+                            </div>
+                            <h3>판매자 정보</h3>
+                            <img src="/haroobang/resources/upload/${member.savedFileName}" class="rounded-circle" style="height: 70px;width:70px" alt="">
+                             &nbsp;&nbsp;${member.nickname } 님
+                             <br>
+                             &nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo }"><i class="icon-envelope-alt"></i>문의하기</a></h3>
+                            <br><br>
+                            </form>
+                            <a class="primary-btn" href="/haroobang/mypage/currentReservationList.action?memberno=${login.memberNo }">마이페이지로 가기</a>
+                        </div>
+                    </div>
                 </div>
-               
             </div>
-            
         </div>
-        
     </section>
 	
 	<!--================End Product Description Area =================-->

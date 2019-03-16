@@ -22,6 +22,8 @@ public class ReservationVO {
 	 private int people;
 	 private boolean deleted;
 	 private int refund;
+	 private int usedPoint;
+	 private int beforePrice;
 		
 	public int getRefund() {
 		return refund;
@@ -145,6 +147,18 @@ public class ReservationVO {
 	}
 	public void setPeople(int people) {
 		this.people = people;
+	}
+	public int getUsedPoint() {
+		return usedPoint;
+	}
+	public void setUsedPoint(int usedPoint) {
+		this.usedPoint = usedPoint;
+	}
+	public int getBeforePrice() {
+		return beforePrice;
+	}
+	public void setBeforePrice(int beforePrice) {
+		this.beforePrice = beforePrice;
 	}
 	
 }

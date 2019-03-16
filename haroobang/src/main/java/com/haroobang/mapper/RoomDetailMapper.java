@@ -41,6 +41,8 @@ public interface RoomDetailMapper {
 
 	int findMyLike(HashMap<String, Object> params);
 
+	void updateFinalPoint(HashMap<String, Object> params);
+
 	
 
 }

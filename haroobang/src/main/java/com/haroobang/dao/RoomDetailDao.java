@@ -27,4 +27,6 @@ public interface RoomDetailDao {
 
 	String findMyLike(int roomNo, int memberNo);
 
+	void updateFinalPoint(int memberNo,int finalPoint);
+
 }

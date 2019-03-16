@@ -27,17 +27,31 @@ $(function(){
 	$('#pay').click(function(e){
 		
 		if($("#agreement").is(":checked")){
+			if($("#point").val().length == 0){
+				$("#point").val(0);
+			}
 			$("#form").submit()
 		}else{
 			alert("결제정보 동의에 체크해 주세요")
 		}
 	});
 	
-	$("#point").on("keyup paste", function() {
-	var usePoint = $(this).val()
+	$("#point").on("keyup paste keypress change", function(e) {
+		
+	 if ((e.which < 48 || e.which > 57)) {
+             event.preventDefault();
+         }
+		
+	var usePoint = $(this).val();
+	
 	$('#minusPoint').text(usePoint);
-	    if(usePoint>${login.point}){
-	    	alert("사용가능한 포인트를 초과하였습니다.")
+	$('#totalPrice').text(${nights*roomDetail.price }-usePoint);
+	 
+	if(usePoint>${login.point}){
+	   alert("사용가능한 포인트를 초과하였습니다.")
+	    $(this).val("");
+	    $('#minusPoint').text("");
+	    $("#totalPrice").text(${nights*roomDetail.price });
 	    }
 	});
 	
@@ -98,16 +112,16 @@ $(function(){
                             </div>
                             
                             <div class="col-md-12 form-group">
-                                <input type="number" class="form-control" pattern="[0-9]" maxlength="5" id="point" name="point" placeholder="사용할 포인트를 입력해주세요 /사용가능포인트:${login.point}점">
+                                <input type="text" class="form-control" maxlength="5" id="point" name="usedPoint" placeholder="사용할 포인트를 입력해주세요 /사용가능포인트:${login.point}점">
                             </div>
                          
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
                                     <h3>요청사항</h3>
                                 </div>
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="요청사항/문의사항을 입력해 주세요."></textarea>
+                                <textarea class="form-control" name="request" id="message" rows="1" placeholder="요청사항/문의사항을 입력해 주세요."></textarea>
                             </div>
-                            <input type="hidden" name ="totalPrice" value="${nights*roomDetail.price }">
+                            <input type="hidden" name ="beforePrice" value="${nights*roomDetail.price }">
 								<input type="hidden" name ="roomNo" value="${roomDetail.roomNo }">
 								<input type="hidden" name ="startDate" value="${checkinDate }">
 								<input type="hidden" name ="endDate" value="${endDate }">
@@ -122,7 +136,7 @@ $(function(){
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a>Product <span>Total</span></a></li>
-                                <li><a>${roomDetail.price }원/박 <span class="middle">x 02</span> <span class="last">${nights * roomDetail.price}원</span></a></li>
+                                <li><a>${roomDetail.price }원/박 <span class="middle">x ${nights }</span> <span class="last">${nights * roomDetail.price}원</span></a></li>
                                  <li><a>포인트 사용 <span class="last" id="minusPoint"></span></a></li>
                                 
                             </ul>
@@ -132,7 +146,7 @@ $(function(){
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector" checked="checked">
+                                    <input type="radio" id="f-option5" name="payment" value="카드결제" checked="checked">
                                     <label for="f-option5">카드결제</label>
                                     <div class="check"></div>
                                 </div>
@@ -140,7 +154,7 @@ $(function(){
                             </div>
                             <div class="payment_item active">
                                 <div class="radion_btn">
-                                    <input type="radio" id="f-option6" name="selector">
+                                    <input type="radio" id="f-option6" name="payment" value="무통장입금">
                                     <label for="f-option6">무통장 입금</label>
                                     <img src="img/product/card.jpg" alt="">
                                     <div class="check"></div>

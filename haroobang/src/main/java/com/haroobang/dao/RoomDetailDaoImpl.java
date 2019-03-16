@@ -87,7 +87,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		try{
-			for(int i=0;i<dateList.size()-1;i++) {
+			for(int i=0;i<dateList.size();i++) {
 				params.put("date",formatter.format(dateList.get(i)));
 				roomDetailMapper.addReservationDate(params);
 			}
@@ -181,5 +181,15 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 			result = "false";
 		}
 		return result;
+	}
+
+	@Override
+	public void updateFinalPoint(int memberNo,int finalPoint) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("memberNo", memberNo);
+		params.put("finalPoint", finalPoint);
+		
+		roomDetailMapper.updateFinalPoint(params);
+		
 	}
 }

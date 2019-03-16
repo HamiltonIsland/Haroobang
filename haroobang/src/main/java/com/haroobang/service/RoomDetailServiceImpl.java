@@ -82,4 +82,10 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 		return result;
 	}
 
+	@Override
+	public void updateFinalPoint(int memberNo,int finalPoint) {
+		roomDetailDao.updateFinalPoint(memberNo,finalPoint);
+		
+	}
+
 }
