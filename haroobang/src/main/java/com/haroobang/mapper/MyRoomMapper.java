@@ -21,6 +21,8 @@ public interface MyRoomMapper {
 
 	int selectWaitingCount(int memberNo);
 
+	void deleteMyRoom(int roomNo);
+
 
 
 	

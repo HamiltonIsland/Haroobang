@@ -53,6 +53,11 @@ public class MyRoomServiceImpl implements MyRoomService {
 		return count;
 	}
 
+	@Override
+	public void deleteMyRoom(String roomNo) {
+		myRoomDao.deleteMyRoom(roomNo);
+	}
+
 //	@Override
 //	public List<ReservationVO> findMyRoomReservation(int memberNo) {
 //		List<ReservationVO> myrooms = myRoomDao.selectAllMyRoomReservation(memberNo);

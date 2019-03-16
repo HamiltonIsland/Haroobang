@@ -156,7 +156,7 @@
 									<tbody>
 										<c:forEach var="waiting" items="${waitings}">
 
-											<tr class="search">
+											<tr class="search" data-roomNo="${waiting.roomNo}">
 												<td>
 													<div class="media">
 														<div class="d-flex">
@@ -217,7 +217,7 @@
 				                                    	</c:when>
 				                                    	<c:otherwise>
 				                                    		<div class="button-group-area mt-40">
-																<a href="javascript:;" class="genric-btn danger circle">삭제</a>
+																<a href="javascript:;" class="genric-btn danger circle" id='deleteRoom${waiting.roomNo}'>삭제</a>
 															</div>
 				                                    	</c:otherwise>
 				                                    </c:choose>
@@ -252,7 +252,29 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<!-- End footer Area -->
 	<jsp:include page="../include/js.jsp" />
-
+	<script type="text/javascript">
+		$(function(){
+			$("a[id ^=deleteRoom]").on('click',function(event){
+				var roomNo = $(this).parents('.search').attr('data-roomNo');
+				
+				$.ajax({
+					"url": "deleteMyRoom.action",
+					"method": "POST",
+					"data": { 'roomNo' : roomNo },
+					"success": function(data, status, xhr) {
+						if (data === "success"){
+							alert('내역이 삭제 되었습니다.');
+							location.reload(true);
+						}
+					},
+					"error": function(xhr, status, err) {
+						alert('삭제 실패다!! 얌마!!');
+						location.reload(true);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

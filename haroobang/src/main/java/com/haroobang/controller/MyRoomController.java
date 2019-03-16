@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.MyRoomService;
 import com.haroobang.ui.ThePager2;
@@ -94,5 +95,14 @@ public class MyRoomController {
 			
 			return "mypage/waitingList";
 		}
+	}
+	
+	@RequestMapping(value="/deleteMyRoom.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteMyRoom(String roomNo) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		myRoomService.deleteMyRoom(roomNo);
+		
+		return "success";
 	}
 }
