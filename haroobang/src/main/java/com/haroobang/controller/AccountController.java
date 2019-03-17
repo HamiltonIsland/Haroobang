@@ -144,15 +144,32 @@ public class AccountController {
 	
 	//프로필 화면
 	@RequestMapping(value="/profile.action",method=RequestMethod.POST)
-	public String profileUpdate(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) {
+	public String profileUpdate(MultipartHttpServletRequest req, AccountVO vo,HttpSession session) throws IOException {
+		
 		MultipartFile attach = req.getFile("file");
-			vo.setUserFileName(attach.getOriginalFilename());
+		vo.setUserFileName(attach.getOriginalFilename());
+		
 		if (attach != null && !attach.isEmpty()) {
+			
+			byte[] bytes = attach.getBytes();
+			ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+			
+			int width = 500;
+			int height = 500;
+			
+			BufferedImage image = ImageIO.read(is);
+			
+			
+			BufferedImage resized= resize(image, height, width);
+			
 			String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
 			String path = req.getServletContext().getRealPath("/resources/upload/" + savedFileName);
 
 			try {
-				attach.transferTo(new File(path));
+//				attach.transferTo(new File(path));
+				File output = new File(path);
+				boolean result = ImageIO.write(resized,"jpg",output);
+				
 				vo.setSavedFileName(savedFileName);
 				vo.setUserFileName(attach.getOriginalFilename());
 
