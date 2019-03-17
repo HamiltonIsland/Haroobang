@@ -101,17 +101,24 @@ public class RoomDetailController {
 			return "redirect:/account/login.action";
 		}
 		
-		LocalDate now = LocalDate.now();
-		LocalDate startDate = LocalDate.parse(checkinDate);
-		if(startDate .isBefore(now)) {
-			return "fail";
+		String result2 = roomDetailService.findIdenticalDate(checkinDate,endDate);
+		if(result2 == "exist") {
+			return "exist";
 		}else {
-		String result = roomDetailService.findReservedDate(roomNo,checkinDate,endDate);
-		
-		model.addAttribute("roomNo",roomNo);
+			LocalDate now = LocalDate.now();
+			LocalDate startDate = LocalDate.parse(checkinDate);
+			if(startDate .isBefore(now)) {
+				return "fail";
+			}else {
+			String result = roomDetailService.findReservedDate(roomNo,checkinDate,endDate);
+			
+			model.addAttribute("roomNo",roomNo);
 
-		return result;
+			return result;
+			}
 		}
+		
+	
 	}
 
 	@RequestMapping(value="reservationCheckout.action")
@@ -184,7 +191,7 @@ public class RoomDetailController {
 		AccountVO member2 = roomDetailService.findMember(memberNo2);
 
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
-		String message =roomDetailService.addRoomReservation(reservationVo,dateList);
+		String message =roomDetailService.addRoomReservation(reservationVo,dateList,reservationVo.getStartDate(), reservationVo.getEndDate());
 		
 		if(message =="fail") {
 			return "redirect:/account/login.action";

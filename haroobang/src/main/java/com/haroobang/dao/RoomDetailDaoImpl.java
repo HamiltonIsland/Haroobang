@@ -74,7 +74,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public String addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
+	public int addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
 		
 		roomDetailMapper.addRoomReservaion(reservationVo);
 		int reservationNo = reservationVo.getReservationNo();
@@ -91,10 +91,11 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 				params.put("date",formatter.format(dateList.get(i)));
 				roomDetailMapper.addReservationDate(params);
 			}
-			return "success";
+			return reservationVo.getReservationNo();
 		}catch(Exception e) {
-			return "fail";
+			return 0;
 		}
+		
 		
 		
 	}
@@ -208,5 +209,39 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		}
 		return result;
 		
+	}
+
+	@Override
+	public void addStartDateEndDate(String date,int roomNo,int reservationNo) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("roomNo", roomNo);
+		params.put("reservationNo", reservationNo);
+		params.put("date",date);
+		
+		try {
+			int result = roomDetailMapper.findReservationDate(params);
+			if(result >= 1) {
+				roomDetailMapper.updateStartDateEndDate(params);
+			}
+		} catch (Exception e) {
+			roomDetailMapper.addOcupiedDate(params);
+		}
+		
+	}
+
+	@Override
+	public String findIdenticalDate(String checkinDate, String endDate) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("checkinDate",checkinDate);
+		params.put("endDate",endDate);
+		
+		try {
+			int reservationNo = roomDetailMapper.findIdenticalDate(params);
+			return "exist";
+		} catch (Exception e) {
+			return "none";
+		}
 	}
 }

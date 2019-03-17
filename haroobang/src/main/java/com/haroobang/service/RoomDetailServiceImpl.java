@@ -40,9 +40,11 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	}
 
 	@Override
-	public String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList) {
-		String message = roomDetailDao.addRoomReservation(reservationVo,dateList);
-		return message;
+	public String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList,String startDate,String endDate) {
+		int reservationNo = roomDetailDao.addRoomReservation(reservationVo,dateList);
+		roomDetailDao.addStartDateEndDate(startDate,reservationVo.getRoomNo(),reservationNo);
+		roomDetailDao.addStartDateEndDate(endDate,reservationVo.getRoomNo(),reservationNo);
+		return "success";
 		
 	}
 
@@ -92,6 +94,13 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	public String deleteLike(int roomNo, int memberNo) {
 		String result = roomDetailDao.deleteLike(roomNo, memberNo);
 		return result;
+	}
+
+	@Override
+	public String findIdenticalDate(String checkinDate, String endDate) {
+		String result = roomDetailDao.findIdenticalDate(checkinDate, endDate);
+		return result;
+		
 	}
 
 }

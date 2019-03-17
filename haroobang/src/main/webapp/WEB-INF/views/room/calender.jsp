@@ -94,7 +94,8 @@
       select: function(startDate, endDate) {
       
         	  /* alert(startDate.format() + ' to ' + endDate.format()); */
-        	  
+        	  startDate1 = "";
+			  endDate1 = "";
         	  $.ajax({
   				url:"/haroobang/room/checkDate.action",
   				data:{"checkinDate":startDate.format(),"endDate":endDate.format(),"roomNo":${roomNo}},
@@ -102,6 +103,10 @@
   				success:function(data,status,xhr){
   					if(data == "fail"){
   						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
+  						$("#roomReservation").click(function () {return false;});
+  					}else if(data == "exist"){
+  						alert("선택하신 날짜는 1박이 예약되지않습니다./선택하신날짜사이에 이미 예약된날짜가 있습니다.")
+  						$("#roomReservation").click(function () {return false;});
   					}else if(data == "redirect:/account/login.action"){
   						alert("로그인이 필요합니다.")
   						location.href = "/haroobang/account/login.action"

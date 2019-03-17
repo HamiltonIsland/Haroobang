@@ -27,17 +27,17 @@
 	</insert>
 	
 	<insert id="addReservationDate" parameterType="hashmap">
-		insert into reservationDate(roomNo, reservationNo,date)	
-		values (#{roomNo},#{reservationNo},#{date})
+		insert into reservationDate(roomNo, reservationNo,date,occupied)	
+		values (#{roomNo},#{reservationNo},#{date},1)
 	</insert>
 	
 	<select id="findDateList" parameterType="int" resultType="String">
-		select date from reservationDate where roomNo=#{roomNo}
+		select date from reservationDate where roomNo=#{roomNo} and occupied=1
 	</select>
 	
 	<select id="findReservedDate" parameterType="hashmap" resultType="int">
 		select reservationNo from reservationDate 
-		where date <![CDATA[>=]]> date(#{checkinDate}) and date <![CDATA[<]]> date(#{endDate}) and roomNo=#{roomNo}
+		where date <![CDATA[>=]]> date(#{checkinDate}) and date <![CDATA[<]]> date(#{endDate}) and roomNo=#{roomNo} and occupied=1
 	</select>
 	
 	<update id="roomDelete" parameterType="int">
@@ -76,4 +76,21 @@
 	<delete id="deleteLike" parameterType="hashmap">
 	 delete from liked where memberNo=#{memberNo} and roomNo=#{roomNo}
 	</delete>
+	
+	<update id="updateStartDateEndDate" parameterType="hashmap">
+		update reservationDate set occupied=occupied+0.5, reservationNo2=#{reservationNo} where date=#{date} and roomNo=#{roomNo}
+	</update>
+	
+	<select id="findReservationDate" parameterType="hashmap" resultType="int">
+	 	select reservationNo from reservationDate where roomNo=#{roomNo} and date=#{date}
+	</select>
+	
+	<insert id="addOcupiedDate" parameterType="hashmap">
+		insert into reservationDate(reservationNo, date, roomNo, occupied)
+		value (#{reservationNo},#{date},#{roomNo},0.5)
+	</insert>
+	
+	<select id="findIdenticalDate" parameterType="hashmap" resultType="int">
+		select reservationNo from reservation where startdate <![CDATA[>=]]> #{checkinDate} and startDate <![CDATA[<]]> DATE_SUB(#{endDate},INTERVAL 1 DAY)
+	</select>
 </mapper>
