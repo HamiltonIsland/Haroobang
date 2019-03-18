@@ -15,5 +15,9 @@ public interface StatisticsMapper {
 
 	int getStatistics();
 
+	StatisticsVO getGenderCount(int memberNo);
+
+	int getGenderPrice();
+
 
 }

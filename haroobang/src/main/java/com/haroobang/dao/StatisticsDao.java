@@ -13,7 +13,7 @@ public interface StatisticsDao {
 
 	List<ReservationVO> getMonthCountDao();
 
-	StatisticsVO getStatisticsDao();
+	StatisticsVO getStatisticsDao(int memberNo);
 
 	
 

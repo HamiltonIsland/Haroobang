@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.haroobang.service.StatisticsService;
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.StatisticsVO;
 
@@ -29,19 +30,17 @@ public class StatisticsController {
 	//통계페이지 보여주기
 	@RequestMapping(value = "/statistics.action", method = RequestMethod.GET)
 	public String statisticsView(HttpSession session,Model model) {	
-		if (session.getAttribute("login") == null ) {
+		AccountVO login = (AccountVO)session.getAttribute("login");
+		if (login == null ) {
 			return "account/login";
 		}
-		int totalprice = statisticsService.getTotalPriceService();
-		int totalcheckinprice = statisticsService.getTotalCheckinPriceService();		
+				
 		List<ReservationVO> monthCount = statisticsService.getMonthCountService(); 
 		
-		StatisticsVO list = statisticsService.getStatisticsService();
+		StatisticsVO list = statisticsService.getStatisticsService(login.getMemberNo());
 		
 		model.addAttribute("StatisticsList",list);
 		model.addAttribute("monthCount",monthCount);
-		model.addAttribute("totalPrice",totalprice);
-		model.addAttribute("totalCheckinPrice",totalcheckinprice);
 		
 		return "room/statistics";
 	}

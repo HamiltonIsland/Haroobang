@@ -6,6 +6,24 @@ public class StatisticsVO {
 	
 	private List<ReservationVO> monthCount;
 	private int memberCount;
+	private int genderCount;
+	private int femaleCount;
+
+	public int getGenderCount() {
+		return genderCount;
+	}
+
+	public void setGenderCount(int genterCount) {
+		this.genderCount = genterCount;
+	}
+
+	public int getFemaleCount() {
+		return femaleCount;
+	}
+
+	public void setFemaleCount(int femaleCount) {
+		this.femaleCount = femaleCount;
+	}
 
 	public int getMemberCount() {
 		return memberCount;

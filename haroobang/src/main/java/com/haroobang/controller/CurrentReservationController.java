@@ -30,6 +30,10 @@ public class CurrentReservationController {
 	@Qualifier("CurrentReservationService")
 	private CurrentReservationService currentReservationService;
 	
+	@Autowired
+	@Qualifier("roomDetailService")
+	private RoomDetailService roomDetailService;
+	
 	//이전 예약 리스트 페이지 보여주기
 	@RequestMapping(value = "/currentReservationList.action", method = RequestMethod.GET)
 	public String lastReservationlist(@RequestParam("memberno")int memberNo, @RequestParam(value = "pageno", required = false, defaultValue = "1")Integer pageNo, Model model, HttpSession session) {
@@ -63,7 +67,7 @@ public class CurrentReservationController {
 		if (session.getAttribute("login") == null) {
 			return "/account/login.action";
 		} else {
-			RoomVO room = currentReservationService.findRoomFinish(roomNo);
+			RoomVO room = roomDetailService.findRoomDetail(roomNo);//currentReservationService.findRoomFinish(roomNo);
 			ReservationVO reservation = currentReservationService.findreservation(reservationNo);
 			model.addAttribute("reservation", reservation);
 			model.addAttribute("roomDetail", room);

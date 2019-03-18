@@ -49,38 +49,17 @@
 	<!--================Contact Area =================-->
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
-			<div id="map" class="mapBox"></div>
 			<div class="row">
-				<div class="col-lg-3">
-					<div class="contact_info">
-						<div class="info_item">
-							<i class="lnr lnr-home"></i>
-							<h6>${login.address }</h6>
-							<p>Santa monica bullevard</p>
-						</div>
-						<div class="info_item">
-							<i class="lnr lnr-phone-handset"></i>
-							<h6>
-								<a href="#">${login.phone }</a>
-							</h6>
-							<p>Mon to Fri 9am to 6 pm</p>
-						</div>
-						<div class="info_item">
-							<i class="lnr lnr-envelope"></i>
-							<h6>
-								<a href="#">${login.email }</a>
-							</h6>
-							<p>Send us your query anytime!</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-9">
+				<div id="map" class="mapBox" style="width: 50%"></div>
+				<div class="col-lg-6"
+					style="margin-top: 80px; margin-bottom: 100px;">
 					<form class="row contact_form" action="roomRegister.action"
 						method="post" enctype="multipart/form-data">
-						<div class="col-md-6">
-							<input type="hidden" id="memberNo"name="memberNo" value="${login.memberNo}">
-							<input type="hidden" id="order_start_lon" name="longitude">
-							<input type="hidden" id="order_start_lat" name="latitude">
+						<div class="col-md-12">
+							<input type="hidden" id="memberNo" name="memberNo"
+								value="${login.memberNo}"> <input type="hidden"
+								id="order_start_lon" name="longitude"> <input
+								type="hidden" id="order_start_lat" name="latitude">
 							<div class="form-group">
 								<input type="text" class="form-control" id="roomName"
 									name="roomName" placeholder="숙소 이름"
@@ -93,15 +72,15 @@
 									onblur="this.placeholder = '주소'">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" id="price"name="price"
+								<input type="text" class="form-control" id="price" name="price"
 									placeholder="가격" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '가격'">
 							</div>
-							
+
 							<div class="input-group-icon mt-10">
-								<div class="icon" style="font-size:10px">최대</div>  
+								<div class="icon" style="font-size: 10px">최대</div>
 								<div class="form-select" id="default-select">
-									<select id="maximum"name="maximum">
+									<select id="maximum" name="maximum">
 										<option value=" 1">1명</option>
 										<option value="2">2명</option>
 										<option value="3">3명</option>
@@ -116,13 +95,14 @@
 									placeholder="최대인원" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '최대인원'">
 							</div> -->
-							
+
 						</div>
-						<div class="col-md-6">
+
+						<div class="col-md-12" style="margin-top: 10px">
 							<div class="form-group">
-								<input type="file" id="file"multiple="multiple" accept=".jpg,.jpeg,.png,.bnp"
-									class="form-control-file border" name="file" placeholder="숙소사진"
-									onfocus="this.placeholder = ''"
+								<input type="file" id="file" multiple="multiple"
+									accept=".jpg,.jpeg,.png,.bnp" class="form-control-file border"
+									name="file" placeholder="숙소사진" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '숙소사진'">
 							</div>
 
@@ -133,16 +113,19 @@
 									onblur="this.placeholder = 'Enter Message'"></textarea>
 
 							</div>
+							<div class="col-md-12" style="width: 100%">
+								<button type="button" id="submitbtn" value="submit"
+									class="genric-btn primary radius" style="width: 100%">숙소
+									등록</button>
+							</div>
 						</div>
-						
+
 					</form>
-						<div class="col-md-12 text-right">
-							<button type="submit" id="submitbtn"value="submit"
-								class="genric-btn primary radius">숙소 등록</button>
-						</div>
+
 
 				</div>
 			</div>
+
 		</div>
 	</section>
 	<!--================Contact Area =================-->

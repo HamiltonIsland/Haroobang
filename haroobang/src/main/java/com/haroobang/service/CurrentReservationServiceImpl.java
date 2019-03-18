@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.CurrentReservationDao;
+import com.haroobang.dao.RoomDetailDao;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
@@ -17,6 +18,10 @@ public class CurrentReservationServiceImpl implements CurrentReservationService{
 	@Autowired
 	@Qualifier("CurrentReservationDao")
 	private CurrentReservationDao currentReservationDao;
+	
+	@Autowired
+	@Qualifier("RoomDetailDao")
+	private RoomDetailDao roomDetailDao;
 
 	@Override
 	public List<ReservationVO> findMyCurrentReservation(int memberNo) {
@@ -58,6 +63,7 @@ public class CurrentReservationServiceImpl implements CurrentReservationService{
 		RoomVO room = currentReservationDao.selectRoomFinish(roomNo);
 		RoomAttachVO roomattach = currentReservationDao.selectRoomAttach(roomNo);
 		room.setRoomAttach(roomattach);
+		room.setMemberNickname(roomDetailDao.findMemberNickname(roomNo));
 		return room;
 	}
 

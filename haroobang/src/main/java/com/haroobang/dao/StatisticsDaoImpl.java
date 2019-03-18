@@ -1,6 +1,11 @@
 package com.haroobang.dao;
 
+import java.util.Enumeration;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,9 +42,10 @@ public class StatisticsDaoImpl implements StatisticsDao{
 	}
 
 	@Override
-	public StatisticsVO getStatisticsDao() {
-		StatisticsVO list=new StatisticsVO();
+	public StatisticsVO getStatisticsDao(int memberNo) {
+		
 		int memberCount= statisticsMapper.getStatistics();
+		StatisticsVO list = statisticsMapper.getGenderCount(memberNo);		
 		list.setMemberCount(memberCount);
 		return list;
 	}

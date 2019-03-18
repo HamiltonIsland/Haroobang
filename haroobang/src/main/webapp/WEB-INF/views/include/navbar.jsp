@@ -19,29 +19,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse offset"
 					id="navbarSupportedContent">
-					<ul class="nav navbar-nav menu_nav ml-auto">
-						<li class="nav-item"><a class="nav-link"
-							href="/haroobang/home.action">Home</a></li>
-
-						<!-- <li class="nav-item submenu dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-							 aria-expanded="false">Blog</a>
-							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="/haroobang/member/memberlist.action">memberList</a></li>
-							</ul>
-						</li> -->
-						<!-- 
-						
-						<li class="nav-item submenu dropdown active">
-							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-							 aria-expanded="false">Pages</a>
-							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="/haroobang/account/login.action">Login</a></li>
-								<li class="nav-item active"><a class="nav-link" href="tracking.action">Tracking</a></li>
-								<li class="nav-item"><a class="nav-link" href="elements.action">Elements</a></li>
-							</ul>
-						</li> -->
-
+					<ul class="nav navbar-nav menu_nav ml-auto">						
 						<c:choose>
 							<c:when test="${not empty login}">
 
@@ -51,38 +29,36 @@
 
 										<li class="nav-item submenu dropdown"><a href="#"
 											class="nav-link dropdown-toggle" data-toggle="dropdown"
-											role="button" aria-haspopup="true" aria-expanded="false">MANAGE
-												ALL</a>
+											role="button" aria-haspopup="true" aria-expanded="false">관리자도구</a>
 											<ul class="dropdown-menu">
 												<li class="nav-item"><a class="nav-link"
-													href="/haroobang/room/roomList.action">ALL Room List</a></li>
+													href="/haroobang/room/roomList.action">숙소</a></li>
 												<li class="nav-item"><a class="nav-link"
-													href="/haroobang/member/memberlist.action">ALL
-														MEMBERLISTS</a></li>
+													href="/haroobang/member/memberlist.action">회원</a></li>
 												<li class="nav-item"><a class="nav-link"
-													href="/haroobang/reservation/reservationList.action">ALL
-														RESERVATIONS</a></li>
+													href="/haroobang/reservation/reservationList.action">예약 현황</a></li>
 												<li class="nav-item"><a class="nav-link"
-													href="/haroobang/room/reviewReport.action">ALL REPORTED
-														REVIEWS</a></li>
+													href="/haroobang/room/reviewReport.action">신고</a></li>
 												<li class="nav-item"><a class="nav-link"
-													href="/haroobang/room/statistics.action">Statistics</a></li>
+													href="/haroobang/room/statistics.action">통계</a></li>
 											</ul></li>
 
 										<li class="nav-item"><a class="nav-link"
-											href="/haroobang/account/logout.action">Log-Out</a></li>
+											href="/haroobang/account/logout.action">로그아웃</a></li>
 
 									</c:when>
 									<c:otherwise>
 
 										<li class="nav-item"><a class="nav-link"
-											href="/haroobang/room/roomList.action">Room List</a></li>
+											href="/haroobang/room/roomList.action">숙소 보기</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="/haroobang/room/roomRegister.action">roomRegister</a></li>
+											href="/haroobang/room/roomRegister.action">내집 등록하기</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">MyPage</a></li>
+											href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">마이페이지</a></li>
+											<li class="nav-item"><a class="nav-link"
+											href="/haroobang/room/statistics.action">통계</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="/haroobang/account/logout.action">Log-Out</a></li>
+											href="/haroobang/account/logout.action">로그아웃</a></li>
 									</c:otherwise>
 								</c:choose>
 
@@ -91,12 +67,12 @@
 
 							<c:otherwise>
 								<li class="nav-item"><a class="nav-link"
-									href="/haroobang/room/roomList.action">Room List</a></li>
+									href="/haroobang/room/roomList.action">숙소 보기</a></li>
 
 								<li class="nav-item"><a class="nav-link"
-									href="/haroobang/account/login.action">Log-In</a></li>
+									href="/haroobang/account/login.action">로그인</a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="/haroobang/account/register.action">Register</a></li>
+									href="/haroobang/account/register.action">회원 가입</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
