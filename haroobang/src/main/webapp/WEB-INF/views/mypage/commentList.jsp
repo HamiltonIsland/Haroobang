@@ -101,19 +101,19 @@
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting">
-						<select>
+					<div class="sorting" style="height:  42px;">
+						<!-- <select>
 							<option value="1">Default sorting</option>
 							<option value="1">Default sorting</option>
 							<option value="1">Default sorting</option>
-						</select>
+						</select> -->
 					</div>
 					<div class="sorting mr-auto">
-						<select>
+						<!-- <select>
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
-						</select>
+						</select> -->
 					</div>
 					<div class="pagination">
 						${ pager }
@@ -161,7 +161,16 @@
 													<h5>${mycomment.rates }점</h5>
 												</td>
 												<td>
-													<h5>${mycomment.content }</h5>
+												<c:choose>
+												<c:when test="${mycomment.content.length() == 0 }">
+												<h5>후기내용을 작성하지 않으셨습니다.</h5>
+												</c:when>
+												<c:otherwise>
+												<h5>${mycomment.content }</h5>
+												</c:otherwise>
+												
+												</c:choose>
+													
 												</td>
 												<td>
 													<h5>${mycomment.regDate}</h5>

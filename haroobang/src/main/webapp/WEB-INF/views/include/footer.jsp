@@ -1,12 +1,14 @@
 <!-- start footer Area -->
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <footer class="footer-area section_gap">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3  col-md-6 col-sm-6">
 				<div class="single-footer-widget">
 					<h6>About Us</h6>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
+					<p>아름다운 자연과 다양한 엑티비티들로 유명한 제주도내의
+					숙소를 예약할 수있고 직접 숙소를 등록하여 수익을 많들어
+					볼 수있는 플랫폼입니다.</p>
 				</div>
 			</div>
 			<div class="col-lg-4  col-md-6 col-sm-6">
@@ -62,7 +64,7 @@
 			<div class="col-lg-2 col-md-6 col-sm-6">
 				<div class="single-footer-widget">
 					<h6>Follow Us</h6>
-					<p>Let us be social</p>
+					<p>HaroobangProject Team</p>
 					<div class="footer-social d-flex align-items-center">
 						<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
 							class="fa fa-twitter"></i></a> <a href="#"><i
@@ -80,9 +82,8 @@
 				<script>
 					document.write(new Date().getFullYear());
 				</script>
-				All rights reserved | This template is made with <i
-					class="fa fa-heart-o" aria-hidden="true"></i> by <a
-					href="https://colorlib.com" target="_blank">Colorlib</a>
+				All rights reserved | Haroobang ProjectTeam <i
+					class="fa fa-heart-o" aria-hidden="true"></i> 
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</p>
 		</div>

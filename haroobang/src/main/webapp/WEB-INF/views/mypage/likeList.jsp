@@ -91,7 +91,7 @@
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting">
+					<div class="sorting" style="height:  42px;">
 						<!-- <select>
 							<option value="1">Default sorting</option>
 							<option value="1">Default sorting</option>
@@ -120,7 +120,9 @@
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
-						<c:forEach var="likeList" items="${ likeLists }">
+					<c:choose>
+					<c:when test="${not empty likeLists }">
+					<c:forEach var="likeList" items="${ likeLists }">
 						<div class="col-lg-3 col-md-5">
 						<a href="/haroobang/room/roomDetail.action?roomNo=${likeList.roomNo}">
 							<div class="single-product">
@@ -132,7 +134,6 @@
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
-									
 										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
 									</c:otherwise>
 								</c:choose>
@@ -148,6 +149,14 @@
 							</a>
 						</div>
 						</c:forEach>
+					</c:when>
+					<c:otherwise>
+				
+				<h3 style="color: gray;text-align: center;margin-left: 35%;margin-top: 10%" >아직 찜한 숙소가 없습니다.</h3>
+				
+					</c:otherwise>
+					</c:choose>
+						
 					</div>
 				</section>
 				<!-- End Best Seller -->

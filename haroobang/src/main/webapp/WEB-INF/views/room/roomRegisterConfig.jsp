@@ -211,17 +211,14 @@ $(function(){
 												alt="">
 										</div>
 										<div class="media-body">
-											<h4>Blake Ruiz</h4>
+											<h4>이용자님</h4>
 											<i class="fa fa-star"></i>
 											<!-- 별점표시부분 -->
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i>
 										</div>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+									<p>숙소 후기가 등록 될 예정입니다.</p>
 								</div>
 							</div>
 						</div>

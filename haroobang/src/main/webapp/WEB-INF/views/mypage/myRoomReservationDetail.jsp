@@ -64,7 +64,7 @@
 								aria-expanded="false" aria-controls="homeClean">
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }"
-									style="color: #ffc107;">현재 예약 목록</a></li>
+									>현재 예약 목록</a></li>
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">이전
 										예약 목록</a></li>

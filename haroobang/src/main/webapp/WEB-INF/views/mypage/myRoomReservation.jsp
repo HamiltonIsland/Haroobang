@@ -160,25 +160,25 @@ img {vertical-align: middle;}
 						<li class="main-nav-list"><a data-toggle="collapse"
 							href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
 								class="lnr lnr-arrow-right"></span>내 예약 목록</a>
-							<ul class="collapse show" id="homeClean" data-toggle="collapse"
+							<ul class="collapse" id="homeClean" data-toggle="collapse"
 								aria-expanded="false" aria-controls="homeClean">
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }"
-									style="color: #ffc107;">현재 예약 목록</a></li>
+									>현재 예약 목록</a></li>
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">이전
 										예약 목록</a></li>
 							</ul></li>
 
 						<li class="main-nav-list"><a data-toggle="collapse"
-							href="#officeProduct" aria-expanded="false"
+							href="#officeProduct" aria-expanded="true"
 							aria-controls="officeProduct"><span
 								class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
-							<ul class="collapse" id="officeProduct" data-toggle="collapse"
+							<ul class="collapse show" id="officeProduct" data-toggle="collapse"
 								aria-expanded="false" aria-controls="officeProduct">
 								<li class="main-nav-list child"><a href="/haroobang/mypage/waitingList.action?memberno=${ login.memberNo }">승인 대기중 /
 										등록된 숙소</a></li>
-								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
+								<li class="main-nav-list child"><a  style="color: #ffc107;" href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
 							</ul></li>
 
 						<li class="main-nav-list"><a

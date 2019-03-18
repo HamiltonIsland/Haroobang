@@ -90,13 +90,7 @@
 			<div class="col-xl-12 col-lg-11 col-md-10">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting">
-						<select>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
-						</select>
-					</div>
+					
 					<div class="sorting mr-auto">
 						<input type="text" width="5px" placeholder="검색" id="keyword">
 						<button type="submit" class="btn btn-small btn-success">검색</button>

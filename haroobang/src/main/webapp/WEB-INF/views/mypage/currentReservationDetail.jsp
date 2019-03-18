@@ -19,6 +19,10 @@
 <script type="text/javascript">
 $(function(){
 	
+	$("#goBack").click(function(e){
+		history.back();
+	});
+	
 })
 			
 
@@ -97,7 +101,7 @@ $(function(){
                                 	</c:when>
                                 </c:choose>
                             </div>
-                          
+                          <a class="primary-btn" style="color: white;margin-left:36%;" id="goBack">목록보기</a>
                     </div>
                     
                     
