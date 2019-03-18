@@ -101,7 +101,7 @@ public class RoomDetailController {
 			return "redirect:/account/login.action";
 		}
 		
-		String result2 = roomDetailService.findIdenticalDate(checkinDate,endDate);
+		String result2 = roomDetailService.findIdenticalDate(checkinDate,endDate,roomNo);
 		if(result2 == "exist") {
 			return "exist";
 		}else {

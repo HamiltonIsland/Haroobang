@@ -33,6 +33,6 @@ public interface RoomDetailDao {
 
 	void addStartDateEndDate(String date, int roomNo, int reservationNo);
 
-	String findIdenticalDate(String checkinDate, String endDate);
+	String findIdenticalDate(String checkinDate, String endDate, int roomNo);
 
 }

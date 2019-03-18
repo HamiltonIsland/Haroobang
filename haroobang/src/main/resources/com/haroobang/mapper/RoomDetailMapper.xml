@@ -91,6 +91,7 @@
 	</insert>
 	
 	<select id="findIdenticalDate" parameterType="hashmap" resultType="int">
-		select reservationNo from reservation where startdate <![CDATA[>=]]> #{checkinDate} and startDate <![CDATA[<]]> DATE_SUB(#{endDate},INTERVAL 1 DAY)
+		select reservationNo from reservation 
+		where startdate <![CDATA[>=]]> #{checkinDate} and startDate <![CDATA[<]]> DATE_SUB(#{endDate},INTERVAL 1 DAY) and roomNo=#{roomNo}
 	</select>
 </mapper>
