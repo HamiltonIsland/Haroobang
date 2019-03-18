@@ -85,6 +85,9 @@
 							<div class="col-md-12 form-group">
 								<input type="file" id="imgAttach" onchange="LoadImg(this);" class="form-control" name="file" value="${login.userFileName}">
 							</div>
+							<div class="col-md-12 form-group">
+								사용가능 포인트<br>${login.point } 
+							</div>
 						
 							<div class="col-md-12 form-group">
 								<textarea class="form-control" style="resize: none;width:100%" name="profile" rows="3" placeholder="Profile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'">${login.profile }</textarea>
