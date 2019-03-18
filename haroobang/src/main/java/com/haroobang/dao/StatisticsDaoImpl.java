@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.StatisticsMapper;
 import com.haroobang.vo.ReservationVO;
+import com.haroobang.vo.StatisticsVO;
 
 @Repository("StatisticsDao")
 public class StatisticsDaoImpl implements StatisticsDao{
@@ -33,6 +34,14 @@ public class StatisticsDaoImpl implements StatisticsDao{
 		
 		List<ReservationVO> monthCount = statisticsMapper.getMonthCount();
 		return monthCount;
+	}
+
+	@Override
+	public StatisticsVO getStatisticsDao() {
+		StatisticsVO list=new StatisticsVO();
+		int memberCount= statisticsMapper.getStatistics();
+		list.setMemberCount(memberCount);
+		return list;
 	}
 
 	
