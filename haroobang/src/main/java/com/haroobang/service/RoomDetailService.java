@@ -31,6 +31,6 @@ public interface RoomDetailService {
 
 	String deleteLike(int roomNo, int memberNo);
 
-	String findIdenticalDate(String checkinDate, String endDate);
+	String findIdenticalDate(String checkinDate, String endDate, int roomNo);
 
 }

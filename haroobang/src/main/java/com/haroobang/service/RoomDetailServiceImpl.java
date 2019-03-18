@@ -30,6 +30,7 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	@Override
 	public RoomVO findRoomDetail(int roomNo) {
 		RoomVO room = roomDetailDao.findRoomDetail(roomNo);
+		room.setMemberNickname(roomDetailDao.findMemberNickname(roomNo));
 		return room;
 	}
 
@@ -97,8 +98,8 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	}
 
 	@Override
-	public String findIdenticalDate(String checkinDate, String endDate) {
-		String result = roomDetailDao.findIdenticalDate(checkinDate, endDate);
+	public String findIdenticalDate(String checkinDate, String endDate,int roomNo) {
+		String result = roomDetailDao.findIdenticalDate(checkinDate, endDate,roomNo);
 		return result;
 		
 	}

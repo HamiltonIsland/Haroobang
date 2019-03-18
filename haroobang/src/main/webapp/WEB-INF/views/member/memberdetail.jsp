@@ -69,16 +69,16 @@
 	 <section class="login_box_area section_gap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6" style="border-radius: 700px;background: white">
-					<div class="login_box_img"style="height:100%; border-radius: 700px;background: white"> 
+				<div class="col-lg-3" style="background: white">
+					<%-- <div class="login_box_img"style="height:100%; border-radius: 700px;background: white"> 
 						<img id ="LoadImg" class="img-fluid" style="height:100%; border-radius: 700px;" src="/haroobang/resources/upload/${members.savedFileName }" alt="">						
-					</div> 
+					</div>  --%>
 				</div>
 				<div class="col-lg-6"> 
-					<div class="login_form_inner" >
+					<div class="login_form_inner"style="height:600px;" >
+					<img id ="LoadImg" class="img-fluid" style="height:100px; border-radius: 700px;" src="/haroobang/resources/upload/${members.savedFileName }" alt="">
 						<form class="row login_form">
 							<input type="hidden" name="memberNo" value="${members.memberNo }">
-
 							<div class="col-md-12 form-group" style="text-align : left; margin-top:50px">
 								 <i class="icon-thumbs-up"> </i>
 								<strong>이름</strong> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ${members.name }
@@ -108,6 +108,9 @@
 	</section> 
 	<!--================End Login Box Area =================-->
 
+	<section class="related-product-area section_gap">		
+	</section>
+	
 	<jsp:include page="../include/footer.jsp" />
 
 

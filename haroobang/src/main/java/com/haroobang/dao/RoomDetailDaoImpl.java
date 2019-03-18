@@ -231,11 +231,12 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public String findIdenticalDate(String checkinDate, String endDate) {
+	public String findIdenticalDate(String checkinDate, String endDate,int roomNo) {
 		
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("checkinDate",checkinDate);
 		params.put("endDate",endDate);
+		params.put("roomNo", roomNo);
 		
 		try {
 			int reservationNo = roomDetailMapper.findIdenticalDate(params);
@@ -244,4 +245,10 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 			return "none";
 		}
 	}
+
+	@Override
+	public String findMemberNickname(int roomNo) {
+		String nickName = roomDetailMapper.findMemberNickname(roomNo);
+		return nickName;
+}
 }
