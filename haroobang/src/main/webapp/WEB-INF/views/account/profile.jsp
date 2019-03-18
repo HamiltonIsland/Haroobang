@@ -86,7 +86,7 @@
 								<input type="file" id="imgAttach" onchange="LoadImg(this);" class="form-control" name="file" value="${login.userFileName}">
 							</div>
 							<div class="col-md-12 form-group">
-								사용가능 포인트<br>${login.point } 
+								<input type="text" class="form-control" name="point" value="${login.point } point" readonly>  
 							</div>
 						
 							<div class="col-md-12 form-group">
