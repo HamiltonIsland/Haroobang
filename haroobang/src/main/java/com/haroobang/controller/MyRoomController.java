@@ -34,13 +34,10 @@ public class MyRoomController {
 		if (session.getAttribute("login") == null) {
 			return "/account/login.action";
 		} else {
-			// List<Integer> myroomNo = myRoomService.findMyRoomNo(memberNo);
-			// List<ReservationVO> myrooms = myRoomService.findMyRoomReservation(myroomNo);
-			List<RoomVO> myrooms = myRoomService.findAllMyRooms(memberNo);
-
-			// model.addAttribute("myroomNo", myroomNo);
-			// model.addAttribute("myrooms", myrooms);
-			model.addAttribute("myrooms", myrooms);
+			
+			List<ReservationVO> myreservations = myRoomService.findAllMyReservations(memberNo);
+			
+			model.addAttribute("myreservations", myreservations);
 		
 
 			return "mypage/myRoomReservation";
@@ -49,22 +46,16 @@ public class MyRoomController {
 	}
 
 	@RequestMapping(value = "/myRoomReservationDetail.action", method = RequestMethod.GET)
-	public String myRoomReservationDetail(@RequestParam("roomno") int roomNo, Model model, HttpSession session) {
+	public String myRoomReservationDetail(int reservationNo, Model model, HttpSession session) {
 
 		if (session.getAttribute("login") == null) {
 			return "redirect:/account/login.action";
 		} else {
+	
+			ReservationVO reservationdetail = myRoomService.findReservationByRoomNo(reservationNo);
+
+			model.addAttribute("reservation", reservationdetail);
 			
-			AccountVO member = (AccountVO)session.getAttribute("login");
-			int memberNo = member.getMemberNo();
-
-			List<ReservationVO> reservationdetail = myRoomService.findReservationByRoomNo(roomNo, memberNo);
-			if (reservationdetail == null) {
-				return "redirect:myRoomReservationDetail.action";
-			}
-
-			model.addAttribute("reservationdetail", reservationdetail);
-			model.addAttribute("roomno", roomNo);
 
 			return "mypage/myRoomReservationDetail";
 		}
@@ -104,5 +95,19 @@ public class MyRoomController {
 		myRoomService.deleteMyRoom(roomNo);
 		
 		return "success";
+	}
+	
+	@RequestMapping(value="/checkinApproval.action", method=RequestMethod.GET)
+	@ResponseBody
+	public String checkinApproval(int reservationNo) {
+		String result = myRoomService.checkinApproval(reservationNo);
+		return result;
+	}
+	
+	@RequestMapping(value="calcelCheckin.action", method=RequestMethod.GET)
+	@ResponseBody
+	public String calcelCheckin(int reservationNo) {
+		String result = myRoomService.calcelCheckin(reservationNo);
+		return result;
 	}
 }

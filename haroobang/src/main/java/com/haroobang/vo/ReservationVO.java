@@ -24,7 +24,8 @@ public class ReservationVO {
 	 private int refund;
 	 private int usedPoint;
 	 private int beforePrice;
-		
+	 private List<RoomAttachVO> roomAttachList;
+	 
 	public int getRefund() {
 		return refund;
 	}
@@ -38,7 +39,7 @@ public class ReservationVO {
 		this.deleted = deleted;
 	}
 	 
-	 private List<RoomAttachVO> roomAttachList;
+	 
 	 
 	 public List<RoomAttachVO> getRoomAttachList() {
 		return roomAttachList;

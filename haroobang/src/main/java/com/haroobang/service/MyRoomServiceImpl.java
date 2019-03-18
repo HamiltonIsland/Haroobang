@@ -1,8 +1,10 @@
 package com.haroobang.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.haroobang.dao.MyRoomDao;
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
@@ -16,25 +18,32 @@ public class MyRoomServiceImpl implements MyRoomService {
 	}
 
 	@Override
-	public List<RoomVO> findAllMyRooms(int memberNo) {
+	public List<ReservationVO> findAllMyReservations(int memberNo) {
 		List<RoomVO> rooms = myRoomDao.selectAllMyRooms(memberNo);
+		
+		List<ReservationVO> myroomReservations = new ArrayList<ReservationVO>();
 
 		for (RoomVO room : rooms) {
-			List<RoomAttachVO> attachments = myRoomDao.selectAllMyRoomAttachByRoomNo(room.getRoomNo());
-			room.setRoomAttachList(attachments);
+			List<ReservationVO> reservations = myRoomDao.reservationByMyRoom(room.getRoomNo());
+			for(int i=0;i<reservations.size();i++) {
+				List<RoomAttachVO> attachments = myRoomDao.selectAllMyRoomAttachByRoomNo(reservations.get(i).getRoomNo());
+				reservations.get(i).setRoomAttachList(attachments);
+			}
+			myroomReservations.addAll(reservations);
+			
 		}
 
-		return rooms;
+		return myroomReservations;
 	}
 
 	@Override
-	public List<ReservationVO> findReservationByRoomNo(int roomNo, int memberNo) {
-		List<ReservationVO> myroom = myRoomDao.selectReservationByRoomNo(roomNo, memberNo);
-		
-//		List<RoomAttachVO> attachments = myRoomDao.selectRoomAttachByRoomNo(roomNo);
-//		myroom.setRoomAttachList(attachments);
-//		
-		return myroom;
+	public ReservationVO findReservationByRoomNo(int reservationNo) {
+		ReservationVO reservation = myRoomDao.selectReservationByReservationNo(reservationNo);
+		RoomVO roomDetail = myRoomDao.selectRoomDetailbyRoonNo(reservation.getRoomNo());
+		AccountVO accountVO = myRoomDao.selectMemberByMemberNo(reservation.getMemberNo()); 
+		reservation.setRoomVO(roomDetail);
+		reservation.setAccountVO(accountVO);
+	return reservation;
 	}
 
 	@Override
@@ -58,19 +67,17 @@ public class MyRoomServiceImpl implements MyRoomService {
 		myRoomDao.deleteMyRoom(roomNo);
 	}
 
-//	@Override
-//	public List<ReservationVO> findMyRoomReservation(int memberNo) {
-//		List<ReservationVO> myrooms = myRoomDao.selectAllMyRoomReservation(memberNo);
-//
-//		return myrooms;
-//	}
-//
-//
-//	@Override
-//	public List<Integer> findMyRoomNo(int memberNo) {
-//		List<Integer> myroomNo = myRoomDao.selectAllMyRoomNo(memberNo);
-//		
-//		return myroomNo;
-//	}
+	@Override
+	public String checkinApproval(int reservationNo) {
+		String result = myRoomDao.checkinApproval(reservationNo);
+		return result;
+	}
+
+	@Override
+	public String calcelCheckin(int reservationNo) {
+		String result = myRoomDao.calcelCheckin(reservationNo);
+		return result;
+	}
+
 
 }

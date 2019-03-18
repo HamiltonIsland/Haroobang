@@ -19,7 +19,7 @@
 		<result column="maximum" property="maximum" />
 	</resultMap>
   
-  	<select id="selectAllMyRooms" resultType="RoomVO">
+  	<select id="selectAllMyRooms" parameterType="int" resultType="RoomVO">
 		select * from room 
 		where memberNo = #{ memberNo }
 	</select>
@@ -43,11 +43,11 @@
    </resultMap>
 	
 	
-	<select id="selectReservationByRoomNo" parameterType="hashmap" resultMap="ReservationVO">
+<!-- 	<select id="selectReservationByRoomNo" parameterType="hashmap" resultMap="ReservationVO">
 	 SELECT rs.reservationNo, r.roomNo, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.nights, rs.payment, r.roomName, r.price, m.name, m.memberNo
 	  FROM reservation as rs join room as r join member as m
 	  WHERE r.roomNo=#{ roomNo } And rs.memberNo=#{ memberNo } And r.roomNo = rs.roomNo And m.memberNo = rs.memberNo;
-	</select>
+	</select> -->
 	
 	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
 		SELECT roomattachNo, roomNo, userFileName, savedFileName
@@ -64,6 +64,34 @@
 	
 	<update id="deleteMyRoom" parameterType="int">
 		update room set deleted = 1 WHERE roomNo = #{ roomNo }
+	</update>
+	
+	<select id="selectReservationsByroomno" parameterType="int" resultType="ReservationVO">
+	 select * from reservation where roomNo=#{roomNo}
+	</select>
+	
+	<select id="seletReservationByReservationNo" parameterType="int" resultType="ReservationVO">
+	select * from reservation where reservationNo=#{reservationNo}
+	</select>
+	
+	<select id="selectRoomDetailbyRoonNo" parameterType="int" resultType="RoomVO">
+	select * from room where roomNo=#{roomNo}
+	</select>
+	
+	<select id="selectRoomAttachbyRoomNo" parameterType="int" resultType="RoomAttachVO">
+	select * from roomattach where roomNo=#{roomNo}
+	</select>
+	
+	<select id="selectMemberByMemberNo" parameterType="int" resultType="AccountVO">
+	select * from member where memberNo=#{memberNo}
+	</select>
+	
+	<update id="checkinApproval" parameterType="int">
+	update reservation set checkin=1 where reservationNo=#{reservationNo};
+	</update>
+	
+	<update id="calcelCheckin" parameterType="int">
+	update reservation set checkin=false where reservationNo=#{reservationNo}
 	</update>
 	
   </mapper>

@@ -123,13 +123,6 @@ img {vertical-align: middle;}
 	font-size: 40px
 }
 
-/* .span3:visited .overlay {
-	opacity: 0;
-} */
-
-/* .membercheck:visited .overlay2{
-	opacity: 1;
-} */
 
 </style>
 </head>
@@ -153,27 +146,10 @@ img {vertical-align: middle;}
 	</section>
 	
 	<!-- End Banner Area -->
+	
 	<div class="container">
 		<div class="row">
-				<table class="table">
-		       <thead>
-							<tr class="bottom_button">
-								<td></td><td></td><td></td><td></td><td></td><td></td>
-								<td></td><td></td><td></td><td></td><td></td>
-								<td></td><td></td><td></td><td></td><td></td>
-								<td>
-									<div class="input-group">
-		            	<input type="text" class="form-control" placeholder="Search by Keyword" id="keyword2">
-		            	<span class="input-group-btn">
-		            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-		               	</span>
-		            </div>
-								</td>
-							</tr>
-							</thead>
-						</table>
-		<div class="col-xl-3 col-lg-4 col-md-5">
-		
+			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
 					<div class="head">My page</div>
 					<ul class="main-categories">
@@ -184,11 +160,11 @@ img {vertical-align: middle;}
 						<li class="main-nav-list"><a data-toggle="collapse"
 							href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
 								class="lnr lnr-arrow-right"></span>내 예약 목록</a>
-							<ul class="collapse" id="homeClean" data-toggle="collapse"
+							<ul class="collapse show" id="homeClean" data-toggle="collapse"
 								aria-expanded="false" aria-controls="homeClean">
 								<li class="main-nav-list child"><a
-									href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }">현재
-										예약 목록</a></li>
+									href="/haroobang/mypage/currentReservationList.action?memberno=${ login.memberNo }"
+									style="color: #ffc107;">현재 예약 목록</a></li>
 								<li class="main-nav-list child"><a
 									href="/haroobang/mypage/lastReservationList.action?memberno=${ login.memberNo }">이전
 										예약 목록</a></li>
@@ -198,17 +174,16 @@ img {vertical-align: middle;}
 							href="#officeProduct" aria-expanded="false"
 							aria-controls="officeProduct"><span
 								class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
-							<ul class="collapse show" id="officeProduct" data-toggle="collapse"
+							<ul class="collapse" id="officeProduct" data-toggle="collapse"
 								aria-expanded="false" aria-controls="officeProduct">
 								<li class="main-nav-list child"><a href="/haroobang/mypage/waitingList.action?memberno=${ login.memberNo }">승인 대기중 /
 										등록된 숙소</a></li>
-								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }"style="color: #ffc107;">내 숙소 예약 목록</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
 							</ul></li>
 
 						<li class="main-nav-list"><a
-							href="/haroobang/mypage/commentList.action?memberno=${ login.memberNo }"
-							> <span class="lnr lnr-arrow-right"></span>내
-								후기 관리
+							href="/haroobang/mypage/commentList.action?memberno=${ login.memberNo }">
+								<span class="lnr lnr-arrow-right"></span>내 후기 관리
 						</a></li>
 
 						<li class="main-nav-list"><a
@@ -220,312 +195,123 @@ img {vertical-align: middle;}
 				</div>
 
 			</div>
-			
-			
 			<div class="col-xl-9 col-lg-8 col-md-7">
-
-		
-				<!-- <div class="text-right">
-					<aside class="single_sidebar_widget search_widget">
-			        	<div class="input-group col-lg-4">
-			            	<input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
-			            	<span class="input-group-btn">
-			            	<button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-			               	</span>
-			            </div>
-			        	<div class="br"></div>
-			       </aside>
-		       </div> -->
-		       
+				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting">
-						<select>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
-						</select>
-					</div>
+					
 					<div class="sorting mr-auto">
-						<select>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-						</select>
+						<div class="bottom_button">
+							<div class="button-group-area mt-40">
+								<a href="javascript:;" class="genric-btn primary circle" id="refund">체크인승인</a>
+							</div>
+						</div>
 					</div>
 					<div class="pagination">
-					<%-- ${ pager } --%>
-						<a href="#" class="prev-arrow"><i
-							class="fa fa-long-arrow-left" aria-hidden="true"></i></a> <a href="#"
-							class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a
-							href="#" class="dot-dot"><i class="fa fa-ellipsis-h"
-							aria-hidden="true"></i></a> <a href="#">6</a> <a href="#"
-							class="next-arrow"><i class="fa fa-long-arrow-right"
-							aria-hidden="true"></i></a>
+				<%-- 	${ pager } --%>
 					</div>
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list" id="search">
-					<div class="row">
-						<c:forEach var="room" items="${myrooms}">
-						<div class="col-lg-3 col-md-5 disapprovalNo search" data-roomno="${room.roomNo}">
-							<div class="single-product" id="imglist${room.roomNo}">
-							
-							<c:choose>
-									<c:when test="${not empty room.roomAttachList}">
-										 <div class="span3" data-memberno="${ login.memberNo }">
-										 <div class="main-carousel span3" data-flickity='{ "autoPlay": true }'>
-										<c:forEach var="attach" items="${room.roomAttachList}">
-												  <img class="img-fluid" src="/haroobang/resources/upload/${attach.savedFileName}" alt=""
-													 onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+				<section class="cart_area" style="padding-top: 10px">
+					<div class="container">
+						<div class="cart_inner">
+							<!-- single product -->
+							<div class="table-responsive" style="text-align: center">
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">숙소정보</th>
+											<th scope="col">결제수단</th>
+											<th scope="col">숙박기간</th>
+											<th scope="col">결제일시</th>
+											<th scope="col">총결제</th>
+											<th scope="col">체크인승인</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="myreservations" items="${myreservations}">
+											<tr class="search"> 
+												<td>
+													<div class="media">
+														<div class="d-flex">
+															<input type="checkbox" class="checkrefund" data-reservationNo="${myreservations.reservationNo}"> 
+															<a href="/haroobang/mypage/myRoomReservationDetail.action?reservationNo=${myreservations.reservationNo}">
+																<c:choose>
+																	<c:when test="${not empty myreservations.roomAttachList}">
+																				<img style="width: 100px; height: 100px"
+																					src="/haroobang/resources/upload/${myreservations.roomAttachList[0].savedFileName }"
+																					alt=""
+																					onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+																	</c:when>
+																	<c:otherwise>
+																		<img style="width: 100px; height: 100px"
+																			src="/haroobang/resources/img/product/p1.jpg" alt="">
+																	</c:otherwise>
+																</c:choose>
+															</a>
+														</div>
+													</div>
+												</td>
+
+												<td>
+													<h5>${myreservations.payment}</h5>
+												</td>
+
+												<td>
+													<h5>${myreservations.startDate}~ ${myreservations.endDate}</h5>
+												</td>
+
+												<td>
+													<h5>${myreservations.regDate}</h5>
+												</td>
+
+												<td>
+													<h5>${myreservations.totalPrice}원</h5>
+												</td>
+												<td>
+				                                    <c:if test='${myreservations.checkin == true}'>
+				                       					<h5 style="color: blue;">체크인승인완료</h5>
+				                       				</c:if>
+				                       				<c:if test='${myreservations.checkin == false}'>
+				                       					<h5 style="color: red;">체크인미승인</h5>
+				                       				</c:if>
+				                                </td>
+											</tr>
 										</c:forEach>
-										</div>
-			<%-- 							<div class="overlay" id="member${room.roomNo}search">
-									<label class="checkbox inline"> 
-									<input type="checkbox" class="membercheck" data-roomno="${room.roomNo}">
-										회원선택
-										<a href="javascript:;" class="membercheck"> <span
-											class="lnr lnr-heart"></span></a>
-									</label>
-								</div>
+									</tbody>
 
-								<div class="overlay2" id="member${room.roomNo}search2">
-									<!-- <div class=text> -->
-										<a href="javascript:;" class="membercheck2">
-										 <span class="lnr lnr-heart" style="color: red;"></span></a>
-									<!-- </div> -->
-								</div> --%>
-									</div>
-									</c:when>
-									<c:otherwise>
-									<div class="span3" data-memberno="${ login.memberNo }">
-									<div class="main-carousel" data-flickity='{ "autoPlay": true }'>
-										<img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt="">
-									</div>
-									<div class="overlay" id="member${room.roomNo}search">
-									<label class="checkbox inline"> 
-								
-										<a href="javascript:;" class="membercheck"> <span
-											class="lnr lnr-heart"></span></a>
-									</label>
-								</div>
-
-								<div class="overlay2" id="member${room.roomNo}search2">
-									<!-- <div class=text> -->
-										<a href="javascript:;" class="membercheck2">
-										 <span class="lnr lnr-heart" style="color: red;"></span></a>
-									<!-- </div> -->
-								</div> 
-									</div>
-									</c:otherwise>
-								</c:choose>
-							
-							
-								<!-- <img class="img-fluid" src="/haroobang/resources/img/product/p1.jpg" alt=""> -->
-								<a href="/haroobang/mypage/myRoomReservationDetail.action?roomno=${room.roomNo}">
-								<div class="product-details">
-									<h6 class="searchh">${room.roomName}</h6>
-									<div class="price">
-										<h6>${room.price}&#8361;</h6>
-									</div>
-									<div class="prd-bottom">
-										<!-- <a href="" class="social-info"> <span class="ti-bag"></span>
-											<p class="hover-text">add to bag</p>
-										</a> <a href="" class="social-info"> <span
-											class="lnr lnr-heart"></span>
-											<p class="hover-text">Wishlist</p>
-										</a> <a href="" class="social-info"> <span
-											class="lnr lnr-sync"></span>
-											<p class="hover-text">compare</p>
-										</a> <a href="" class="social-info"> <span
-											class="lnr lnr-move"></span>
-											<p class="hover-text">view more</p>
-										</a> -->
-							
-									</div>
-								</div>
+								</table>
+								<hr>
 							</div>
 						</div>
-						</a>
-						</c:forEach>
 					</div>
 				</section>
 				<!-- End Best Seller -->
-				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting mr-auto">
-						
-					</div>
-					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a> 
-						
-						<a href="#" class="active">1</a> <a href="#">2</a> <a href="#">3</a> 
-						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a> 
-						<a href="#">6</a> <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-					</div>
-				</div>
-				<!-- End Filter Bar -->
+
 			</div>
 		</div>
-	  </div>
-	<!-- Start related-product Area -->
-	<section class="related-product-area section_gap">		
-	</section>
-	<!-- End related-product Area -->
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
 
 	<!-- start footer Area -->
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 	<!-- End footer Area -->
 
-	<!-- Modal Quick Product View -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="container relative">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<div class="product-quick-view">
-					<div class="row align-items-center">
-						<div class="col-lg-6">
-							<div class="quick-view-carousel">
-								<div class="item"
-									style="background: url(/haroobang/resources/img/organic-food/q1.jpg);">
-
-								</div>
-								<div class="item"
-									style="background: url(/haroobang/resources/img/organic-food/q1.jpg);">
-
-								</div>
-								<div class="item"
-									style="background: url(/haroobang/resources/img/organic-food/q1.jpg);">
-
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="quick-view-content">
-								<div class="top">
-									<h3 class="head">Mill Oil 1000W Heater, White</h3>
-									<div class="price d-flex align-items-center">
-										<span class="lnr lnr-tag"></span> <span class="ml-10">$149.99</span>
-									</div>
-									<div class="category">
-										Category: <span>Household</span>
-									</div>
-									<div class="available">
-										Availibility: <span>In Stock</span>
-									</div>
-								</div>
-								<div class="middle">
-									<p class="content">Mill Oil is an innovative oil filled
-										radiator with the most modern technology. If you are looking
-										for something that can make your interior look awesome, and at
-										the same time give you the pleasant warm feeling during the
-										winter.</p>
-									<a href="#" class="view-full">View full Details <span
-										class="lnr lnr-arrow-right"></span></a>
-								</div>
-								<div class="bottom">
-									<div class="color-picker d-flex align-items-center">
-										Color: <span class="single-pick"></span> <span
-											class="single-pick"></span> <span class="single-pick"></span>
-										<span class="single-pick"></span> <span class="single-pick"></span>
-									</div>
-									<div class="quantity-container d-flex align-items-center mt-15">
-										Quantity: <input type="text" class="quantity-amount ml-15"
-											value="1" />
-										<div class="arrow-btn d-inline-flex flex-column">
-											<button class="increase arrow" type="button"
-												title="Increase Quantity">
-												<span class="lnr lnr-chevron-up"></span>
-											</button>
-											<button class="decrease arrow" type="button"
-												title="Decrease Quantity">
-												<span class="lnr lnr-chevron-down"></span>
-											</button>
-										</div>
-
-									</div>
-									<div class="d-flex mt-20">
-										<a href="#" class="view-btn color-2"><span>Add to
-												Cart</span></a> <a href="#" class="like-btn"><span
-											class="lnr lnr-layers"></span></a> <a href="#" class="like-btn"><span
-											class="lnr lnr-heart"></span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
 	<jsp:include page="/WEB-INF/views/include/js.jsp" />
   	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   	
-
-  	
   	<script type="text/javascript">
 
-	
-			
-			$("#keyword").on('keyup', function() {
-				var k = $(this).val();
-				//$("#search").find(".search").hide();
-				$("#disapprovalRoom div[data-roomno]").hide();
-
-				var temp = $("h6.searchh:contains('" + k + "')");
-				$(temp).parents(".search").show();
-			});
-			$("#keyword2").on('keyup', function() {
-				var k = $(this).val();
-				$("#search").find(".search").hide();
-
-				var temp = $("h6.searchh:contains('" + k + "')");
-				$(temp).parents(".search").show();
-			});
-			
-			$("a[id ^=roomapproval]").on('click',function(event){
-				
-				var formData = $(this).parents('.disapprovalNo').attr('data-roomno');
-				
-				$.ajax({
-					"url": "roomApproval.action",
-					"method": "POST",
-					"data": { 'formdate' : formData },
-					"success": function(data, status, xhr) {
-						if (data === "success"){
-							alert('숙소가 승인 되었습니다.');
-							location.reload(true);
-						}
-						/* alert('숙소가 승인 되었습니다.'); */
-					},
-					"error": function(xhr, status, err) {
-						alert('숙소 실패');
-						location.reload(true);
-					}
-				});
-			});
-			
-			 //$("#roomdelete"+roomNo).on('click',function(event){
-			$("a[id ^=roomdelete]").on('click',function(event){
-				var roomNo = $(this).parents('.disapprovalNo').attr('data-roomno');
-				alert(roomNo+'준비중~');
-			});
-			
-	
-			$('.main-carousel').flickity({
-				  // options
-				  cellAlign: 'left',
-				  contain: true,
-				  pageDots: false,
-				});
 	
 	</script>
 

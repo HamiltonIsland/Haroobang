@@ -3,9 +3,12 @@ package com.haroobang.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.jsp.tagext.TryCatchFinally;
+
 import org.springframework.stereotype.Repository;
 
 import com.haroobang.mapper.MyRoomMapper;
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
@@ -35,18 +38,6 @@ public class OracleMyRoomDao implements MyRoomDao {
 		List<RoomAttachVO> attachs = myRoomMapper.selectAllMyRoomAttachByRoomNo(roomNo);
 		return attachs;
 	}
-
-
-
-	@Override
-	public List<ReservationVO> selectReservationByRoomNo(int roomNo, int memberNo) {
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("roomNo", roomNo);
-		params.put("memberNo", memberNo);
-		List<ReservationVO> myroom = myRoomMapper.selectReservationByRoomNo(params);
-		return myroom;
-	}
-
 
 
 	@Override
@@ -83,28 +74,69 @@ public class OracleMyRoomDao implements MyRoomDao {
 		myRoomMapper.deleteMyRoom(Integer.parseInt(roomNo));
 	}
 
-	
-	
-
-	
 
 
-//	@Override
-//	public List<ReservationVO> selectAllMyRoomReservation(int memberNo) {
-//		List<ReservationVO> myrooms = myRoomMapper.selectAllMyRoomReservation(memberNo);
-//		return myrooms;
-//	}
-//
-//
-//	@Override
-//	public List<Integer> selectAllMyRoomNo(int memberNo) {
-//		List<Integer> myroomNo = myRoomMapper.selectAllMyRoomNo(memberNo);
-//		
-//		for(int i = 0 ; i < myroomNo.size() ; i++) {
-//			List<ReservationVO> myroomRes = myRoomMapper.selectAllMyRoomReservation(myroomNo.get(i));
-//		}
-//		
-//		return myroomNo;
-//	}
+	@Override
+	public List<ReservationVO> reservationByMyRoom(int roomNo) {
+		List<ReservationVO> reservations = myRoomMapper.selectReservationsByroomno(roomNo);
+		return reservations;
+	}
+
+
+
+	@Override
+	public ReservationVO selectReservationByReservationNo(int reservationNo) {
+		ReservationVO reservation = myRoomMapper.seletReservationByReservationNo(reservationNo);
+		return reservation;
+	}
+
+
+
+	@Override
+	public RoomVO selectRoomDetailbyRoonNo(int roomNo) {
+		RoomVO roomDetail = myRoomMapper.selectRoomDetailbyRoonNo(roomNo);
+		List<RoomAttachVO> attach = myRoomMapper.selectRoomAttachbyRoomNo(roomNo);
+		
+		roomDetail.setRoomAttachList(attach);
+		return roomDetail;
+	}
+
+
+
+	@Override
+	public AccountVO selectMemberByMemberNo(int memberNo) {
+		AccountVO member = myRoomMapper.selectMemberByMemberNo(memberNo);
+		return member;
+	}
+
+
+
+	@Override
+	public String checkinApproval(int reservationNo) {
+		String result = "success";
+		try{
+			myRoomMapper.checkinApproval(reservationNo);
+		}catch(Exception e) {
+			result="fail";
+		}	
+				
+		return result;
+	}
+
+
+
+	@Override
+	public String calcelCheckin(int reservationNo) {
+		
+		String result = "success";
+		try{
+			myRoomMapper.calcelCheckin(reservationNo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result="fail";
+		}
+		return result;
+	}
+
 
 }

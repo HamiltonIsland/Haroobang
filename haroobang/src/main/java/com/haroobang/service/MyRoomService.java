@@ -7,18 +7,18 @@ import com.haroobang.vo.RoomVO;
 
 public interface MyRoomService {
 
-	//List<ReservationVO> findMyRoomReservation(int memberNo);
-
-	//List<Integer> findMyRoomNo(int memberNo);
-
-	List<RoomVO> findAllMyRooms(int memberNo);
-
-	List<ReservationVO> findReservationByRoomNo(int roomNo, int memberNo);
+	ReservationVO findReservationByRoomNo(int roomNo);
 
 	List<RoomVO> findWaitingListByPage(int memberNo, int from, int to);
 
 	int findWaitingCount(int memberNo);
 
 	void deleteMyRoom(String roomNo);
+
+	List<ReservationVO> findAllMyReservations(int memberNo);
+
+	String checkinApproval(int reservationNo);
+
+	String calcelCheckin(int reservationNo);
 
 }

@@ -2,6 +2,7 @@ package com.haroobang.dao;
 
 import java.util.List;
 
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
 import com.haroobang.vo.RoomVO;
@@ -16,7 +17,7 @@ public interface MyRoomDao {
 
 	List<RoomAttachVO> selectAllMyRoomAttachByRoomNo(int roomNo);
 
-	List<ReservationVO> selectReservationByRoomNo(int roomNo, int memberNo);
+	ReservationVO selectReservationByReservationNo(int reservationNo);
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
@@ -25,6 +26,16 @@ public interface MyRoomDao {
 	int selectWaitingCount(int memberNo);
 
 	void deleteMyRoom(String roomNo);
+
+	List<ReservationVO> reservationByMyRoom(int roomNo);
+
+	RoomVO selectRoomDetailbyRoonNo(int roomNo);
+
+	AccountVO selectMemberByMemberNo(int memberNo);
+
+	String checkinApproval(int reservationNo);
+
+	String calcelCheckin(int reservationNo);
 
 
 

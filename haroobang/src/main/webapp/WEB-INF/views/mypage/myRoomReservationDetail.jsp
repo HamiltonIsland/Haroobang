@@ -22,11 +22,8 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>LastReservation</title>
+<title>예약상세정보</title>
 
-<!--
-            CSS
-            ============================================= -->
 <jsp:include page="../include/css.jsp" />
 </head>
 
@@ -99,166 +96,81 @@
 
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
-				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting">
-						<select>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
-						</select>
-					</div>
-					<div class="sorting mr-auto">
-						<select>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-						</select>
-					</div>
-					<div class="pagination">
-						<a href="#" class="prev-arrow"><i
-							class="fa fa-long-arrow-left" aria-hidden="true"></i></a> <a href="#"
-							class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a
-							href="#" class="dot-dot"><i class="fa fa-ellipsis-h"
-							aria-hidden="true"></i></a> <a href="#">6</a> <a href="#"
-							class="next-arrow"><i class="fa fa-long-arrow-right"
-							aria-hidden="true"></i></a>
-					</div>
-				</div>
+				
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<table class="table">
-					<thead>
-						<tr class="bottom_button">
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						
-						</tr>
-					</thead>
-				</table>
-				<section class="cart_area" style="padding-top: 10px">
-					<div class="container">
-						<div class="cart_inner">
-							<!-- single product -->
-							<div class="table-responsive" style="text-align: center">
-								<table class="table">
-									<thead>
-										<tr>
-											<th scope="col">숙소정보</th>
-											<th scope="col">결제수단</th>
-											<th scope="col">숙박기간</th>
-											<!-- <th scope="col">Check IN or OUT</th> -->
-											<th scope="col">결제일시</th>
-											<th scope="col">총결제금액</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="current" items="${reservationdetail}">
-
-											<tr class="search">
-												<td>
-													<div class="media">
-														<div class="d-flex">
-															<input type="checkbox"> <a
-																href="/haroobang/room/roomDetail.action?roomNo=${current.roomNo}">
-																<c:choose>
-																	<c:when test="${not empty current.roomAttachList}">
-																		<div class="main-carousel"
-																			data-flickity='{ "autoPlay": true }'>
-																			<c:forEach var="attach"
-																				items="${current.roomAttachList}">
-
-																				<img style="width: 100px; height: 100px"
-																					src="/haroobang/resources/upload/${attach.savedFileName}"
-																					alt=""
-																					onerror="this.src = '/haroobang/resources/upload/default.jpg'">
-																			</c:forEach>
-																		</div>
-																	</c:when>
-																	<c:otherwise>
-																		<img style="width: 100px; height: 100px"
-																			src="/haroobang/resources/img/product/p1.jpg" alt="">
-																	</c:otherwise>
-																</c:choose>
-															</a>
-														</div>
-
-														<div class="media-body">
-															<p class="searchh"
-																style="overflow: hidden; text-overflow: ellipsis; width: 100px; height: 20px;">${current.RoomVO.roomName}</p>
-														</div>
-
-													</div>
-												</td>
-
-												<td>
-													<h5>${current.payment}</h5>
-												</td>
-
-												<td>
-													<h5>${current.startDate}~ ${current.endDate}</h5>
-												</td>
-
-												<%--   <td>
-                                    <h5>
-                                    <c:choose>
-                                    	<c:when test='${not empty reservation.checkin and reservation.checkin eq true }'>
-                                    		<h5 style="color: blue; text-align: center;">Check-IN</h5>
-                                    		
-                                    		<c:if test='${ reservation.checkin eq 2 }'>
-                                    		<h5 style="color: red;">Check-OUT</h5>
-                                    		</c:if>
-                                    		
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<h5 style="color: red; text-align: center;">NOT Arrive</h5>
-                                    	</c:otherwise>
-                                    </c:choose>
-                                    </h5>
-                                </td> --%>
-
-												<td>
-													<h5>${current.regDate}</h5>
-												</td>
-
-												<td>
-													<h5>${current.totalPrice}&#8361;</h5>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-
-								</table>
-								<hr>
-							</div>
-						</div>
-					</div>
-				</section>
+<section class="checkout_area section_gap" style="padding: 15px">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8" style="padding-left:30px ">
+                        <h3>숙소 예약 정보</h3>
+                        <form class="row contact_form" action="payment.action" id="form" method="post" novalidate="novalidate">
+                           <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="예약일정 : ${reservation.startDate}~${reservation.endDate } ( ${reservation.nights }박 ) / 총 숙박인원:  ${reservation.people }명" style="border: white" readonly>
+                            </div>
+                           
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="금액 : ${reservation.roomVO.price}원 x ${reservation.nights}박 = ${reservation.roomVO.price *reservation.nights } 원 " style="border: white" readonly>
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"placeholder="총 결제금액 : ${reservation.roomVO.price *reservation.nights } 원 - 적립금 ${reservation.usedPoint } 점 = ${reservation.roomVO.price *reservation.nights - reservation.usedPoint } 원" readonly>
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <h3>요청사항</h3>
+                                </div>
+                                <c:choose>
+                                <c:when test="${reservation.request.length() == 0 }">
+                                <p style="color: #777777"> 요청사항이 없습니다.<p>
+                                </c:when>
+                                <c:otherwise>
+                                <pre style="overflow: auto;color: #777777;height:70px;"> ${reservation.request }</pre>
+                                </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <br>
+                            <div class="col-md-12 form-group" style="text-align: center;">
+                                <a class="primary-btn" style="color: white;" href="/haroobang/mypage/myRoomReservation.action?memberno=${login.memberNo }">목록으로 돌아가기</a>
+                            </div>
+                    </div>
+                    
+                    
+                    <div class="col-lg-4">
+                        <div class="order_box" style="padding: 0;background:white;">
+                            <h3>숙소정보</h3>
+                           
+                            <div class="payment_item">
+                                <p>
+                                <a href="/haroobang/room/roomDetail.action?roomNo=${reservation.roomNo }">
+                                <img style="height:200px;width:250px; box-shadow:-9px 8px 20px rgba(0, 0, 0, 0.5);" src="/haroobang/resources/upload/${reservation.roomVO.roomAttachList[0].savedFileName}"/>
+                                </a></p>
+                            </div>
+                            <h3>예약한 고객 정보</h3>
+                            <img src="/haroobang/resources/upload/${reservation.accountVO.savedFileName }" class="rounded-circle" style="height: 70px;width:70px" alt="">
+                             &nbsp;&nbsp;${reservation.accountVO.nickname } 님
+                             <br>
+                             &nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${reservation.accountVO.memberNo }"><i class="icon-envelope-alt"></i>채팅하기</a></h3>
+                            <br><br>
+                            </form>
+                            <c:choose>
+                            <c:when test="${reservation.checkin == false }">
+                            <a class="primary-btn" style="color: white;display: block" id="checkinApproval">체크인 승인</a>
+                            <a class="primary-btn" style="color: gray;background: white;border:solid 1px;display: none" id="calcelCheckin">체크인 승인완료/승인취소</a>
+                            </c:when>
+                            <c:otherwise>
+                             <a class="primary-btn" style="color: gray;background: white;border:solid 1px;display: block" id="calcelCheckin">체크인 승인완료/승인취소</a>
+                             <a class="primary-btn" style="color: white;display: none" id="checkinApproval">체크인 승인</a>
+                            </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 				<!-- End Best Seller -->
 
 			</div>
@@ -279,6 +191,49 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<!-- End footer Area -->
 	<jsp:include page="../include/js.jsp" />
+	
+	<script type="text/javascript">
+	
+	$("#checkinApproval").click(function(e){
+		
+		$("#calcelCheckin").css('display','block');
+		 $("#checkinApproval").css('display','none');
+
+		$.ajax({
+			url:"checkinApproval.action",
+			data: {"reservationNo":${reservation.reservationNo}},
+			method:"GET",
+			success:function(data,status,xhr){
+				if(data == "success"){
+					alert("체크인이 승인되었습니다.")	
+				}else if(data =="fail"){
+					alert("체크인 승인이 실패하였습니다.")
+				}
+			}	
+			});
+	});
+	
+	$("#calcelCheckin").click(function(e){
+		
+		$("#checkinApproval").css('display','block');
+		 $("#calcelCheckin").css('display','none');
+
+		$.ajax({
+			url:"calcelCheckin.action",
+			data: {"reservationNo":${reservation.reservationNo}},
+			method:"GET",
+			success:function(data,status,xhr){
+				if(data == "success"){
+					alert("체크인이 승인이 취소되었습니다.")	
+				}else if(data =="fail"){
+					alert("체크인 승인취소가 실패하였습니다.")
+				}
+			}	
+			});
+	});
+	
+	
+	</script>
 
 </body>
 
