@@ -27,11 +27,108 @@
 	<!--
             CSS
             ============================================= -->
+   
 	<jsp:include page="../include/css.jsp"/>
+	<jsp:include page="../include/js.jsp"/>
 </head>
 
 <body id="category">
+	<%-- <div class="modal fade" id="myModal" role="dialog"
+		style="top: 30%; z-index: -100;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #00ba8b;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title" style="color: white;">이전예약보기</h3>
+				</div>
+				<div class="container">
+					<div class="cart_inner">
+						<div class="table-responsive" style="text-align: center">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">숙소정보</th>
+										<th scope="col">몇박</th>
+										<th scope="col">총결제금액</th>
+										<th scope="col">결제수단</th>
+										<th scope="col">결제일시</th>
+										<th scope="col">체크인</th>
+										<th scope="col">체크아웃</th>
+										<th scope="col">결제고객</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="media">
+												<div class="d-flex">
+													<a
+														href="/haroobang/room/roomDetail.action?roomNo=${roomno}">
+														<c:choose>
+															<c:when
+																test="${not empty reservationdetail.roomAttachList}">
+																<c:forEach var="attach"
+																	items="${reservationdetail.roomAttachList}">
+																	<img style="height: 100px; width: 100px"
+																		src="/haroobang/resources/upload/${attach.savedFileName}"
+																		alt=""
+																		onerror="this.src = '/haroobang/resources/upload/default.jpg'">
+																</c:forEach>
+															</c:when>
+															<c:otherwise>
+																<img style="width: 100px; height: 100px"
+																	src="/haroobang/resources/img/product/p1.jpg" alt="">
+															</c:otherwise>
+														</c:choose>
+													</a>
+												</div>
+												<div class="media-body" style="text-align: left">
+													<a
+														href="/haroobang/room/roomDetail.action?roomNo=${roomno}">
+														<p>${reservationdetail.roomVO.roomName }</p>
+													</a>
+												</div>
+											</div>
+										</td>
+										<td>
+											<h5>${reservationdetail.nights }박</h5>
+										</td>
+										<td>
+											<h5>${reservationdetail.totalPrice }원</h5>
+										</td>
+										<td>
+											<h5>${reservationdetail.payment}</h5>
+										</td>
+										<td>
+											<h5>${reservationdetail.regDate }</h5>
+										</td>
 
+										<td>
+											<h5>${reservationdetail.startDate }</h5>
+										</td>
+
+										<td>
+											<h5>${reservationdetail.endDate }</h5>
+										</td>
+
+										<td>
+											<h5>${reservationdetail.accountVO.name }</h5>
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+							<a class="gray_btn"
+								href="/haroobang/mypage/commentRegister.action?roomno=${ roomno }&reservationno=${ reservationdetail.reservationNo }">후기등록</a>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- /content -->
+			</div>
+		</div>
+	</div> --%>
 	<!-- Start Header Area -->
 	<jsp:include page="../include/navbar.jsp"/>
 	<!-- End Header Area -->
@@ -146,7 +243,8 @@
                                         </div>
                                         
                                         <div class="media-body">
-                                            <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" class="txt_line">${myroom.roomVO.roomName}</a>
+                                            <a href="/haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate }" id="show-detail-modal">${myroom.roomVO.roomName}</a>
+                                            <%-- /haroobang/mypage/lastReservationDetail.action?roomno=${ myroom.roomNo }&startdate=${ myroom.startDate } --%>
                                         </div>
                                         
                                     </div>
@@ -185,8 +283,75 @@
 	<!-- start footer Area -->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<!-- End footer Area -->
-	<jsp:include page="../include/js.jsp"/>
+	
 	
 </body>
+<!-- <script type="text/javascript">
+	window.addEventListener('load', function(event) {
+		$('#show-detail-modal').on('click', function(event) {
+			var register_modal = $('#myModal');
+			register_modal.css({
+				'z-index' : '1050'
+			});
+			register_modal.modal('show');
+			
+			$.ajax({
+				"url": "lastReservationDetail.action",
+				"type": "GET",
+				"data": {"roomno" : roomNo,
+						 "startdate" : startDate },
+				"processData" : false,
+	            "contentType" : false,
+				"success": function(formData, status, xhr) {
+					if(formData === "success") {
+						alert('센터 정보를 수정했습니다.');
+					} else {
+						alert('센터 정보 수정 실패');
+					}
+						
+					location.href="/team-project3/home.action";
+					location.reload(true);
+				},
+				"error": function(xhr, status, err) {
+					alert('센터 정보 수정 실패');
+					location.reload(true);
+				}
+			});
+		});
+
+	});
+	$(function() {
+		$('#centermodify').on('click', function(event) {
+			//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
+			//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
+			
+			//var data = $('#memberupdateform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+			var formData = new FormData($('#centermodifyform')[0]);
+			
+			$.ajax({
+				"url": "setting.action",
+				"type": "POST",
+				"data": formData,
+				"enctype": 'multipart/form-data',
+				"processData" : false,
+	            "contentType" : false,
+				"success": function(formData, status, xhr) {
+					if(formData === "success") {
+						alert('센터 정보를 수정했습니다.');
+					} else {
+						alert('센터 정보 수정 실패');
+					}
+						
+					location.href="/team-project3/home.action";
+					location.reload(true);
+				},
+				"error": function(xhr, status, err) {
+					alert('센터 정보 수정 실패');
+					location.reload(true);
+				}
+			});
+		}); 
+	})
+</script> -->
 
 </html>
