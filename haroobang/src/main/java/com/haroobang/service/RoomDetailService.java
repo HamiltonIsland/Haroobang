@@ -15,7 +15,7 @@ public interface RoomDetailService {
 
 	AccountVO findMember(int memberNo);
 
-	String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList);
+	String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList, String startDate, String endDate);
 
 	List<String> findDateList(int roomNo);
 
@@ -26,5 +26,11 @@ public interface RoomDetailService {
 	String findReservedDate(int roomNo, String checkinDate, String endDate);
 
 	String findMyLike(int roomNo, int memberNo);
+
+	void updateFinalPoint(int memberNo, int finalPoint);
+
+	String deleteLike(int roomNo, int memberNo);
+
+	String findIdenticalDate(String checkinDate, String endDate, int roomNo);
 
 }

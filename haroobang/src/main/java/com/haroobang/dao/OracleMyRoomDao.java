@@ -55,6 +55,34 @@ public class OracleMyRoomDao implements MyRoomDao {
 		return attachs;
 	}
 
+
+
+	@Override
+	public List<RoomVO> selectWaitingListByPage(int memberNo, int from, int to) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("memberNo", memberNo);
+		params.put("first", from);
+		params.put("last", to);
+		
+		List<RoomVO> waitings = myRoomMapper.selectWaitingsList(params);
+		return waitings;
+	}
+
+
+
+	@Override
+	public int selectWaitingCount(int memberNo) {
+		int count = myRoomMapper.selectWaitingCount(memberNo);
+		return count;
+	}
+
+
+
+	@Override
+	public void deleteMyRoom(String roomNo) {
+		myRoomMapper.deleteMyRoom(Integer.parseInt(roomNo));
+	}
+
 	
 	
 

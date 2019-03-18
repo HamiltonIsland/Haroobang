@@ -74,7 +74,7 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 	}
 
 	@Override
-	public String addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
+	public int addRoomReservation(ReservationVO reservationVo,List<LocalDate> dateList) {
 		
 		roomDetailMapper.addRoomReservaion(reservationVo);
 		int reservationNo = reservationVo.getReservationNo();
@@ -87,14 +87,15 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		try{
-			for(int i=0;i<dateList.size()-1;i++) {
+			for(int i=0;i<dateList.size();i++) {
 				params.put("date",formatter.format(dateList.get(i)));
 				roomDetailMapper.addReservationDate(params);
 			}
-			return "success";
+			return reservationVo.getReservationNo();
 		}catch(Exception e) {
-			return "fail";
+			return 0;
 		}
+		
 		
 		
 	}
@@ -182,4 +183,72 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 		}
 		return result;
 	}
+
+	@Override
+	public void updateFinalPoint(int memberNo,int finalPoint) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("memberNo", memberNo);
+		params.put("finalPoint", finalPoint);
+		
+		roomDetailMapper.updateFinalPoint(params);
+		
+	}
+
+	@Override
+	public String deleteLike(int roomNo, int memberNo) {
+		
+		String result = "success";
+		try {
+			HashMap<String,Object> params = new HashMap<String, Object>();
+			params.put("roomNo", roomNo);
+			params.put("memberNo", memberNo);
+			roomDetailMapper.deleteLike(params);
+			
+		} catch (Exception e) {
+			result = "fail";
+		}
+		return result;
+		
+	}
+
+	@Override
+	public void addStartDateEndDate(String date,int roomNo,int reservationNo) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("roomNo", roomNo);
+		params.put("reservationNo", reservationNo);
+		params.put("date",date);
+		
+		try {
+			int result = roomDetailMapper.findReservationDate(params);
+			if(result >= 1) {
+				roomDetailMapper.updateStartDateEndDate(params);
+			}
+		} catch (Exception e) {
+			roomDetailMapper.addOcupiedDate(params);
+		}
+		
+	}
+
+	@Override
+	public String findIdenticalDate(String checkinDate, String endDate,int roomNo) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("checkinDate",checkinDate);
+		params.put("endDate",endDate);
+		params.put("roomNo", roomNo);
+		
+		try {
+			int reservationNo = roomDetailMapper.findIdenticalDate(params);
+			return "exist";
+		} catch (Exception e) {
+			return "none";
+		}
+	}
+
+	@Override
+	public String findMemberNickname(int roomNo) {
+		String nickName = roomDetailMapper.findMemberNickname(roomNo);
+		return nickName;
+}
 }

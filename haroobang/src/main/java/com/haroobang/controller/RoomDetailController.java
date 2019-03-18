@@ -59,13 +59,27 @@ public class RoomDetailController {
 	@ResponseBody
 	public String addLike(int roomNo, HttpSession session) {
 
-		System.out.println(session.getAttribute("login"));
 		if (session.getAttribute("login") == null) {
 			return "/account/login.action";
 		} else {
 			AccountVO member = (AccountVO) session.getAttribute("login");
 			int memberNo = member.getMemberNo();
 			String result = roomDetailService.addLike(roomNo, memberNo);
+
+			return result;
+		}
+	}
+	
+	@RequestMapping(value = "deleteLike.action", method = RequestMethod.GET)
+	@ResponseBody
+	public String deleteLike(int roomNo, HttpSession session) {
+
+		if (session.getAttribute("login") == null) {
+			return "/account/login.action";
+		} else {
+			AccountVO member = (AccountVO) session.getAttribute("login");
+			int memberNo = member.getMemberNo();
+			String result = roomDetailService.deleteLike(roomNo, memberNo);
 
 			return result;
 		}
@@ -87,17 +101,24 @@ public class RoomDetailController {
 			return "redirect:/account/login.action";
 		}
 		
-		LocalDate now = LocalDate.now();
-		LocalDate startDate = LocalDate.parse(checkinDate);
-		if(startDate .isBefore(now)) {
-			return "fail";
+		String result2 = roomDetailService.findIdenticalDate(checkinDate,endDate,roomNo);
+		if(result2 == "exist") {
+			return "exist";
 		}else {
-		String result = roomDetailService.findReservedDate(roomNo,checkinDate,endDate);
-		
-		model.addAttribute("roomNo",roomNo);
+			LocalDate now = LocalDate.now();
+			LocalDate startDate = LocalDate.parse(checkinDate);
+			if(startDate .isBefore(now)) {
+				return "fail";
+			}else {
+			String result = roomDetailService.findReservedDate(roomNo,checkinDate,endDate);
+			
+			model.addAttribute("roomNo",roomNo);
 
-		return result;
+			return result;
+			}
 		}
+		
+	
 	}
 
 	@RequestMapping(value="reservationCheckout.action")
@@ -128,7 +149,9 @@ public class RoomDetailController {
 	public String calender(int roomNo,Model model) {
 		
 		List<String> dateList = roomDetailService.findDateList(roomNo);
-	
+		RoomVO roomDetail = roomDetailService.findRoomDetail(roomNo);
+		
+		model.addAttribute("roomDetail", roomDetail);
 		model.addAttribute("dateList",dateList);
 		model.addAttribute("roomNo",roomNo);
 		
@@ -152,26 +175,30 @@ public class RoomDetailController {
 		AccountVO member = (AccountVO) session.getAttribute("login");
 		int memberNo = member.getMemberNo();
 		
-		if(reservationVo.getRequest().length() == 0) {
+		if(reservationVo.getRequest()== null) {
 			reservationVo.setRequest("요청사항없음");
 		}
-
+		
+		reservationVo.setTotalPrice(reservationVo.getBeforePrice()-reservationVo.getUsedPoint());
 		LocalDate startDate = LocalDate.parse(reservationVo.getStartDate());
 
 		List<LocalDate> dateList = new ArrayList();
 		
 		for(int i = 0;i<reservationVo.getNights()-1;i++) {
-			dateList.add(startDate.plusDays(i));
+			dateList.add(startDate.plusDays(i+1));
 		}
 
 		reservationVo.setMemberNo(memberNo);
 
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
-		String message =roomDetailService.addRoomReservation(reservationVo,dateList);
+		String message =roomDetailService.addRoomReservation(reservationVo,dateList,reservationVo.getStartDate(), reservationVo.getEndDate());
 		
 		if(message =="fail") {
 			return "redirect:/account/login.action";
 		}
+		int finalPoint = member.getPoint()-reservationVo.getUsedPoint()+(int)(reservationVo.getTotalPrice()*0.03);
+		member.setPoint(finalPoint);
+		roomDetailService.updateFinalPoint(memberNo,finalPoint);
 		
 		model.addAttribute("reservation", reservationVo);
 		model.addAttribute("roomDetail", room);

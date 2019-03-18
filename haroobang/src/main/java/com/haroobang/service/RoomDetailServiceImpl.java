@@ -30,6 +30,7 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	@Override
 	public RoomVO findRoomDetail(int roomNo) {
 		RoomVO room = roomDetailDao.findRoomDetail(roomNo);
+		room.setMemberNickname(roomDetailDao.findMemberNickname(roomNo));
 		return room;
 	}
 
@@ -40,9 +41,11 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	}
 
 	@Override
-	public String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList) {
-		String message = roomDetailDao.addRoomReservation(reservationVo,dateList);
-		return message;
+	public String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList,String startDate,String endDate) {
+		int reservationNo = roomDetailDao.addRoomReservation(reservationVo,dateList);
+		roomDetailDao.addStartDateEndDate(startDate,reservationVo.getRoomNo(),reservationNo);
+		roomDetailDao.addStartDateEndDate(endDate,reservationVo.getRoomNo(),reservationNo);
+		return "success";
 		
 	}
 
@@ -80,6 +83,25 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	public String findMyLike(int roomNo, int memberNo) {
 		String result = roomDetailDao.findMyLike(roomNo, memberNo);
 		return result;
+	}
+
+	@Override
+	public void updateFinalPoint(int memberNo,int finalPoint) {
+		roomDetailDao.updateFinalPoint(memberNo,finalPoint);
+		
+	}
+
+	@Override
+	public String deleteLike(int roomNo, int memberNo) {
+		String result = roomDetailDao.deleteLike(roomNo, memberNo);
+		return result;
+	}
+
+	@Override
+	public String findIdenticalDate(String checkinDate, String endDate,int roomNo) {
+		String result = roomDetailDao.findIdenticalDate(checkinDate, endDate,roomNo);
+		return result;
+		
 	}
 
 }

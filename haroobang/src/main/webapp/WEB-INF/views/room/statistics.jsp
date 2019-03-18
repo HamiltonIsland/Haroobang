@@ -38,19 +38,23 @@
 	<!--================Product Description Area =================-->
 	<section class="product_description_area">
 		<div class="container">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item"><a class="nav-link active" id="home-tab"
-					data-toggle="tab" href="#home" role="tab" aria-controls="home"
-					aria-selected="true">이익</a></li>
+			<ul class="nav nav-tabs" id="myTab" role="tablist">				
+				<li class="nav-item"><a class="nav-link active" id="review-tab"
+					data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					aria-selected="true">월 매출</a></li>
 				<li class="nav-item"><a class="nav-link" id="profile-tab"
 					data-toggle="tab" href="#profile" role="tab"
 					aria-controls="profile" aria-selected="false">월별 예약건수</a></li>
 				<li class="nav-item"><a class="nav-link" id="review-tab"
-					data-toggle="tab" href="#review" role="tab" aria-controls="review"
-					aria-selected="false">통계3</a></li>
+					data-toggle="tab" href="#member" role="tab" aria-controls="member"
+					aria-selected="false">회원 수</a></li>
+				<li class="nav-item"><a class="nav-link" id="home-tab"
+					data-toggle="tab" href="#home" role="tab" aria-controls="home"
+					aria-selected="false">이익</a></li>
+				
 			</ul>
 			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade show active" id="home" role="tabpanel"
+				<div class="tab-pane fade" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
 					<div id="chartContainer1" style="text-align:center">	
 					</div>
@@ -61,8 +65,62 @@
 					</div>
 				</div>
 
-				<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+				<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
 					<div id="chartContainer3" style="text-align:center">	
+					</div> 
+				</div>
+				<div class="tab-pane fade" id="member" role="tabpanel" aria-labelledby="member-tab">
+					<div id="chartContainer4" style="text-align:center">
+					<div class="row"> 
+							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
+		                            <div class="analytics-content"> 
+		                                <h5>가입된 회원수</h5>   
+		                                <h2><span class="counter">${StatisticsList.memberCount}</span> <span class="tuition-fees">명</span></h2>
+		                                <span class="text-inverse"></span> 
+		                                <div class="progress m-b-0">
+		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">230% Complete</span> </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
+		                            <div class="analytics-content"> 
+		                                <h5>가입된 회원수</h5>   
+		                                <h2><span class="counter">12</span> <span class="tuition-fees">명</span></h2>
+		                                <span class="text-inverse"></span> 
+		                                <div class="progress m-b-0">
+		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
+		                            <div class="analytics-content"> 
+		                                <h5>가입된 회원수</h5>   
+		                                <h2><span class="counter">12</span> <span class="tuition-fees">명</span></h2>
+		                                <span class="text-inverse"></span> 
+		                                <div class="progress m-b-0">
+		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
+		                            <div class="analytics-content"> 
+		                                <h5>가입된 회원수</h5>   
+		                                <h2><span class="counter">12</span> <span class="tuition-fees">명</span></h2>
+		                                <span class="text-inverse"></span> 
+		                                <div class="progress m-b-0">
+		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		            </div>	
 					</div>
 				</div>
 			</div>			
@@ -84,7 +142,8 @@
     var myChart1 = new dimple.chart(svg1, data1);
     myChart1.setBounds(20, 20, 460, 360)
     myChart1.addMeasureAxis("p", "가격");
-    myChart1.addSeries("이름", dimple.plot.pie);
+    var ring = myChart1.addSeries("이름", dimple.plot.pie);
+    ring.innerRadius = "50%";
     myChart1.addLegend(500, 20, 90, 300, "left");
     myChart1.draw();
 
@@ -102,8 +161,26 @@
     var x = myChart2.addCategoryAxis("x", "");
     x.addOrderRule("Date");
     myChart2.addMeasureAxis("y", "예약건수");
-    myChart2.addSeries(null, dimple.plot.bar);
+    var s = myChart2.addSeries(null, dimple.plot.line);
+    s.interpolation = "cardinal";
     myChart2.draw();
+    
+  	//통계3
+    var svg3 = dimple.newSvg("#chartContainer3", 590, 400);    
+   	var data3 = [];  
+   	//for(var i=0;i<${ fn:length(monthCount)};i++){
+   	<c:forEach var="monthCounts" items="${monthCount}">
+   		data3.push({ "": '${monthCounts.months}',"  ":${monthCounts.totalPrice} })
+   	</c:forEach>
+   	//}
+   	var myChart3 = new dimple.chart(svg3, data3);
+    myChart3.setBounds(60, 30, 510, 305)
+    var x = myChart3.addCategoryAxis("x", "");
+    x.addOrderRule("Date");
+    myChart3.addMeasureAxis("y", "  ");
+    var s = myChart3.addSeries(null, dimple.plot.area);
+    s.interpolation = "cardinal";
+    myChart3.draw();
 
 </script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>

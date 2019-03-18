@@ -15,4 +15,10 @@ public interface MyRoomService {
 
 	List<ReservationVO> findReservationByRoomNo(int roomNo, int memberNo);
 
+	List<RoomVO> findWaitingListByPage(int memberNo, int from, int to);
+
+	int findWaitingCount(int memberNo);
+
+	void deleteMyRoom(String roomNo);
+
 }

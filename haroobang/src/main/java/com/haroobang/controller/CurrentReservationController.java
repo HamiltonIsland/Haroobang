@@ -1,5 +1,7 @@
 package com.haroobang.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haroobang.service.CurrentReservationService;
+import com.haroobang.service.RoomDetailService;
 import com.haroobang.ui.ThePager2;
+import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.ReservationVO;
+import com.haroobang.vo.RoomVO;
 
 
 @Controller
@@ -51,28 +57,35 @@ public class CurrentReservationController {
 		}
 	}
 	
-	/*//예약 디테일로 가기
-	@RequestMapping(value = "/lastReservationDetail.action", method = RequestMethod.GET)
-	public String lastReservationdetail(@RequestParam("roomno")int roomNo, String startdate, Model model, HttpSession session) {
+	@RequestMapping(value = "/currentReservationDetail.action", method = RequestMethod.GET)
+	public String currentReservationDetail(@RequestParam("memberno")int memberNo, @RequestParam("reservationNo")int reservationNo, @RequestParam("roomNo")int roomNo, HttpSession session, Model model) {
+
 		if (session.getAttribute("login") == null) {
 			return "/account/login.action";
 		} else {
-			AccountVO member = (AccountVO) session.getAttribute("login");
-			int memberNo = member.getMemberNo();
+			RoomVO room = currentReservationService.findRoomFinish(roomNo);
+			ReservationVO reservation = currentReservationService.findreservation(reservationNo);
+			model.addAttribute("reservation", reservation);
+			model.addAttribute("roomDetail", room);
+			model.addAttribute("memberno", memberNo);
 			
-			ReservationVO reservationdetail = lastReservationService.findRoomByRoomNo(roomNo,memberNo, startdate);
-			if (reservationdetail == null) {
-				return "redirect:last-reservation-list.action";
-			}
-
-			model.addAttribute("reservationdetail", reservationdetail);
-			model.addAttribute("roomno", roomNo);
-
-			return "mypage/last-reservation-detail";
+			return "mypage/currentReservationDetail";
+		}
+	}
+	
+	@RequestMapping(value = "/refundCheck.action", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberDelete(@RequestParam(value="memberArray[]") List<Integer> refundList) {
+		
+		//System.out.println(deleteList.size());
+		ArrayList<Integer> refundCheck = new ArrayList<>();
+		for(int i = 0; i < refundList.size(); i++) {
+			refundCheck.add(refundList.get(i));
 		}
 		
-	}*/
-	
-	
+		currentReservationService.refundCheck(refundCheck);
+		//System.out.println("End");
+		return "success";
+	}
 	
 }

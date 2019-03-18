@@ -167,7 +167,7 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#officeProduct" aria-expanded="false" aria-controls="officeProduct"><span
 								 class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
 							<ul class="collapse" id="officeProduct" data-toggle="collapse" aria-expanded="false" aria-controls="officeProduct">
-								<li class="main-nav-list child"><a href="#">승인 대기중 / 등록된 숙소</a></li>
+								<li class="main-nav-list child"><a href="/haroobang/mypage/waitingList.action?memberno=${login.memberNo }">승인 대기중 / 등록된 숙소</a></li>
 								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
 							</ul>
 						</li>

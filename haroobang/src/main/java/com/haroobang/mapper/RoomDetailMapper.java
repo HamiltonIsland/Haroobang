@@ -41,6 +41,20 @@ public interface RoomDetailMapper {
 
 	int findMyLike(HashMap<String, Object> params);
 
+	void updateFinalPoint(HashMap<String, Object> params);
+
+	void deleteLike(HashMap<String, Object> params);
+
+	void updateStartDateEndDate(HashMap<String, Object> params);
+
+	int findReservationDate(HashMap<String, Object> params);
+
+	void addOcupiedDate(HashMap<String, Object> params);
+
+	int findIdenticalDate(HashMap<String, Object> params);
+
+	String findMemberNickname(int roomNo);
+
 	
 
 }

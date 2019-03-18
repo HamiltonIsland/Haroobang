@@ -47,17 +47,7 @@
 	<section class="login_box_area section_gap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="login_box_img">
-						<img class="img-fluid" src="/haroobang/resources/img/login.jpg" alt="">
-						<div class="hover">
-							<h4>간편하게 가입후 자유롭게 이용해 보세요!</h4>
-							<!-- <p>간편하게 가입후 자유롭게 이용해 보세요!</p> -->
-							<a class="primary-btn" href="/haroobang/account/register.action">Create an Account</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6" style="margin:0 auto">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
 						<form class="row login_form" action="/haroobang/account/login.action" method="post">
@@ -75,7 +65,9 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Log In</button>
+								<a class="primary-btn" style="color: white;" href="/haroobang/account/register.action">Create an Account</a>
 								<a href="findPassword.action">Forgot Password?</a>
+								<br><br>
 							</div>
 						</form>
 					</div>

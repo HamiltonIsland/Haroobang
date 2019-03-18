@@ -35,5 +35,11 @@ public interface RoomListMapper {
 
 	int selectSearchRoomCount(RoomVO vo);
 
+	void deleteRoom(int roomno);
+
+	void deleteapproval(int formdate);
+
+	int selectCountsint(int roomNo);
+
 
 }

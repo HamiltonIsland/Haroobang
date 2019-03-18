@@ -18,6 +18,7 @@ import com.haroobang.service.RoomListService;
 import com.haroobang.ui.ThePager;
 import com.haroobang.vo.AccountVO;
 import com.haroobang.vo.LikedVO;
+import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomVO;
 
 @Controller
@@ -52,6 +53,11 @@ public class RoomListController {
 		if (accountVO != null) {
 			likeds = roomListService.findAllLikeds(accountVO.getMemberNo());
 		}
+		
+		/*List<ReservationVO> reservations = null;
+		if(accountVO.getUserType().equals("admin")) {
+			reservations = roomListService.findReservation();
+		}*/
 		
 		ThePager pager = new ThePager(roomCount, pageNo, pageSize, pagerSize, linkUrl);
 		ThePager disPager = new ThePager(disapprovalCount, pageNo, pageSize, pagerSize, linkUrl);
@@ -89,6 +95,24 @@ public class RoomListController {
 	public String roomUnLiked(String memberno, String roomno) {//HttpSession session, HttpServletRequest req, AccountVO account) {
 		
 		roomListService.unLikedRoom(memberno, roomno);
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/deleteapproval.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteapproval(String formdate) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		roomListService.deleteapproval(formdate);
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/roomDelete.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String roomDelete(String roomno) {//HttpSession session, HttpServletRequest req, AccountVO account) {
+		
+		roomListService.deleteRoom(roomno);
 		
 		return "success";
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.haroobang.mapper.CurrentReservationMapper;
 import com.haroobang.vo.ReservationVO;
 import com.haroobang.vo.RoomAttachVO;
+import com.haroobang.vo.RoomVO;
 
 @Repository("CurrentReservationDao")
 public class CurrentReservationDaoImpl implements CurrentReservationDao{
@@ -44,6 +45,29 @@ public class CurrentReservationDaoImpl implements CurrentReservationDao{
 		
 		List<ReservationVO> currents = currentReservationMapper.selectCurrentRoomByPage(params);
 		return currents;
+	}
+
+	@Override
+	public void refundCheck(int refundNum) {
+		currentReservationMapper.refundCheck(refundNum);
+	}
+
+	@Override
+	public RoomVO selectRoomFinish(int roomNo) {
+		RoomVO room = currentReservationMapper.selectRoomFinish(roomNo);
+		return room;
+	}
+
+	@Override
+	public ReservationVO selectReservation(int reservationNo) {
+		ReservationVO reservation= currentReservationMapper.selectReservation(reservationNo);
+		return reservation;
+	}
+
+	@Override
+	public RoomAttachVO selectRoomAttach(int roomNo) {
+		RoomAttachVO attachs = currentReservationMapper.selectRoomAttach(roomNo);
+		return attachs;
 	}
 
 }

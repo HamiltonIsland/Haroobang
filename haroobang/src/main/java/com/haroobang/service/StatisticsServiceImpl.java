@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.haroobang.dao.StatisticsDao;
 import com.haroobang.vo.ReservationVO;
+import com.haroobang.vo.StatisticsVO;
 
 @Service("StatisticsService")
 public class StatisticsServiceImpl implements StatisticsService{
@@ -32,6 +33,12 @@ public class StatisticsServiceImpl implements StatisticsService{
 	public List<ReservationVO> getMonthCountService() {
 		List<ReservationVO> monthCount = statisticsDao.getMonthCountDao();
 		return monthCount;
+	}
+
+	@Override
+	public StatisticsVO getStatisticsService() {
+		StatisticsVO list = statisticsDao.getStatisticsDao();
+		return list;
 	}
 
 }

@@ -15,7 +15,7 @@ public interface RoomDetailDao {
 
 	AccountVO findMember(int memberNo);
 
-	String addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList);
+	int addRoomReservation(ReservationVO reservationVo, List<LocalDate> dateList);
 
 	List<String> findDateList(int roomNo);
 	
@@ -26,5 +26,15 @@ public interface RoomDetailDao {
 	String findReservedDate(int roomNo, String checkinDate, String endDate);
 
 	String findMyLike(int roomNo, int memberNo);
+
+	void updateFinalPoint(int memberNo,int finalPoint);
+
+	String deleteLike(int roomNo, int memberNo);
+
+	void addStartDateEndDate(String date, int roomNo, int reservationNo);
+
+	String findIdenticalDate(String checkinDate, String endDate, int roomNo);
+
+	String findMemberNickname(int roomNo);
 
 }

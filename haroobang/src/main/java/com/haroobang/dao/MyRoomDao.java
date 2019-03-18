@@ -20,6 +20,12 @@ public interface MyRoomDao {
 
 	List<RoomAttachVO> selectRoomAttachByRoomNo(int roomNo);
 
+	List<RoomVO> selectWaitingListByPage(int memberNo, int from, int to);
+
+	int selectWaitingCount(int memberNo);
+
+	void deleteMyRoom(String roomNo);
+
 
 
 

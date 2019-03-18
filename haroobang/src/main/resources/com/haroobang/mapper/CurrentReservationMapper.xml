@@ -19,15 +19,16 @@
       <result column="request" property="request" />
       <result column="checkin" property="checkin" />
       <result column="coupon" property="Coupon" />
+      <result column="refund" property="refund" />
       <collection property="roomVO" resultMap="RoomVO"></collection>
    </resultMap>
    
    <select id="selectAllCurrentReservations" parameterType="int" resultMap="ReservationMap">
 		<!-- select * from reservation -->
 		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
-		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
+		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon, rs.refund
 	  	from reservation as rs join room as r
-      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo }
+      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo } and rs.deleted = 0 
 	</select>
 	
 	<select id="selectRoomAttachByRoomNo" parameterType="int" resultType="RoomAttachVO">
@@ -37,14 +38,31 @@
 	
 	<select id="selectCurrentRoomByPage" parameterType="hashmap" resultMap="ReservationMap">
 		select rs.reservationNo, rs.roomNo, r.roomName, rs.totalPrice, rs.regDate, rs.startDate, rs.endDate, rs.memberNo,
-		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon
+		rs.payment, rs.nights, rs.request, rs.checkin, rs.coupon, rs.refund
 	  	from reservation as rs join room as r
-      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo } ORDER BY rs.regDate DESC limit #{ first }, #{ last }
+      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo } and rs.deleted = 0 ORDER BY rs.regDate DESC limit #{ first }, #{ last }
 	</select>
 	
 	<select id="selectCurrentCount" parameterType="int" resultType="int">
 		select COUNT(*) from reservation as rs join room as r
-      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo }
+      	where r.roomNo = rs.roomNo and rs.checkin = 0 and rs.memberNo = #{ memberNo } and rs.deleted = 0
 	</select>
+	
+	<select id="selectRoomFinish" parameterType="int" resultType="RoomVO">
+		select * from room where roomNo = #{ roomNo }
+	</select>
+	
+	<select id="selectReservation" parameterType="int" resultType="ReservationVO">
+		select * from reservation where reservationNo = #{ reservationNo }
+	</select>
+	
+	<select id="selectRoomAttach" parameterType="int" resultType="RoomAttachVO">
+		SELECT roomattachNo, roomNo, userFileName, savedFileName
+		FROM roomattach WHERE roomNo = #{ roomNo } limit 1
+	</select>
+	
+	<update id="refundCheck" parameterType="int">
+		update reservation set refund = 1 WHERE reservationNo = #{ refundNum }
+	</update>
 	
 </mapper>

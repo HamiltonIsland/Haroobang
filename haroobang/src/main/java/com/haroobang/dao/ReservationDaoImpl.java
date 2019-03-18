@@ -45,5 +45,15 @@ public class ReservationDaoImpl implements ReservationDao{
 		int count = reservationMapper.selectReserCount();
 		return count;
 	}
+
+	@Override
+	public void deleteReservation(String reservationNo) {
+		reservationMapper.deleteReservation(Integer.parseInt(reservationNo));
+	}
+
+	@Override
+	public void refundRservation(String reservationNo) {
+		reservationMapper.refundRservation(Integer.parseInt(reservationNo));
+	}
 }
 //썅

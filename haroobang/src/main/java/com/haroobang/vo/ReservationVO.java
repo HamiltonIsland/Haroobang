@@ -19,8 +19,24 @@ public class ReservationVO {
 	 private int count;
 	 private RoomVO roomVO;
 	 private AccountVO accountVO;
-	 
-	 
+	 private int people;
+	 private boolean deleted;
+	 private int refund;
+	 private int usedPoint;
+	 private int beforePrice;
+		
+	public int getRefund() {
+		return refund;
+	}
+	public void setRefund(int refund) {
+		this.refund = refund;
+	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	 
 	 private List<RoomAttachVO> roomAttachList;
 	 
@@ -125,6 +141,24 @@ public class ReservationVO {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public int getPeople() {
+		return people;
+	}
+	public void setPeople(int people) {
+		this.people = people;
+	}
+	public int getUsedPoint() {
+		return usedPoint;
+	}
+	public void setUsedPoint(int usedPoint) {
+		this.usedPoint = usedPoint;
+	}
+	public int getBeforePrice() {
+		return beforePrice;
+	}
+	public void setBeforePrice(int beforePrice) {
+		this.beforePrice = beforePrice;
 	}
 	
 }

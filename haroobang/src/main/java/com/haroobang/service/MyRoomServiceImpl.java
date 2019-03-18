@@ -37,6 +37,27 @@ public class MyRoomServiceImpl implements MyRoomService {
 		return myroom;
 	}
 
+	@Override
+	public List<RoomVO> findWaitingListByPage(int memberNo, int from, int to) {
+		List<RoomVO> waitings = myRoomDao.selectWaitingListByPage(memberNo, from, to);
+		for(int i=0; i<waitings.size(); i++) {
+			List<RoomAttachVO> attachVos = myRoomDao.selectRoomAttachByRoomNo(waitings.get(i).getRoomNo());
+			waitings.get(i).setRoomAttachList(attachVos);
+		}
+		return waitings;
+	}
+
+	@Override
+	public int findWaitingCount(int memberNo) {
+		int count = myRoomDao.selectWaitingCount(memberNo);
+		return count;
+	}
+
+	@Override
+	public void deleteMyRoom(String roomNo) {
+		myRoomDao.deleteMyRoom(roomNo);
+	}
+
 //	@Override
 //	public List<ReservationVO> findMyRoomReservation(int memberNo) {
 //		List<ReservationVO> myrooms = myRoomDao.selectAllMyRoomReservation(memberNo);

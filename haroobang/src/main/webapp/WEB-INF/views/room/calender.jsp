@@ -20,6 +20,8 @@
   #calendar {
   font-size: 7px;
   defaultView: 'month'
+  
+  
    /*  max-width: 200px;
     height: 200px; */
    /*  margin: 0 auto; */
@@ -37,13 +39,19 @@
   <br>
    <c:choose>
     <c:when test="${login.userType == 'admin' }">
-     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">목록에서 지우기</a>
+     <a class="primary-btn" href="javascript:" id="roomDelete" style="width:100%;text-align: center;">목록에서 지우기</a>
     </c:when>
-    <c:otherwise>
-    <h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>
-     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
-    </c:otherwise>
-    </c:choose>
+	<c:when test="${roomDetail.approval == false && login.memberNo==roomDetail.memberNo }">
+	<a class="primary-btn" style="width:100%;text-align: center;" disabled>승인대기중입니다.</a>
+	</c:when>
+	<c:when test="${login.memberNo==roomDetail.memberNo && roomDetail.approval == true }">
+  	<a class="primary-btn" style="width:100%;text-align: center;" disabled>본인이 등록한 숙소 입니다.</a>
+	</c:when>
+	<c:otherwise>
+	<h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>    
+    <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
+	</c:otherwise>
+   </c:choose>
 <!-- <a class="icon_btn" href="javascript:" id="like" style="display: inline;"><i class="lnr lnr lnr-heart"></i></a> --> 
 
 
@@ -92,7 +100,8 @@
       select: function(startDate, endDate) {
       
         	  /* alert(startDate.format() + ' to ' + endDate.format()); */
-        	  
+        	  startDate1 = "";
+			  endDate1 = "";
         	  $.ajax({
   				url:"/haroobang/room/checkDate.action",
   				data:{"checkinDate":startDate.format(),"endDate":endDate.format(),"roomNo":${roomNo}},
@@ -100,6 +109,10 @@
   				success:function(data,status,xhr){
   					if(data == "fail"){
   						alert("선택하신 날짜에는 예약 할 수 없습니다. 날짜를 다시 선택 해 주세요");
+  						$("#roomReservation").click(function () {return false;});
+  					}else if(data == "exist"){
+  						alert("선택하신 날짜는 1박이 예약되지않습니다./선택하신날짜사이에 이미 예약된날짜가 있습니다.")
+  						$("#roomReservation").click(function () {return false;});
   					}else if(data == "redirect:/account/login.action"){
   						alert("로그인이 필요합니다.")
   						location.href = "/haroobang/account/login.action"
@@ -122,6 +135,15 @@
     		}
     		
 
+    	});
+    	
+    	$("#roomDelete").click(function(e){
+    		
+    		var c = confirm("삭제하시겠습니까?");
+    		
+    		if(c == true){
+    			location.href = "/haroobang/room/roomDelete.action?roomNo="+${roomNo}
+    		}else{	}
     	});
   
     	

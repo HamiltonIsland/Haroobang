@@ -15,5 +15,8 @@ public interface ReservationDao {
 
 	int selectReserCount();
 
+	void deleteReservation(String reservationNo);
+
+	void refundRservation(String reservationNo);
+
 }
-//썅

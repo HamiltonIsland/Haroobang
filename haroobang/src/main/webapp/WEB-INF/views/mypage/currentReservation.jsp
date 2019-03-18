@@ -84,7 +84,7 @@
 								class="lnr lnr-arrow-right"></span>내 숙소 관리</a>
 							<ul class="collapse" id="officeProduct" data-toggle="collapse"
 								aria-expanded="false" aria-controls="officeProduct">
-								<li class="main-nav-list child"><a href="#">승인 대기중 /
+								<li class="main-nav-list child"><a href="/haroobang/mypage/waitingList.action?memberno=${ login.memberNo }">승인 대기중 /
 										등록된 숙소</a></li>
 								<li class="main-nav-list child"><a href="/haroobang/mypage/myRoomReservation.action?memberno=${ login.memberNo }">내 숙소 예약 목록</a></li>
 							</ul></li>
@@ -122,7 +122,7 @@
 						</select> -->
 						<div class="bottom_button">
 							<div class="button-group-area mt-40">
-								<a href="#" class="genric-btn primary circle">환불</a>
+								<a href="javascript:;" class="genric-btn primary circle" id="refund">환불</a>
 							</div>
 						</div>
 					</div>
@@ -152,18 +152,19 @@
 											<th scope="col">숙박기간</th>
 											<!-- <th scope="col">Check IN or OUT</th> -->
 											<th scope="col">결제일시</th>
-											<th scope="col">총결제금액</th>
+											<th scope="col">총결제</th>
+											<th scope="col">환불</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="current" items="${currents}">
 
-											<tr class="search">
+											<tr class="search"> 
 												<td>
 													<div class="media">
 														<div class="d-flex">
-															<input type="checkbox"> <a
-																href="/haroobang/room/roomDetail.action?roomNo=${current.roomNo}">
+															<input type="checkbox" class="checkrefund" data-reservationNo="${current.reservationNo}"> 
+															<a href="/haroobang/mypage/currentReservationDetail.action?memberno=${ login.memberNo }&reservationNo=${current.reservationNo}&roomNo=${current.roomNo}">
 																<c:choose>
 																	<c:when test="${not empty current.roomAttachList}">
 																		<div class="main-carousel"
@@ -201,24 +202,6 @@
 													<h5>${current.startDate}~ ${current.endDate}</h5>
 												</td>
 
-												<%--   <td>
-                                    <h5>
-                                    <c:choose>
-                                    	<c:when test='${not empty reservation.checkin and reservation.checkin eq true }'>
-                                    		<h5 style="color: blue; text-align: center;">Check-IN</h5>
-                                    		
-                                    		<c:if test='${ reservation.checkin eq 2 }'>
-                                    		<h5 style="color: red;">Check-OUT</h5>
-                                    		</c:if>
-                                    		
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<h5 style="color: red; text-align: center;">NOT Arrive</h5>
-                                    	</c:otherwise>
-                                    </c:choose>
-                                    </h5>
-                                </td> --%>
-
 												<td>
 													<h5>${current.regDate}</h5>
 												</td>
@@ -226,6 +209,14 @@
 												<td>
 													<h5>${current.totalPrice}원</h5>
 												</td>
+												<td>
+				                                    <c:if test='${not empty current.refund and current.refund eq 1 }'>
+				                       					<h5 style="color: red;">대기</h5>
+				                       				</c:if>
+				                       				<c:if test='${not empty current.refund and current.refund eq 0 }'>
+				                       					<h5>미신청</h5>
+				                       				</c:if>
+				                                </td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -256,6 +247,49 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<!-- End footer Area -->
 	<jsp:include page="../include/js.jsp" />
+	<script type="text/javascript">
+		$(function(){
+			$('#refund').on('click',function(event){
+				var memberArray = new Array();
+				$("tr[class ^=search]").find('.checkrefund').each(function(event){
+					if ($(this).is(':checked')) {
+						memberArray.push($(this).attr('data-reservationNo'));
+					}
+				});
+				
+				//alert(memberArray);
+				if (memberArray.length == 0) {
+					alert("선택된 것이 없습니다.");
+				}else{
+					alert(memberArray);
+					if (confirm("환불 신청하시겠습니까?") == true) {
+						$.ajax({
+							"url": "refundCheck.action",
+							"method": "POST",
+							"data": { 0 : 0, memberArray : memberArray },
+							"success" : function(data,
+									status, xhr) {
+								if (data === "success") {
+									alert('환불 신청 했습니다.');
+								}
+
+								location.reload(true);
+							},
+							"error" : function(xhr, status, err) {
+								alert('환불 신청 실패다!! 이놈아');
+								location.reload(true);
+							}
+						});
+						
+						memberArray = new Array();
+					}else {
+						location.reload(true);
+					}
+				}
+				
+			});
+		});
+	</script>
 
 </body>
 
