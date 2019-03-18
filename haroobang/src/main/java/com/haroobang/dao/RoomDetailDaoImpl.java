@@ -245,4 +245,10 @@ public class RoomDetailDaoImpl implements RoomDetailDao{
 			return "none";
 		}
 	}
+
+	@Override
+	public String findMemberNickname(int roomNo) {
+		String nickName = roomDetailMapper.findMemberNickname(roomNo);
+		return nickName;
+}
 }

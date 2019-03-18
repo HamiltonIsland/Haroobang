@@ -149,7 +149,9 @@ public class RoomDetailController {
 	public String calender(int roomNo,Model model) {
 		
 		List<String> dateList = roomDetailService.findDateList(roomNo);
-	
+		RoomVO roomDetail = roomDetailService.findRoomDetail(roomNo);
+		
+		model.addAttribute("roomDetail", roomDetail);
 		model.addAttribute("dateList",dateList);
 		model.addAttribute("roomNo",roomNo);
 		
@@ -187,8 +189,6 @@ public class RoomDetailController {
 		}
 
 		reservationVo.setMemberNo(memberNo);
-		int memberNo2 = reservationVo.getMemberNo();
-		AccountVO member2 = roomDetailService.findMember(memberNo2);
 
 		RoomVO room = roomDetailService.findRoomDetail(reservationVo.getRoomNo());
 		String message =roomDetailService.addRoomReservation(reservationVo,dateList,reservationVo.getStartDate(), reservationVo.getEndDate());
@@ -200,7 +200,6 @@ public class RoomDetailController {
 		member.setPoint(finalPoint);
 		roomDetailService.updateFinalPoint(memberNo,finalPoint);
 		
-		model.addAttribute("member", member2);
 		model.addAttribute("reservation", reservationVo);
 		model.addAttribute("roomDetail", room);
 

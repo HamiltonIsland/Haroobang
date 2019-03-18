@@ -30,6 +30,7 @@ public class RoomDetailServiceImpl implements RoomDetailService {
 	@Override
 	public RoomVO findRoomDetail(int roomNo) {
 		RoomVO room = roomDetailDao.findRoomDetail(roomNo);
+		room.setMemberNickname(roomDetailDao.findMemberNickname(roomNo));
 		return room;
 	}
 

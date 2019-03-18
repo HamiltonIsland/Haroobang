@@ -35,4 +35,6 @@ public interface RoomDetailDao {
 
 	String findIdenticalDate(String checkinDate, String endDate, int roomNo);
 
+	String findMemberNickname(int roomNo);
+
 }

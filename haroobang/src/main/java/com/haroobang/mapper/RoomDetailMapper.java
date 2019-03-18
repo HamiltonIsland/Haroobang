@@ -53,6 +53,8 @@ public interface RoomDetailMapper {
 
 	int findIdenticalDate(HashMap<String, Object> params);
 
+	String findMemberNickname(int roomNo);
+
 	
 
 }

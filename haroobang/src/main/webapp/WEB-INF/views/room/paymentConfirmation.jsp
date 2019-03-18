@@ -112,10 +112,10 @@ $(function(){
                                 </a></p>
                             </div>
                             <h3>판매자 정보</h3>
-                            <img src="/haroobang/resources/upload/${member.savedFileName}" class="rounded-circle" style="height: 70px;width:70px" alt="">
-                             &nbsp;&nbsp;${member.nickname } 님
+                            <img src="/haroobang/resources/upload/${roomDetail.memberSavedFileName}" class="rounded-circle" style="height: 70px;width:70px" alt="">
+                             &nbsp;&nbsp;${roomDetail.memberNickname } 님
                              <br>
-                             &nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo }"><i class="icon-envelope-alt"></i>문의하기</a></h3>
+                             &nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${roomDetail.memberNo }"><i class="icon-envelope-alt"></i>문의하기</a></h3>
                             <br><br>
                             </form>
                             <a class="primary-btn" href="/haroobang/mypage/currentReservationList.action?memberno=${login.memberNo }">마이페이지로 가기</a>
