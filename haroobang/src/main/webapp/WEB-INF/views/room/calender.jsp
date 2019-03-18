@@ -42,8 +42,10 @@
      <a class="primary-btn" href="javascript:" id="roomDelete" style="width:100%;text-align: center;">목록에서 지우기</a>
     </c:when>
     <c:otherwise>
-    <h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>
+    <c:if test="${room.approval==1 and login.memberNo!=room.memberNo }">
+   	<h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>    
      <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
+     </c:if>
     </c:otherwise>
     </c:choose>
 <!-- <a class="icon_btn" href="javascript:" id="like" style="display: inline;"><i class="lnr lnr lnr-heart"></i></a> --> 
