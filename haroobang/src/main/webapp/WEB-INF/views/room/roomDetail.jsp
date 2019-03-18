@@ -111,9 +111,14 @@
 								<a href="/haroobang/account/login.action" id="idCheck">
 								</c:when>
 								<c:otherwise>
-
+								<c:choose>
+								<c:when test="${login.memberNo != member.memberNo }">
 								<a href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}">
-
+								</c:when>
+								<c:otherwise>
+								<a href="#" disable>
+								</c:otherwise>
+								</c:choose>
 								</c:otherwise>
 								</c:choose>
 								<img src="/haroobang/resources/upload/${room.memberSavedFileName }" class="rounded-circle" style="height: 70px;width:70px" alt="">
@@ -123,7 +128,16 @@
 								<div class="media-body">
 								<div style=" display: inline-block;">
 								
-									<h3>&nbsp;${member.nickname}님 &nbsp;&nbsp;&nbsp;<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}"><i class="icon-envelope-alt"></i>문의하기</a></h3>
+									<h3>&nbsp;${member.nickname}님 &nbsp;&nbsp;&nbsp;
+									<c:choose>
+									<c:when test="${login.memberNo != member.memberNo }">
+									<a style="font-size: 14px" href="/haroobang/message/messageRoom.action?memberNo=${member.memberNo}">
+									</c:when>
+									<c:otherwise>
+									<a style="font-size: 14px" href="#">
+									</c:otherwise>
+									</c:choose>
+									<i class="icon-envelope-alt"></i>문의하기</a></h3>
 								</div>
 								<hr>
 								<p> 최대인원 : ${room.maximum } 명 </p>	
