@@ -36,8 +36,8 @@ public class StatisticsServiceImpl implements StatisticsService{
 	}
 
 	@Override
-	public StatisticsVO getStatisticsService() {
-		StatisticsVO list = statisticsDao.getStatisticsDao();
+	public StatisticsVO getStatisticsService(int memberNo) {
+		StatisticsVO list = statisticsDao.getStatisticsDao(memberNo);
 		return list;
 	}
 

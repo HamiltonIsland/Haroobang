@@ -13,7 +13,7 @@ public interface StatisticsService {
 
 	List<ReservationVO> getMonthCountService();
 
-	StatisticsVO getStatisticsService();
+	StatisticsVO getStatisticsService(int i);
 
 
 }

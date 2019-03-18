@@ -38,8 +38,9 @@
 	<!--================Product Description Area =================-->
 	<section class="product_description_area">
 		<div class="container">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">				
-				<li class="nav-item"><a class="nav-link active" id="review-tab"
+			<ul class="nav nav-tabs" id="myTab" role="tablist">	
+				<c:if test = "${login.userType=='admin'}">			
+				<li class="nav-item"><a class="nav-link <c:if test="${login.userType=='admin'}"> active</c:if>" id="review-tab"
 					data-toggle="tab" href="#review" role="tab" aria-controls="review"
 					aria-selected="true">월 매출</a></li>
 				<li class="nav-item"><a class="nav-link" id="profile-tab"
@@ -48,13 +49,16 @@
 				<li class="nav-item"><a class="nav-link" id="review-tab"
 					data-toggle="tab" href="#member" role="tab" aria-controls="member"
 					aria-selected="false">회원 수</a></li>
-				<li class="nav-item"><a class="nav-link" id="home-tab"
+				</c:if>
+				<c:if test="${login.userType=='user'}">
+				<li class="nav-item"><a class="nav-link <c:if test="${login.userType=='user'}">active</c:if>" id="home-tab"
 					data-toggle="tab" href="#home" role="tab" aria-controls="home"
-					aria-selected="false">이익</a></li>
+					aria-selected="false">내 숙소 현황</a></li>
+				</c:if>
 				
 			</ul>
 			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade" id="home" role="tabpanel"
+				<div class="tab-pane fade <c:if test="${login.userType=='user'}"> show active</c:if>" id="home" role="tabpanel"
 					aria-labelledby="home-tab">
 					<div id="chartContainer1" style="text-align:center">	
 					</div>
@@ -65,7 +69,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+				<div class="tab-pane fade <c:if test="${login.userType=='admin'}"> show active</c:if>" id="review" role="tabpanel" aria-labelledby="review-tab">
 					<div id="chartContainer3" style="text-align:center">	
 					</div> 
 				</div>
@@ -135,14 +139,14 @@
 	//통계1
     var svg1 = dimple.newSvg("#chartContainer1", 590, 400);    
    	var data1 = [
-   	     { "이름": "check-in Price", "가격":${totalCheckinPrice}},
-   	     { "이름": "uncheck-in Price", "가격":${totalPrice}-${totalCheckinPrice}}
+   	     { "성별": "여자", "예약건수":${StatisticsList.femaleCount}}, 
+   	     { "성별": "남자", "예약건수":${StatisticsList.genderCount}-${StatisticsList.femaleCount}}    
    	     
    	];   	
     var myChart1 = new dimple.chart(svg1, data1);
     myChart1.setBounds(20, 20, 460, 360)
-    myChart1.addMeasureAxis("p", "가격");
-    var ring = myChart1.addSeries("이름", dimple.plot.pie);
+    myChart1.addMeasureAxis("p", "예약건수");
+    var ring = myChart1.addSeries("성별", dimple.plot.pie);
     ring.innerRadius = "50%";
     myChart1.addLegend(500, 20, 90, 300, "left");
     myChart1.draw();

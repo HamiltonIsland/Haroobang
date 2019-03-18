@@ -15,5 +15,14 @@
 	<select id="getStatistics" resultType="int">
 		select count(*) memberCount from member
 	</select>
+	<select id="getGenderCount" parameterType = "int" resultType="StatisticsVO">
+		select count(gender) genderCount, count(case when gender="female" THEN 1 END)femaleCount
+		from member m1
+		inner join reservation r
+		on m1.memberNo = r.memberNo
+		inner join room r1
+		on r.roomNo = r1.roomNo
+		where r1.memberNo = #{memberNo};
+	</select>
 	
 </mapper>
