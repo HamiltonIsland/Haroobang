@@ -41,13 +41,17 @@
     <c:when test="${login.userType == 'admin' }">
      <a class="primary-btn" href="javascript:" id="roomDelete" style="width:100%;text-align: center;">목록에서 지우기</a>
     </c:when>
-    <c:otherwise>
-    <c:if test="${room.approval==1 and login.memberNo!=room.memberNo }">
-   	<h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>    
-     <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
-     </c:if>
-    </c:otherwise>
-    </c:choose>
+	<c:when test="${roomDetail.approval == false && login.memberNo==roomDetail.memberNo }">
+	<a class="primary-btn" style="width:100%;text-align: center;" disabled>승인대기중입니다.</a>
+	</c:when>
+	<c:when test="${login.memberNo==roomDetail.memberNo && roomDetail.approval == true }">
+  	<a class="primary-btn" style="width:100%;text-align: center;" disabled>본인이 등록한 숙소 입니다.</a>
+	</c:when>
+	<c:otherwise>
+	<h5 style="color: gray;text-align: center">예약을 원하시는 날짜를 드래그해 주세요</h5>    
+    <a class="primary-btn" href="javascript:" id="roomReservation" style="width:100%;text-align: center;">예약하기</a>
+	</c:otherwise>
+   </c:choose>
 <!-- <a class="icon_btn" href="javascript:" id="like" style="display: inline;"><i class="lnr lnr lnr-heart"></i></a> --> 
 
 
