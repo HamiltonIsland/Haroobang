@@ -22,7 +22,7 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>LastReservation</title>
+<title>CurrentReservation</title>
 
 <!--
             CSS
@@ -270,7 +270,7 @@
 				if (memberArray.length == 0) {
 					alert("선택된 것이 없습니다.");
 				}else{
-					alert(memberArray);
+					/* alert(memberArray); */
 					if (confirm("환불 신청하시겠습니까?") == true) {
 						$.ajax({
 							"url": "refundCheck.action",

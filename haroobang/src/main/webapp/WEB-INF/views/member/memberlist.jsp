@@ -167,11 +167,11 @@
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting mr-auto">
-						<select>
+						<!-- <select>
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
 							<option value="1">Show 12</option>
-						</select>
+						</select> -->
 					</div>
 					<div class="pagination">
 						<a href="#" class="prev-arrow"><i
