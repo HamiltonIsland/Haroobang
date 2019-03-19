@@ -211,7 +211,9 @@
 		<div class="container">
 			<div class="cart_inner">
 				<div class="table-responsive" style="text-align: center">
-					<table class="table">
+				<c:choose>
+				<c:when test="${not empty myrooms }">
+				<table class="table">
 						<thead>
 							<tr>
 								<th scope="col">숙소정보</th>
@@ -260,10 +262,17 @@
                                 </td>
 								
 							</tr>
+							
 						</c:forEach>
 						</tbody>
-
-					</table>
+			</table>
+			<hr>
+				</c:when>
+				<c:otherwise>
+				<h3 style="color: gray;margin-top: 10%">이전 예약 내역이 없습니다.</h3>
+				</c:otherwise>
+				</c:choose>
+					
 				</div>
 
 			</div>

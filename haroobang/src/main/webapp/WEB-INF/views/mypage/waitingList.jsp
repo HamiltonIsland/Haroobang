@@ -144,6 +144,8 @@
 						<div class="cart_inner">
 							<!-- single product -->
 							<div class="table-responsive" style="text-align: center">
+							<c:choose>
+							<c:when test="${not empty waitings}">
 								<table class="table">
 									<thead>
 										<tr>
@@ -229,6 +231,12 @@
 								</table>
 								<hr>
 							</div>
+							</c:when>
+							<c:otherwise>
+							<h3 style="color: gray;margin-top: 10%">등록한 숙소가 없습니다.</h3>
+							</c:otherwise>
+							</c:choose>
+							
 						</div>
 					</div>
 				</section>
