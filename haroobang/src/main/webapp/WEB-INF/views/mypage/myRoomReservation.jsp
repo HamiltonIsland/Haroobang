@@ -287,7 +287,7 @@ img {vertical-align: middle;}
 							</div>
 							</c:when>
 							<c:otherwise>
-							<h3 style="color: gray;margin-top: 10%">이전 예약 내역이 없습니다.</h3>
+							<h3 style="color: gray;margin-top: 10%">예약된 내역이 없습니다.</h3>
 							</c:otherwise>
 							</c:choose>
 								

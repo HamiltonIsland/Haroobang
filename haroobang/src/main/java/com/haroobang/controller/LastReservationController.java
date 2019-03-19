@@ -67,11 +67,13 @@ public class LastReservationController {
 			int memberNo = member.getMemberNo();
 			
 			ReservationVO reservationdetail = lastReservationService.findRoomByRoomNo(roomNo, memberNo, startdate);
+			String result = lastReservationService.findComment(reservationdetail.getReservationNo());
+			
 			if (reservationdetail == null) {
 				return "redirect:last-reservation-list.action";
-			}
+			};
 			
-
+			model.addAttribute("result",result);
 			model.addAttribute("reservationdetail", reservationdetail);
 			model.addAttribute("roomno", roomNo);
 

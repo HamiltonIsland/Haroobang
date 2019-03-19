@@ -54,4 +54,19 @@ public class OracleLastReservationDao implements LastReservationDao {
 		return count;
 	}
 
+	@Override
+	public String findComment(int reservationNo) {
+		String result = "success";
+		try {
+			int commentNo = lastReservationMapper.findComment(reservationNo);
+			if(commentNo < 1) {
+				result = "fail";
+			}
+		} catch (Exception e) {
+			result="fail";
+		}
+		
+		return result;
+	}
+
 }

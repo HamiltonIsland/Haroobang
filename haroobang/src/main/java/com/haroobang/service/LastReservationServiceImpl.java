@@ -50,4 +50,10 @@ public class LastReservationServiceImpl implements LastReservationService {
 		return count;
 	}
 
+	@Override
+	public String findComment(int reservationNo) {
+		String result = lastReservationDao.findComment(reservationNo);
+		return result;
+	}
+
 }

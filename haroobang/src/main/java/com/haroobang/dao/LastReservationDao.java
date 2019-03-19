@@ -18,4 +18,6 @@ public interface LastReservationDao {
 
 	int selectRoomCount(int memberNo);
 
+	String findComment(int reservationNo);
+
 }

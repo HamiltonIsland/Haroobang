@@ -116,7 +116,14 @@ $(function(){
 						</tbody>
 
 					</table>
+					<c:choose>
+					<c:when test="${result=='fail' }">
 					<a class="gray_btn" href="/haroobang/mypage/commentRegister.action?roomno=${ roomno }&reservationno=${ reservationdetail.reservationNo }">후기등록</a>
+					</c:when>
+					<c:otherwise>
+					<a class="gray_btn">후기 등록 완료</a>
+					</c:otherwise>
+					</c:choose>
 				</div>
 
 			</div>

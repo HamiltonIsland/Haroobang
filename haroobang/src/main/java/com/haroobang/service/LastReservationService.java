@@ -15,4 +15,6 @@ public interface LastReservationService {
 
 	int findRoomCount(int memberNo);
 
+	String findComment(int reservationNo);
+
 }

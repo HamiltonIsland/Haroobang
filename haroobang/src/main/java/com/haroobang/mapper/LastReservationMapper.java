@@ -18,5 +18,7 @@ public interface LastReservationMapper {
 	List<ReservationVO> selectAllMyLastReservationByPage(HashMap<String, Object> params);
 
 	int selectRoomCount(int memberNo);
+
+	int findComment(int reservationNo);
 	
 }

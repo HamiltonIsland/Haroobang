@@ -68,6 +68,8 @@
 		where r.roomNo = rs.roomNo AND rs.checkin = 1 AND rs.memberNo = #{ memberNo };
 	</select>
 	
-	
+	<select id="findComment" parameterType="int" resultType="int">
+	select commentNo from comment where reservationNo=#{reservationNo}
+	</select>
    
 </mapper>
