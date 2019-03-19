@@ -217,7 +217,9 @@ img {vertical-align: middle;}
 						<div class="cart_inner">
 							<!-- single product -->
 							<div class="table-responsive" style="text-align: center">
-								<table class="table">
+							<c:choose>
+							<c:when test="${not empty myreservations}">
+							<table class="table">
 									<thead>
 										<tr>
 											<th scope="col">숙소정보</th>
@@ -283,6 +285,12 @@ img {vertical-align: middle;}
 								</table>
 								<hr>
 							</div>
+							</c:when>
+							<c:otherwise>
+							<h3 style="color: gray;margin-top: 10%">이전 예약 내역이 없습니다.</h3>
+							</c:otherwise>
+							</c:choose>
+								
 						</div>
 					</div>
 				</section>

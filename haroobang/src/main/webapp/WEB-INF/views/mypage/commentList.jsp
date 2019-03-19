@@ -125,7 +125,9 @@
 					<div class="container">
 						<div class="cart_inner">
 							<div class="table-responsive" style="text-align: center">
-								<table class="table">
+							<c:choose>
+							<c:when test="${not empty mycomments }">
+							<table class="table">
 									<thead>
 										<tr>
 											<th scope="col" style="width: 150px;">숙소정보</th>
@@ -181,6 +183,12 @@
 									</tbody>
 
 								</table>
+							</c:when>
+							<c:otherwise>
+							<h3 style="color: gray;margin-top: 10%">등록하신 후기가 없습니다.</h3>
+							</c:otherwise>
+							</c:choose>
+								
 							</div>
 
 						</div>
