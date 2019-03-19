@@ -80,19 +80,19 @@
 		select * from liked where memberno = #{memberNo} and deleted = 0
 	</select>
 	
-	<!-- <delete id="unLikedRoom" parameterType="hashmap">
+	<delete id="unLikedRoom" parameterType="hashmap">
 		DELETE FROM liked WHERE memberNo = #{ memberno } and roomNo = #{ roomno }
-	</delete> -->
+	</delete>
 	
 	<select id="selectCountsint" parameterType="int" resultType="int">
 		select count(*) from reservation where roomNo = #{ roomNo } and checkin = 0
 	</select>
 	
-	<update id="unLikedRoom" parameterType="hashmap">
+	<!-- <update id="unLikedRoom" parameterType="hashmap">
 		update liked
 		set deleted = 1
 		where memberNo = #{ memberno } and roomNo = #{ roomno }
-	</update>
+	</update> -->
 	
 	<update id="deleteapproval" parameterType="int">
 		update room
