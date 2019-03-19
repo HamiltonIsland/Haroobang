@@ -141,7 +141,7 @@
 								</div>
 								<hr>
 								<p> 최대인원 : ${room.maximum } 명 </p>	
-								<p> 숙소안내 : </p>
+								<p> <숙소안내> </p>
 								<p style="white-space: pre">${room.roomProfile}</p>
 								</div>
 							</div>
