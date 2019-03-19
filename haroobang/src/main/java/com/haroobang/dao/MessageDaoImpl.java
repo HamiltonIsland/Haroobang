@@ -65,7 +65,7 @@ public class MessageDaoImpl implements MessageDao{
 			
 			//방 만들자마자 첫 메시지
 			MessagesVO vo = new MessagesVO();
-			vo.setContent("안녕하세요~~~~~");
+			vo.setContent("안녕하세요^^");
 			vo.setMemberNo(memberNo);
 			vo.setMessageRoomNo(messageRoomNo);
 			
