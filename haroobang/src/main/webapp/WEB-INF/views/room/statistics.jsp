@@ -88,42 +88,9 @@
 		                            </div>
 		                        </div>
 		                    </div>
-		                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
-		                            <div class="analytics-content"> 
-		                                <h5>가입된 회원수</h5>   
-		                                <h2><span class="counter">12</span> <span class="tuition-fees">명</span></h2>
-		                                <span class="text-inverse"></span> 
-		                                <div class="progress m-b-0">
-		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
-		                            <div class="analytics-content"> 
-		                                <h5>가입된 회원수</h5>   
-		                                <h2><span class="counter">12</span> <span class="tuition-fees">명</span></h2>
-		                                <span class="text-inverse"></span> 
-		                                <div class="progress m-b-0">
-		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		                        <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
-		                            <div class="analytics-content"> 
-		                                <h5>가입된 회원수</h5>   
-		                                <h2><span class="counter">12</span> <span class="tuition-fees">명</span></h2>
-		                                <span class="text-inverse"></span> 
-		                                <div class="progress m-b-0">
-		                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
+		                    
+		                   
+		                   
 		            </div>	
 					</div>
 				</div>
