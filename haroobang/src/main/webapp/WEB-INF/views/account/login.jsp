@@ -81,6 +81,11 @@
 
 
 	<jsp:include page="../include/js.jsp"/>
+	<script type="text/javascript">
+	if(${result == "fail"}){
+		alert("일치하는 정보가 없습니다. 다시입력해주세요.")
+	}
+	</script>
 	
 </body>
 

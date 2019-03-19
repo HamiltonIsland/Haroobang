@@ -55,9 +55,11 @@ public class AccountController {
 	
 	//login
 	@RequestMapping (value = "/login.action", method = RequestMethod.POST)
-	public String login(AccountVO vo, HttpSession session) {
+	public String login(AccountVO vo, HttpSession session,Model model) {
+		
 		List<AccountVO> login = accountService.loginService(vo);	
 		if(login == null || login.size()==0) {
+			model.addAttribute("result","fail");
 			return "account/login"; 
 		}
 		
